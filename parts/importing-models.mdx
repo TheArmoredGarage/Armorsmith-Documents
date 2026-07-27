@@ -1,0 +1,61 @@
+---
+title: "Import 3D Costume Models into Armorsmith Designer"
+sidebarTitle: "Importing"
+description: "Learn how to import OBJ, STL, FBX, and PDO files into Armorsmith Designer to start building your cosplay costume."
+---
+
+Armorsmith Designer supports several common 3D file formats, so you can bring in models from a wide variety of sources — whether you downloaded them from a model-sharing site, exported them from your own 3D software, or unfolded them in Pepakura. Once a model is in the scene, you can attach it to your avatar and begin fitting your costume.
+
+## Supported File Formats
+
+<CardGroup cols={2}>
+  <Card title="OBJ" icon="cube">
+    A widely supported, geometry-only format. Most 3D modeling tools and model libraries export OBJ files. Materials may be stored in a companion `.mtl` file.
+  </Card>
+  <Card title="STL" icon="print">
+    The standard format for 3D printing. STL files contain only mesh geometry — no color or material data. Common for armor pieces sourced from print-ready libraries.
+  </Card>
+  <Card title="FBX" icon="layer-group">
+    A full-featured format that can carry mesh data, textures, and scene hierarchy. Useful when importing models exported from tools like Blender, Maya, or 3ds Max.
+  </Card>
+  <Card title="PDO" icon="scissors">
+    Pepakura Designer's native format. Armorsmith loads PDO files directly and can generate unfolded patterns from them — no copy of Pepakura Designer required.
+  </Card>
+</CardGroup>
+
+## Importing a Model
+
+<Steps>
+  <Step title="Open the Import dialog">
+    In the menu bar, go to **File → Import**. The file browser will open.
+  </Step>
+  <Step title="Select your file">
+    Navigate to the location of your model file. Select a file with a supported extension (`.obj`, `.stl`, `.fbx`, or `.pdo`) and click **Open**.
+  </Step>
+  <Step title="Review the import settings">
+    Armorsmith may present options such as unit scale or axis orientation depending on the file type. Adjust these if needed, then confirm.
+  </Step>
+  <Step title="Confirm the import">
+    Click **Import** (or **OK**) to bring the model into your scene. The part will appear in the 3D viewport and in the Parts list in the side panel.
+  </Step>
+</Steps>
+
+<Note>
+  PDO files are the native format for Pepakura Designer, a popular tool for creating paper-craft armor patterns. When you import a PDO file into Armorsmith, the app reads the 3D mesh and lets you generate flat patterns directly — you do not need a separate Pepakura Designer license to work with these files.
+</Note>
+
+## After Importing
+
+<Note>
+  Models created in different software often use different unit scales or coordinate systems. A model that looks correct in its source app may appear very large, very small, or rotated unexpectedly after import. Use the **Scale** and **Rotate** transform tools to correct the size and orientation before attaching the part to your avatar. See [Move, Rotate, and Scale Costume Parts](/parts/transforming-parts) for details.
+</Note>
+
+<Tip>
+  Looking for models to import? Several free and paid libraries host print-ready and cosplay-specific 3D files:
+
+  - **[Thingiverse](https://www.thingiverse.com)** — large community library of free STL and OBJ files
+  - **[MyMiniFactory](https://www.myminifactory.com)** — curated models, including many cosplay and prop designs
+  - **[Printables](https://www.printables.com)** — Prusa's model-sharing platform with a growing cosplay section
+
+  You can also model parts from scratch in tools like Blender, Fusion 360, or ZBrush and export them as OBJ or FBX for import into Armorsmith.
+</Tip>

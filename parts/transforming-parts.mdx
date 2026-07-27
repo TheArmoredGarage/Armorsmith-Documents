@@ -1,0 +1,52 @@
+---
+title: "Move, Rotate, and Scale Costume Parts"
+sidebarTitle: "Transforming"
+description: "Use Armorsmith Designer's Move, Rotate, and Scale tools to precisely position and size costume parts on your avatar."
+---
+
+The three transform tools — Move, Rotate, and Scale — are how you take a raw imported model and fit it exactly where it belongs on your avatar. Each tool shows a 3D gizmo in the viewport that you drag to apply the transformation. You can also type exact values into the Property Grid when you need precision that's hard to achieve by hand.
+
+## Transform Tools at a Glance
+
+| Tool | Toolbar Button | Keyboard Shortcut | Gizmo Interaction |
+|------|---------------|-------------------|-------------------|
+| **Move** | Move icon (four-arrow cross) | **W** | Drag axis arrows (X/Y/Z) or drag a plane handle to move on two axes at once |
+| **Rotate** | Rotate icon (circular arrow) | **E** | Drag the colored rotation rings around each axis |
+| **Scale** | Scale icon (expanding arrows) | **R** | Drag the center cube to scale uniformly; drag an axis handle to scale on one axis only |
+
+## Move
+
+The Move tool translates a part along one or more axes without changing its size or orientation. After selecting a part and activating Move, three colored arrows appear at the part's pivot point:
+
+- **Red arrow** — moves along the X axis (left/right)
+- **Green arrow** — moves along the Y axis (up/down)
+- **Blue arrow** — moves along the Z axis (forward/back)
+
+Drag any arrow to slide the part in that direction. Small square plane handles between the arrows let you move freely on a two-axis plane (for example, XY or XZ) without locking to a single axis.
+
+## Rotate
+
+The Rotate tool spins a part around its pivot point. Colored rings appear around the part:
+
+- **Red ring** — rotates around the X axis (tilts forward/back)
+- **Green ring** — rotates around the Y axis (spins left/right)
+- **Blue ring** — rotates around the Z axis (rolls side to side)
+
+Click and drag a ring to rotate the part. The angle of rotation is shown in the status bar and in the Property Grid.
+
+## Scale
+
+The Scale tool resizes a part. The gizmo shows both a center handle and per-axis handles:
+
+- **Center cube handle** — scales the part uniformly in all directions at once, preserving proportions
+- **Per-axis handles** (red/green/blue) — scales the part along a single axis, stretching or compressing it in that direction only
+
+Use uniform scaling for most resizing tasks. Per-axis scaling is useful for squashing or stretching a part to fit a specific dimension.
+
+<Tip>
+  For precise control, select a part and look at the **Property Grid** panel. You can type exact numeric values for position (X, Y, Z), rotation (degrees per axis), and scale (factor per axis) directly into the fields. This is the fastest way to, for example, set a part to exactly half its original size or align it to a known coordinate.
+</Tip>
+
+<Note>
+  Made a mistake? Press **Ctrl+Z** to undo the last transform. Armorsmith maintains a full undo history for the session, so you can step back through multiple transforms if needed. **Ctrl+Y** (or **Ctrl+Shift+Z**) redoes a step you've undone.
+</Note>

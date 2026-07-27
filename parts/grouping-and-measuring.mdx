@@ -1,0 +1,75 @@
+---
+title: "Group Parts and Measure Distances in Armorsmith"
+sidebarTitle: "Group & Measure"
+description: "Learn how to group costume parts for collective management and use the Measure tool to check clearances between parts and your avatar."
+---
+
+As your costume grows more complex, keeping track of dozens of individual parts can become unwieldy. Armorsmith's grouping feature lets you bundle related parts together so you can select, move, and organize them as a single unit. Alongside grouping, the Measure tool gives you an accurate readout of the distance between any two points in the scene — essential for verifying that a piece sits at the right clearance from the body.
+
+---
+
+## Grouping Parts
+
+### Why Group?
+
+- **Easier selection** — click the group to select all parts inside it at once.
+- **Collective transformation** — move, rotate, or scale the entire group without repositioning each piece individually.
+- **Cleaner Parts panel** — nested groups keep the parts list readable when you're working on a full suit.
+
+### How to Group Parts
+
+<Steps>
+  <Step title="Select multiple parts">
+    Click the first part in the viewport or the Parts panel, then hold **Ctrl** and click each additional part you want to include. Selected parts will be highlighted.
+  </Step>
+  <Step title="Open the Group command">
+    Either right-click any selected part and choose **Group** from the context menu, or go to the menu bar and select **Edit → Group** (or **Object → Group**, depending on your version).
+  </Step>
+  <Step title="Name the group">
+    When prompted, give the group a descriptive name. A label like **"Left Shoulder Pad"** or **"Right Gauntlet"** makes it much easier to find later.
+  </Step>
+  <Step title="Confirm">
+    Click **OK**. The parts now appear nested under a single group entry in the Parts panel. Selecting the group selects all its children.
+  </Step>
+</Steps>
+
+### How to Ungroup
+
+Select the group in the viewport or Parts panel, then right-click and choose **Ungroup** (or use **Edit → Ungroup**). The parts are released back to the top level of the scene as individual objects.
+
+<Tip>
+  Use descriptive group names that match the region and side of the body — for example, **"Left Shoulder Pad"**, **"Right Greave"**, or **"Helmet Assembly"**. When you're managing 40+ parts for a full suit of armor, clear names will save you significant time hunting for the right piece.
+</Tip>
+
+---
+
+## Measuring Distances
+
+### Why Measure?
+
+Accurate clearances are critical for wearable costumes. If an armor plate sits too close to the body it may dig in when you move; too far and it will look disconnected. The Measure tool lets you check any gap precisely in your chosen unit system (millimeters, centimeters, or inches).
+
+### How to Use the Measure Tool
+
+<Steps>
+  <Step title="Activate the Measure tool">
+    Click the **Measure** icon in the toolbar, or select **Tools → Measure** from the menu bar.
+  </Step>
+  <Step title="Click your first point">
+    Click on the avatar surface or part surface where you want to start measuring. A marker appears at that point.
+  </Step>
+  <Step title="Click your second point">
+    Click the second location — for example, the inner surface of an armor piece directly above the first point. A line is drawn between the two points.
+  </Step>
+  <Step title="Read the distance">
+    The distance between the two points is displayed in the viewport next to the measurement line and in the status bar at the bottom of the window. The value is shown in your current unit setting.
+  </Step>
+</Steps>
+
+<Note>
+  The Measure tool is non-destructive — it doesn't modify any parts. You can take as many measurements as you like. Measurements are cleared when you switch to a different tool or click away from the measurement line.
+</Note>
+
+<Accordion title="Changing the unit system">
+  To change whether measurements are shown in millimeters, centimeters, or inches, go to **Edit → Preferences** (or **File → Settings**) and update the **Units** setting. The change applies immediately to all distance readouts in the scene, including the Measure tool.
+</Accordion>

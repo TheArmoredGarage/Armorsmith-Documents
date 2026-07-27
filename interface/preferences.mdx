@@ -1,0 +1,71 @@
+---
+title: "Configure Preferences and Display Settings"
+sidebarTitle: "Preferences"
+description: "Learn how to open Armorsmith Designer's Preferences to configure units, grid display, and other display options for your workflow."
+---
+
+Armorsmith Designer's Preferences window lets you tailor the application to the way you work — from the unit system your measurements use to how the 3D Viewport's grid and display options behave. Taking a few minutes to configure Preferences before you start a project will save you from confusing mismatches between your real-world measurements and the values you see on screen.
+
+## Opening Preferences
+
+Preferences are accessed through the application menu rather than the main Menu Bar:
+
+<Steps>
+  <Step title="Open the application menu">
+    Click the **Armorsmith Designer** application icon or title in the top-left corner of the window, or look for **Preferences** under the main application menu entry depending on your version.
+  </Step>
+  <Step title="Click Preferences">
+    Select **Preferences** from the menu that appears. The Preferences window opens as a separate dialog.
+  </Step>
+  <Step title="Make your changes">
+    Adjust the settings described below to match your workflow. Changes take effect immediately unless a restart prompt appears.
+  </Step>
+  <Step title="Close the Preferences window">
+    Click **OK** or **Apply** to confirm your settings and close the dialog, or **Cancel** to discard any changes you made during this session.
+  </Step>
+</Steps>
+
+---
+
+## Units
+
+The **Units** setting controls the measurement system used throughout the application — in the Property Grid, the avatar measurement editor, and on exported template sheets.
+
+| Option | Description |
+|---|---|
+| **Millimeters (mm)** | The default option and the most common choice for costume pattern work. Recommended when your body measurements are taken in metric. |
+| **Centimeters (cm)** | Useful if you prefer working with whole numbers for larger measurements such as torso height or shoulder width. |
+| **Inches (in)** | Choose this if your measurements are taken in imperial units, particularly relevant for users in the United States. |
+
+<Tip>
+  **Set your units before entering avatar measurements.** Armorsmith Designer interprets every number you type in the avatar editor according to the current unit setting. If you enter measurements in centimeters while the application is set to inches, your avatar will be scaled wildly off. Open Preferences and confirm the unit setting first — it takes ten seconds and prevents a frustrating rebuild later.
+</Tip>
+
+<Note>
+  Changing the units setting after you have already entered avatar measurements or positioned parts does **not** automatically convert existing values. If you need to switch units mid-project, note your current key measurements, make the change, and re-enter the values converted to the new unit system.
+</Note>
+
+---
+
+## Grid Settings
+
+The grid is the reference plane displayed in the 3D Viewport to help you gauge distances and align objects visually.
+
+- **Show Grid** — Toggles the grid plane on or off in the viewport. Turn it off if the grid lines are visually distracting when working on fine details.
+- **Grid Spacing** — Sets the distance between grid lines in your chosen unit system. Smaller spacing gives finer visual reference; larger spacing reduces visual clutter for big-picture positioning.
+- **Grid Size** — Controls how far the grid extends from the origin. Increase this if your avatar or parts are large and the grid appears to end before reaching the edges of your design.
+
+---
+
+## Display Options
+
+The display settings affect how geometry and the viewport environment are rendered while you work. These settings do not affect exported templates.
+
+- **Background Color** — Sets the viewport background to a solid colour of your choice. Switching to a lighter or darker background can make it easier to see the edges of light- or dark-coloured costume parts.
+- **Show Avatar** — Toggles the avatar mesh visibility. Hiding the avatar is useful when you want to inspect how parts fit together without the avatar geometry obscuring the view.
+- **Wireframe Mode** — Renders all objects as wireframes rather than solid shaded meshes. Helpful for checking mesh topology or seeing through overlapping surfaces.
+- **Smooth Shading** — When enabled, meshes are displayed with smooth surface shading to give a better sense of form. Disabling this switches to flat shading, which can be useful for identifying individual polygons.
+
+<Tip>
+  If the viewport feels slow or sluggish on your machine, try turning off **Smooth Shading** and reducing **Grid Size**. These two settings have the largest impact on real-time viewport performance for complex scenes.
+</Tip>

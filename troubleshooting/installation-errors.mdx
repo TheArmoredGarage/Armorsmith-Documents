@@ -1,0 +1,65 @@
+---
+title: "Resolve Installation and Launch Errors in Armorsmith"
+sidebarTitle: "Install Errors"
+description: "Fix DLL errors, blocked installers, black screens on first launch, and other installation problems in Armorsmith Designer."
+---
+
+Installation and launch errors in Armorsmith Designer are most often caused by missing system runtimes, antivirus interference, or an incomplete download. The fixes below cover the most common scenarios — work through whichever applies to your situation.
+
+<Warning>
+  If you see a DLL error at launch, you need to manually run the Visual C++ Runtime installer bundled with Armorsmith Designer. Run the following file as an administrator:
+
+  `C:\Program Files\Armorsmith Designer\System\VC_redist_x64_2022.exe`
+
+  After the installer completes, restart your PC and launch Armorsmith Designer again.
+</Warning>
+
+<Accordion title="DLL error when launching Armorsmith">
+  A missing DLL error on launch means that the Visual C++ Runtime or DirectX components were not installed correctly during setup.
+
+  To fix it:
+  1. Open **File Explorer** and navigate to `C:\Program Files\Armorsmith Designer\System\`.
+  2. Right-click **VC_redist_x64_2022.exe** and select **Run as administrator**.
+  3. Follow the prompts to complete the installation.
+  4. Restart your PC, then try launching Armorsmith Designer again.
+</Accordion>
+
+<Accordion title="Installer won't run or is blocked">
+  Security software sometimes flags the Armorsmith Designer installer as suspicious because it is not a widely distributed signed package. The installer itself is safe.
+
+  To work around this:
+  1. Right-click the installer file and select **Run as administrator**.
+  2. If Windows SmartScreen shows a warning, click **More info → Run anyway**.
+  3. If your antivirus blocks the installer, temporarily disable real-time protection, run the installer, and then re-enable your antivirus.
+  4. If the issue persists, re-download the installer from [gumroad.com](https://gumroad.com) to rule out a corrupted download, then try again.
+</Accordion>
+
+<Accordion title="Black screen on first launch">
+  A black screen right after launch — especially following avatar creation — is almost always caused by an invalid body measurement entered during setup.
+
+  To recover:
+  1. Go to **Avatar → Reset Avatar** in the menu bar.
+  2. Restart Armorsmith Designer.
+  3. Re-enter your measurements, making sure all values are realistic and in the correct unit system (inches vs. centimeters).
+</Accordion>
+
+<Accordion title="Missing DirectX error">
+  The Armorsmith Designer installer attempts to install the required DirectX components automatically. If you see a DirectX-related error, the automatic install may not have completed successfully.
+
+  To fix it:
+  1. Visit the official Microsoft DirectX End-User Runtime page and download the latest installer.
+  2. Run the installer and follow the on-screen prompts.
+  3. Restart your PC and launch Armorsmith Designer again.
+
+  Make sure your GPU drivers are also up to date, as outdated drivers can cause DirectX initialization failures.
+</Accordion>
+
+<Note>
+  **Minimum system requirements for Armorsmith Designer:**
+  - **OS:** Windows 10 or later (64-bit)
+  - **CPU:** 64-bit processor
+  - **GPU:** DirectX 11 compatible graphics card
+  - **RAM:** 2 GB minimum (4 GB or more recommended)
+
+  Armorsmith Designer is a Windows-only application. macOS is not supported at this time.
+</Note>

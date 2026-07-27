@@ -1,0 +1,45 @@
+---
+title: "Pose Your Avatar to Preview Costume Fit and Movement"
+sidebarTitle: "Posing"
+description: "Change your avatar's stance and arm position to check costume wearability, range of motion, and visual presentation before you print a single template."
+---
+
+Building a great costume isn't just about whether each piece is the right size — it's about whether you can actually move in it. Armorsmith Designer lets you pose your avatar in different stances so you can spot fit problems, tight spots, or clearance issues before anything is cut or printed. A pauldron that looks fine in the default pose might clip your neck the moment you raise your arm; posing reveals that early.
+
+## Why posing matters
+
+- **Wearability checks** — Bend the arms, raise them overhead, or shift to a wide stance to see how costume pieces interact with your body's movement.
+- **Clearance and overlap** — Identify areas where two pieces collide or a piece digs into the avatar's geometry in a non-neutral position.
+- **Visual presentation** — Strike a dynamic pose to get a realistic preview of how the finished costume will photograph or appear on stage.
+
+## How to change the avatar's pose
+
+You can change the pose in two ways:
+
+<Steps>
+  <Step title="Using the Avatar menu">
+    Click **Avatar** in the top menu bar and look for the **Pose** submenu. Select a preset pose from the list — for example, T-Pose, A-Pose, or a dynamic action stance — and the avatar updates immediately in the viewport.
+  </Step>
+  <Step title="Using the Pose tool">
+    Select the **Pose** tool from the left-hand toolbar (the icon looks like a figure in motion). With this tool active, you can click and drag individual limbs or joints directly in the viewport to create a custom pose. Drag the shoulder joint to raise an arm, or drag the hip to shift the stance.
+  </Step>
+</Steps>
+
+## Common poses and when to use them
+
+<CardGroup cols={2}>
+  <Card title="T-Pose" icon="person-walking">
+    The default pose. Arms are extended straight out to the sides, parallel to the floor, with the body upright. This is the best pose to use when **attaching, scaling, and aligning costume parts**, because every limb is fully extended and unambiguous. Most costume model files are also authored with the T-pose in mind.
+  </Card>
+  <Card title="Action Pose" icon="person-running">
+    Any non-neutral pose — raised arms, bent elbows, a wide fighting stance. Use action poses **after** your parts are attached to check for clearance issues, overlapping geometry, and range-of-motion restrictions. This is purely a review step; return to T-pose before making measurement-based adjustments.
+  </Card>
+</CardGroup>
+
+<Tip>
+  Always return your avatar to the **T-Pose** before attaching new costume parts or adjusting the scale of existing ones. Working in any other pose can make alignment and scaling behave unpredictably, since the software calculates fit against the neutral T-pose geometry.
+</Tip>
+
+## Resetting the pose
+
+To return to the default pose at any time, go to **Avatar → Pose → T-Pose**, or use the reset button in the Pose tool's options panel. This does not affect your measurements or any attached costume parts — it only changes the avatar's stance in the viewport.

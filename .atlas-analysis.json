@@ -1,13 +1,11 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
+  "projectType": "saas",
+  "projectName": "Armorsmith Designer",
+  "projectDescription": "A 3D costume and armor design tool that lets cosplayers build a custom avatar, fit 3D model parts to it, and generate printable templates for real-world construction.",
   "theme": "almond",
-  "name": "Armorsmith Designer",
-  "colors": {
-    "primary": "#ef7025",
-    "light": "#eec9bc",
-    "dark": "#4fa1ab"
-  },
-  "favicon": "/favicon.svg",
+  "primaryColor": "#ef7025",
+  "lightColor": "#eec9bc",
+  "darkColor": "#4fa1ab",
   "navigation": {
     "tabs": [
       {
@@ -72,17 +70,24 @@
       }
     ]
   },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "label": "Get Armorsmith",
-      "href": "https://thearmoredgarage.gumroad.com/l/LMdGL"
-    }
-  },
-  "footer": {
-    "socials": {
-      "instagram": "https://www.instagram.com/wix",
-      "youtube": "https://www.youtube.com/user/Wix"
-    }
-  }
+  "keyFeatures": [
+    "Customizable 3D avatar built from real body measurements",
+    "Import and fit OBJ, STL, FBX, and PDO costume models",
+    "Translate, rotate, and scale costume parts on the avatar",
+    "Generate printable paper-craft template patterns",
+    "Pattern layout editor for optimized print output",
+    "Grouping and measurement tools",
+    "Standalone — no additional software required"
+  ],
+  "publicApiSurface": [
+    "Avatar creation and measurement workflow",
+    "Part import (OBJ, STL, FBX, PDO)",
+    "Transform tools: Move, Rotate, Scale",
+    "Group objects",
+    "Measure distance",
+    "Generate template patterns",
+    "Pattern layout navigation",
+    "Export / print templates",
+    "Check for updates (Help menu)"
+  ]
 }

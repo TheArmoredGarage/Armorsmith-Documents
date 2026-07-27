@@ -1,0 +1,54 @@
+---
+title: "Generate Printable Templates from Your 3D Costume Parts"
+sidebarTitle: "Generate Templates"
+description: "Unfold your 3D costume parts into flat 2D pattern pieces scaled to your body measurements, ready to cut and assemble in the real world."
+---
+
+Template generation is the bridge between your digital costume design and the physical build. Armorsmith takes the 3D mesh of each costume part attached to your avatar and mathematically "unfolds" it — much like unfolding a cardboard box — into a set of flat 2D pieces. Those pieces, printed at your real-world scale, become the patterns you trace onto foam, fabric, or cardstock to construct your costume.
+
+## How Template Generation Works
+
+A 3D mesh is made up of connected polygonal faces. Generating a template means finding a way to cut and unfold those faces into a flat arrangement without overlaps, similar to the net of a geometric solid. Armorsmith automates this unfolding process, and the resulting flat pieces are scaled directly to the measurements you entered for your avatar — so what prints on paper matches your body.
+
+<Note>
+  The accuracy of your printed patterns depends entirely on the accuracy of your avatar's measurements. Before generating templates, double-check that your avatar reflects your actual body dimensions. Even small measurement errors compound across large costume pieces.
+</Note>
+
+## Prerequisites
+
+Before generating templates, make sure you have:
+
+- **A completed avatar** with accurate body measurements entered
+- **Parts positioned and fitted** to the avatar with no major clipping or gaps
+- **All adjustments finalized** — scaling, rotation, and placement of each part should be complete before you generate, since re-generating after changes resets any manual edits you made to the unfolded layout
+
+## Generating Templates
+
+<Steps>
+  <Step title="Select the part or parts to generate">
+    In the 3D viewport, click to select the costume part you want to unfold. You can select multiple parts if you want to generate their patterns together, though starting with one part at a time is recommended for complex builds.
+  </Step>
+  <Step title="Run Generate Templates">
+    With your part selected, open the **Generate Templates** function. Armorsmith will process the 3D mesh and automatically unfold it into flat 2D pieces. Depending on the complexity of the part, this may take a few seconds.
+  </Step>
+  <Step title="Review the unfolded pieces in Pattern Layout">
+    Once generation is complete, the Pattern Layout editor opens (or updates) to show the new flat pieces arranged on a printable page canvas. Review the pieces to confirm they look correct — each polygon face of the 3D model becomes part of the flat pattern, and the pieces are labeled so you know how they connect during assembly.
+  </Step>
+</Steps>
+
+<Tip>
+  For complex costumes with many parts, generate templates one part at a time rather than all at once. This keeps each page of the Pattern Layout focused and manageable, makes it easier to spot any problematic unfolding, and lets you print and build section by section without having to sort through a large mixed layout.
+</Tip>
+
+## What to Do If the Unfolding Looks Wrong
+
+Occasionally a part with complex curvature may unfold with awkward cuts or overlapping pieces. If this happens, try the following:
+
+<Accordion title="Tips for improving template generation results">
+  - **Simplify the part geometry** before generating — parts with very high polygon counts can produce many small template pieces that are difficult to cut and assemble.
+  - **Check for inverted faces** on the 3D mesh, which can confuse the unfolding algorithm.
+  - **Re-position the part** on the avatar if it was heavily distorted to fit, then re-generate.
+  - For parts that are nearly symmetrical, you can generate one half, then mirror the printed template rather than generating both sides separately.
+</Accordion>
+
+Once you are satisfied with the unfolded pieces in the Pattern Layout editor, you are ready to arrange them for printing.
