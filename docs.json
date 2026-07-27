@@ -80,9 +80,6 @@
     }
   },
   "footer": {
-    "socials": {
-      "instagram": "https://www.instagram.com/wix",
-      "youtube": "https://www.youtube.com/user/Wix"
-    }
+    "socials": {}
   }
 }
