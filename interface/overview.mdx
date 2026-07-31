@@ -4,30 +4,34 @@ sidebarTitle: "Overview"
 description: "A guided tour of the Armorsmith Designer interface — the Menu Bar, 3D Viewport, and Property Grid — so you can start designing with confidence."
 ---
 
-Armorsmith Designer organizes its workspace into a set of focused panels that work together — you build and refine your costume design entirely within a single window, moving between tools as your project grows. Getting familiar with where each panel lives will make your workflow faster and more intuitive from the start.
+Armorsmith Designer organizes its work area into a set of focused panels that work together — you build and refine your costume design entirely within a single window, moving between tools as your project grows. Getting familiar with where each panel lives will make your workflow faster and more intuitive from the start.
 
 ## UI Regions at a Glance
 
 The application window is divided into the following major areas:
 
 <CardGroup cols={2}>
-  <Card title="Menu Bar" icon="bars" href="/interface/menu-bar">
-    Runs across the very top of the window. Contains the **File**, **Avatar**, **Windows**, and **Help** menus, giving you access to project management, avatar controls, panel toggles, and application settings.
-  </Card>
   <Card title="3D Viewport" icon="cube" href="/interface/viewport-navigation">
-    The large central area that takes up most of the screen. This is where your 3D avatar and all attached costume parts are displayed. All navigation and hands-on manipulation happens here.
+    The large central area that takes up most of the screen. This is where your 3D avatar and all attached costume parts are displayed. All navigation and hands-on manipulation happens here. You can also flip between the patterns and costume tabs from here.
   </Card>
-  <Card title="Property Grid" icon="table-list" href="/interface/property-grid">
-    A panel — usually docked to the right side — that displays the editable properties of whatever object you currently have selected: position, rotation, scale, and material. If you don't see it, see the note below.
+
+  <Card title="Workspaces Panel" icon="table-list" href="/interface/property-grid">
+    Lets you import existing models or create a blank workspace to begin drafting patterns. All of the workspaces you have loaded will be displayed here with a thumbnail to remind you of what the file is.
   </Card>
-  <Card title="Preferences" icon="sliders" href="/interface/preferences">
-    Application-wide settings for units (mm, cm, or inches), grid display, and viewport display options. Configure these before starting a project to ensure measurements behave as expected.
+
+  <Card title="Transform Panel" icon="sliders" href="/interface/preferences">
+    This is where you can type in the Position, Rotation, and Scale of your object. All transformations are done in the units you have chosen.
+  </Card>
+
+  <Card title="Property Grid" icon="table-list" href="/interface/workspaces-panel">
+    A panel — usually docked to the right side — that displays the editable properties of whatever object you currently have selected. If you don't see it, see the note below.
   </Card>
 </CardGroup>
 
 ## Tips for First-Time Users
 
-- **Start with the avatar.** Before attaching any 3D models, use **Avatar → Edit Avatar** to enter your measurements. The entire template-generation system scales to that avatar, so accurate measurements are critical.
+**Start with the avatar.** Before attaching any 3D models, use **Avatar → Edit Avatar** or select the <img src="/images/edit-avatar-button.png" alt="Edit Avatar toolbar button" noZoom style={{ display: "inline-block", height: "1.25em", verticalAlign: "middle" }} /> button on the toolbar to enter your measurements. The entire template-generation system scales to that avatar, so accurate measurements are critical.
+
 - **Look for panel headers.** Each panel has a title bar you can use to drag and re-dock it. If a panel seems to have disappeared, it may have been moved off-screen or collapsed — check the **Windows** menu to restore it.
 - **The Property Grid is your precision tool.** Clicking and dragging objects in the viewport is great for rough positioning, but typing exact values into the Property Grid is how you get precision fit.
 
