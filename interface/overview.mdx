@@ -11,11 +11,15 @@ Armorsmith Designer organizes its work area into a set of focused panels that wo
 The application window is divided into the following major areas:
 
 <CardGroup cols={2}>
+  <Card title="Menu Bar" icon="bars" href="/interface/viewport-navigation">
+    Runs across the very top of the window. Contains the **File**, **Avatar**, **Edit**, **View**, **Settings**, **Window**, and **Help** menus, giving you access to project management, avatar controls, panel toggles, and application settings.
+  </Card>
+
   <Card title="3D Viewport" icon="cube" href="/interface/viewport-navigation">
     The large central area that takes up most of the screen. This is where your 3D avatar and all attached costume parts are displayed. All navigation and hands-on manipulation happens here. You can also flip between the patterns and costume tabs from here.
   </Card>
 
-  <Card title="Workspaces Panel" icon="table-list" href="/interface/property-grid">
+  <Card title="Workspaces Panel" icon="table-list" href="/interface/workspaces-panel">
     Lets you import existing models or create a blank workspace to begin drafting patterns. All of the workspaces you have loaded will be displayed here with a thumbnail to remind you of what the file is.
   </Card>
 
@@ -30,11 +34,11 @@ The application window is divided into the following major areas:
 
 ## Tips for First-Time Users
 
-**Start with the avatar.** Before attaching any 3D models, use **Avatar → Edit Avatar** or select the <img src="/images/edit-avatar-button.png" alt="Edit Avatar toolbar button" noZoom style={{ display: "inline-block", height: "1.25em", verticalAlign: "middle" }} /> button on the toolbar to enter your measurements. The entire template-generation system scales to that avatar, so accurate measurements are critical.
+**Start with the avatar.** Before attaching any 3D models, use **Avatar → Edit Avatar** or select the <img src="/images/edit-avatar-button.png" alt="Edit Avatar toolbar button" noZoom style={{ display: "inline-block", height: "1.25em", verticalAlign: "middle" }} /> button on the toolbar to enter your measurements. For generating a well fitted costume accurate measurements are critical.
 
 - **Look for panel headers.** Each panel has a title bar you can use to drag and re-dock it. If a panel seems to have disappeared, it may have been moved off-screen or collapsed — check the **Windows** menu to restore it.
-- **The Property Grid is your precision tool.** Clicking and dragging objects in the viewport is great for rough positioning, but typing exact values into the Property Grid is how you get precision fit.
+- **The Transform Panel is your precision tool.** Clicking and dragging objects in the viewport is great for rough positioning, but typing exact values into the Transform Panel will get you a precision fit.
 
 <Note>
-  **Property Grid not visible?** A known issue in some versions of Armorsmith Designer causes the Property Grid panel to be hidden by default after an update. If you can't see it, go to **Windows → Property Grid** in the Menu Bar to make it visible again. The panel will reappear in its last docked position.
+  **Property Grid not visible?** A known issue in some early versions of Armorsmith Designer causes the Property Grid panel to be hidden by default after an update. If you can't see it, go to **Windows → Property Grid** in the Menu Bar to make it visible again. The panel will reappear in its last docked position.
 </Note>
