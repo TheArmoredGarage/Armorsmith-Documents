@@ -29,7 +29,8 @@
               "interface/viewport-navigation",
               "interface/property-grid",
               "interface/menu-bar",
-              "interface/preferences"
+              "interface/preferences",
+              "interface/untitled-page"
             ]
           },
           {
