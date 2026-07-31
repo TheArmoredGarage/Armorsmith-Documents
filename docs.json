@@ -27,10 +27,11 @@
             "pages": [
               "interface/overview",
               "interface/viewport-navigation",
-              "interface/property-grid",
+              "interface/transform-panel",
               "interface/menu-bar",
               "interface/preferences",
-              "interface/Workspaces-Panel"
+              "interface/workspaces-panel",
+              "property-grid"
             ]
           },
           {
