@@ -1,66 +1,87 @@
 ---
 title: "Edit Object Properties with the Armorsmith Property Grid"
 sidebarTitle: "Transform Panel"
-description: "Learn how to use the Property Grid panel to view and precisely edit the position, rotation, scale, and material of any selected object."
+description: "Learn how to use the Transform panel to view and precisely edit the position, rotation, and scale of any selected object."
 ---
 
-The Property Grid is Armorsmith Designer's precision editing panel. While you can drag objects around freely in the 3D Viewport, the Property Grid is where you type exact values — getting a chest plate to sit exactly 2 mm above the avatar surface, or confirming that a pair of shoulder pieces are scaled identically. It updates instantly whenever you select a different object.
-
-## What the Property Grid Shows
-
-When you select an object in the viewport, the Property Grid populates with that object's current state across four main categories:
-
-- **Position** — X, Y, and Z coordinates that define where the object sits in the scene relative to the avatar's origin point.
-- **Rotation** — X, Y, and Z rotation angles (in degrees) describing the object's orientation.
-- **Scale** — X, Y, and Z scale multipliers. A value of `1.0` on all axes means the object is at its original imported size.
-- **Material** — Surface properties such as colour and any visual display settings that affect how the part appears in the viewport.
-
-When nothing is selected, the Property Grid is empty. Click any object in the viewport to populate it.
-
-## Selecting an Object to Populate the Property Grid
-
-<Steps>
-  <Step title="Click the object in the 3D Viewport">
-    Left-click directly on any mesh — your avatar or any attached costume part — in the viewport. A selection highlight will appear around the object.
-  </Step>
-  <Step title="Review the Property Grid">
-    The panel updates immediately to show the selected object's position, rotation, scale, and material values.
-  </Step>
-  <Step title="Click empty space to deselect">
-    Left-clicking on an empty area of the viewport deselects the current object and clears the Property Grid.
-  </Step>
-</Steps>
-
-## Editing a Value
-
-<Steps>
-  <Step title="Locate the field you want to change">
-    Find the property — for example, **Position → Y** — in the Property Grid.
-  </Step>
-  <Step title="Click the value field">
-    Single-click the numeric field to put it into edit mode. The current value will be highlighted.
-  </Step>
-  <Step title="Type the new value">
-    Enter your new number. Values use whichever unit system you have configured in Preferences (mm, cm, or inches).
-  </Step>
-  <Step title="Confirm the change">
-    Press **Enter** to apply the value. The object in the viewport moves or updates immediately. Press **Escape** to cancel the edit and revert to the previous value.
-  </Step>
-</Steps>
-
-## Showing and Hiding the Property Grid
-
-You can toggle the Property Grid panel at any time without affecting your project:
-
-1. Click **Windows** in the Menu Bar.
-2. Click **Property Grid** in the dropdown.
-
-When the panel is visible, a checkmark appears next to the menu item. Clicking it again hides the panel. The panel remembers its docked position between sessions.
-
-<Warning>
-  **Property Grid missing after an update?** A known issue in certain versions of Armorsmith Designer causes the Property Grid to be hidden by default following an update — even if it was visible before. If you open a project and can't find the panel anywhere on screen, go to **Windows → Property Grid** to restore it. This is the most common reason new or returning users find the panel missing and is not a sign that anything is wrong with your project file.
-</Warning>
+The **Transform Panel** provides precise control over the position, rotation, and scale of the selected object. While the transform gizmos in the Work Area are ideal for interactive editing, the Transform Panel allows exact numeric values to be entered for greater accuracy and repeatability.
 
 <Tip>
-  If you need to apply the same property value to multiple objects — for example, setting every piece to the same Y position to align them on a shared baseline — select each object in turn and type the value manually into the Property Grid. There is no multi-select edit, so working through them one at a time is the reliable approach.
+  Armorsmith Designer uses a Y up coordinate system and Metric units by default
+</Tip>
+
+## Transform Mode
+
+The **Transform Mode** determines which coordinate system is used when moving, rotating, and scaling the selected object.
+
+<Accordion title="Local">
+  Applies transformations relative to the object's own orientation. As an object rotates, its local X, Y, and Z axes rotate with it, making this mode ideal for editing individual parts in their own coordinate space.
+</Accordion>
+
+<Accordion title="World">
+  Applies transformations relative to the global coordinate system. The world axes remain fixed regardless of the object's orientation, making it easier to align objects consistently throughout the project.
+</Accordion>
+
+## Scale Mode
+
+The **Scale Mode** determines how values entered into the Scale section are interpreted.
+
+<Accordion title="Percentage">
+  Scale values are entered as percentages relative to the object's original size. A value of **100%** represents the original dimensions, while values below or above 100% decrease or increase the size proportionally.
+</Accordion>
+
+<Accordion title="Absolute">
+  Scale values are entered using real-world dimensions. Rather than specifying a percentage, the object is resized so its dimensions match the values entered for each axis.
+</Accordion>
+
+## Translation
+
+The **Translation** section controls the position of the selected object within the Work Area.
+
+| Field | Description |
+| --- | --- |
+| **X** | Moves the object along the X axis. |
+| **Y** | Moves the object along the Y axis. |
+| **Z** | Moves the object along the Z axis. |
+
+The values shown represent the object's current position using the selected **Transform Mode**.
+
+## Rotation
+
+The **Rotation** section controls the orientation of the selected object.
+
+| Field | Description |
+| --- | --- |
+| **X** | Rotates the object around the X axis. |
+| **Y** | Rotates the object around the Y axis. |
+| **Z** | Rotates the object around the Z axis. |
+
+Rotation values are measured in degrees.
+
+## Scale
+
+The **Scale** section controls the size of the selected object.
+
+| Field | Description |
+| --- | --- |
+| **X** | Adjusts the object's width. |
+| **Y** | Adjusts the object's height. |
+| **Z** | Adjusts the object's depth. |
+
+The values entered are interpreted according to the selected **Scale Mode**.
+
+### Uniform Scale
+
+When **Uniform Scale** is enabled, changing one scale value automatically updates the remaining axes to preserve the object's proportions.
+
+When disabled, each axis can be edited independently, allowing the object to be stretched or compressed in individual directions.
+
+---
+
+<Tip>
+  - Use **Local Transform Mode** when adjusting parts that have already been rotated into position.
+  - Use **World Transform Mode** when aligning multiple objects or positioning them relative to the overall project.
+  - Enable **Uniform Scale** when resizing objects to maintain their original proportions.
+  - Disable **Uniform Scale** when intentionally stretching or compressing an object along a specific axis.
+  - For quick interactive adjustments, use the transform gizmos in the Work Area. Use the Transform Panel when precise numeric values are required.
 </Tip>
