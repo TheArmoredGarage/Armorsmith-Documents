@@ -4,7 +4,7 @@
   "name": "Armorsmith Designer",
   "colors": {
     "primary": "#ef7025",
-    "light": "#eec9bc",
+    "light": "#ef7025",
     "dark": "#4fa1ab"
   },
   "favicon": "/favicon.svg",
@@ -83,5 +83,9 @@
   },
   "footer": {
     "socials": {}
+  },
+  "logo": {
+    "light": "/images/Logo_Outline_Small.png",
+    "dark": "/images/Logo_Outline_Small.png"
   }
 }
