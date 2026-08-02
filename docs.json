@@ -87,5 +87,8 @@
   "logo": {
     "light": "/images/Logo_Outline_Small.png",
     "dark": "/images/Logo_Outline_Small.png"
+  },
+  "appearance": {
+    "default": "dark"
   }
 }
