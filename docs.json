@@ -31,7 +31,7 @@
               "interface/menu-bar",
               "interface/preferences",
               "interface/workspaces-panel",
-              "property-grid"
+              "interface/property-grid"
             ]
           },
           {
