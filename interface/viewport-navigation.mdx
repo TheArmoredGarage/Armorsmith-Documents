@@ -4,30 +4,6 @@ sidebarTitle: "Costume Viewport"
 description: "Master every mouse control for rotating, panning, zooming, and selecting objects in the Armorsmith Designer 3D Viewport, plus practical workflow tips."
 ---
 
-export const ToolInfo = ({ icon, alt, children }) => (
-  <div
-    style={{
-      display: "flex",
-      alignItems: "flex-start",
-      gap: "12px",
-      margin: "12px 0",
-    }}
-  >
-    <img
-      src={icon}
-      alt={alt}
-      style={{
-        width: "40px",
-        height: "40px",
-        objectFit: "contain",
-        flexShrink: 0,
-      }}
-    />
-
-    <div>{children}</div>
-  </div>
-);
-
 The Costume Viewport is where you spend most of your time in Armorsmith Designer — positioning costume parts, checking fit against your avatar, and inspecting how pieces relate to each other in three dimensions. Learning the navigation controls thoroughly means you can focus on the design itself rather than fighting the camera.
 
 <Frame>
@@ -87,16 +63,40 @@ The Costume Viewport is where you spend most of your time in Armorsmith Designer
 </div>
   </Accordion>
 
-  <Accordion title="Translate">
-    <ToolInfo icon="/images/buttons/move-option_.png" alt="Translate button">
-  Moves the selected objects using the translation gizmo.
-</ToolInfo>
+  <Accordion title="Translate" icon="arrows-up-down-left-right">
+    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
+  <img src="/images/buttons/move-option_.png" width="64" />
+
+  <div>
+    Activates the **Translate Tool**, allowing the selected objects to be repositioned within the Work Area.
+
+    For more information, see **Translate Tool**.
+  </div>
+</div>
   </Accordion>
 
   <Accordion title="Rotate">
+    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
+  <img src="/images/buttons/rotate.png" width="64" />
+
+  <div>
+    Activates the **Rotation Tool**, allowing the selected objects to be rotated within the Work Area.
+
+    For more information, see **Rotation Tool**.
+  </div>
+</div>
   </Accordion>
 
   <Accordion title="Scale">
+    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
+  <img src="/images/buttons/rotate.png" width="64" />
+
+  <div>
+    Activates the **Scale Tool**, allowing the selected objects to be scaled within the Work Area.
+
+    For more information, see **Scale Tool**.
+  </div>
+</div>
   </Accordion>
 
   <Accordion title="Edit Avatar">
