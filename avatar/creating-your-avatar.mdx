@@ -2,31 +2,159 @@
 title: "Creating Your 3D Avatar in Armorsmith Designer"
 sidebarTitle: "Create Avatar"
 description: "Set up a 3D avatar that matches your real body measurements so every costume part you attach scales and fits correctly from the start."
-hidden: true
 ---
 
-## title: "Creating Your 3D Avatar in Armorsmith Designer" sidebarTitle: "Create Avatar" description: "Set up a 3D avatar that matches your real body measurements so every costume part you attach scales and fits correctly from the start."
+The **Avatar Customization** panel allows you to customize the appearance and measurements of your avatar. Use this panel to create an avatar that closely matches your own body measurements before fitting costume pieces.
 
-Your avatar is the foundation of every project in Armorsmith Designer. It is a 3D human figure built from your actual body measurements, and every costume part you attach is sized and scaled against it. Taking a few minutes to create an accurate avatar means your printed templates will fit you — not some generic mannequin.
+Changes made in the Avatar Customization panel are immediately reflected on the avatar in the Work Area.
 
-## Why the avatar matters
+<Frame>
+  ![Avatar Customization panel](/images/Avatar-Customization.png)
+</Frame>
 
-When you attach a costume model to your avatar, Armorsmith Designer uses the avatar's proportions to determine how large each pattern piece should be. An avatar that matches your body produces templates you can print and assemble with minimal adjustment. Skipping this step, or entering rough estimates, shifts the fitting work from the software to the cutting table.
+## Full Body
 
-<Steps>
-  <Step title="Open the Avatar Editor">
-    In the top menu bar, click **Avatar**, then select **Edit Avatar**. The Avatar Editor panel opens in the centre of the workspace, and your current avatar (or the default placeholder) appears in the viewport.
-  </Step>
-  <Step title="Enter your body measurements">
-    Fill in each measurement field in the editor panel. Work through the fields from top to bottom — Height first, then circumferences and lengths. See the [Body Measurements guide](./body-measurements) for a full list of fields and tips on how to measure accurately.
-  </Step>
-  <Step title="Confirm your measurements">
-    Click **Apply** to generate the avatar. Armorsmith Designer processes your inputs and reshapes the 3D figure to match your proportions. This usually takes only a second or two.
-  </Step>
-  <Step title="Review the result in the viewport">
-    Look at the updated avatar in the main viewport. Rotate the view to check that the overall shape looks proportional and matches your expectations. If something looks obviously wrong — an extremely elongated limb, a distorted torso — go back into **Edit Avatar** and double-check the affected measurement field.
-  </Step>
-</Steps>
+The **Full Body** section contains the general settings for your avatar, including height, gender, appearance, and display options.
+
+<AccordionGroup>
+  <Accordion title="Height Estimate">
+    Sets the approximate overall height of the avatar.
+
+    Adjusting the height estimate scales the avatar while maintaining its current body proportions.
+
+    <Tip>
+      Set your **Height Estimate** before adjusting individual measurements. This provides a good starting point for customizing the rest of the avatar.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Gender">
+    Selects the base body type used by the avatar.
+
+    Changing the gender will update the underlying avatar proportions and available appearance options.
+  </Accordion>
+
+  <Accordion title="Hair">
+    Selects the hairstyle displayed on the avatar.
+  </Accordion>
+
+  <Accordion title="Facial Hair">
+    Selects the facial hair displayed on the avatar.
+  </Accordion>
+
+  <Accordion title="Hair Color">
+    Sets the color of the avatar's hair and facial hair.
+  </Accordion>
+
+  <Accordion title="Skin Color">
+    Adjusts the skin tone of the avatar.
+  </Accordion>
+
+  <Accordion title="Eye Color">
+    Sets the eye color of the avatar.
+  </Accordion>
+
+  <Accordion title="Underwear Color">
+    Sets the color of the avatar's underwear.
+  </Accordion>
+
+  <Accordion title="Enable Fullbody Color">
+    Overrides the avatar's individual colors with a single full-body color.
+  </Accordion>
+
+  <Accordion title="Show Costume">
+    Controls whether currently loaded costume pieces are displayed while editing the avatar.
+
+    Disable this option when you want an unobstructed view of the avatar and its measurements.
+  </Accordion>
+</AccordionGroup>
+
+## Measurements
+
+The **Measurements** section allows you to fine-tune the dimensions and proportions of the avatar.
+
+Measurement guides are displayed directly on the avatar in the Work Area, making it easier to see which part of the body is affected by each adjustment.
+
+Measurements are divided into **Compound Measurements** and **Individual Measurements**.
+
+### Compound Measurements
+
+Compound measurements represent larger body dimensions that depend on several parts of the avatar.
+
+<AccordionGroup>
+  <Accordion title="Torso Length">
+    Adjusts the overall length of the torso.
+  </Accordion>
+
+  <Accordion title="Arm Length">
+    Adjusts the total length of the arm while maintaining the relationship between the upper arm, forearm, and hand.
+  </Accordion>
+
+  <Accordion title="Inseam">
+    Adjusts the total inside leg length.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  Compound measurements are useful when you have a real-world body measurement but do not know the dimensions of each individual body segment.
+</Tip>
+
+### Individual Measurements
+
+Individual measurements provide more precise control over specific parts of the avatar.
+
+These include measurements such as:
+
+- Neck Length
+- Shoulder Width
+- Elbow Length
+- Forearm Length
+- Knee Length
+- Lower Leg Length
+- Hand Length
+- Foot Length
+- Crown to Chin
+
+Adjusting an individual measurement modifies that specific portion of the avatar.
+
+### Reset Measurement
+
+The **Reset** button beside a measurement restores that measurement to its default value.
+
+This can be useful if you want to undo an individual proportion change without resetting the entire avatar.
+
+## Circumferences
+
+The **Circumferences** section controls measurements around the body, such as the head, neck, chest, waist, arms, and legs.
+
+Each circumference may provide two controls:
+
+**Size** changes the overall circumference of that part of the body.
+
+**Shape** changes how the circumference is distributed without significantly changing its overall size.
+
+For example, two people may have the same chest circumference while having different chest shapes. The **Shape** control allows the avatar to better represent these differences.
+
+<AccordionGroup>
+  <Accordion title="Head Circumference">
+    Adjusts the circumference of the head.
+  </Accordion>
+
+  <Accordion title="Neck Circumference">
+    Adjusts the circumference of the neck.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  For the most accurate results, enter your real-world measurements where possible instead of relying only on the visual appearance of the avatar.
+</Tip>
+
+## Measurement Guides
+
+When editing the avatar, measurement guides are displayed over the model in the Work Area.
+
+These guides show where each measurement is being taken and provide a visual reference for how the avatar's dimensions relate to the values in the Avatar Customization panel.
+
+The guides automatically update as the avatar's proportions are changed.
 
 <Warning>
   Enter your measurements as precisely as possible. A single bad value — for example, a height entered in inches when the field expects centimetres — can cause severe distortion or trigger the black screen bug, where the viewport goes completely black. If this happens, go to **Avatar → Reset Avatar**, then restart Armorsmith Designer. See the [Body Measurements guide](./body-measurements) for details on setting your preferred units before you begin.
