@@ -56,7 +56,8 @@
           {
             "group": "Templates & Patterns",
             "pages": [
-              "patterns/generating-templates",
+              "patterns/patterns-workspace",
+              "patterns/create-and-manage-islands",
               "patterns/pattern-layout",
               "patterns/printing",
               "patterns/export-formats"
