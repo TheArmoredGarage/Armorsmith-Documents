@@ -1,187 +1,70 @@
 ---
-title: "Navigate the Armorsmith Designer Costume Viewport Controls"
+title: "Costume viewport"
 sidebarTitle: "Costume Viewport"
-description: "Master every mouse control for rotating, panning, zooming, and selecting objects in the Armorsmith Designer 3D Viewport, plus practical workflow tips."
+description: "Navigate the 3D view and find the tools for editing costume parts and your avatar."
 ---
 
-The Costume Viewport is where you spend most of your time in Armorsmith Designer — positioning costume parts, checking fit against your avatar, and inspecting how pieces relate to each other in three dimensions. Learning the navigation controls thoroughly means you can focus on the design itself rather than fighting the camera.
+Use the Costume viewport to inspect your avatar, position costume parts, and check how they fit together. The toolbar above the viewport provides editing and animation tools.
 
 <Frame>
-  ![Image](/images/CostumeViewport.png "Image")
+  ![The Costume viewport and its toolbar](/images/CostumeViewport.png)
 </Frame>
 
-## Toolbar Buttons
+## Navigate the 3D view
 
-<AccordionGroup>
-  <Accordion title="Open" icon="folder">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/folder.png" width="64" />
+Move the pointer inside the viewport before using the mouse controls.
 
-  <div>
-    Opens a costume file
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Save" icon="floppy-disk">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/save.png" width="64" />
-
-  <div>
-    Saves the current costume in the work area
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Edit Avatar" icon="person" icontype="solid">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/avatar.png" width="64" />
-
-  <div>
-    Enter / Exits the edit avatar mode. This opens the edit avatar panel to the left of the work area.
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Edit Pose" icon="person-running" icontype="solid">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/person-running-solid.png" width="64" />
-
-  <div>
-    Enter / Exits the edit pose mode. This allows the user to edit the posing of the avatar.
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Fit Checker" icon="shirt" icontype="solid">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/shirt-solid.png" width="64" />
-
-  <div>
-    Enter / Exits the fit checker mode. This allows the user to check the fit of all of their parts. It renders a heatmap based on how far each vertex is away from the avatar.
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Translate" icon="arrows-up-down-left-right">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/move-option_.png" width="64" />
-
-  <div>
-    Activates the **Translate Tool**, allowing the selected objects to be repositioned within the Work Area.
-
-    For more information, see **Translate Tool**.
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Rotate" icon="rotate" icontype="solid">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/rotate.png" width="64" />
-
-  <div>
-    Activates the **Rotation Tool**, allowing the selected objects to be rotated within the Work Area.
-
-    For more information, see **Rotation Tool**.
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Scale" icon="arrow-up-right-from-square">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/scale-symbol-(1).png" width="64" />
-
-  <div>
-    Activates the **Scale Tool**, allowing the selected objects to be scaled within the Work Area.
-
-    For more information, see **Scale Tool**.
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Measure" icon="ruler">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/ruler2.png" width="64" />
-
-  <div>
-    Activates the **Measurement Tool**, allowing the user to measure points within the Work Area.
-
-    For more information, see **Measurement Tool**.
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Free Form Deformation" icon="cube">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/FFD.png" width="64" />
-
-  <div>
-    Activates the **Free Form Deformation Tool**, allowing the selected objects to be deformed with a lattice cage.
-
-    For more information, see **Free Form Deformation Tool**.
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Animation Selector" icon="play">
-    Select an animation from the drop down list which you would like to test out on the Avatar. If you have any suggestions for more animations please contact us on the website. wwww.armorsmithdesigner.com
-  </Accordion>
-
-  <Accordion title="Play / Pause Animation" icon="play">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/play-solid.png" width="64" />
-
-  <div>
-    Plays or pauses the currently animation selected in the animation selector.
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Stop Animation" icon="stop">
-    <div style={{display:"flex", alignItems:"center", gap:"16px"}}>
-  <img src="/images/buttons/stop-solid.png" width="64" />
-
-  <div>
-    Stops the currently playing animation.
-  </div>
-</div>
-  </Accordion>
-
-  <Accordion title="Animation Scrubber">
-    Use the animation scrubber to manually move through the animation timeline. First, pause the animation, then drag the scrubber along the timeline to move forward or backward through the animation.
-  </Accordion>
-</AccordionGroup>
-
-## Navigation Controls
-
-<Note>
-  Mouse navigation in the viewport requires the cursor to be **inside the viewport area**. If scrolling or dragging doesn't seem to be working, click once inside the viewport to make sure it has focus.
-</Note>
-
-| Action | Input | Notes |
+| Action | Input | Result |
 | --- | --- | --- |
-| **Rotate view** | Right-click \+ drag | Orbits the camera around the current pivot point. Hold and sweep left/right to spin around the avatar; sweep up/down to tilt. |
-| **Pan view** | Middle-click \+ drag | Slides the camera parallel to the screen. Useful for moving your focus to a different part of the avatar without changing the viewing angle. |
-| **Zoom** | Scroll wheel | Scrolling toward you zooms in; scrolling away zooms out. The zoom centers on your current mouse position. |
-| **Select object** | Left-click | Clicks on a mesh in the viewport to select it and populate the Property Grid with its details. Click empty space to deselect. |
-| **Zoom selected object** | **Z** | Centers and zooms the camera to fit the currently selected object neatly in the viewport. |
-| **Reset / frame all** | **Shift-Z** | Pulls back to show the entire scene — avatar and all attached parts — within the viewport. |
-| **Front view** | **F** | Snaps the camera to a straight-on front view. |
-| **Side view** | **L** | Snaps the camera to a right-side view. |
-| **Perspective / Ortho toggle** | **P** | Switches between perspective (natural depth) and orthographic (no depth distortion) projection. |
+| **Rotate view** | Right-click and drag | Orbit around the current pivot. |
+| **Pan view** | Middle-click and drag | Move the view without changing its angle. |
+| **Zoom** | Scroll wheel | Zoom toward or away from the pointer. |
+| **Select object** | Left-click | Select a part and show its properties. Click empty space to deselect. |
+| **Frame selection** | **Z** | Center the selected object in the view. |
+| **Frame all** | **Shift+Z** | Fit the avatar and attached parts in the view. |
+| **Front view** | **F** | Face the scene from the front. |
+| **Side view** | **L** | Face the scene from the side. |
+| **Perspective / orthographic** | **P** | Switch between depth perspective and a flat projection. |
 
 <Tip>
-  **Zooming in on small parts.** Scroll wheel zoom can feel imprecise when you're trying to get close to a small component like a buckle or strap attachment point. Try this instead: left-click the part to select it, then press **Z** to frame it perfectly. From there, use small scroll-wheel nudges to dial in your distance.
+If you lose track of the model while panning or zooming, press **Shift+Z** to frame the whole scene.
 </Tip>
 
-<Tip>
-  **Checking fit from multiple angles.** It's easy to get a piece that looks right from the front but clips through the avatar from the side. Develop a habit of rotating the view — right-click drag — to inspect every attachment from at least three angles before finalising the position.
-</Tip>
+## Costume toolbar
+
+The toolbar groups file actions, avatar modes, and tools for editing selected parts.
+
+### File and avatar controls
+
+| Button | What it does |
+| --- | --- |
+| **Open** | Open a costume file. |
+| **Save** | Save the current costume. |
+| **Edit Avatar** | Enter or leave avatar editing mode and show the avatar editing panel. |
+| **Edit Pose** | Enter or leave pose editing mode. |
+| **Fit Checker** | Show a heatmap of the distance between costume parts and the avatar to help you check fit. |
+
+### Part editing tools
+
+| Button | What it does |
+| --- | --- |
+| **Translate** | Move selected objects in the work area. |
+| **Rotate** | Turn selected objects. |
+| **Scale** | Resize selected objects. |
+| **Measure** | Measure between points in the work area. |
+| **Free Form Deformation** | Deform a selected object with a lattice cage. |
+
+For exact position, rotation, or scale values, use the [Transform Panel](/interface/transform-panel).
+
+### Animation controls
+
+| Control | What it does |
+| --- | --- |
+| **Animation Selector** | Choose an animation to preview on the avatar. |
+| **Play / Pause** | Play or pause the selected animation. |
+| **Stop** | Stop the animation. |
+| **Animation Scrubber** | Pause the animation, then drag the scrubber to inspect a particular moment. |
 
 <Tip>
-  **Switching to orthographic for alignment.** When you need to line up two pieces precisely (for example, making sure a shoulder plate sits symmetrically), switch to an orthographic front or top view with **P** and use the Property Grid to type in exact position values. Perspective distortion can make eyeballing alignment deceptive.
-</Tip>
-
-<Tip>
-  **Recovering a lost view.** If you've panned or zoomed to the point where you can't see anything useful, press **Shift-Z** to frame everything in the scene and get your bearings back instantly.
+Rotate around a positioned part to check its fit from several angles. A part that looks clear from the front may intersect the avatar from the side.
 </Tip>
