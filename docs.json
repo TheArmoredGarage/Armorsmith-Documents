@@ -58,7 +58,6 @@
             "pages": [
               "patterns/patterns-workspace",
               "patterns/create-and-manage-islands",
-              "patterns/generating-templates",
               "patterns/pattern-layout",
               "patterns/printing",
               "patterns/export-formats"

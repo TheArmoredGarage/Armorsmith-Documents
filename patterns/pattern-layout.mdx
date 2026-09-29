@@ -1,63 +1,49 @@
 ---
-title: "Arrange and Organize Patterns in the Layout Editor"
-sidebarTitle: "Pattern Layout"
-description: "Use the Pattern Layout editor to arrange, rotate, and organize your unfolded 2D pattern pieces across printable pages before sending them to print."
-hidden: true
+title: "Edit patterns"
+sidebarTitle: "Edit Patterns"
+description: "Unfold a model automatically, edit pattern edges, and arrange pieces on the page."
 ---
 
-After generating templates, all of your unfolded 2D pieces land in the Pattern Layout editor — a canvas that represents one or more printable pages, much like a cutting mat laid out on a table. This is where you take control of how your patterns are arranged before they hit paper. Efficient layout means less paper waste, easier cutting, and a smoother assembly experience.
+Use the pattern toolbar above the 2D view to unfold a model automatically, change how its pieces connect, and arrange the results. Select a pattern in the 2D view to work with it. The selected pattern is outlined, as shown below.
 
-## What the Pattern Layout Editor Shows
+<Frame>
+  ![A selected pattern with its transform handles and the pattern toolbar above the 2D view](/images/edit-patterns-toolbar.png)
+</Frame>
 
-The Pattern Layout editor displays your flat, unfolded pattern pieces placed on a white page canvas. Each page corresponds to one sheet of paper at the size you have configured. The pieces themselves show fold lines, cut lines, and edge labels that guide assembly. A panel or toolbar lets you manage pages and adjust settings.
+<Note>
+The **Unfold** button starts an automatic unfold. Islands follow a separate workflow: their patterns update dynamically as you edit the islands in the 3D view. See [Create and manage islands](/patterns/create-and-manage-islands).
+</Note>
 
-## Navigating the Layout
+## Pattern toolbar
 
-Use the following controls to move around the canvas:
+| Tool | What it does |
+| --- | --- |
+| **Transform Pattern** | Moves or rotates the selected pattern in the 2D layout. |
+| **Join/Cut** | Joins pattern edges or cuts a connection to separate pieces. |
+| **Measurement Tool** | Measures in the pattern view. |
+| **Edit Current Shape** | Edits a selected editable shape. The button is unavailable until an editable shape is selected. |
+| **Grid** | Shows or hides the grid in the pattern view. |
+| **3D Panel** | Shows or hides the 3D view on the left, giving the pattern view more room. |
+| **Print** | Opens the printing workflow. |
+| **Pack Patterns** | Arranges pattern pieces in the layout automatically. |
+| **Unfold / Cancel Unfold** | Starts an automatic unfold, or cancels one that is running. |
 
-- **Pan** — Click and drag on an empty area of the canvas (or use the middle mouse button) to scroll around the page.
-- **Zoom** — Use the scroll wheel to zoom in and out. Zooming in helps you inspect edge labels and fine details; zooming out gives you a full overview of piece placement.
+## Move or rotate a pattern
 
-## Arranging Pattern Pieces
-
-Organizing your pieces well before printing saves paper and makes the cut-out process far less confusing.
-
-<Steps>
-  <Step title="Drag and drop pieces into position">
-    Click any pattern piece to select it, then drag it to a new position on the canvas. Pieces can be placed anywhere on the current page, or dragged to a different page if you have multiple pages open.
-  </Step>
-  <Step title="Rotate pieces to fit more efficiently">
-    With a piece selected, use the rotate control to spin it. Rotating odd-shaped pieces to nest them together — fitting a concave piece alongside a convex one, for example — can significantly reduce the number of pages you need to print.
-  </Step>
-  <Step title="Distribute pieces across multiple pages">
-    If your pieces do not all fit on a single page, move overflow pieces to additional pages. Keep related pieces grouped when possible to make assembly easier.
-  </Step>
-</Steps>
+1. Select **Transform Pattern**, then click the pattern you want to change.
+2. Click and drag the pattern to move it.
+3. To rotate it, click the small circular handle above the selection and drag.
 
 <Tip>
-  Organize your pages by body section — for example, keep all helmet pieces on one page (or a dedicated set of pages), all chest pieces together, and so on. When you sit down to cut and assemble, you can work through one section at a time without hunting across dozens of mixed pages.
+Hide the 3D panel when you want more room for arranging patterns. Turn it back on to compare a piece with its position on the model.
 </Tip>
 
-## Understanding Piece Labels and Edge Numbers
+## Change how pieces connect
 
-Every piece in the Pattern Layout is labeled so you know exactly how the flat cut-outs reconnect into the 3D shape during assembly.
+Select **Join/Cut** to work with connections between pattern pieces. Cut a connection when you need separate pieces; join edges when you want pieces connected in the flat pattern. Inspect the result in the 2D view before arranging the pieces.
 
-<Accordion title="How edge labels work">
-  Each edge of a pattern piece carries a number or letter. When two edges share the same label, they are meant to be joined together — glued, taped, or sewn — during construction. Work through the labels in order as you assemble: find the matching pair, align the edges, and secure them. This system means you never have to guess which pieces connect to which.
-</Accordion>
+## Arrange and check the layout
 
-Piece labels (the overall part names or numbers) also appear on each piece so you can quickly identify which part of the costume a piece belongs to, especially useful when patterns from multiple parts share the same page.
+Use **Pack Patterns** to arrange pieces automatically, then use **Transform Pattern** to adjust individual pieces. Turn on the **Grid** when it helps you align the layout. Use the **Measurement Tool** to check sizes before printing.
 
-## Managing Pages
-
-<CardGroup cols={2}>
-  <Card title="Adding Pages" icon="plus" href="/patterns/pattern-layout">
-    Add a new page using the page management panel when your pieces exceed the current page space. Each new page represents another physical sheet of paper.
-  </Card>
-
-  <Card title="Setting Paper Size" icon="file" href="/patterns/printing">
-    Set the paper size for all pages in the layout settings. Choose from standard sizes like **A4**, **Letter**, or **Tabloid** to match the paper you plan to print on. Make sure this matches your printer's actual paper size before printing.
-  </Card>
-</CardGroup>
-
-Once your pieces are arranged to your satisfaction, you are ready to move on to printing.
+When the layout is ready, select **Print**. See [Printing](/patterns/printing) for page and print settings.
