@@ -27,6 +27,7 @@
             "pages": [
               "interface/overview",
               "interface/viewport-navigation",
+              "interface/translate-tool",
               "interface/transform-panel",
               "interface/menu-bar",
               "interface/preferences",
