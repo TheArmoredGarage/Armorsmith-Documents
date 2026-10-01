@@ -29,6 +29,7 @@
               "interface/viewport-navigation",
               "interface/mesh-level-of-detail",
               "interface/translate-tool",
+              "interface/rotate-tool",
               "interface/scale-tool",
               "interface/transform-panel",
               "interface/menu-bar",
