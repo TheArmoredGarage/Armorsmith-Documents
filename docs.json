@@ -27,6 +27,7 @@
             "pages": [
               "interface/overview",
               "interface/viewport-navigation",
+              "interface/mesh-level-of-detail",
               "interface/translate-tool",
               "interface/transform-panel",
               "interface/menu-bar",

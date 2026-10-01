@@ -1,0 +1,76 @@
+---
+title: "Automatic mesh level of detail (LOD)"
+sidebarTitle: "Mesh level of detail"
+description: "Understand how Armorsmith displays dense meshes at 100,000 and 25,000 triangles while preserving working detail for editing and export."
+---
+
+<Note>
+This page describes the new automatic LOD system in development. It may not be available in your installed version of Armorsmith yet.
+</Note>
+
+Dense meshes are common in 3D printing, especially sculpted armor and props. Automatic **level of detail (LOD)** reduces the geometry drawn in the viewport when a mesh appears smaller onscreen. You can inspect the working mesh at full detail when you zoom in.
+
+LOD runs automatically in builds that include this feature. You do not need to run the **Decimate** tool to create display levels.
+
+## Which meshes get LOD?
+
+A working mesh with **more than 100,000 triangles** qualifies. Armorsmith creates two separate display versions:
+
+- A version targeting **100,000 triangles**.
+- A version targeting **25,000 triangles**.
+
+A mesh with exactly 100,000 triangles or fewer keeps its working detail.
+
+For example, a **1,000,000-triangle mesh** can have its original working geometry plus 100,000- and 25,000-triangle display versions. Both reduced versions are generated directly from the working mesh.
+
+<Note>
+The triangle counts are targets. Protecting topology, material boundaries, texture seams, and sharp edges can limit how far a mesh can be reduced. A display version may remain above its target.
+</Note>
+
+## When does each level appear?
+
+Each viewport chooses a level from the mesh's apparent size in that view. Armorsmith measures the larger dimension of the mesh's projected bounds in pixels.
+
+| How large the mesh appears | Displayed geometry |
+| --- | --- |
+| Large or close up: roughly 600 pixels or more | Full working detail |
+| Medium size: roughly 180–600 pixels | The level targeting 100,000 triangles |
+| Small or distant: roughly below 180 pixels | The level targeting 25,000 triangles |
+
+The **25,000-triangle version** comes into play when the mesh takes up little space onscreen. As you zoom in, Armorsmith switches to the 100,000-triangle version and then full working detail.
+
+These boundaries have a small overlap, called **hysteresis**, to prevent repeated switching as you zoom near a threshold. Selection also works in orthographic views. Two views of the same mesh can display different levels.
+
+## What happens while you edit?
+
+Armorsmith prepares display levels in the background after the geometry has been unchanged for about 300 milliseconds. Large meshes can take longer to finish processing.
+
+Posing, **Free Form Deformation (FFD)**, bone changes, and other geometry edits invalidate old display levels. Running **Decimate** or undoing it also refreshes the LOD cache. Armorsmith falls back to full working detail while replacement levels are being prepared.
+
+If a reduced level cannot be generated, Armorsmith uses a finer available level or the working mesh. Material changes are applied to cached display levels too.
+
+**Wireframe** shows the working mesh so you can inspect its actual topology.
+
+## Does LOD change printing or export?
+
+LOD changes viewport rendering. Selecting geometry, editing, unfolding patterns, saving, printing, and exporting continue to use the **working geometry**.
+
+Viewing a million-triangle working mesh through its 25,000-triangle display version does not turn its export into a 25,000-triangle mesh.
+
+## How is this different from Decimate?
+
+The **Decimate** tool intentionally changes the working mesh. Its result can therefore affect editing, unfolding, and export. Automatic LOD creates temporary display copies.
+
+Armorsmith chooses its working geometry in this order:
+
+1. Your **Decimate** result, if one exists.
+2. The evaluated mesh with its pose or FFD applied, if one exists.
+3. The original loaded mesh.
+
+LOD follows whichever working mesh is active. Changing the original pose or FFD after decimation does not silently regenerate your Decimate result.
+
+<Tip>
+Use automatic LOD to reduce viewport drawing work on dense models. Importing, mesh edits, unfolding, and export still depend on the complexity of the working mesh.
+</Tip>
+
+For mouse controls and zoom shortcuts, see [Navigate the Costume viewport](/interface/viewport-navigation).
