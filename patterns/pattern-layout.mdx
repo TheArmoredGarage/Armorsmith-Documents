@@ -1,13 +1,13 @@
 ---
 title: "Edit patterns"
 sidebarTitle: "Edit Patterns"
-description: "Unfold a model automatically, edit pattern edges, and arrange pieces on the page."
+description: "Unfold a model, edit pattern edges, and use the pattern viewport tools to align, distribute, and rotate pieces."
 ---
 
-Use the pattern toolbar above the 2D view to unfold a model automatically, change how its pieces connect, and arrange the results. Select a pattern in the 2D view to work with it. The selected pattern is outlined, as shown below.
+Use the pattern viewport to edit unfolded pieces and arrange them on the pages. The toolbar above the 2D view contains pattern editing tools. The vertical **Pattern Layout** toolbar along its left edge contains alignment, distribution, and orientation controls.
 
-<Frame>
-  ![A selected pattern with its transform handles and the pattern toolbar above the 2D view](/images/edit-patterns-toolbar.png)
+<Frame caption="The pattern editing toolbar sits above the 2D view. The alignment, distribution, and rotation controls run down its left edge.">
+  ![The Patterns workspace showing both toolbars around the pattern viewport](/images/patterns-workspace.png)
 </Frame>
 
 <Note>
@@ -30,13 +30,66 @@ The **Unfold** button starts an automatic unfold. Islands follow a separate work
 
 ## Move or rotate a pattern
 
+Select a pattern in the 2D view to work with it. The selected pattern is outlined and shows transform handles.
+
+<Frame>
+  ![A selected pattern with its move and rotation handles](/images/edit-patterns-toolbar.png)
+</Frame>
+
 1. Select **Transform Pattern**, then click the pattern you want to change.
 2. Click and drag the pattern to move it.
 3. To rotate it, click the small circular handle above the selection and drag.
 
+For a 90° turn, use the [orientation controls](#rotate-pattern-orientation) on the vertical toolbar.
+
 <Tip>
 Hide the 3D panel when you want more room for arranging patterns. Turn it back on to compare a piece with its position on the model.
 </Tip>
+
+## Align selected patterns
+
+Alignment lines up two or more selected pieces using their combined bounds. It moves the pieces without changing their size or orientation.
+
+1. Select **Transform Pattern** and click a piece.
+2. Hold **Ctrl** and click additional pieces to add them to the selection.
+3. Click an alignment button on the vertical **Pattern Layout** toolbar.
+
+The first six buttons appear in this order from top to bottom:
+
+| Tool | What it does |
+| --- | --- |
+| **Align left** | Lines up the left edges of the pieces' bounds with the leftmost edge of the selection. |
+| **Align horizontal centers** | Lines up the pieces' horizontal centers with the horizontal center of the selection. |
+| **Align right** | Lines up the right edges of the pieces' bounds with the rightmost edge of the selection. |
+| **Align top** | Lines up the top edges of the pieces' bounds with the topmost edge of the selection. |
+| **Align vertical centers** | Lines up the pieces' vertical centers with the vertical center of the selection. |
+| **Align bottom** | Lines up the bottom edges of the pieces' bounds with the bottommost edge of the selection. |
+
+<Note>
+Alignment uses the bounds of the selected pieces, rather than the page margins. It can leave pieces overlapping. Use the distribution controls to space them out.
+</Note>
+
+## Distribute selected patterns
+
+The two buttons below the alignment controls arrange two or more selected pieces with a consistent gap between their bounds.
+
+| Tool | What it does |
+| --- | --- |
+| **Distribute horizontally** | Arranges pieces side by side, preserving their left-to-right order and aligning their vertical centers. |
+| **Distribute vertically** | Arranges pieces in a column, preserving their top-to-bottom order and aligning their horizontal centers. |
+
+Select the pieces, then click the distribution button for the arrangement you want. Check the result against the page boundaries and move the arranged pieces if needed.
+
+## Rotate pattern orientation
+
+The two buttons at the bottom of the vertical toolbar turn each selected pattern by 90°.
+
+| Tool | What it does |
+| --- | --- |
+| **Rotate left** | Turns each selected pattern 90° to the left (counterclockwise). |
+| **Rotate right** | Turns each selected pattern 90° to the right (clockwise). |
+
+Select one pattern, or hold **Ctrl** to select several, then click the rotation button. Each click applies another 90° turn. Use these controls to change a piece's orientation before aligning or distributing the layout. For other angles, drag the rotation handle with **Transform Pattern**.
 
 ## Change how pieces connect
 
@@ -44,6 +97,8 @@ Select **Join/Cut** to work with connections between pattern pieces. Cut a conne
 
 ## Arrange and check the layout
 
-Use **Pack Patterns** to arrange pieces automatically, then use **Transform Pattern** to adjust individual pieces. Turn on the **Grid** when it helps you align the layout. Use the **Measurement Tool** to check sizes before printing.
+Use **Pack Patterns** to arrange pieces automatically, then refine the layout with the alignment, distribution, and rotation controls. Use **Transform Pattern** to adjust individual pieces. Turn on the **Grid** when it helps you position the layout. Use the **Measurement Tool** to check sizes before printing.
+
+Check for overlapping pieces and pieces crossing page boundaries after changing the layout. If you run **Pack Patterns** again, it recalculates the arrangement.
 
 When the layout is ready, select **Print**. See [Printing](/patterns/printing) for page and print settings.
