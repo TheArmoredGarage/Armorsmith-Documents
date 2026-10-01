@@ -32,6 +32,7 @@
               "interface/rotate-tool",
               "interface/scale-tool",
               "interface/ffd-tool",
+              "interface/measurement-tool",
               "interface/transform-panel",
               "interface/menu-bar",
               "interface/preferences",
