@@ -1,139 +1,347 @@
 ---
-title: "Armorsmith Designer Menu Bar"
+title: "Armorsmith Designer Menu Bar: File, Avatar, Windows and Help"
 sidebarTitle: "Menu Bar"
-description: "A quick reference for the File, Avatar, Edit, View, Settings, Windows, and Help menus in Armorsmith Designer."
+description: "A complete reference for every Armorsmith Designer menu — File, Avatar, Windows, and Help — so you always know where to find each action."
 ---
 
-The menu bar runs across the top of the Armorsmith Designer window. Use it to manage files, edit your avatar and costume parts, arrange panels, and find help. Each table lists the commands in menu order.
+The Menu Bar runs across the top of the Armorsmith Designer window and is your central hub for managing costume files, controlling your avatar, toggling panels, and accessing help resources. This page documents every menu and its items so you always know where to go.
 
-## File menu
+## File Menu
 
-Use **File** to create, open, save, import, and export costume files and patterns.
+The **File** menu handles everything related to your costume files — creating, opening, saving, and moving data in or out of Armorsmith Designer.
 
-| Command | What it does |
-| --- | --- |
-| **New** | Create an empty costume. You are prompted to save unsaved changes before it opens. |
-| **Open** | Choose an existing costume file from your computer. The file picker shows supported costume formats. |
-| **Recent Costumes** | Open a submenu of recently loaded costume files. |
-| **Merge** | Merge an existing costume file with the costume you have open. |
-| **Save** | Save to the current file location. For a costume you have never saved, this opens **Save As**. Shortcut: **Ctrl+S**. |
-| **Save As** | Save the costume with a new name or in a new location. Shortcut: **Ctrl+Shift+S**. |
-| **New Workspace** | Create a blank workspace for making templates with the 2D spline tools. |
-| [**Import**](/parts/importing-models) | Import an external 3D model and attach it to the current costume. Check the import dialog for supported file types. |
-| **Recent Imports** | Open a submenu of recently imported files. |
-| **Search Online** | Open a search window for Armorsmith's online repository of files. |
-| [**Export**](/patterns/export-formats) | Export costume parts as 3D models or generated templates as printable files, such as PDF pattern sheets. |
-| [**Print**](/patterns/printing) | Open the print dialog to print generated templates. |
-| **Print To JPG** | Save generated templates as separate image files for sharing or printing at a print shop. |
-| **Quit** | Close the application. |
+<Accordion title="New">
+  Creates a brand-new, empty costume. You will be prompted to save any unsaved changes to your current costume before the new costume opens.
+</Accordion>
 
-## Avatar menu
+<Accordion title="Open">
+  Opens an existing Armorsmith Designer costume file from your computer. Displays a standard Windows file picker filtered to supported costume file formats.
+</Accordion>
 
-Use **Avatar** to edit measurements and poses, load a custom model, and save avatar or pose files.
+<Accordion title="Recent Costumes">
+  Opens a submenu with the most recent costume files that have been loaded
+</Accordion>
 
-| Command | What it does |
-| --- | --- |
-| [**Edit Avatar**](/avatar/creating-your-avatar) | Open the measurement editor. Set your body measurements before attaching costume parts so templates scale to your body. |
-| [**Edit Pose**](/avatar/posing) | Enter pose editing mode. Select sphere joints and use **Translate** to move them, or select bones and use **Rotate** to turn them. |
-| **Reset Avatar** | Restore the default pose and proportions, discarding avatar customizations. |
-| **Reset Pose** | Restore the default pose, discarding pose changes. |
-| **Change Pose** | Open a submenu of preset poses to apply to the avatar. |
-| **Open Avatar** | Choose an existing avatar file from your computer. |
-| **Save Avatar** | Save the current avatar to its existing file location. For an avatar you have never saved, this opens **Save As**. |
-| **Save As** | Save the avatar with a new name or in a new location. |
-| **Custom Avatar** | Load a custom model to use as the avatar. See the skeleton and attachment-point guidance below. |
-| **Export Avatar** | Export the avatar as a 3D model. Check the export dialog for supported file types. |
-| **Save Pose** | Save the current pose to a file. |
-| **Load Pose** | Open a pose file and apply it to the current avatar. |
+<Accordion title="Merge">
+  Merge an existing Armorsmith Designer costume file from your computer with the currently open costume.
+</Accordion>
 
-A custom avatar with a skeleton created in [Mixamo](http://www.mixamo.com) can be posed and have appropriate attachment points created for it. For a model without a skeleton, use **Edit Pose** to position the attachment points.
+<Accordion title="Save">
+  Saves the current costume to its existing file location. If the costume has never been saved before, this behaves the same as **Save As**.
 
-## Edit menu
+  **Keyboard shortcut:** Ctrl \+ S
+</Accordion>
 
-Use **Edit** to undo changes, manage selected objects, and work with pattern geometry.
+<Accordion title="Save As">
+  Saves the current costume to a new file name or location of your choosing. Useful for creating named versions of your work at different stages.
 
-| Command | What it does |
-| --- | --- |
-| **Undo** | Revert the last action. Most transformations, property changes, and geometry edits can be undone. |
-| **Redo** | Reapply the last action you undid. |
-| **Copy** | Copy selected objects to the clipboard so you can paste them elsewhere in the project. |
-| **Paste** | Add copies of the objects on the clipboard to the scene. You can reposition them after pasting. |
-| **Delete** | Remove selected objects. Use **Undo** to restore them if needed. |
-| [**Translate**](/interface/translate-tool) | Move selected objects along the X, Y, and Z axes with the translation gizmo. |
-| **Rotate** | Turn selected objects around any axis with the rotation gizmo. |
-| [**Join/Cut**](/patterns/pattern-layout#change-how-pieces-connect) | Join pattern edges or cut a connection to separate pieces. See the edge-selection steps below. |
-| **Scale** | Resize selected objects uniformly or independently along each axis. |
-| [**Group Selection**](/parts/grouping-and-measuring) | Create a group from selected objects so you can manipulate the parts together in the scene hierarchy. |
-| [**Unfold**](/patterns/pattern-layout) | Generate 2D patterns from the selected low-polygon mesh for arranging, editing, and printing. |
-| **Join Adjacent Edges** | Join neighboring open edges within a specified tolerance to repair patterns. |
-| **Measure** | Measure a distance in the scene. Click one point to start, then a second point to finish. |
-| **Reset Material Colors** | Restore the default material colors on selected objects. |
-| **Cleanup Open Edges** | Attempt to repair Pepakura edges marked as open that should be connected. |
+  **Keyboard shortcut:** Ctrl \+ Shift \+ S
+</Accordion>
 
-To join patterns with **Join/Cut**, select one edge and then a second edge. Use the arrow on the connecting join line to choose which pattern moves to the other. To separate pieces, click a connected edge.
+<Accordion title="New Workspace">
+  Creates a blank workspace which you can use to create templates on with the 2D spline tools.
+</Accordion>
 
-## View menu
+<Accordion title="Import">
+  Imports an external 3D model file and attaches it to the current costume. Use this to bring in the costume parts you have modelled in other software. Supported formats depend on your version of Armorsmith Designer — check the import dialog for a list of accepted file types.
+</Accordion>
 
-Use **View** to frame objects, change the camera angle, and customize the workspace appearance.
+<Accordion title="Recent Imports">
+  Opens a submenu with the most recently imported files that have been imported into the tool.
+</Accordion>
 
-| Command | What it does |
-| --- | --- |
-| **Zoom All** | Frame all visible objects in the work area. |
-| **Zoom Selected** | Center and zoom the view on selected objects. |
-| **Set Camera** | Choose a predefined angle, such as Front, Back, Left, Right, Top, or Bottom. |
-| **Theme** | Change the appearance of the application interface. |
-| **Change Background** | Use a custom image as the work area background for reference or personalization. |
-| **Reset Background** | Remove the custom background image and restore the default. |
-| **Color Key Mode** | Display solid color-key materials for capturing images for compositing or masks. |
+<Accordion title="Search Online">
+  Opens up a window with a search bar that can be used to search online using Armorsmiths online repository of files.
+</Accordion>
 
-## Settings menu
+<Accordion title="Export">
+  Exports your costume or generated templates to an output format — for example, a printable PDF pattern sheet. Use this when you are ready to produce physical construction templates from your design. Or it can export your parts as 3D models to be used with 3D printing.
+</Accordion>
 
-Use **Settings** to change application preferences and the profile included with your costume files.
+<Accordion title="Print">
+  Opens up a standard print dialog so that the user can print the generated templates.
+</Accordion>
 
-| Command | What it does |
-| --- | --- |
-| [**Preferences**](/interface/preferences) | Open the dialog for changing application settings. |
-| **Edit Profile** | Edit the profile bundled with saved costumes. You can include your information, social media details, and logo as a watermark when sharing a costume. |
+<Accordion title="Print To JPG">
+  This can be used to save all of the generated templates as separate image files that can then be shared or taken to a print shop to be printed out.
+</Accordion>
 
-## Windows menu
+<Accordion title="Quit">
+  Quits the application.
+</Accordion>
 
-Use **Windows** to show or hide panels without closing your costume.
+---
 
-| Command | What it does |
-| --- | --- |
-| **Attachment Tree** | Show or hide the panel listing parts attached to the avatar. |
-| **Command History** | Show or hide the command history as you undo and redo actions. |
-| [**Costume**](/interface/viewport-navigation) | Show or hide the viewport containing your avatar and costume. |
-| **Create 2D** | Show or hide the tools for creating shapes, images, and text for patterns. |
-| **Debug Log** | Show or hide session logs that can help diagnose a crash. |
-| **Layers** | Show or hide the panel for adding, removing, and toggling pattern layers. |
-| [**Patterns**](/patterns/patterns-workspace) | Show or hide the workspace for creating and editing patterns associated with a low-poly model. |
-| [**Property Grid**](/interface/property-grid) | Show or hide the Property Grid. Use this command to restore it if you cannot find it. |
-| [**Transforms**](/interface/transform-panel) | Show or hide the panel for entering exact position, rotation, and scale values. |
-| [**Workspaces**](/interface/workspaces-panel) | Show or hide the panel listing loaded models and controls for adding or removing workspaces. |
-| **Reset Window Layout** | Restore the default panel layout used by a fresh installation. |
+## Avatar Menu
 
-## Help menu
+The **Avatar** menu provides controls for setting up and managing the 3D avatar that your costume parts are built around. Talk about posing
 
-Use **Help** to find documentation, updates, support, and community resources.
+<Accordion title="Edit Avatar">
+  Opens the avatar measurement editor, where you enter or update the body measurements that Armorsmith Designer uses to shape your avatar. Always complete this step before attaching costume parts so that templates scale correctly to the wearer's body.
+</Accordion>
 
-| Command | What it does |
-| --- | --- |
-| **Help Page** | Open the online documentation in your default browser. |
-| **Keyboard Shortcuts** | Display the available keyboard shortcuts. |
-| **Check For Updates** | Check whether a newer version is available and follow the prompts to download and install it. |
-| **View Changelog** | Open the latest release notes for features, improvements, and fixes. |
-| **Feature Request** | Open the window for suggesting features or improvements. |
-| **Submit Bug** | Open the bug report window. Include details, screenshots, or steps to reproduce the issue. |
-| **Tutorial Videos** | Open the video tutorial library in your default browser. |
-| **Discussion Group** | Open the community discussion group in your default browser. |
-| **Discord** | Open the official Discord server in your default browser. |
-| **About** | Display the application version, licensing information, and credits. Keep your version number handy when contacting support. |
+<Accordion title="Edit Pose">
+  Puts the application into the edit pose mode. This can be used to change the pose that the avatar is in. The pose can be edited in two ways. The first is the **sphere joints** can be selected and then the translation tool used to move them around. Or second the bones can be selected and then the rotation tool used to rotate them.
+</Accordion>
 
-## Quick tips
+<Accordion title="Reset Avatar">
+  Resets the avatar to its default pose and proportions, discarding any customisations. Use this if your avatar has been modified unexpectedly or if you want to start fresh with a new set of measurements.
+</Accordion>
+
+<Accordion title="Reset Pose">
+  Resets the avatar to its default pose, discarding any customisations. Use this if your avatar has been modified unexpectedly or if you want to start fresh with a new pose.
+</Accordion>
+
+<Accordion title="Change Pose">
+  Selecting this opens up a sub-menu which has a few pose choices that can be applied to the avatar.
+</Accordion>
+
+<Accordion title="Open Avatar">
+  Opens an existing Armorsmith Designer avatar file from your computer. Displays a standard Windows file picker filtered to supported the avatar file format.
+</Accordion>
+
+<Accordion title="Save Avatar">
+  Saves the current costume to its existing file location. If the avatar has never been saved before, this behaves the same as **Save As**.
+</Accordion>
+
+<Accordion title="Save As">
+  Saves the current Avatar to a new file name or location of your choosing. Useful for creating named versions of your avatar at different stages.
+</Accordion>
+
+<Accordion title="Custom Avatar">
+  Opens a custom model for the Avatar. If the custom avatar has had a skeleton created for it using [**www.mixamo.com**](http://www.mixamo.com) then it will be able to be posed and have the appropriate attachment points created for it. If it is just a plain model then the edit pose tool will have to be used to get the attachment points in the correct places.
+</Accordion>
+
+<Accordion title="Export Avatar">
+  Exports a 3D model of the Avatar. Supported formats depend on your version of Armorsmith Designer — check the export dialog for a list of accepted file types.
+</Accordion>
+
+<Accordion title="Save Pose">
+  Saves the current Pose to a new file name or location of your choosing.
+</Accordion>
+
+<Accordion title="Load Pose">
+  Opens a Pose and then applies it to the current Avatar.
+</Accordion>
+
+---
+
+## Edit Menu
+
+The **Windows** menu lets you show or hide interface panels without closing your costume.
+
+<Accordion title="Undo">
+  Reverts the last action performed in the current project. Most editing operations, including transformations, property changes, and geometry edits, can be undone.
+</Accordion>
+
+<Accordion title="Redo">
+  Reapplies the last action that was previously undone, allowing you to step forward through your edit history.
+</Accordion>
+
+<Accordion title="Copy">
+  Copies the currently selected objects to the clipboard. The copied objects can then be pasted elsewhere within the project.
+</Accordion>
+
+<Accordion title="Paste">
+  Creates a copy of any objects currently stored in the clipboard and places them into the scene. Newly pasted objects can be repositioned as needed.
+</Accordion>
+
+<Accordion title="Delete">
+  Removes the currently selected objects from the project. Deleted objects can be restored using **Undo** if needed.
+</Accordion>
+
+<Accordion title="Translate">
+  Moves the selected objects using the translation gizmo. Objects can be repositioned freely along the X, Y, and Z axes.
+</Accordion>
+
+<Accordion title="Rotate">
+  Rotates the selected objects using the rotation gizmo. Rotation can be performed around any axis to accurately position parts.
+</Accordion>
+
+<Accordion title="Join/Cut">
+  Joins  multiple patterns into a single object or separates previously joined patterns, depending on the current selection. To join the user selects one edge and then selects a second edge, then the user can choose to move the source pattern to the destination pattern or vise/versa depending on the facing arrow on the connecting join line. To separate an edge just click on a connected edge.
+</Accordion>
+
+<Accordion title="Scale">
+  Scales the selected objects either uniformly or independently along each axis. This tool is useful for resizing armor parts while maintaining their proportions.
+</Accordion>
+
+<Accordion title="Group Selection">
+  Creates a new group containing all currently selected objects. Grouping allows multiple parts to be manipulated together while remaining organized within the scene hierarchy.
+</Accordion>
+
+<Accordion title="Unfold">
+  Generates 2D unfolded patterns from the selected low-polygon mesh. The resulting pattern can be arranged, edited, and printed for physical construction.
+</Accordion>
+
+<Accordion title="Join Adjacent Edges">
+  Automatically joins neighboring open edges that fall within a specified tolerance. This is useful for repairing patterns before printing or further editing.
+</Accordion>
+
+<Accordion title="Measure">
+  A useful tool which allows distances to be measured directly within the scene, helping verify sizing and scale. Click on one point to begin measuring and then click on a second point to complete the measurement.
+</Accordion>
+
+<Accordion title="Reset Material Colors">
+  Restores all material colors on the selected objects to their default values. This is useful for removing temporary color changes or returning imported models to their original appearance.
+</Accordion>
+
+<Accordion title="Cleanup Open Edges">
+  Attempts to repair errors in a pepakura file where edges have been marked as being open but should actually be connected edges.
+</Accordion>
+
+---
+
+## View Menu
+
+The **Windows** menu lets you show or hide interface panels without closing your costume.
+
+<Accordion title="Zoom All">
+  Adjusts the camera to frame all visible objects within the Work Area. This is useful for quickly returning to an overview of your entire project.
+</Accordion>
+
+<Accordion title="Zoom Selected">
+  Centers and zooms the camera to the currently selected objects, making it easier to edit or inspect specific parts of your project.
+</Accordion>
+
+<Accordion title="Set Camera">
+  Changes the camera to a predefined viewing angle such as Front, Back, Left, Right, Top, or Bottom. These views make it easier to position and edit objects with precision.
+</Accordion>
+
+<Accordion title="Theme">
+  Changes the appearance of the Armorsmith user interface by selecting a different visual theme. Themes allow you to customize the overall look of the application to suit your preferences.
+</Accordion>
+
+<Accordion title="Change Background">
+  Replaces the current Work Area background with a custom image. Custom backgrounds can be used as visual references or simply to personalize your workspace.
+</Accordion>
+
+<Accordion title="Reset Background">
+  Removes any custom background image and restores the default Work Area background.
+</Accordion>
+
+<Accordion title="Color Key Mode">
+  Displays the Work Area using solid color-key materials instead of normal rendering. This mode is primarily used when capturing images for compositing or generating masks for external image editing.
+</Accordion>
+
+---
+
+## Settings Menu
+
+The **Windows** menu lets you show or hide interface panels without closing your costume.
+
+<Accordion title="Preferences">
+  Displays the [Preferences](/interface/preferences) dialog which can be used to change a variety of different settings within Armorsmith Designer
+</Accordion>
+
+<Accordion title="Edit Profile">
+  The user profile is bundled with each costume file you save. This opens a dialog that allows you to enter all of your information. This can be added as a watermark to your costume when you share it so you can include your social media information and logo.
+</Accordion>
+
+---
+
+## Windows Menu
+
+The **Windows** menu lets you show or hide interface panels without closing your costume.
+
+<Accordion title="Attachment Tree">
+  Toggles the visibility of the Attachment Tree panel. The attachment tree gives you a quick view of all of the attached parts on the avatar.
+</Accordion>
+
+<Accordion title="Command History">
+  Toggles the visibility of the Command History panel. This gives a visual history of what commands have been executed as you undo/redo your way through the program.
+</Accordion>
+
+<Accordion title="Costume">
+  Toggles the visibility of the [Costume Viewport](/interface/viewport-navigation). This is the main work space where the avatar and costume is displayed.
+</Accordion>
+
+<Accordion title="Create 2D">
+  Toggles the Create 2D Panel. This has a number of tools for creating basic shapes, images, and text that can be used in the pattern creation process.
+</Accordion>
+
+<Accordion title="Debug Log">
+  Toggles the Debug Log panel. This allows you to view the debug logs which are stored after each session and useful in debugging if a crash occurs.
+</Accordion>
+
+<Accordion title="Layers">
+  Toggles the Layers panel. The layers panel allows you to Add and Remove Layers which are useful for grouping patterns together and can be toggled on/off.
+</Accordion>
+
+<Accordion title="Patterns">
+  Toggles the Patterns Viewport. This is the main workspace when working with patterns. It allows you to create and edit the patterns associated with a low-poly model.
+</Accordion>
+
+<Accordion title="Property Grid">
+  Toggles the visibility of the [Property Grid](/interface/property-grid) panel. If you cannot locate the Property Grid on screen, this is the quickest way to restore it.
+</Accordion>
+
+<Accordion title="Transforms">
+  Toggles the visibility of the [Transform](/interface/transform-panel) panel. The transform panel allows the user to directly enter transform values via numerical values.
+</Accordion>
+
+<Accordion title="Workspaces">
+  Toggles the visibility of the [Workspace](/interface/workspaces-panel) panel. The workspace panel shows the user all of the models they have loaded. It also has buttons for adding and removing workspaces from the scene.
+</Accordion>
+
+<Accordion title="Reset Window Layout">
+  This resets the window layout back to the default settings from a fresh installation.
+</Accordion>
+
+---
+
+## Help Menu
+
+The **Help** menu connects you to application updates, version information, and support resources.
+
+<Accordion title="Help Page">
+  Opens the Armorsmith Designer online help documentation in your default web browser. The help page contains detailed guides and reference information for all areas of the application.
+</Accordion>
+
+<Accordion title="Keyboard Shortcuts">
+  Displays a list of available keyboard shortcuts used throughout Armorsmith Designer. Learning these shortcuts can help speed up common tasks and improve your workflow.
+</Accordion>
+
+<Accordion title="Check For Updates">
+  Contacts the Armorsmith Designer update server and compares your installed version against the latest available release. If an update is available, you will be guided through the download and installation process.
+</Accordion>
+
+<Accordion title="View Changelog">
+  Opens the release notes for the latest version of Armorsmith Designer. The changelog provides a summary of new features, improvements, and bug fixes included in each release.
+</Accordion>
+
+<Accordion title="Feature Request">
+  Opens the Armorsmith Designer Feature Request window. Use this page to suggest new features or improvements that you would like to see in future releases.
+</Accordion>
+
+<Accordion title="Submit Bug">
+  Opens the Armorsmith Designer Bug Report window. Providing detailed information, screenshots, or reproduction steps will help resolve issues more quickly.
+</Accordion>
+
+<Accordion title="Tutorial Videos">
+  Opens the Armorsmith Designer video tutorial library in your default web browser. These videos provide step-by-step walkthroughs covering common workflows and features.
+</Accordion>
+
+<Accordion title="Discussion Group">
+  Opens the Armorsmith Designer community discussion group in your default web browser. This is a great place to ask questions, share projects, and connect with other users.
+</Accordion>
+
+<Accordion title="Discord">
+  Opens the official Armorsmith Designer Discord server in your default web browser. Join the community to discuss projects, receive support, and stay up to date with the latest announcements.
+</Accordion>
+
+<Accordion title="About">
+  Displays the About dialog, which shows your current application version, licensing information, and application credits. Keep your version number handy when contacting support.
+</Accordion>
+
+---
+
+## Quick Tips
 
 <Tip>
-- **Save often.** Press **Ctrl+S** after meaningful changes. Armorsmith Designer does not auto-save.
-- **Import first, position second.** Use **File → Import** to bring in models, then fine-tune their placement with the [Transform Panel](/interface/transform-panel).
-- **Check for updates.** Use **Help → Check For Updates**, then read the changelog to see what changed.
+  **Most-used actions at a glance:**
+
+  - **Save often** — use **Ctrl \+ S** any time you complete a meaningful change. Armorsmith Designer does not auto-save.
+  - **Import first, measure second** — bring in your 3D model files via **File → Import**, then fine-tune positions in the Property Grid once they're attached.
+  - **Always check for updates** — Armorsmith is always in active development so it's worthwhile checking for updates to see if there's any new versions. Check the changelog after downloading to see what's new.
 </Tip>
