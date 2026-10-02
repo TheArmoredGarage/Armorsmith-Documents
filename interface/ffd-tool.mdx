@@ -19,7 +19,7 @@ Use [Scale](/interface/scale-tool) when you need to resize the whole part. Use F
 3. In the **Free Form Deformation** dialog, choose **Width**, **Height**, and **Depth** for the cage.
 4. Click **Apply** to create the cage around the part.
 
-If the part already has an FFD cage, activating the tool shows that cage again so you can continue editing.
+If the part already has an FFD cage, the dialog shows its current counts. Keep the values and click **Apply** to resume editing, or change them to adjust the cage resolution.
 
 ## Choose the cage resolution
 
@@ -34,6 +34,19 @@ If the part already has an FFD cage, activating the tool shows that cage again s
 <Note>
 These values control the cage resolution. They are not measurements of the part's width, height, or depth.
 </Note>
+
+## Change the cage resolution
+
+You can change an existing cage's counts without removing and reimporting the model.
+
+1. Select the costume part, or keep editing its active cage.
+2. Open the dropdown beside **FFD Tool** and choose **Edit Lattice Counts...**.
+3. Adjust **Width**, **Height**, and **Depth**.
+4. Click **Apply** to update the cage and continue editing.
+
+Increasing the counts preserves the current deformation. Reducing any count may change the shape because the cage has fewer control points.
+
+Use **Edit > Undo** to restore the previous counts, control points, and deformation. Use **Edit > Redo** to reapply the change.
 
 ## Select and move the cage
 
@@ -58,6 +71,14 @@ Make small changes. A control point influences the surrounding shape, so check v
 
 ## Finish or resume editing
 
-Click **FFD Tool** again to leave cage editing. The cage is hidden and the part keeps its adjusted shape. Select the part and activate **FFD Tool** again to return to its existing cage.
+Press **Esc** or click **FFD Tool** again to leave cage editing. The cage is hidden and the part keeps its adjusted shape. You do not need to click **Apply** when leaving the tool.
+
+To resume, select the part and activate **FFD Tool** again. Keep or change the current counts in the dialog, then click **Apply**.
 
 Save your costume when you are satisfied with the fit. For overall positioning and orientation, see the [Translate](/interface/translate-tool) and [Rotate](/interface/rotate-tool) guides.
+
+## Update the patterns
+
+The 3D mesh updates as you move the cage. Pattern recalculation and packing wait until you switch to the **Pattern** tab, so individual FFD adjustments do not trigger packing progress popups.
+
+Switching to **Pattern** also leaves cage editing and refreshes the affected patterns. Pressing **Esc** keeps your deformation, but does not refresh the patterns until you open **Pattern**.
