@@ -56,6 +56,7 @@
               "parts/linked-files",
               "parts/attaching-parts",
               "parts/transforming-parts",
+              "parts/fit-checker",
               "parts/grouping-and-measuring",
               "parts/materials"
             ]

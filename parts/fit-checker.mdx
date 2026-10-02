@@ -1,0 +1,80 @@
+---
+title: "Check costume fit with the Fit Checker"
+sidebarTitle: "Fit Checker"
+description: "Inspect clearance between costume parts and your avatar, read the fit heatmap, and adjust the color range to highlight tighter areas."
+---
+
+The **Fit Checker** colors your attached costume parts according to their estimated distance from the avatar. Use the heatmap to find tight areas while you position and size a part, then inspect the fit in the poses you plan to use.
+
+Fit checking changes the display colors. It does not resize your parts or change their material thickness.
+
+<Note>
+The color-range dialog, improved group support, and preparation spread across frames described below are upcoming improvements. Earlier builds use a fixed **20 mm** color range, may not show heatmaps for groups, and can pause when you first enable Fit Checker on a dense model.
+</Note>
+
+## Check a part's fit
+
+<Steps>
+  <Step title="Prepare your avatar and attachments">
+    Set your [avatar measurements](/avatar/body-measurements), then [attach and position your parts](/parts/attaching-parts) in the **Costume viewport**.
+
+    Select an attachment and check its **Thickness** in the **Property Grid**. This is the source workspace's default material thickness, shared by attachments from that workspace. Use the thickness you intend to build with.
+  </Step>
+  <Step title="Turn on Fit Checker">
+    Click **Fit Checker** in the toolbar above the **Costume viewport**. The heatmap appears on your attached parts; you do not need to select each part to check it.
+
+    In builds with the updated controls, a small **Fit Check** dialog appears in the viewport's top-right corner. Wait for **Preparing fit check...** to change to **Fit check ready** before judging the result.
+  </Step>
+  <Step title="Inspect and adjust the fit">
+    Rotate the view and inspect each part from several angles. Use [**Translate**](/interface/translate-tool), [**Rotate**](/interface/rotate-tool), and [**Scale**](/interface/scale-tool) to adjust its placement and size. The heatmap updates as the fit changes.
+
+    Pay particular attention to red and orange areas around joints, edges, and narrow openings.
+  </Step>
+  <Step title="Check other poses">
+    Use **Edit Pose** or the animation controls to choose a pose, then enable **Fit Checker** again if changing modes turned it off. Pause an animation at a pose you want to inspect and let the heatmap finish updating.
+
+    Check poses with bent elbows, raised arms, or other movements you expect to make while wearing the costume.
+  </Step>
+  <Step title="Return to normal colors">
+    Click **Fit Checker** again to turn it off and restore the parts' normal display colors.
+  </Step>
+</Steps>
+
+## Read the heatmap
+
+The color scale starts at each part's material thickness. It then transitions from red through orange to green over the **Color range**.
+
+| Color | What it means |
+| --- | --- |
+| **Red** | The estimated distance to the avatar is at or below the material thickness. Inspect this area for a tight fit or contact. |
+| **Orange and intermediate colors** | The distance is above the material thickness, but within the color range. Warmer colors indicate less clearance. |
+| **Green** | The distance is at least the material thickness plus the color range. |
+
+For example, with **5 mm** material thickness and a **20 mm** color range, red covers distances of **5 mm or less**, orange is at about **15 mm**, and green starts at **25 mm**.
+
+The **5 mm** in that example is material thickness, not a universal allowance for movement. The colors describe clearance from the avatar's current shape and pose.
+
+## Adjust the color range
+
+In the **Fit Check** dialog, drag the **Color range** slider or enter a value beside it. The control accepts **1–100 mm** and starts at **20 mm**, matching the earlier fixed color scale.
+
+- **Increase the range** to make a larger band of limited clearance appear warm. With a **40 mm** range and **5 mm** thickness, green starts at **45 mm**.
+- **Decrease the range** to focus the transition on a smaller gap above the material thickness.
+
+Changing this value recolors the existing fit results. The red cutoff stays at the material thickness, and your parts keep their current shape and placement.
+
+Closing the dialog with **×** leaves the heatmap active. Toggle **Fit Checker** off and on to reopen the controls. Your chosen range is retained when you toggle the tool during the same session.
+
+## Check grouped parts
+
+In builds with improved group support, attached groups show a heatmap on their individual mesh parts. You can move, rotate, or scale the group and inspect the resulting clearance without ungrouping it.
+
+Each member uses its own source workspace's material thickness when that setting is available. Group fit checking also works after loading a costume and after grouping or ungrouping with undo and redo.
+
+## Dense models and practical limits
+
+The first check can take longer on a dense model. Updated builds spread preparation over multiple frames so the viewport can continue responding while the heatmap is prepared. Large models may still take time to finish, especially after geometry changes.
+
+The heatmap is an estimate based on sampled geometry. Dense meshes can use reduced geometry for the fit calculation, so small features may need closer inspection. See [mesh level of detail](/interface/mesh-level-of-detail) for how reduced display geometry works.
+
+Fit Checker measures part-to-avatar clearance. It does not simulate muscle contraction, padding compression, straps, or collisions between separate costume parts. Increasing the color range helps you review a larger clearance allowance, but does not simulate those effects. Inspect several poses and verify critical gaps with [**Measure**](/interface/measurement-tool) and a physical test fit.
