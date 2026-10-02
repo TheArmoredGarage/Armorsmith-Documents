@@ -1,52 +1,99 @@
 ---
-title: "Body Measurements Guide for Armorsmith Designer"
+title: "Body measurements"
 sidebarTitle: "Measurements"
-description: "A complete guide to every body measurement field in Armorsmith Designer and how to take each measurement accurately for precise printable templates."
-hidden: true
+description: "Take consistent body measurements and use the avatar's length, circumference, and shape controls."
 ---
 
-## title: "Body Measurements Guide for Armorsmith Designer" sidebarTitle: "Measurements" description: "A complete guide to every body measurement field in Armorsmith Designer and how to take each measurement accurately for precise printable templates."
+Measure the person who will wear the costume, then enter those values in **Avatar → Edit Avatar**. The highlighted guides on the avatar are your reference for each field's location and endpoints.
 
-The measurements you enter in Armorsmith Designer flow directly into every template the software generates. If your chest circumference is off by two centimetres, every breastplate piece will be off by a proportional amount. Getting these numbers right before you begin saves time at the build stage and reduces wasted materials.
+## Prepare your measurements
 
-## Before you start
+Use a flexible tape measure and ask someone to help with measurements you cannot see clearly. Wear the base layers and supportive undergarments you intend to use beneath the costume. Measure in a relaxed, upright stance.
+
+For circumferences, keep the tape level and in contact with the body without compressing it. Breathe normally. Measure twice and repeat any reading that differs noticeably.
+
+Set the unit display in [**Settings → Preferences**](/interface/preferences). Label the units in your notes. For example, **90 cm** and **35.4 in** describe approximately the same circumference; **90 in** describes a very different body.
 
 <Tip>
-  Set your preferred unit system — millimetres, centimetres, or inches — in **Preferences** before opening the Avatar Editor. Changing units after you have entered measurements can cause values to be misread and may trigger display issues.
+Measure the body or its intended base layer first. Allow for armor thickness, padding, and movement when [fitting costume parts](/parts/attaching-parts), rather than adding an arbitrary amount to every avatar measurement.
 </Tip>
 
-Take your measurements wearing tight-fitting clothing (such as a base layer or form-fitting T-shirt and leggings) or directly on skin. Loose clothing adds bulk and throws off circumference measurements. Use a **soft fabric tape measure** rather than a rigid ruler — it follows your body's curves for accurate circumference readings.
+## Enter a measurement
 
-Have a second person help where possible, especially for back-width and arm measurements. Self-measuring in front of a mirror works, but a helper improves accuracy.
+1. Choose the base **Gender** and set **Height Estimate** before fine-tuning.
+2. Expand **Measurements** or **Circumferences**.
+3. Hover over the field to highlight its guide in orange.
+4. Identify the guide's endpoints or the height of its circumference ring.
+5. Enter your value and press **Enter**. Check the value displayed after entry.
+6. Inspect the avatar from more than one angle.
 
-## Measurement fields
+Sliders provide live adjustments. Numeric fields let you enter a measured value. Use the nearby **Reset** button to restore a field's default.
 
-| Field | What to measure |
+## Overall height
+
+**Height Estimate** scales the entire avatar. Measure floor to crown and be consistent about whether footwear is included. Recheck the other dimensions if you change height after entering them.
+
+## Compound lengths
+
+| Field | What it controls | How to use it |
+| --- | --- | --- |
+| **Torso Length** | The torso length shown by its guide. | Match the guide's endpoints on your body; use it before refining torso proportions. |
+| **Arm Length** | The combined upper arm and forearm lengths. | Set the total, then refine **Elbow Length** and **Forearm Length**. |
+| **Inseam** | The combined upper and lower leg lengths used by the avatar. | Match the guide, then refine **Knee Length** and **Lower Leg Length**. |
+
+Changing **Arm Length** adjusts its component segments proportionally. **Inseam** similarly adjusts the leg segments. Set these totals first so you do not overwrite individual adjustments later.
+
+## Individual lengths
+
+The names identify the region, but the visible guide determines the measurement used by the editor. Do not substitute a sewing or clothing measurement with different endpoints.
+
+| Field | What to check on the guide |
 | --- | --- |
-| **Height** | Stand upright against a wall without shoes. Measure from the floor to the top of your head. |
-| **Chest circumference** | Wrap the tape around the fullest part of your chest, keeping it level across your back. Breathe normally — don't puff out or suck in. |
-| **Waist circumference** | Measure around your natural waist, which is the narrowest point of your torso, typically an inch or two above your navel. |
-| **Hip circumference** | Measure around the fullest part of your hips and seat, usually 7–9 inches below your natural waist. |
-| **Arm length** | Measure from the bony point of your shoulder, down the outside of a slightly bent arm, to your wrist bone. |
-| **Inseam** | Measure from your crotch — the point where your legs meet — straight down to the floor (or to your ankle bone if you want to exclude footwear). |
-| **Head circumference** | Wrap the tape around your head just above your eyebrows and ears, at the widest point. |
-| **Shoulder width** | Measure straight across your back from the bony tip of one shoulder to the tip of the other. |
+| **Neck Length** | The vertical neck segment. |
+| **Shoulder Width** | The straight distance between the shoulder endpoints. |
+| **Elbow Length** | The upper arm segment from shoulder toward elbow. |
+| **Forearm Length** | The segment from elbow toward wrist. |
+| **Knee Length** | The upper leg segment toward the knee. |
+| **Lower Leg Length** | The segment from knee toward the ankle. |
+| **Hand Length** | The span indicated across the hand region. |
+| **Foot Length** | The heel-to-toe span indicated by the foot guide. |
+| **Crown To Chin** | The vertical head measurement indicated by the guide. |
 
-## Tips for accurate measuring
+After changing a segment, check the joint position and total length. A correct total arm length can still have an elbow that sits too high or too low.
 
-- **Keep the tape level.** Especially for circumferences, let the tape sit parallel to the floor all the way around. A tape that dips at the back gives a smaller reading than your actual size.
-- **Don't pull the tape tight.** It should sit snugly against your body but not compress the skin or clothing.
-- **Measure twice.** Write down the first reading, take the tape off, re-measure, and compare. If the two readings differ by more than a few millimetres, take a third measurement and use the middle value.
-- **Use consistent units.** Mixing inches and centimetres across different fields is the most common source of errors. Confirm your unit setting in Preferences before you start and don't change it mid-session.
+## Circumferences
 
-## The black screen issue
+Measure around the body at the level of each highlighted ring. A reading taken at a different height can differ even when the tape is level.
 
-<Warning>
-  Entering an implausible value — such as a height of 5 when the field expects centimetres, or a waist measurement larger than the height — can cause the avatar to distort severely or make the viewport go completely black. If this happens:
+| Region | Fields | Measuring guidance |
+| --- | --- | --- |
+| Head and neck | **Head Circumference**, **Neck Circumference**, **Neck Base Circumference** | Use the indicated levels. Keep neck base separate from the narrower neck reading. |
+| Chest | **Chest Circumference**, **Underbust Circumference** | Match each ring's level. Underbust describes the ribcage beneath the breasts; it is separate from full bust and bra cup size. |
+| Waist | **Waist Circumference** | Use the displayed waist level in a relaxed stance. |
+| Hips | **High Hip Circumference**, **Low Hip Circumference** | Take readings at both corresponding levels. Check the guides before using one hip reading in both fields. |
+| Upper leg | **Thigh Circumference** | Use the thigh level shown, without tightening the tape. |
+| Knee and lower leg | **Knee Circumference**, **Calf Circumference**, **Ankle Circumference** | Use the displayed level for each region. |
+| Upper arm | **Shoulder Circumference**, **Bicep Circumference** | Follow the shoulder and upper arm rings; shoulder width is a different measurement. |
+| Lower arm | **Forearm Circumference**, **Wrist Circumference** | Measure around the indicated forearm and wrist levels. |
 
-  1. Go to **Avatar → Reset Avatar** to restore all measurements to their defaults.
-  2. Close and restart Armorsmith Designer.
-  3. Reopen **Avatar → Edit Avatar** and re-enter your measurements carefully, confirming your unit setting first.
-</Warning>
+### Size and shape
 
-Once all fields are filled in and your unit system is confirmed, click **Apply** in the Avatar Editor to generate your avatar. See [Creating Your Avatar](./creating-your-avatar) for the full setup walkthrough.
+**Size** changes the circumference setting. **Shape** changes the balance between side-to-side width and front-to-back depth. Use it when the number looks right but the body region is too broad or too deep.
+
+Adjust shape in small steps and compare front and side views. The controls approximate a body cross-section; a circumference value alone cannot describe every contour of a real body.
+
+### Chest, full bust, and underbust
+
+Keep these readings separate in your notes:
+
+- **Chest:** the level indicated by the editor's **Chest Circumference** guide.
+- **Underbust:** around the ribcage beneath the breasts, at the underbust guide.
+- **Full bust:** around the fullest breast area while wearing the intended supportive garment.
+
+The editor does not currently provide a separate full-bust circumference input or a band-and-cup calculator. Use full bust as a reference when adjusting the [breast shape controls](/avatar/chest-and-breast-shape). Those controls change local geometry independently of the ribcage circumference settings.
+
+## Keep a measurement record
+
+Record the wearer, date, units, clothing setup, and readings together. Update the record when the intended base layers or the wearer's dimensions change.
+
+Save a matching [avatar file](/avatar/saving-and-reusing-avatars) so you can return to that setup. If the numbers are plausible but the shape still looks wrong, see [Avatar troubleshooting](/avatar/avatar-troubleshooting).

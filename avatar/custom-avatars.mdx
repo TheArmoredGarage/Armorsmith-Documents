@@ -1,0 +1,55 @@
+---
+title: "Custom avatars"
+sidebarTitle: "Custom avatars"
+description: "Import an OBJ, STL, or FBX body model and check its scale, skeleton, attachment points, and costume fit."
+---
+
+Use **Avatar → Custom Avatar** to fit costume parts around a scan or a body model created in another application. The import dialog accepts **OBJ**, **STL**, and **FBX** files.
+
+A custom model is useful when the built-in body's proportions cannot represent the shape you need. Its geometry and skeleton determine which editing and posing workflows are available.
+
+## Prepare the model
+
+- Use an upright body in a neutral pose with the arms separated enough to access the torso.
+- Confirm the intended height and units in the source application.
+- Keep texture files with the model if you want its materials to load.
+- Save your current [avatar setup](/avatar/saving-and-reusing-avatars) before importing another body.
+
+## Import and inspect
+
+<Steps>
+  <Step title="Load the body model">
+    Choose **Avatar → Custom Avatar**, select the OBJ, STL, or FBX, and open it.
+  </Step>
+  <Step title="Verify scale and orientation">
+    Inspect the front and side. Use the [Measurement tool](/interface/measurement-tool) to check a known distance, such as height.
+
+    If scale or orientation is wrong, correct the source model and import it again. Check the dimensions before fitting costume parts.
+  </Step>
+  <Step title="Check skeleton and attachment points">
+    Test the points you intend to attach parts to. For a model with a compatible skeleton, try a pose and check that limbs and attachment points follow the intended body regions.
+
+    For a model without a usable skeleton, use **Avatar → Edit Pose** to position attachment points for fitting. Treat the body mesh as a static reference.
+  </Step>
+  <Step title="Fit and save">
+    [Attach a costume part](/parts/attaching-parts) and check its position and clearance. Save the avatar and costume project, and retain the original body model.
+  </Step>
+</Steps>
+
+## Rigged and unrigged models
+
+| Model | What to expect |
+| --- | --- |
+| A model with a compatible Mixamo skeleton | Armorsmith can recognize the skeleton and create body attachment points. Check the result before fitting. |
+| An FBX with a different or incomplete skeleton | A skeleton alone does not guarantee compatibility. Verify the rig and attachment points. |
+| An OBJ or STL body mesh | Use it as a static reference. These formats do not supply an articulated character skeleton. |
+
+You can use [Mixamo](https://www.mixamo.com/) to prepare a skeleton. Export and test the result in Armorsmith; do not assume every rigged FBX behaves the same way.
+
+## Built-in measurements and detail sliders
+
+The built-in measurement guides and face/torso detail regions are designed for the built-in avatars. They do not automatically identify anatomy or reproduce the same adjustments on an arbitrary imported mesh.
+
+Prepare the custom body's dimensions and shape in the source application. For a scan, check posture and any clothing captured in the mesh before relying on its surface for clearance.
+
+For the standard measurement workflow, use [Creating your avatar](/avatar/creating-your-avatar). For import or fit problems, see [Avatar troubleshooting](/avatar/avatar-troubleshooting).
