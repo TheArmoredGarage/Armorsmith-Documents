@@ -1,21 +1,81 @@
 ---
 title: "Custom avatars"
 sidebarTitle: "Custom avatars"
-description: "Import an OBJ, STL, or FBX body model and check its scale, skeleton, attachment points, and costume fit."
+description: "Rig your custom avatar mesh with Mixamo, download a skinned FBX, and use it in Armorsmith with animations, modifications, and attachment points."
 ---
 
 Use **Avatar → Custom Avatar** to fit costume parts around a scan or a body model created in another application. The import dialog accepts **OBJ**, **STL**, and **FBX** files.
 
 A custom model is useful when the built-in body's proportions cannot represent the shape you need. Its geometry and skeleton determine which editing and posing workflows are available.
 
-## Prepare the model
+If you upload your custom mesh to [Mixamo](https://www.mixamo.com/), complete its rigging process, and download the **skinned mesh as an FBX**, you can use that file directly in Armorsmith's avatar system. The imported avatar supports animations, avatar modifications, and body attachment points for your costume parts.
+
+## Before you start
+
+Have your custom body mesh, an Adobe account for Mixamo, and Armorsmith ready. Save your current [avatar setup](/avatar/saving-and-reusing-avatars) before importing another body.
+
+A **rigged** mesh has a skeleton. A **skinned** mesh also has weights that connect its surface to the skeleton, so the body deforms when the bones move. You need both the body mesh and its rig in the downloaded FBX.
+
+## Tutorial: add a custom avatar with Mixamo
+
+<Steps>
+  <Step title="Prepare your custom mesh">
+    Use a clean humanoid mesh in a neutral pose. Separate the arms enough to expose the torso, and center the body at the scene origin. Remove cameras, helper objects, and unrelated scene geometry before exporting.
+
+    Check the body's intended height and units in your modeling application. Mixamo's automatic rigging works with humanoid characters; unusual proportions or extra limbs can prevent it from completing.
+  </Step>
+  <Step title="Upload the mesh to Mixamo">
+    Sign in at [Mixamo](https://www.mixamo.com/) and click **Upload Character**. Select your custom mesh. Mixamo accepts FBX, OBJ, and ZIP uploads.
+
+    To include textures, embed them in an FBX, or upload a ZIP containing the OBJ, its MTL, and texture files.
+  </Step>
+  <Step title="Complete the rigging process">
+    Follow Mixamo's prompts to place the body markers. Confirm their positions and wait for automatic rigging to finish.
+
+    Review the rigged character in the preview. If a joint bends incorrectly, correct the marker placement or source mesh and repeat the rigging process before downloading.
+  </Step>
+  <Step title="Download the skinned FBX">
+    Click **Download** and choose **FBX** as the format. If the download dialog offers a skin option, choose **With Skin** so the file includes your custom body mesh along with its skeleton and skin weights.
+
+    Keep this FBX and any associated textures together. A **Without Skin** download contains animation data without the body mesh, so use **With Skin** when preparing the custom avatar.
+  </Step>
+  <Step title="Load the FBX as an Armorsmith avatar">
+    In Armorsmith, choose **Avatar → Custom Avatar**, select the downloaded `.fbx`, and open it. Load it through this avatar command so it becomes the body you fit costume parts around.
+
+    The skinned FBX from Mixamo can be used directly with Armorsmith's avatar system. Armorsmith recognizes the compatible skeleton and creates body attachment points.
+
+    Inspect the front and side views. Use the [Measurement tool](/interface/measurement-tool) to check a known distance, such as height, before fitting parts.
+  </Step>
+  <Step title="Try animations and avatar modifications">
+    Use the **Animation Selector** above the **Costume viewport** to choose an available animation, then click **Play / Pause**. Pause and drag the **Animation Scrubber** to inspect how the custom mesh bends at its shoulders, elbows, hips, and knees. See [Animation controls](/interface/viewport-navigation#animation-controls).
+
+    Open **Avatar → Edit Avatar** to make available avatar modifications. Use **Avatar → Edit Pose** for joint and bone adjustments. Recheck the body's dimensions and deformation after changes. See [Posing your avatar](/avatar/posing) for pose editing and saving.
+
+    Custom meshes do not automatically gain every measurement guide or local detail region of the built-in bodies. See [Built-in measurements and detail sliders](#built-in-measurements-and-detail-sliders) below.
+  </Step>
+  <Step title="Attach costume parts and save">
+    Import a costume part into a workspace, click **Attach**, and choose the appropriate body attachment point. Adjust the part's position, rotation, and scale to fit your custom avatar. Follow [Attaching parts](/parts/attaching-parts) for the full workflow.
+
+    Change the pose or play an animation to check that the part follows its attachment point. Inspect joint clearance and neighboring pieces, and use [Fit Checker](/parts/fit-checker) to check clearance to the body.
+
+    Save your avatar and costume project. Retain the downloaded FBX and textures with your setup so you can reuse the custom body later.
+  </Step>
+</Steps>
+
+For more help preparing a mesh, see Adobe's [Mixamo rigging guide](https://helpx.adobe.com/creative-cloud/help/mixamo-rigging-animation.html) and [automatic rigging requirements](https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html).
+
+## Import an existing body model
+
+If you already have a skinned FBX with a compatible skeleton, you can go straight to **Avatar → Custom Avatar**. You can also import an OBJ or STL as a static fitting reference.
+
+### Prepare the model
 
 - Use an upright body in a neutral pose with the arms separated enough to access the torso.
 - Confirm the intended height and units in the source application.
 - Keep texture files with the model if you want its materials to load.
 - Save your current [avatar setup](/avatar/saving-and-reusing-avatars) before importing another body.
 
-## Import and inspect
+### Import and inspect
 
 <Steps>
   <Step title="Load the body model">
@@ -40,11 +100,11 @@ A custom model is useful when the built-in body's proportions cannot represent t
 
 | Model | What to expect |
 | --- | --- |
-| A model with a compatible Mixamo skeleton | Armorsmith can recognize the skeleton and create body attachment points. Check the result before fitting. |
+| A skinned FBX downloaded from Mixamo | Use it directly as an avatar with animations, avatar modifications, and body attachment points. Check scale and deformation before fitting. |
 | An FBX with a different or incomplete skeleton | A skeleton alone does not guarantee compatibility. Verify the rig and attachment points. |
 | An OBJ or STL body mesh | Use it as a static reference. These formats do not supply an articulated character skeleton. |
 
-You can use [Mixamo](https://www.mixamo.com/) to prepare a skeleton. Export and test the result in Armorsmith; do not assume every rigged FBX behaves the same way.
+If an FBX loads without the body mesh, download it from Mixamo again with **With Skin** selected. If the body appears but does not deform, check that the file includes a compatible skeleton and skin weights.
 
 ## Built-in measurements and detail sliders
 
