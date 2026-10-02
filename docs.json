@@ -53,6 +53,7 @@
             "group": "Working with Parts",
             "pages": [
               "parts/importing-models",
+              "parts/linked-files",
               "parts/attaching-parts",
               "parts/transforming-parts",
               "parts/grouping-and-measuring",
