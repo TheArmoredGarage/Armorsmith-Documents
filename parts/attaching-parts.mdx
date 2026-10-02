@@ -1,45 +1,92 @@
 ---
-title: "Attaching and Positioning Costume Parts on Your Avatar"
-sidebarTitle: "Attaching Parts"
-description: "Learn how to snap and align imported costume parts to your avatar body so your patterns generate at the correct scale and position."
-hidden: true
+title: "Attach, position, and mirror costume parts"
+sidebarTitle: "Attachments"
+description: "Understand attachments and attachment points, adjust part properties, and use Shift+M to toggle linked mirrors with undo and redo."
 ---
 
-Attaching a part to your avatar is the core step that makes Armorsmith's pattern generation meaningful. When a part is properly positioned against the avatar, the app knows exactly where it sits on your body — which means any templates or flat patterns it generates will be sized and shaped to fit you. Loose, unanchored parts floating in the scene won't produce accurate results, so take the time to fit each piece before moving on.
+An **attachment** is a costume part placed on your avatar from a [workspace](/interface/workspaces-panel). The workspace holds the model and its patterns. The attachment gives that model a position, rotation, and scale on the avatar so you can check its fit.
 
-## How Attaching Works
+An **attachment point** anchors the part to a body region, such as the head, shoulder, forearm, or calf. The part follows that point as you pose the avatar. You can adjust its placement after attaching it.
 
-After you import a model, it lands in the scene at a default position. "Attaching" simply means using the Move, Rotate, and Scale tools to bring that part into the correct location and orientation relative to the avatar's body. There is no automatic snap-to-body button — positioning is a manual process that gives you full control over how each piece sits.
-
-## Positioning a Part on the Avatar
+## Attach a workspace to your avatar
 
 <Steps>
-  <Step title="Import your model">
-    Go to **File → Import**, select your file, and confirm the import. The part appears in the viewport. If it's the wrong size, correct the scale now before positioning. See [Move, Rotate, and Scale Costume Parts](/parts/transforming-parts) for guidance.
+  <Step title="Select a workspace">
+    [Import a model](/parts/importing-models), then select it in the **Workspaces Panel**.
   </Step>
-  <Step title="Select the part">
-    Click the part in the 3D viewport or in the Parts panel to select it. The transform gizmo will appear on the part.
+  <Step title="Choose an attachment point">
+    Click **Attach**. A ghosted preview of the part follows your pointer. Click the attachment point on the avatar where the part belongs.
   </Step>
-  <Step title="Move the part into position">
-    Use the **Move** tool (default shortcut: **W**) to drag the part toward the correct region of the avatar — helmet to the head, chest plate to the torso, and so on. Drag the red (X), green (Y), or blue (Z) axis arrows on the gizmo to move along a single axis at a time.
-  </Step>
-  <Step title="Rotate to match the avatar's contours">
-    Switch to the **Rotate** tool (shortcut: **E**) and drag the ring handles to adjust the part's orientation. Most parts will need at least a small rotation to lie flush against the body.
-  </Step>
-  <Step title="Scale if necessary">
-    If the part is still the wrong size after import-time corrections, use the **Scale** tool (shortcut: **R**) to resize it. Scale uniformly from the center handle, or per-axis using the individual handles.
-  </Step>
-  <Step title="Check fit from all angles">
-    Rotate the viewport (middle-mouse drag or the view cube) to inspect the part from the front, side, and back. Make sure it sits on the surface of the avatar without clipping through or floating too far away.
+  <Step title="Position and fit the part">
+    Select the attached part in the **Costume viewport** or **Attachment Tree**. Use [**Translate**](/interface/translate-tool) (**T**), [**Rotate**](/interface/rotate-tool) (**R**), and [**Scale**](/interface/scale-tool) (**S**) to fit it to the avatar.
+
+    Use the [Transform Panel](/interface/transform-panel) for exact values. Inspect the fit from several angles before moving on to the next part.
   </Step>
 </Steps>
 
-## Tips for a Good Fit
-
-- **Keep the avatar in T-pose.** The default T-pose gives you symmetrical reference points and makes it easier to judge alignment for paired parts like shoulder pads or greaves.
-- **Check all angles.** A part may look correct from the front but clip through the body when viewed from the side. Always do a full 360° inspection.
-- **Use the Measure tool for clearance.** For parts that need a gap between the costume and the body (for foam padding, for example), use the Measure tool to verify the distance. See [Group Parts and Measure Distances](/parts/grouping-and-measuring) for instructions.
-
 <Tip>
-  Work through your costume one region at a time rather than importing everything at once. A good sequence is: helmet → chest → back → shoulders → arms → legs. Finishing and checking each section before moving to the next keeps the scene manageable and makes it easier to spot fit problems early.
+Start in the avatar's neutral **T-Pose** when fitting parts. After positioning them, use [posing](/avatar/posing) to check how the costume moves with the body.
 </Tip>
+
+## Select and manage attachments
+
+The **Attachment Tree** lists your attached parts under their attachment points. Click a part's name to select it. Use its **Visible** checkbox to show or hide it.
+
+If you attached a part to the wrong body region, right-click the selected part in the **Attachment Tree**, choose **Move Part**, and select another attachment point. Use **Delete Part** to remove the attachment from the avatar.
+
+Deleting an attachment leaves its source workspace available. Deleting the workspace also removes its connected attachments.
+
+## Attachment properties
+
+Select an attachment to inspect its **Property Grid**. Use the **Transform Panel** for position, rotation, and scale.
+
+| Property | What it controls |
+| --- | --- |
+| **Name** | The label shown for the part in the Attachment Tree. |
+| **Visible** | Whether the part is displayed. Hide it temporarily to inspect other parts or the avatar beneath it. |
+| **Frozen** | Whether the part is excluded from viewport selection. Freeze a fitted part to avoid selecting it while working nearby. |
+| **Color** | The part's display color. |
+| **Opacity** | How transparent the part appears. Lower it to see the avatar through the part while fitting. |
+| **DrawTextures** | Whether the part displays its textures. Turn it off to inspect the shape without texture detail. |
+| **Wireframe** | Whether the mesh displays as wireframe. You can also toggle this with **W** in the Costume viewport. |
+| **Thickness** | The source workspace's default material thickness. Attachments from that workspace use the same workspace setting. |
+| **Mirror** | Whether a linked mirrored copy is attached on the other side of the avatar. |
+| **Position, rotation, and scale** | Where the part sits, which way it faces, and its size. Adjust these in the Transform Panel or with the viewport tools. |
+
+## Mirror an attached part
+
+Mirroring is useful for paired costume pieces such as shoulder pads, bracers, and greaves. For example, fit a bracer to the left forearm, then enable **Mirror** to place its reflected copy on the right forearm.
+
+Armorsmith uses the opposite attachment point when one is available. For an attachment point without an opposite partner, the reflected copy uses the same attachment point.
+
+<Steps>
+  <Step title="Select the original attachment">
+    Select the part in the **Costume viewport** or **Attachment Tree**.
+  </Step>
+  <Step title="Toggle the mirror">
+    Focus the **Costume viewport** and press **Shift+M**. You can also change the attachment's **Mirror** property in the Property Grid.
+
+    Press **Shift+M** again to turn mirroring off and remove the mirrored copy from the avatar. The original remains attached.
+  </Step>
+  <Step title="Adjust the pair">
+    Move, rotate, or scale the original attachment to update its linked mirror. Selecting the mirrored copy selects the original so you can adjust the pair together.
+  </Step>
+</Steps>
+
+For different shapes or independent placement on each side, attach separate parts instead of using a linked mirror.
+
+### Mirror several selected parts
+
+**Shift+M** toggles the **Mirror** setting of each selected attachment. A part with mirroring off turns it on; a part with mirroring on turns it off. A selection with mixed settings keeps that per-part toggle behavior.
+
+The shortcut acts on individual attached parts. Select the parts themselves when working with a group.
+
+### Undo and redo mirroring
+
+Press **Ctrl+Z** to undo a **Shift+M** action. Every affected attachment returns to its previous mirror setting in one step, even when you selected several parts. Press **Ctrl+Y** to redo that same action.
+
+Changing your selection afterward does not change which attachments that undo or redo affects.
+
+<Note>
+**Shift+M** and the single-step undo/redo behavior are available in builds that include the updated mirror command. Earlier builds use **C** for the mirror shortcut. **M** remains the shortcut for **Measure**.
+</Note>
