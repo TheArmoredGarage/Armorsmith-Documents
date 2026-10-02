@@ -1,0 +1,89 @@
+---
+title: "Chest and breast shape"
+sidebarTitle: "Chest shape"
+description: "Adjust ribcage size and breast size, height, and projection independently when creating a female avatar."
+---
+
+Use torso measurements to match the body around the ribcage, then refine the local breast shape. Making the entire chest larger to match breast fullness can also make the torso too broad or too deep.
+
+Open **Avatar → Edit Avatar**. Ribcage settings are under **Circumferences → Torso**. Breast controls are under **Details → Torso**.
+
+## What each control changes
+
+| Control | Use it to adjust |
+| --- | --- |
+| **Chest Circumference** | The torso cross-section at the chest guide's height. |
+| **Underbust Circumference** | The torso cross-section at the underbust guide's height, beneath the breasts. |
+| Circumference **Shape** | The relative width and depth of that torso region. |
+| **Breast Size** | The local size of both breast regions, without automatically moving them up, down, inward, or outward. |
+| **Breast Height** | Their vertical position, while keeping the size and projection settings. |
+| **Breast Projection** | Their forward or backward position relative to the chest, while keeping the size and height settings. |
+
+These are local, blended shape adjustments. They do not model a particular bra's support, padding, or compression.
+
+## Start from a neutral shape
+
+Set **Breast Size**, **Breast Height**, and **Breast Projection** to their midpoints to start from the base mesh's original breast shape.
+
+- Move **Breast Size** left for smaller breasts or right for larger breasts.
+- Move **Breast Height** left to lower them or right to raise them.
+- Move **Breast Projection** left to move them inward or right to move them outward.
+
+The midpoint means no adjustment for that control. It does not represent an average body, a specific cup size, or a measured bust circumference.
+
+## Match your body in stages
+
+<Steps>
+  <Step title="Measure in the intended clothing">
+    Wear the bra, supportive garment, or base layer you will use beneath the costume. Record underbust and full bust separately.
+
+    Underbust is around the ribcage beneath the breasts. Full bust is around the fullest breast area. Keep the tape level and avoid compressing the garment.
+  </Step>
+  <Step title="Match the torso first">
+    Set overall height and torso length. Enter **Chest Circumference** and **Underbust Circumference** at the levels shown by their guides.
+
+    Check front and side views. Use circumference **Shape** when the ribcage has the right general size but the wrong balance of width and depth.
+  </Step>
+  <Step title="Adjust breast size">
+    Start near the midpoint and adjust **Breast Size** in small steps. Check the front view for fullness and the side view for depth.
+
+    The size control has more reduction range than the older combined slider. Use it when the base shape is too full without shrinking the whole ribcage.
+  </Step>
+  <Step title="Set height and projection">
+    Use **Breast Height** to align the fullest area vertically. Use **Breast Projection** to refine how far the breast regions sit forward of the torso.
+
+    Check the transition into the upper chest and underbust. Size, height, and projection are independent, so change one at a time.
+  </Step>
+  <Step title="Check costume clearance">
+    Show the costume again and inspect the chest part from the front, side, and three-quarter views. Check space for the intended base layer, material thickness, and padding.
+
+    Use [Fit Checker](/parts/fit-checker) to inspect clearance, then save the avatar and costume.
+  </Step>
+</Steps>
+
+## Choose the control for the problem
+
+| What you see | What to try first |
+| --- | --- |
+| The whole torso is too broad | Check chest and underbust values, then circumference **Shape**. |
+| The ribcage looks right but the breasts are too large | Reduce **Breast Size**. |
+| The size looks right but the fullest area sits too low | Increase **Breast Height**. |
+| The height looks right but the breasts sit too far forward | Reduce **Breast Projection**. |
+| The front looks right but the side profile is wrong | Check torso **Shape**, then refine breast size and projection separately. |
+| The avatar looks right but the breastplate intersects it | Adjust the part's fit and inspect clearance; do not change accurate body dimensions solely to accommodate the part. |
+
+## Can you enter a bra size?
+
+The editor uses shape sliders rather than band-and-cup entry. Do not put a bra band number or cup letter into **Chest Circumference**, **Underbust Circumference**, or a breast detail control.
+
+A bra size is a clothing size. Cup letters depend on the band and sizing system, and supportive garments can produce different silhouettes. Use actual body measurements and the intended garment as your references.
+
+A separate full-bust circumference target is not currently available. Recording it is useful, but the breast sliders do not automatically fit the avatar to that number.
+
+## Open an avatar made with the older slider
+
+Older avatar files used one **Breast Size** slider that changed size, height, and projection together. When you open one, Armorsmith converts that setting into three independent controls to preserve its existing shape.
+
+The converted sliders can sit away from their midpoints. That is expected: they retain the old shape rather than reset it. Save a copy with **Avatar → Save As** before refining it.
+
+Saving the converted avatar records the independent settings for subsequent loads. Move the controls to their midpoints only if you want to replace the saved breast adjustments with the base shape.

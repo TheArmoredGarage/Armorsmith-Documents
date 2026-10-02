@@ -1,38 +1,47 @@
 ---
-title: "Pose Your Avatar to Preview Costume Fit and Movement"
+title: "Posing your avatar"
 sidebarTitle: "Posing"
-description: "Change your avatar's pose to check costume wearability, range of motion, and visual presentation before you print a single template."
-hidden: true
+description: "Use preset poses and pose editing to inspect costume clearance, then save and reuse a pose."
 ---
 
-Building a great costume isn't just about whether each piece is the right size — it's about whether you can actually move in it. Armorsmith Designer lets you pose your avatar in different stances so you can spot fit problems, tight spots, or clearance issues before anything is cut or printed. A pauldron that looks fine in the default pose might clip your neck the moment you raise your arm; posing reveals that early.
+Pose your avatar after fitting parts to check how they sit around joints and neighboring pieces. A shoulder piece can clear the body in a neutral stance and intersect another piece when the arm moves.
 
-## Why posing matters
+## Choose a preset pose
 
-- **Wearability checks** — Bend the arms, raise them overhead, or shift to a wide stance to see how costume pieces interact with your body's movement.
-- **Clearance and overlap** — Identify areas where two pieces collide or a piece digs into the avatar's geometry in a non-neutral position.
-- **Visual presentation** — Strike a dynamic pose to get a realistic preview of how the finished costume will photograph or appear on stage.
+Open **Avatar → Change Pose** and choose a pose from the available presets. Inspect the result from several angles.
 
-## How to change the avatar's pose
+Use a neutral stance while entering measurements and initially fitting parts. Use other poses to review the fitted costume. Return to the neutral pose before comparing body measurements or making major alignment changes.
 
-Click **Avatar** in the top menu bar and look for the **Pose** submenu. Select a preset pose from the list and the avatar updates immediately in the viewport.
+## Edit a pose manually
 
-## Common poses and when to use them
+1. Choose **Avatar → Edit Pose**.
+2. Select a sphere joint and use [**Translate**](/interface/translate-tool) to move it, or select a bone and use [**Rotate**](/interface/rotate-tool) to turn it.
+3. Make small changes and inspect the limb and attached parts.
+4. Toggle **Edit Pose** off when you finish.
 
-<CardGroup cols={2}>
-  <Card title="T-Pose" icon="person-walking" href="#t-pose">
-    The default pose. Arms are extended straight out to the sides, parallel to the floor, with the body upright. This is the best pose to use when **attaching, scaling, and aligning costume parts**, because every limb is fully extended and unambiguous. Most costume model files are also authored with the T-pose in mind.
-  </Card>
+Start with one joint, such as an elbow or shoulder. Check neighboring pieces before adjusting another joint. A posed avatar is a visual clearance check, not a simulation of straps, flexible materials, or the wearer's full range of motion.
 
-  <Card title="Action Pose" icon="person-running" href="#action-pose">
-    Any non-neutral pose — raised arms, bent elbows, a wide fighting stance. Use action poses **after** your parts are attached to check for clearance issues, overlapping geometry, and range-of-motion restrictions. This is purely a review step; return to T-Pose before making measurement-based adjustments.
-  </Card>
-</CardGroup>
+## Check the fitted costume
 
-<Tip>
-  Always return your avatar to the **T-Pose** before attaching new costume parts or adjusting the scale of existing ones. Working in any other pose can make alignment and scaling behave unpredictably, since the software calculates fit against the neutral T-pose geometry.
-</Tip>
+| Area | What to inspect |
+| --- | --- |
+| Shoulders and upper arms | Shoulder pieces against the neck, chest, and upper arm pieces as the arms rise. |
+| Elbows | Gaps and overlap between upper arm, elbow, and forearm pieces. |
+| Torso and hips | Overlap between chest, abdominal, hip, and thigh pieces as the stance changes. |
+| Knees | Clearance between thigh, knee, and shin pieces. |
+| Head and neck | Helmet clearance near the shoulders and chest. |
 
-## Resetting the pose
+Inspect both body clearance and part-to-part intersections. [Fit Checker](/parts/fit-checker) helps inspect a selected part's clearance to the avatar; also look directly at neighboring pieces.
 
-To return to the default T-Pose at any time, go to **Avatar → Pose → T-Pose**. This does not affect your measurements or any attached costume parts — it only changes the avatar's stance in the viewport.
+## Reset the pose
+
+Choose **Avatar → Reset Pose** to restore the default pose while retaining your body setup.
+
+**Avatar → Reset Avatar** is a broader reset that also restores measurements and appearance settings. Save your avatar before using it.
+
+## Save and load poses
+
+- **Avatar → Save Pose** saves a pose for later use.
+- **Avatar → Load Pose** opens a saved pose and applies it to the avatar.
+
+Give pose files names that describe the stance or check, such as `arms-raised.pose`. Use an `.avatar` file for a reusable body setup, and save the costume project to keep fitted parts. See [Saving and reusing avatars](/avatar/saving-and-reusing-avatars).

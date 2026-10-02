@@ -1,0 +1,69 @@
+---
+title: "Avatar troubleshooting"
+sidebarTitle: "Troubleshooting"
+description: "Resolve unexpected proportions, chest shape, measurement entry, saved-avatar, and custom-model fitting problems."
+---
+
+Check the units, base body, and relevant guide before making another shape adjustment. Save a copy of an avatar that contains useful settings before resetting it.
+
+## The avatar becomes much too large or small
+
+Check the entered value and unit display in [**Preferences**](/interface/preferences). A number intended as centimetres describes a very different dimension if entered as inches.
+
+For one incorrect length or circumference, use its **Reset** button and re-enter the measurement. Use **Avatar → Reset Avatar** to start the setup again, then choose the base body and set height before individual measurements.
+
+If you cannot see the body, try **View → Zoom All**. If the viewport remains blank after restoring plausible values, save any recoverable work and restart. For a repeated problem, include the avatar file, units, entered value, and screenshot in a bug report.
+
+## The numbers look right but the shape does not
+
+Compare front and side views. Two bodies can share a circumference but differ in width and depth. Use the circumference's **Shape** control to refine that balance.
+
+Check where you took the measurement. Upper and lower hip readings are different. For lengths, compare your endpoints with the highlighted guide.
+
+Use local **Details** controls after the larger dimensions are correct. See [Body measurements](/avatar/body-measurements).
+
+## The female chest looks too full or sits in the wrong place
+
+Adjust **Breast Size**, **Breast Height**, and **Breast Projection** independently under **Details → Torso**. Start with size, then adjust height and forward projection.
+
+Do not shrink a correctly measured ribcage solely to reduce breast fullness. [Chest and breast shape](/avatar/chest-and-breast-shape) explains the controls and how to use full-bust notes as a reference.
+
+## An older avatar opens with breast sliders away from the midpoint
+
+This is expected for an avatar saved with the older combined **Breast Size** slider. Armorsmith converts its size and position changes into independent settings to retain the saved shape.
+
+Leave the converted values if you want that shape. Moving all three sliders to their midpoints returns the breast regions to the base mesh's original shape instead.
+
+## Changing height alters other measurements
+
+**Height Estimate** scales the avatar and its existing dimensions together. Set it first, then refine individual measurements. Recheck lengths and circumferences if you change it later.
+
+## Changing arm length or inseam moves a joint
+
+These compound measurements adjust their component segments proportionally. Set the total first, then refine upper/lower arm or leg measurements to place the elbow or knee correctly.
+
+## Switching gender resets the setup
+
+**Gender** changes the base body and resets its measurements and customizations. Choose it before fine-tuning. Use [separate avatar files](/avatar/saving-and-reusing-avatars) to retain more than one setup.
+
+## A costume part no longer fits after an avatar change
+
+Show the costume and inspect the part's position, orientation, and scale. A saved fit can need adjustment after changing the body, local details, or clothing setup.
+
+Use [Fit Checker](/parts/fit-checker) to inspect body clearance and check neighboring parts directly. Adjust the part to the accurate body reference before generating final patterns.
+
+## A custom avatar is the wrong size or does not pose
+
+Check its height and orientation before attaching parts. Correct scale in the source application and reimport if needed.
+
+For posing, verify a compatible skeleton. OBJ and STL meshes are static body references. For an unrigged model, position attachment points with **Edit Pose**. See [Custom avatars](/avatar/custom-avatars).
+
+## Choose the right reset
+
+| Reset | What to use it for |
+| --- | --- |
+| A field's **Reset** button | Restore one length or circumference to its default. Check related fields after resetting a compound length. |
+| **Avatar → Reset Pose** | Discard pose edits while retaining the body setup. |
+| **Avatar → Reset Avatar** | Restore measurements and appearance settings to defaults. Save a copy first. |
+
+If the issue persists, include the application version, whether the avatar is built-in or custom, your steps, and a screenshot through **Help → Submit Bug**. Include the affected `.avatar` or custom model when it helps reproduce the problem.
