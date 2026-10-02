@@ -1,0 +1,104 @@
+---
+title: "Use linked model files"
+sidebarTitle: "Linked files"
+description: "Coming soon: choose how model geometry is saved, recover moved source files, and create portable armor copies."
+tag: "Coming soon"
+---
+
+<Info>
+**Coming soon:** Linked model files will be available in an upcoming Armorsmith Designer release. This page previews the workflow. The options described here are not available in the current release.
+</Info>
+
+Linked files let you save a reference to an imported model instead of storing another copy of its original mesh inside every armor file. This can reduce armor file size when you reuse large models across several costumes.
+
+Your armor file still saves your workspace settings, materials, fitting adjustments, and pattern work. You choose how to store each model, so an armor file can contain both included and linked meshes.
+
+## Choose how to save your models
+
+| Option | How it works | When to use it |
+| --- | --- | --- |
+| **Include in armor file (recommended)** | Saves the mesh geometry inside the armor file. This is the default. | Choose this for sharing, backups, or working without the original model files. |
+| **Link to source file** | Saves a reference to the original model file. Armorsmith loads that file when you reopen your armor. | Choose this when you keep a stable model library and want to avoid storing duplicate geometry. |
+
+Keep linked source files available. Their location and contents matter when you reopen the armor file.
+
+Links are available for supported OBJ, STL, FBX, and 3MF models that Armorsmith can reproduce from their source files. Models that cannot be linked, such as skinned meshes, remain included. PDO and Armorsmith part imports keep their existing import workflow.
+
+## Link a model during import
+
+<Steps>
+  <Step title="Select your model">
+    Start a [model import](/parts/importing-models) and choose the file in your operating system's file picker.
+  </Step>
+  <Step title="Choose the storage option">
+    After you select the file, the separate **Model Import Options** dialog opens. Choose **Link to source file**, or leave **Include in armor file (recommended)** selected.
+  </Step>
+  <Step title="Import the model">
+    Click **Import** to load it. Click **Cancel** to stop the import.
+  </Step>
+</Steps>
+
+Opening a model from your recent imports shows the same **Model Import Options** dialog.
+
+A link indicator appears beside linked workspaces in the [Workspaces Panel](/interface/workspaces-panel). Hover over it to see the source file paths.
+
+## Manage links in an open armor file
+
+Open **File > Manage Linked Files…** to review your models. The list shows each workspace and mesh, its storage mode, its source file, and its status.
+
+Select a mesh and choose an action:
+
+| Action | What it does |
+| --- | --- |
+| **Include in armor file** | Saves the selected mesh inside the armor file on your next save. |
+| **Link to source file…** | Lets you select a source file for the selected mesh. Armorsmith checks that it reproduces the current mesh before using the link. |
+| **Locate File…** | Reconnects a link to an unchanged source file that has moved or been renamed. |
+| **Update from Source…** | Imports the selected source as a new workspace so you can compare it with your existing work. |
+
+Save your armor file after changing its links or storage options.
+
+### Understand link status
+
+**Available** means Armorsmith can find the expected source file. **Missing** means it cannot find the file. **Changed** means the file's contents differ from the saved reference.
+
+If a linked source becomes missing or changes while your armor is open, Armorsmith can include the mesh already loaded in memory on your next save. The manager shows **Included on save** for this fallback. It also identifies edited geometry that will be included on save.
+
+This fallback needs the model to be loaded already. If you reopen an armor file whose geometry was saved only as a link, you need to locate its expected source file.
+
+## Find a moved or missing source file
+
+When you open an armor file and a required source cannot be loaded, the **Linked file unavailable** dialog lets you find it:
+
+- **Locate File…** opens a file picker. Select the original source at its new location.
+- **Search Folder…** searches the folder you choose and its subfolders for a matching filename and verifies its contents. Armorsmith can reuse that folder to find other missing links during the same load.
+- **Cancel** stops loading the armor file.
+
+Armorsmith verifies the source before using it. A different model, or an edited version of the original, cannot silently replace the saved geometry. If the source changed, locate an unchanged copy of the original to reopen that armor file.
+
+After reconnecting moved files, save your armor file to keep the updated references.
+
+<Tip>
+Keep your armor file and its source models in one folder structure. Moving that structure together helps preserve relative links. Use a portable copy when you want to share the armor without its separate source models.
+</Tip>
+
+## Work with an updated source model
+
+Armorsmith does not automatically reload a model when its source changes. To bring in an updated version while your armor is open:
+
+1. Open **File > Manage Linked Files…** and select the mesh.
+2. Click **Update from Source…**.
+3. Confirm with **Import Updated Workspace**.
+
+The updated model appears as a new workspace. Your existing workspace, fitting edits, FFD work, and unfolded patterns stay available for comparison. Updating does not replace the old workspace or reconnect its link to different geometry.
+
+## Save a portable copy for sharing
+
+Choose **File > Save Portable Copy…** and save to a different filename. The copy includes all workspace mesh geometry, so its recipient does not need the linked model files.
+
+Your current armor file stays open with its existing link choices. Saving a portable copy does not switch you to the copy or change the original file's storage settings.
+
+## What happens to edited geometry?
+
+Armorsmith includes edited original geometry when it cannot reproduce that geometry from the source. Processed meshes, such as decimated meshes, are also included. Your fitting and pattern work continues to be saved in the armor file.
+
+File size savings depend on how much original geometry remains linked. Included meshes, processed geometry, materials, and images still contribute to the armor file's size.
