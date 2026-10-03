@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="340" viewBox="0 0 840 340" role="img" aria-labelledby="title desc">
+<title id="title">Foam layer composition</title>
+<desc id="desc">A six millimeter base supports a layer with two and four millimeter patterns. The next layer starts above the taller four millimeter pattern. All layers follow one shared bend.</desc>
+<rect width="840" height="340" rx="16" fill="#14202a"/>
+<g font-family="Arial, sans-serif" fill="#eff5f8">
+<text x="30" y="38" font-size="21" font-weight="bold">One bend, several patterns per layer</text>
+<text x="30" y="64" font-size="14" fill="#bacbd5">Illustrative cross-section; layer heights use the tallest pattern below.</text>
+<path d="M65 184 Q285 244 505 184 L505 225 Q285 285 65 225Z" fill="#426473" stroke="#9bb6c5" stroke-width="2"/>
+<path d="M95 185 Q150 200 205 205 L205 191 Q150 186 95 171Z" fill="#ed9b4b" stroke="#ffc988" stroke-width="2"/>
+<path d="M335 205 Q390 200 445 185 L445 157 Q390 172 335 177Z" fill="#56b5ad" stroke="#a5ece5" stroke-width="2"/>
+<path d="M225 177 Q285 182 325 178 L325 157 Q285 161 225 156Z" fill="#c580a2" stroke="#f3b6d5" stroke-width="2"/>
+<path d="M75 162 Q285 219 495 162" fill="none" stroke="#c4d5df" stroke-dasharray="5 5"/>
+<path d="M75 137 Q285 194 495 137" fill="none" stroke="#c4d5df" stroke-dasharray="5 5"/>
+<text x="95" y="155" font-size="15">2 mm</text><text x="376" y="143" font-size="15">4 mm</text>
+<path d="M445 167 L538 124" fill="none" stroke="#a5ece5"/>
+<path d="M324 164 L538 92" fill="none" stroke="#f3b6d5"/>
+<path d="M505 216 L538 225" fill="none" stroke="#9bb6c5"/>
+<text x="550" y="96" font-size="16" fill="#f3b6d5">Layer 2: above Layer 1's 4 mm</text>
+<text x="550" y="130" font-size="16" fill="#a5ece5">Layer 1: two independent patterns</text>
+<text x="550" y="151" font-size="14" fill="#bacbd5">Each keeps its own material and edges</text>
+<text x="550" y="230" font-size="16" fill="#9bb6c5">Base: 6 mm foam</text>
+<text x="30" y="302" font-size="14" fill="#bacbd5">A layer gap adds space. Hiding a piece does not change its contribution to stack height.</text>
+</g></svg>

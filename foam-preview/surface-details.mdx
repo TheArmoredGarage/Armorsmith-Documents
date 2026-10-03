@@ -1,0 +1,55 @@
+---
+title: "Add surface details"
+sidebarTitle: "Detail library"
+description: "Place decorative dome rivets, eyelets, and washers on formed foam."
+hidden: true
+noindex: true
+---
+
+The **Detail library** contains simple decorative models for common craft parts. Use them to preview raised surface details on a base piece or on a pattern in a foam layer.
+
+## Choose a detail
+
+Click **Details** on the **Pattern tools** toolbar. Choose a model and size from the library:
+
+| Model | Available nominal sizes | What the size measures |
+| --- | --- | --- |
+| **Dome rivet** | 6, 8, 10, 12, 15, 20 mm | Outside diameter. |
+| **Eyelet** | 4, 5, 8, 11, 14 mm | Hole diameter. |
+| **Washer** | 4, 5, 8, 11, 14 mm | Hole diameter, matching the eyelet presets. |
+
+The dome rivet represents the cosplay use of a googly-eye shape: a dome on a short, flattened cylinder. It has no moving pupil or printed eye.
+
+Nominal diameters follow common craft sizes. Heights, flange diameters, and other proportions are approximate. Check the actual product when you need an exact physical fit. See examples of [craft wiggle-eye sizes](https://canada.michaels.com/product/flat-back-wiggle-eyes-value-pack-by-creatology-10044334) and [Prym eyelet hole sizes](https://prymamericas.com/products/eyeletsmmrefills).
+
+## Place copies on the surface
+
+1. Select the detail and size.
+2. Click **Place on surface**.
+3. Move over a visible foam surface in the 3D view to see the placement preview.
+4. Click to place a copy. Keep clicking to place more copies.
+5. Click **Finish** or press **Escape** to leave placement.
+
+Details attach to the front or back face of the foam pattern. Side walls do not accept placement in this preview. A visible costume mesh in front of the foam prevents placement through that mesh.
+
+The detail is a separate entity attached to the clicked pattern. It inherits that pattern's material and follows its forming, thickness, edge finish, and 3D placement.
+
+<Note>
+Eyelets and washers have an opening in their own model. Placing them does not cut a hole through the foam or add a hole mark to the printed template.
+</Note>
+
+## Reposition or remove
+
+Click **Move details**, then click and drag a placed detail along its foam surface. It stays attached to the same pattern and the same face. Release to commit one undoable move.
+
+Press **Escape** during an unfinished drag to restore its starting point. Click **Finish** when you are done moving details.
+
+Select a detail with the detail move tool, then click **Remove selected detail** to remove it. Undo restores it with its attachment.
+
+## Adjust a placed detail
+
+The selected detail exposes its size, **Rotation on surface (degrees)**, and **Lift from surface (mm)** in its properties. Rotation turns it around the local surface normal. Lift raises it away from that surface.
+
+The stored surface anchor uses the pattern's flat coordinates. Changing the bend does not detach the detail. If you edit the outline so that its anchor lies outside the pattern, it stops appearing; undo the outline change or move the anchor back inside.
+
+Details retain their own dimensions while following the surface orientation. They represent rigid hardware rather than another deforming foam layer. Use [foam layers](/foam-preview/layers-and-materials) when the raised shape itself needs to bend with the base.

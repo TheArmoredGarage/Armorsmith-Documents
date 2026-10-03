@@ -1,0 +1,48 @@
+---
+title: "Finish foam edges"
+sidebarTitle: "Edge Style"
+description: "Preview square edges, 45° angle cuts, and rounded edges with adjustable depth."
+hidden: true
+noindex: true
+---
+
+**Edge Style** controls the top edge around a foam pattern. Use it to preview an angle cut made with a blade or a rounded edge produced by sanding.
+
+## Choose the finish
+
+Select a foam pattern, click **Edge Style**, then choose:
+
+| Style | Result |
+| --- | --- |
+| **Square** | Keeps the original square thickness edge. |
+| **Angle cut — 45°** | Cuts down and inward from the top perimeter at 45°. |
+| **Rounded** | Rounds the top edge with a quarter-circle profile. |
+
+The finish applies around the whole top perimeter of the selected pattern. It does not alter the bottom cut outline or choose individual edges.
+
+## Set depth in millimeters or percent
+
+Enter **Depth** and choose **Units**. The dialog shows the current foam thickness and the effective depth in millimeters.
+
+| Units | Use when | Behavior after a thickness change |
+| --- | --- | --- |
+| **Millimeters** | You want a fixed cut depth, such as 2 mm | Keeps the entered depth. |
+| **% of foam thickness** | You want the finish to scale with the foam stock | Recalculates the depth from the new thickness. |
+
+For 6 mm foam, **50%** is a 3 mm depth. At 45°, that also cuts 3 mm inward from the perimeter. For **Rounded**, 3 mm depth gives a 3 mm rounding radius.
+
+Switching units preserves the current physical depth. A 3 mm setting on 6 mm foam becomes 50% when you switch to percentage.
+
+Depth can range from zero to the full foam thickness. Zero produces a square edge. Full depth brings the finished top edge down to the bottom at the perimeter.
+
+## Recheck after changing thickness
+
+If a fixed millimeter depth becomes greater than the foam thickness, the preview reports an invalid edge depth. Lower the depth, increase thickness, or switch to a suitable percentage.
+
+Each pattern in a [foam layer](/foam-preview/layers-and-materials) has its own edge finish. Decorative hardware follows the resulting top surface, including its slope near a finished edge.
+
+<Tip>
+Use **Chamfer** in point editing to cut a corner out of the flat outline. Use **Edge Style** to finish the thickness edge.
+</Tip>
+
+The paper cut template retains its original outline. Record your edge style and depth separately when preparing the physical build.
