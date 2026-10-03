@@ -10,6 +10,8 @@ Once you close an outline, its foam preview appears on the left of the **Pattern
 
 The initial camera shows the top surface, where raised layers and edge finishes appear. Use the front-view control to return to that side, or orbit to inspect the thickness. Curved previews add interior mesh samples automatically; spherical forming is not limited to the outline's original triangles.
 
+Each foam pattern's complete 3D solid stays within **2,000 triangles**, including the front, back, finished edge, and side walls. The preview shares this budget between curvature and edge shaping and uses smooth shading for curved faces. Your 2D cutting outline, measurements, and layer bounds retain their full precision. A stack contains several separately budgeted patterns; attached detail bits are separate models.
+
 ## Match your foam stock
 
 Select the pattern and click **Thickness**. Enter the thickness in millimeters. Each pattern keeps its own thickness, including patterns in the same layer.
@@ -30,6 +32,8 @@ Open **Form** and choose a mode:
 Horizontal and vertical refer to the pattern's flat axes. Rotating the piece in 3D rotates those axes with it.
 
 A larger bend angle produces more wrap across the pattern. A smaller sphere radius produces tighter curvature. **Reverse forming direction** changes which way the surface curves.
+
+Switching a flat or bent piece to **Spherical form** starts with an outward dome on the raised side. Opening the sphere dialog again preserves your chosen direction. Existing saved spherical pieces retain their direction; use **Form → Reverse forming direction** if a piece curves inward and you want it to bulge outward.
 
 ### Start with a gentle spherical curve
 

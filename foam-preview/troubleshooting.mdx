@@ -28,6 +28,16 @@ Open **Form → Spherical form**, click **Gentle curve**, and confirm. The recom
 
 If the preview is still missing, read **Foam preview status**. Check that the outline does not cross itself and undo the last outline edit if needed.
 
+## The sphere curves inward
+
+Select the piece and choose **Form → Reverse forming direction**. This changes the whole base stack, including its layers and attached details. New spherical forms start with an outward dome, but an existing saved sphere keeps its previous direction.
+
+## The preview looks too dense or angular
+
+Each foam pattern's complete solid uses at most **2,000 triangles**. Curvature and edge finishes share that budget; the 2D cutting outline keeps its full precision. Curved faces use smooth shading, while side walls retain a distinct edge. Tighter spherical curvature may show more visible facets within the same budget. Try **Gentle curve** for a subtle form.
+
+If **Foam preview status** reports too many corners for the preview, simplify an unusually complex outline. The preview keeps concave corners to avoid bridging across cutouts.
+
 ## A pattern will not fit in a layer
 
 The whole outline must fit inside the base outline. Check corners and segments near concave indentations. Having all corners inside is not enough if a segment crosses a cutout.
