@@ -26,7 +26,7 @@ This reference defines the version 1 container and the reconstruction rules for 
 
 An independent tool can validate and republish a costume without decoding geometry. Reconstructing its legacy scene stream is also defined below. Interpreting that stream as a fully editable scene still requires support for the legacy `.armor` grammar and its product-specific data. This reference is not a complete specification of every historical `.armor` field.
 
-Saved preview meshes, a neutral native mesh codec, and loading high-detail geometry only when needed are future work. Do not infer that they are available merely because the container supports multiple file roles.
+Saved preview meshes and deferred high-detail loading are implemented for eligible static models through the compatibility codec described below. A neutral native mesh codec remains future work. Other file roles require their own codec definitions.
 
 ## Two physical representations
 
@@ -223,11 +223,13 @@ A model with an eligible cached preview has these additional fields:
 | `sourceTriangleCount` | Triangle count of the full active geometry. |
 | `sourceVertexCount` | Vertex count of the full active geometry. |
 
-`files.preview` contains one complete legacy version 23 `MESH` block representing reduced display geometry. It retains the original mesh name, resource hash, material bucket IDs, framing, and line endings. It has no processed-proxy section. The preview is produced from the full active mesh, including a saved Decimate result when present. Its internal encoding follows the legacy mesh chunk grammar, rather than defining a new neutral binary mesh codec.
+`files.preview` contains one complete legacy version 23 `MESH` block representing reduced display geometry. It retains the original mesh name, resource hash, material bucket IDs, framing, and line endings. It has no processed-proxy section. The preview reuses the ready viewport LOD of the full active mesh, including a saved Decimate result when present. Its internal encoding follows the legacy mesh chunk grammar, rather than defining a new neutral binary mesh codec.
 
-The application currently generates these previews only for dense static resources without dependent patterns or cloth work in any workspace using that resource, skinning, active modifiers, or baked geometry. Locked costumes use the full loading path. Smaller models and failed simplifications retain the ordinary full source path.
+The application currently generates these previews only for dense static resources without dependent patterns or cloth work in any workspace using that resource, skinning, active modifiers, or baked geometry. Locked costumes use the full loading path. Smaller models, failed simplifications, and display meshes that remain above 100,000 triangles retain the ordinary full source path.
 
 Before substituting a preview, verify its codec, target, positive bounded triangle count, source-digest binding, and file integrity. If a present preview is stale or damaged, fall back to `source`. A missing declared dependency still fails the container's dependency checks. Opening a valid preview does not verify the full payload's content yet; a later full read or publish does.
+
+Saving reuses an intact existing preview when its source digest still matches. Otherwise it serializes the ready viewport LOD directly. If that LOD is not ready yet, it waits for the same background job rather than starting a second simplification. The temporary `preview.mesh-block` staging file is an implementation detail, not an additional file users need to distribute. Its bytes become `files.preview` in the shared asset store.
 
 A preview is not a source revision. Saving a model that is still using its preview must preserve the original `files.source` bytes and hash. A geometry edit loads the full source first, then invalidates or regenerates the preview's binding when saving. Shared workspace references must resolve to one runtime resource and one deferred source load.
 
