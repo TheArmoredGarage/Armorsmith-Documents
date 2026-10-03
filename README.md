@@ -1,5 +1,19 @@
 # Mintlify Starter Kit
 
+## Foam preview documentation
+
+The unreleased foam guides live under `foam-preview/`. Their navigation tab in
+`docs.json` has `hidden: true`; each page also has `hidden: true` and `noindex: true`.
+After deploying this branch, the entry route is `/foam-preview/overview` and the
+tutorial route is `/foam-preview/tutorial-layered-bracer`. Hidden pages remain
+public to anyone who knows the URL. The overview links to every preview guide.
+
+Keep the preview branch separate until its contents are ready for link-only
+access. To make the section visible at release, remove the tab's `hidden` field
+and the `hidden` and `noindex` frontmatter fields from these eight pages. Recheck
+the tutorial against the released UI, then run `mint validate` and
+`mint broken-links` before merging. The existing Manual and API tabs are unchanged.
+
 Use the starter kit to get your docs deployed and ready to customize.
 
 Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with

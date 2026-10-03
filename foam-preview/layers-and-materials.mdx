@@ -1,0 +1,75 @@
+---
+title: "Compose foam layers and assign materials"
+sidebarTitle: "Layers and materials"
+description: "Put several patterns in a layer, move them across a shared formed base, and set their materials."
+hidden: true
+noindex: true
+---
+
+A foam stack starts with one base pattern. Add layers above it, then put smaller patterns into each layer. One layer can contain several circles, strips, or other detail shapes.
+
+All patterns follow the base's forming and 3D placement. Each pattern keeps its own outline, thickness, edge finish, and material.
+
+<Frame>
+![Illustrative foam stack cross-section: a 6 mm base, two patterns of 2 mm and 4 mm in the first layer, and a second layer above the taller 4 mm pattern. All layers follow the same bend.](/images/foam-layer-stack.svg)
+</Frame>
+
+## Create the stack
+
+1. Select a closed foam pattern with a working **Foam** preview.
+2. Click **Layers** to open the **Foam layers** panel.
+3. Click **Use selected base**.
+4. Click **Add layer**.
+5. Click the new layer's row in the panel to make it the destination.
+6. Select one or more closed foam patterns in the pattern view.
+7. Click **Add selected patterns**.
+
+The tool preserves their flat placement relative to the base where possible. If a pattern is outside the base, it tries centering the pattern. It rejects a pattern that still cannot fit. Resize or reshape that pattern and try again.
+
+A pattern that already contains its own foam layers cannot be nested into another stack in this preview.
+
+<Tip>
+Single-click a row to choose a destination or material target without replacing your viewport selection. Double-click a row to select that pattern or layer in the application.
+</Tip>
+
+## Move a raised pattern
+
+Click **Move on surface**, then click and drag a raised foam pattern in the 3D view. The pattern moves across the base's flat coordinates and follows the formed surface as you drag.
+
+Its entire outline must stay within the base outline. Movement that would cross the boundary is rejected, including movement across an indentation in a concave base.
+
+Release to keep the move as one undoable action. Press **Escape** during an unfinished drag to restore the starting position. Click **Finish moving** to leave the tool.
+
+The boundary is the stack's base outline. Upper patterns do not need to sit directly above another small pattern in the preceding layer.
+
+## Read the composition
+
+The tree shows the base, each layer, and the patterns within it. Pattern rows show thickness and material. Layer rows show the number of patterns and the height above the base surface.
+
+- Use the row checkboxes to show or hide pieces while inspecting the composition.
+- **Raise layer** and **Lower layer** change layer order.
+- **Set layer gap** adds space above the preceding layer.
+- **Remove row** removes the selected pattern or layer, with undo. Removing a layer removes its children from the composition too.
+
+Each layer starts above the tallest pattern in every lower layer, plus the layer gaps. For example, a layer containing both 2 mm and 4 mm patterns contributes 4 mm to the next layer's elevation. This keeps each layer at one shared height; it does not nest upper pieces into the gaps between lower details.
+
+Hiding a layer changes visibility, rather than the physical stack height. Remove or reorder a layer when you want the composition itself to change.
+
+## Set one pattern's material
+
+1. Click the pattern row in **Foam layers**, including the base row if needed.
+2. Choose a material from the list, or choose **Custom color...**.
+3. Click **Set pattern material**.
+4. If you chose a custom color, select it in the color picker.
+
+The selected pattern changes independently. Its attached hardware inherits the same material.
+
+## Set the whole layer's material
+
+Choose a layer row, select a material, then click **Apply material to whole layer**. This updates every pattern currently in the layer and sets the default for patterns added later.
+
+The patterns receive independent material copies. You can override one pattern afterward with **Set pattern material** without changing its neighbors. Undo restores each pattern's previous assignment.
+
+Materials affect the 3D appearance. They do not change the paper cut outlines, thickness, or forming.
+
+Continue with [Add surface details](/foam-preview/surface-details).

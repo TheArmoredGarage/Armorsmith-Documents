@@ -1,0 +1,54 @@
+---
+title: "Set thickness and form foam in 3D"
+sidebarTitle: "Thickness and forming"
+description: "Preview horizontal, vertical, and spherical forming while retaining the flat cut template."
+hidden: true
+noindex: true
+---
+
+Once you close an outline, its foam preview appears on the left of the **Patterns** tab. Use **Foam** to show or hide the preview. The piece starts flat with a thickness of 6 mm. Creating a pattern or choosing **Use selected base** does not add it to the main **Costume** view.
+
+## Match your foam stock
+
+Select the pattern and click **Thickness**. Enter the thickness in millimeters. Each pattern keeps its own thickness, including patterns in the same layer.
+
+Choose the thickness before judging edge finishes and stack height. A thicker piece changes the amount of material available for an angle cut and the height of patterns above it.
+
+## Choose a forming shape
+
+Open **Form** and choose a mode:
+
+| Mode | Typical use | Control |
+| --- | --- | --- |
+| **Flat** | Flat plates, reference layout, or resetting a formed piece | No bend. |
+| **Horizontal bend** | Wrap the pattern across its flat X direction | Bend angle in degrees. |
+| **Vertical bend** | Wrap the pattern across its flat Y direction | Bend angle in degrees. |
+| **Spherical form** | Dome-like armor or a curved shoulder detail | Sphere radius in millimeters. |
+
+Horizontal and vertical refer to the pattern's flat axes. Rotating the piece in 3D rotates those axes with it.
+
+A larger bend angle produces more wrap across the pattern. A smaller sphere radius produces tighter curvature. **Reverse forming direction** changes which way the surface curves.
+
+### Start with a gentle spherical curve
+
+The sphere dialog starts with a gentle radius based on your pattern's physical size. Click **Gentle curve** to return to that recommendation. Larger values make the piece flatter; smaller values create a deeper dome.
+
+The dialog shows the minimum radius for the current outline and thickness and prevents values below it. There is no single radius that suits every pattern. For example, a pattern extending about 100 mm from its center starts near a 400 mm radius. The old 100 mm setting would produce a much tighter curve on that piece.
+
+<Note>
+These controls preview the shape you might create by heat forming. They do not simulate temperature, foam stretching, or springback. Test spherical pieces in physical foam because forming in two directions can change their surface dimensions.
+</Note>
+
+## Place the piece on the costume
+
+Select the pattern and click **Place**. Set its **Foam position (mm)** and **Foam rotation (degrees)** for X, Y, and Z. These settings control its placement in the 3D view independently of the paper layout.
+
+Use the left-hand 3D camera to check the piece from the front, side, and back. The preview reframes after forming, thickness, and placement changes.
+
+When you are ready to check the piece against the avatar, click **Attach as part** and open the **Costume** tab. Adjust **Place** until it sits where you want it. This setting applies to the whole foam stack and is saved with the project. Toggle **Attach as part** off to remove it from the costume view while retaining the Patterns preview.
+
+## Form a whole stack
+
+When the selected pattern belongs to a foam layer, **Form** and **Place** apply to the stack's base pattern. All patterns in the stack follow that forming and placement. **Thickness** and **Edge Style** still apply to the individual selected pattern.
+
+Change the base's forming after composing the stack to check that raised shapes stay in the intended locations. Continue with [Layers and materials](/foam-preview/layers-and-materials).

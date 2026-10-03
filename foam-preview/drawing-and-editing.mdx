@@ -1,0 +1,60 @@
+---
+title: "Draw and edit a foam pattern"
+sidebarTitle: "Draw and edit"
+description: "Use anchors and curve handles to create a flat foam cut outline."
+hidden: true
+noindex: true
+---
+
+The outline defines what you cut from a flat sheet. Start with a few anchors at major corners and curve changes. Add detail after the overall shape reads correctly.
+
+## Draw an outline
+
+1. Open a workspace with the pattern view available.
+2. Click **Draw foam** on the **Pattern tools** toolbar.
+3. Click in the 2D view to place anchors. Hold **Ctrl** while placing an anchor to make it a curve point.
+4. Click near the first anchor to close the outline. A closed outline needs at least three anchors and must enclose an area.
+5. Select the resulting pattern to adjust its thickness and forming.
+
+Press **Enter** while drawing to finish an open path. Press **Escape** to discard the unfinished drawing. An open path stays a drawing line until you close it with **Open / close**.
+
+<Tip>
+Avoid placing several anchors at almost the same location. Extra anchors make curves harder to edit and can produce overlapping edges.
+</Tip>
+
+## Edit anchors and handles
+
+Select the pattern, then click **Edit points**. Select an anchor or handle and move it with the pattern editing controls. Click **Edit points** again to leave point editing.
+
+| Tool | When to use it | Effect |
+| --- | --- | --- |
+| **Corner** | A sharp corner or polygon edge | Removes the anchor's curve handles. |
+| **Smooth** | A continuous curve through an anchor | Links the incoming and outgoing handles in opposite directions. |
+| **Handles** | A curve meeting a corner or two differently shaped curves | Lets you edit incoming and outgoing handles independently. |
+| **Straight** | One segment should become straight | Straightens the segment following the selected anchor. |
+| **Curve** | One straight segment needs curvature | Adds editable handles to the following segment. |
+| **Divide** | You need another editing point within a segment | Inserts the requested number of anchors while preserving the curve. |
+| **Delete point** | An anchor no longer helps define the shape | Removes selected anchors and reconnects the surrounding outline. |
+| **Chamfer** | You want to clip a corner in the flat cut outline | Replaces a corner between straight segments with a short diagonal. |
+
+For **Straight**, **Curve**, and **Divide**, the selected anchor identifies the start of the affected segment. Use **Reverse** when you need to reverse the outline direction without changing its shape.
+
+<Note>
+**Chamfer** changes the 2D cut outline. **Edge Style** changes the top edge of the foam's thickness in 3D. Use [Edge Style](/foam-preview/edge-style) for a 45° thickness cut or a rounded top edge.
+</Note>
+
+## Mirror and close
+
+**Mirror H** mirrors the outline left to right about its center. **Mirror V** mirrors it top to bottom. These commands change the selected outline and support undo; they do not create a linked mirrored copy.
+
+**Open / close** toggles the closing segment. Opening a pattern removes its solid foam preview. Close it again when the cut outline is ready.
+
+The existing polygon creation dialog also supports completing a symmetric outline during drawing. That creates the mirrored outline at completion; later edits are independent.
+
+## Check measurements and output
+
+The toolbar displays the length of the flat outline in millimeters. This is perimeter length, rather than width, height, or the distance between two anchors. Forming does not change this measurement.
+
+Arrange and print the flat outlines through the [pattern workspace](/patterns/patterns-workspace) and [printing tools](/patterns/printing). Edge depth, material choice, and decorative details do not automatically add construction notes or drill marks to a paper template.
+
+Continue with [Thickness and forming](/foam-preview/thickness-and-forming).

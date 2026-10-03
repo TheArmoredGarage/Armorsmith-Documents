@@ -113,6 +113,30 @@
             "pages": ["api/python-scripting", "api/blender-scripters"]
           }
         ]
+      },
+      {
+        "tab": "Foam patterns preview",
+        "hidden": true,
+        "groups": [
+          {
+            "group": "Foam patterns",
+            "pages": [
+              "foam-preview/overview",
+              "foam-preview/drawing-and-editing",
+              "foam-preview/thickness-and-forming",
+              "foam-preview/edge-style",
+              "foam-preview/layers-and-materials",
+              "foam-preview/surface-details"
+            ]
+          },
+          {
+            "group": "Tutorial and help",
+            "pages": [
+              "foam-preview/tutorial-layered-bracer",
+              "foam-preview/troubleshooting"
+            ]
+          }
+        ]
       }
     ]
   },
