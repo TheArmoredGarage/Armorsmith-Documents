@@ -1,0 +1,74 @@
+---
+title: "Handles, revisions, and errors"
+description: "Use opaque identities and revision checks without exposing application objects."
+---
+
+**Coming soon — experimental API 0.2.** This page documents the development contract. See [availability and scope](/api/overview).
+
+## Handle types
+
+`Handle<Tag>` wraps a `std::uint64_t token`. The public aliases are `DocumentHandle`, `WorkspaceHandle`, `PartHandle`, and `DialogHandle`. Zero is invalid. Handles support equality, inequality, and an explicit boolean check.
+
+Treat a token as opaque. It is not a pointer, a ForgeCore registry ID, or an index into a snapshot vector. Do not perform arithmetic on it or resolve it through internal engine systems.
+
+Document, workspace, and part handles belong to the session that issued them and the current document incarnation. Opening or replacing a document invalidates its old identities. When a removed part disappears from a refreshed snapshot, its handle is retired. Refresh and reacquire handles after deletion or history changes; an object restored by undo can receive a new handle.
+
+Dialog handles identify UI registrations owned by a session. Use `CloseDialog` to release a registration. The host closes document dialogs when the costume resets, and session cleanup disposes its dialogs.
+
+Do not save handles in project data or exchange them between sessions. Names are display text, not durable identities. There is no persistent object ID API in 0.2.
+
+## Revision checks
+
+`Revision` is a `std::uint64_t`. A document snapshot includes its session's current revision. The revision advances when the host observes a changed document snapshot. It is a coarse invalidation value, not a count of commands or a revision shared by every session.
+
+Every persistent mutation requires a nonzero `expected_revision` equal to the current document revision. Zero never means "ignore conflicts." Use the revision from the snapshot on which you based the edit.
+
+1. Read the document.
+2. Choose a handle from that snapshot and check its eligibility.
+3. Submit a command with that document handle and revision.
+4. Read a fresh snapshot after the command.
+
+On `RevisionConflict`, refresh the document and reassess the edit. Do not blindly substitute a new revision and retry an operation whose assumptions may have changed.
+
+`PartInfo.geometry_revision` and `MeshInfo.geometry_revision` describe observed mesh geometry changes. They do not replace the document revision required by a command.
+
+## Result and error types
+
+Each session method returns `Result<T>`, containing `value` and `error`. Its explicit boolean conversion succeeds only when `error.code == ErrorCode::None`. On failure, do not use `value` as a valid response.
+
+`Error` contains an `ErrorCode code` and a human-readable `std::string message`. Use the code for decisions. Messages can change and should not be parsed as identifiers.
+
+| Error code | Meaning and response |
+| --- | --- |
+| `None` | The operation succeeded. |
+| `InvalidArgument` | Input is malformed, a required revision is zero, or a value is outside the allowed range. Correct the input. |
+| `InvalidHandle` | A handle is zero, unknown, or retired. Refresh and reacquire the object. |
+| `DocumentClosed` | The requested document is no longer the session's current document, or the host has closed. Stop using its handles. |
+| `PermissionDenied` | The session lacks a required permission. The host controls grants. |
+| `RevisionConflict` | The document changed since the supplied revision. Refresh and reassess the operation. |
+| `UnsupportedVersion` | The requested contract is unsupported. Check the host's version and capabilities. |
+| `Busy` | The host cannot expose a consistent state or accept this operation now, or a session UI limit was reached. Retry a read when the activity finishes, or release UI registrations as appropriate. |
+| `WrongThread` | A session call came from another thread. Marshal it to the host's owning thread. |
+| `ValidationFailed` | The target or operation is ineligible, such as a locked part or unsupported mesh. Check eligibility and the message. |
+| `InternalError` | The host encountered an unexpected consistency or processing failure. Retain the message for diagnosis. |
+
+The host may report one of several applicable errors according to its validation order. Do not rely on error precedence.
+
+## Command completion and readback
+
+`RenamePart`, `StretchMesh`, `Undo`, and `Redo` return `Result<CommandResult>`.
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `document` | `DocumentHandle` | The command's document identity. |
+| `revision` | `Revision` | The revision after readback. Zero means readback failed after the operation completed. |
+| `changed` | `bool` | Whether the operation changed state. A valid no-op returns `false`. |
+| `refresh_error` | `Error` | Explains a failure to refresh after the operation completed. Normally `None`. |
+
+A command can complete successfully while its subsequent readback fails. In that case the outer result remains successful, `revision` is zero, and `refresh_error` explains the readback failure. **Do not repeat the command.** Obtain a fresh snapshot when the host can read again.
+
+## Thread and state rules
+
+Call all session methods on the thread that owns the session. Workers receive copied values, not a live session. Do not hold references to ForgeCore objects across a command or call into the API from an internal, unfinished command callback.
+
+The native host rejects reads or mutations during operations that prevent a consistent snapshot, such as loading, file processing, autosaving, printing, reset, or nested command execution. Use `Busy` as a signal to wait for the host to finish its current work.

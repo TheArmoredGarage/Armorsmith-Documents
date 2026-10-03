@@ -1,0 +1,90 @@
+---
+title: "Mesh queries and commands"
+description: "Query mesh metadata and apply the built-in VTK stretch command with undo support."
+---
+
+**Coming soon — experimental API 0.2.** The native workspace adapter is still being verified. This page documents the development contract, not a released mesh SDK. See [availability and scope](/api/overview).
+
+## ReadMesh
+
+```cpp
+Result<MeshInfo> ReadMesh(DocumentHandle document, PartHandle part);
+```
+
+Requires `ReadDocument` and a host with mesh query support. A mesh uses its `PartHandle`; there is no separate mesh handle in 0.2.
+
+| `MeshInfo` field | Type | Meaning |
+| --- | --- | --- |
+| `document` | `DocumentHandle` | Document identity. |
+| `part` | `PartHandle` | Mesh instance identity. |
+| `revision` | `Revision` | Current document revision. |
+| `geometry_revision` | `std::uint64_t` | Observed geometry version. |
+| `vertices` | `std::uint64_t` | Vertex count. |
+| `triangles` | `std::uint64_t` | Triangle count. |
+| `can_filter` | `bool` | Eligibility for the stretch command, including the session's permission. |
+
+This method returns metadata. It does not return vertex positions, polygon/edge arrays, geometry pointers, or a VTK object. Use `PartInfo.filter_reason` for the host's current eligibility explanation.
+
+## StretchMesh
+
+```cpp
+Result<CommandResult> StretchMesh(const StretchMeshRequest& request);
+```
+
+Requires `ReadDocument`, `FilterMeshes`, and a host with filter support.
+
+| `StretchMeshRequest` field | Type | Requirement |
+| --- | --- | --- |
+| `document` | `DocumentHandle` | Current document handle. |
+| `part` | `PartHandle` | Eligible workspace mesh handle. |
+| `expected_revision` | `Revision` | Nonzero current document revision. |
+| `scale_x` | `double` | Finite factor from `0.25` to `2.0`, inclusive. Default `1.5`. |
+
+The host runs `vtkTransformPolyDataFilter` to stretch source geometry along its **local X axis**, centered on its local bounds. A factor of `1.5` increases its local X extent by 50%. Y and Z stay unchanged. A rotated part's local X direction may differ from the viewport's horizontal direction.
+
+The command preserves connectivity, UVs, and material data. The host updates normals and tangents for the transform. It records before and after geometry in application history. Redo reapplies the stored result; it does not rerun the Python script.
+
+After eligibility and revision checks, a factor of `1.0` returns success with `changed = false`. A mesh with no extent along X can also produce no visible change. Check the result rather than assuming every accepted request changes geometry.
+
+## Eligible meshes
+
+Offer only parts with `can_filter = true`. The current native command accepts a plain, editable workspace mesh with source geometry and a usable render path. It rejects:
+
+- Attached parts and non-workspace objects.
+- Locked, frozen, protected, or otherwise non-editable targets.
+- Meshes with patterns or an unfolded workspace.
+- Skinned meshes, modifiers, or post-modifiers.
+- Baked or processed geometry.
+- Geometry shared by multiple scene instances.
+- Empty meshes, more than 200,000 vertices, or more than 200,000 primitives.
+- Non-finite source coordinates or output coordinates outside the host's accepted range.
+
+The host rechecks these conditions when you submit the command. A previously eligible snapshot is not a guarantee that the command will still succeed.
+
+0.2 exposes this single built-in VTK operation. It does not let a script pass an arbitrary VTK pipeline or replace raw geometry buffers.
+
+## C++ example
+
+```cpp
+#include "ArmorsmithApi.h"
+
+Armorsmith::Api::Result<Armorsmith::Api::CommandResult>
+StretchFirstEligible(Armorsmith::Api::Session& session) {
+    using namespace Armorsmith::Api;
+    auto snapshot = session.ReadDocument();
+    if (!snapshot)
+        return Result<CommandResult>::Failure(
+            snapshot.error.code, snapshot.error.message);
+
+    for (const auto& part : snapshot.value.parts) {
+        if (!part.can_filter) continue;
+        return session.StretchMesh({
+            snapshot.value.handle, part.handle,
+            snapshot.value.revision, 1.5});
+    }
+    return Result<CommandResult>::Failure(
+        ErrorCode::ValidationFailed, "No eligible workspace mesh");
+}
+```
+
+For a floating dialog that lets you choose the target, use the [Python example](/api/python-scripting#vtk-stretch-dialog-example).

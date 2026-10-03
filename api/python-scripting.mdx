@@ -1,0 +1,110 @@
+---
+title: "Python scripting"
+description: "Create a floating VTK stretch dialog using the experimental host-injected Python API."
+---
+
+**Coming soon — experimental API 0.2.** The launcher and UI contract are in development builds. Native workspace mesh integration is still being verified. These instructions do not indicate availability in a released installer.
+
+## Run a script
+
+In a development build configured with the bundled Python runtime, choose **Scripts > Run trusted Python script...** and select a `.py` file. The host executes the script, validates its result, and creates the declared dialog on the application's UI thread.
+
+**Scripts > VTK mesh stretch example** runs the deployed example from `System/Scripts/vtk_stretch_dialog.py` beside the application executable. This option requires the example file to be present in that development build.
+
+The launcher uses the bundled runtime in `System/Python` beside the executable. Installing Python on your computer does not replace that runtime. The example uses the application's native VTK implementation; it does not require Python VTK or Qt packages.
+
+Run scripts you trust. The worker has execution and resource limits, but it is not an operating-system security sandbox. Python can access files and network services using its available libraries. API permissions control host operations; they do not confine Python filesystem access.
+
+## Imported modules and snapshot data
+
+The launcher injects `armorsmith` and `armorsmith.ui`. They are available in this launch context, not as a general package you can install or import from a standalone interpreter.
+
+`armorsmith.info` is a dictionary with these keys:
+
+| Key | Value |
+| --- | --- |
+| `major` | Integer host API major version. |
+| `minor` | Integer host API minor version. |
+| `capabilities` | List of dictionaries with string `id` and boolean `granted`. |
+
+`armorsmith.document` is a copied launch snapshot:
+
+| Key | Value |
+| --- | --- |
+| `handle` | Document token as a decimal string. |
+| `revision` | Document revision as a decimal string. |
+| `name` | Document name string. |
+| `workspaces` | List of dictionaries with decimal-string `handle`, string `name`, and boolean `locked`. |
+| `parts` | List of dictionaries with decimal-string `handle` and `workspace`, string `name`, and booleans `can_filter` and `selected`. |
+
+Keep identity and revision strings opaque. This Python snapshot contains fewer fields than the C++ snapshot. It does not contain live mesh geometry or application objects. Editing a dictionary changes your copy only.
+
+The script launcher grants document reading, mesh filtering, history navigation, and UI creation. It does not grant part renaming. Python does not expose `Session` methods, including `ReadDocument` or `StretchMesh`, as callable functions in 0.2.
+
+## UI helper functions
+
+```python
+from armorsmith import ui
+```
+
+| Function | Returned declaration |
+| --- | --- |
+| `ui.label(id, text)` | Plain text label. |
+| `ui.mesh_picker(id, label)` | Picker for eligible workspace meshes. |
+| `ui.number(id, label, value=1.5, minimum=0.25, maximum=2.0)` | Numeric input within the supported stretch range. |
+| `ui.button(id, label, action, mesh=None, number=None)` | Button invoking a named host action. |
+| `ui.dialog(title, controls)` | Versioned dialog declaration. |
+
+Assign the dialog declaration to the top-level variable **`result`**. These helpers build data; they do not create windows while Python runs. The host validates the declaration after the worker finishes. The contract accepts one result dialog per script run.
+
+Use unique control IDs. For `meshes.stretch`, pass the mesh picker ID as `mesh` and the numeric control ID as `number`. Other supported actions are `history.undo`, `history.redo`, and `document.refresh`. The [dialog reference](/api/ui-reference) describes validation, limits, and permissions.
+
+## VTK stretch dialog example
+
+Save this as `vtk_stretch_dialog.py` and launch it from the development build's **Scripts** menu:
+
+```python
+from armorsmith import ui
+
+result = ui.dialog("VTK mesh stretch", [
+    ui.label(
+        "intro",
+        "Stretch a plain workspace mesh along its local X axis. "
+        "Try 1.50 for a visible change, then Undo and Redo.",
+    ),
+    ui.mesh_picker("mesh", "Workspace mesh"),
+    ui.number("scale", "X stretch factor", value=1.5),
+    ui.button(
+        "apply", "Apply VTK stretch", "meshes.stretch",
+        mesh="mesh", number="scale",
+    ),
+    ui.button("undo", "Undo", "history.undo"),
+    ui.button("redo", "Redo", "history.redo"),
+    ui.button("refresh", "Refresh mesh list", "document.refresh"),
+    ui.label(
+        "history_note",
+        "Undo and Redo navigate the application's history. "
+        "After other edits, click Refresh before using this dialog.",
+    ),
+])
+```
+
+For a development smoke test:
+
+1. Open a costume with an editable, plain workspace mesh that has visible extent along local X. Use a mesh without patterns, skinning, modifiers, or shared geometry.
+2. Run the script and choose the mesh in **Workspace mesh**.
+3. Set **X stretch factor** to `1.50` and click **Apply VTK stretch**. Its local X extent should increase by 50%.
+4. Click **Undo**, then **Redo**, to check the stored geometry change.
+5. After an edit elsewhere in Armorsmith, click **Refresh mesh list** before another dialog operation.
+
+Undo and redo affect the entire application's history. If the picker is empty, check the [mesh eligibility rules](/api/mesh-commands#eligible-meshes). If the document has been replaced, close the dialog and rerun the script.
+
+## Execution lifetime and limits
+
+The worker exits after returning the declaration. The dialog continues in the host application. Clicking its buttons does not rerun the script, and **Refresh** does not update a Python object in an already-exited worker. There are no persistent Python callbacks in 0.2.
+
+The current launcher accepts a script source up to 512 KiB. Worker defaults include a 10-second timeout, a 256 MiB process memory limit, a combined 64 KiB stdout/stderr limit, and a 1 MiB serialized result limit. The process job prevents child processes.
+
+The worker runs in isolated mode with a temporary working directory. Do not assume relative file paths resolve beside your script or that sibling modules are automatically importable. Output and errors are forwarded to host logging; script failures or invalid declarations are reported before a dialog is created.
+
+A missing bundled runtime is a deployment issue. An unknown action, duplicate ID, wrong result shape, or unsupported declaration version is a script contract error. A revision conflict or ineligible mesh is a host state error; refresh or choose a supported target as appropriate.

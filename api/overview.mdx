@@ -1,0 +1,75 @@
+---
+title: "API reference — Coming soon"
+sidebarTitle: "Overview · Coming soon"
+description: "Preview the experimental Armorsmith API 0.2 boundary for host integrations and Python dialog scripts."
+---
+
+**Coming soon.** This reference describes the experimental API 0.2 in development builds. It does not announce availability in a released version of Armorsmith Designer. Native workspace mesh integration is still being verified. Types, limits, and behavior may change before release.
+
+The public API gives you copied document data, opaque handles, validated commands, and application-owned dialogs. It keeps ForgeCore objects, C++ pointers, scene registries, and undo internals inside Armorsmith.
+
+## Choose your integration surface
+
+| Surface | Current development contract |
+| --- | --- |
+| C++ host integration | `Armorsmith::Api::Session` in `ArmorsmithApi.h`. The application creates the session and chooses its permissions. Call it on the host's owning thread. |
+| Python script | A copied launch snapshot and `armorsmith.ui` helpers that return a dialog declaration. Dialog buttons invoke named host actions after Python exits. |
+| Independently compiled native plugin | A stable DLL ABI and plugin loader are not available in 0.2. |
+| External application | An IPC, HTTP, or remote automation transport is not available in 0.2. |
+
+The C++ header uses C++17 standard library types and virtual interfaces. It is a **source contract**, not a binary compatibility promise. Do not pass its STL types across independently compiled DLL boundaries. The Python module is injected by Armorsmith's script launcher; it is not a separately installable package.
+
+## Read, change, and create UI
+
+| Intent | Use | State rules |
+| --- | --- | --- |
+| Read document, workspace, part, selection, or mesh metadata | Snapshot and query methods | Returned values are copies. Changing a copy does not change Armorsmith. |
+| Rename a part or stretch a mesh | `RenamePart` or `StretchMesh` | The host validates handles, permissions, editability, and the expected document revision. Changes use application commands and history. |
+| Navigate history | `Undo` or `Redo` | These operate on the application's history, including edits made outside your integration. |
+| Create or close a floating dialog | `ShowDialog` or `CloseDialog` | Requires a UI permission. Dialog controls and actions are declared as data. |
+| Observe changes | `PollChanges` | Coarse invalidation tells you when to refresh. There are no public subscriptions or callbacks yet. |
+
+You cannot bypass a lock by requesting a permission. A granted capability means the service is available to your session; the target object must also be eligible when you use it.
+
+## Version and permissions
+
+`Version` contains `major` and `minor`; its current defaults are `0` and `2`. `SessionOptions.required_version` selects the requested source contract. The current host accepts major `0` with a minor version no greater than `2` and rejects newer versions or a different major with `UnsupportedVersion`. `GetInfo()` reports the actual host version and `experimental = true`.
+
+Acceptance of an earlier version is not a guarantee that future 0.x releases will preserve every contract. Check capabilities as well as the version. Python dialog declarations require exactly version `0.2`.
+
+The host chooses `SessionOptions.permissions`. The default is `ReadDocument`. C++ permissions use a bit mask; combine values with `Grant(Permission::...)` and `|`.
+
+| Permission | Value | Allows |
+| --- | --- | --- |
+| `ReadDocument` | `1` | Document, part, mesh, and history queries; change polling. |
+| `RenameParts` | `2` | Part rename commands, with `ReadDocument`. |
+| `History` | `4` | Undo and redo commands, with `ReadDocument`. |
+| `FilterMeshes` | `8` | Mesh stretch commands, with `ReadDocument`. |
+| `CreateUi` | `16` | Dialog creation and cleanup. Creation also requires `ReadDocument`; embedded actions need their own permissions. |
+
+Call `GetInfo()` on the host's owning thread to inspect the session's version and grants:
+
+```cpp
+Result<ApiInfo> GetInfo();
+```
+
+`ApiInfo` contains `Version version`, `bool experimental`, and `std::vector<Capability> capabilities`. Each capability has an `id` string and a `granted` boolean.
+
+| Capability ID | Meaning when granted |
+| --- | --- |
+| `documents.snapshot` | Read document and part snapshots. |
+| `parts.rename` | Request a part rename. |
+| `history.read` | Query undo and redo availability. |
+| `history.navigate` | Request undo and redo. |
+| `events.poll` | Poll document invalidation. |
+| `meshes.info` | Query mesh metadata on a host with mesh support. |
+| `meshes.stretch` | Request the built-in stretch filter on a host with mesh support. |
+| `ui.dialogs` | Create dialogs on a host with UI support. |
+
+## Current coverage
+
+0.2 reads the current costume document, workspace metadata, live part metadata, selection flags, and mesh counts. It exposes a part rename command, one mesh filter command, history navigation, change polling, and a small dialog vocabulary.
+
+Dedicated APIs for avatars, measurements, vertices, edges, polygons, transforms, islands, patterns, splines, materials, import/export, custom command registration, menu/tool registration, callbacks, logging, project/plugin data, and filesystem access are not available yet. Reading `selected` does not provide a command to change selection. A mesh query does not expose geometry buffers.
+
+Start with [handles, revisions, and errors](/api/identity-and-errors). Then use the [document reference](/api/documents-and-parts), [mesh commands](/api/mesh-commands), [history and changes](/api/history-and-events), [dialog reference](/api/ui-reference), or [Python scripting guide](/api/python-scripting).
