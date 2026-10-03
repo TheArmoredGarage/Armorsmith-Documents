@@ -1,15 +1,17 @@
 ---
 title: "Python scripting"
-description: "Create a floating VTK stretch dialog using the experimental host-injected Python API."
+description: "Create floating mesh, avatar, and tool dialogs using copied data and experimental Python action builders."
 ---
 
-**Coming soon — experimental API 0.2.** The launcher and UI contract are in development builds. Native workspace mesh integration is still being verified. These instructions do not indicate availability in a released installer.
+**Coming soon — experimental API 0.3.** The launcher is visible in test builds and hidden in normal release builds. Avatar, viewport, and workspace mesh behavior still need application smoke tests. These instructions do not indicate availability in a released installer.
 
 ## Run a script
 
-In a development build configured with the bundled Python runtime, choose **Scripts > Run trusted Python script...** and select a `.py` file. The host executes the script, validates its result, and creates the declared dialog on the application's UI thread.
+In a test build configured with the bundled Python runtime, choose **Scripts > Run trusted Python script...** and select a `.py` file. The host executes the script, validates its result, and creates the declared dialog on the application's UI thread.
 
 **Scripts > VTK mesh stretch example** runs the deployed example from `System/Scripts/vtk_stretch_dialog.py` beside the application executable. This option requires the example file to be present in that development build.
+
+**Scripts > Avatar and tools example** runs `System/Scripts/avatar_tools_dialog.py`. It provides body inputs, a supported-tool picker, undo, redo, and refresh. Both examples follow the same test-build gate as the launcher.
 
 The launcher uses the bundled runtime in `System/Python` beside the executable. Installing Python on your computer does not replace that runtime. The example uses the application's native VTK implementation; it does not require Python VTK or Qt packages.
 
@@ -36,10 +38,14 @@ The launcher injects `armorsmith` and `armorsmith.ui`. They are available in thi
 | `name` | Document name string. |
 | `workspaces` | List of dictionaries with decimal-string `handle`, string `name`, and boolean `locked`. |
 | `parts` | List of dictionaries with decimal-string `handle` and `workspace`, string `name`, and booleans `can_filter` and `selected`. |
+| `avatar` | Dictionary with decimal-string `handle`, `height_mm`, height bounds, `custom_model`, `can_edit`, `reason`, and `measurements`. Each measurement has `id`, `name`, `kind`, `value_mm`, `minimum_mm`, `maximum_mm`, `can_set`, and `reason`. `kind` is `length`, `circumference`, `compound`, or `other`. |
+| `context` | Dictionary with `viewport`, `active_tool`, and `tools`. Each tool has `id`, `name`, `registered`, `active`, `can_activate`, and `reason`. |
 
 Keep identity and revision strings opaque. This Python snapshot contains fewer fields than the C++ snapshot. It does not contain live mesh geometry or application objects. Editing a dictionary changes your copy only.
 
-The script launcher grants document reading, mesh filtering, history navigation, and UI creation. It does not grant part renaming. Python does not expose `Session` methods, including `ReadDocument` or `StretchMesh`, as callable functions in 0.2.
+The script launcher grants document reading, mesh filtering, avatar edits, supported tool activation, history navigation, and UI creation. It does not grant part renaming. Python does not expose live `Session` methods as callable functions.
+
+`armorsmith.data` is a namespace with `document`, `avatar`, `parts`, and `workspaces`, referring to these copied records. `armorsmith.context` is the copied context dictionary. `armorsmith.document` remains available for existing scripts. See [For Blender scripters](/api/blender-scripters).
 
 ## UI helper functions
 
@@ -51,13 +57,25 @@ from armorsmith import ui
 | --- | --- |
 | `ui.label(id, text)` | Plain text label. |
 | `ui.mesh_picker(id, label)` | Picker for eligible workspace meshes. |
-| `ui.number(id, label, value=1.5, minimum=0.25, maximum=2.0)` | Numeric input within the supported stretch range. |
+| `ui.measurement_picker(id, label)` | Picker for editable avatar measurements; requires 0.3. |
+| `ui.tool_picker(id, label)` | Picker for supported available tools; requires 0.3. |
+| `ui.number(id, label, value=1.5, minimum=0.25, maximum=2.0)` | Numeric input; bounds depend on the declaration version and action. |
 | `ui.button(id, label, action, mesh=None, number=None)` | Button invoking a named host action. |
-| `ui.dialog(title, controls)` | Versioned dialog declaration. |
+| `ui.dialog(title, controls, version=(0, 2))` | Versioned declaration. Pass `version=(0, 3)` for avatar and tool controls. |
 
 Assign the dialog declaration to the top-level variable **`result`**. These helpers build data; they do not create windows while Python runs. The host validates the declaration after the worker finishes. The contract accepts one result dialog per script run.
 
 Use unique control IDs. For `meshes.stretch`, pass the mesh picker ID as `mesh` and the numeric control ID as `number`. Other supported actions are `history.undo`, `history.redo`, and `document.refresh`. The [dialog reference](/api/ui-reference) describes validation, limits, and permissions.
+
+0.3 adds `armorsmith.ops` builders. Pass their result as the `action` argument to `ui.button`. They construct declarations; they do not execute operations while Python runs.
+
+| Builder | Control ID arguments |
+| --- | --- |
+| `armorsmith.ops.avatar.set_measurement(measurement, number)` | Measurement picker and number control. |
+| `armorsmith.ops.avatar.set_height(number)` | Height number control. |
+| `armorsmith.ops.tools.activate(tool)` | Tool picker. |
+
+The equivalent raw action strings are `avatar.set_measurement`, `avatar.set_height`, and `tools.activate`. Raw declarations must supply the referenced-control fields described in [host actions](/api/ui-reference#host-actions).
 
 ## VTK stretch dialog example
 
@@ -99,9 +117,51 @@ For a development smoke test:
 
 Undo and redo affect the entire application's history. If the picker is empty, check the [mesh eligibility rules](/api/mesh-commands#eligible-meshes). If the document has been replaced, close the dialog and rerun the script.
 
+## Avatar and tools example
+
+Save this as `avatar_tools_dialog.py`, or use the deployed example in the test build:
+
+```python
+import armorsmith as arm
+from armorsmith import ui
+
+avatar = arm.data.avatar
+result = ui.dialog("Avatar and tools", [
+    ui.number("height", "Height (mm)", avatar["height_mm"],
+              avatar["minimum_height_mm"], avatar["maximum_height_mm"]),
+    ui.button("set_height", "Set height", arm.ops.avatar.set_height(number="height")),
+    ui.measurement_picker("measurement", "Measurement"),
+    ui.number("value", "Value (mm)", 1, 0, 10000),
+    ui.button("set_measurement", "Set measurement", arm.ops.avatar.set_measurement(
+        measurement="measurement", number="value")),
+    ui.tool_picker("tool", "Available tool"),
+    ui.button("activate", "Activate tool", arm.ops.tools.activate(tool="tool")),
+    ui.button("undo", "Undo", "history.undo"),
+    ui.button("redo", "Redo", "history.redo"),
+    ui.button("refresh", "Refresh", "document.refresh"),
+], version=(0, 3))
+```
+
+For an application smoke test:
+
+1. Open a costume with a built-in editable avatar and stop/reset any retargeted animation.
+2. Run **Scripts > Avatar and tools example**. Choose a measurement and make a small change within its bounds. Click **Set measurement**.
+3. Check the body visually, then use **Undo** and **Redo**. Confirm the measurement and body return together.
+4. Change **Height (mm)** and click **Set height**. Confirm the other measurement values and bounds refresh.
+5. Focus the costume viewport, return to the dialog, and click **Refresh**. Select **Measure** or **Edit avatar**, then click **Activate tool** and use it in the viewport.
+6. Edit elsewhere and try an action from the stale dialog. It should request a fresh snapshot. Click **Refresh** before deciding to apply another edit.
+
+Activation starts an interactive tool; it does not apply an editing operation automatically. The picker includes the initial adapters in [tools and context](/api/tools-and-context). Other tools remain visible in the copied catalog with an unavailability reason.
+
+## Launcher build switch
+
+The launcher is gated by `USE_FORGECORE_TESTING`, the existing test-feature define used by `Release_Test_Build`. Normal release builds omit the **Scripts** menu and both example entries. The underlying C++ API remains available to the host.
+
+To expose this menu in a future release without enabling the whole test UI, define `ARMORSMITH_ENABLE_SCRIPT_MENU` when compiling the common ForgeCore application code and rebuild it. The gate is in `PublicApiHost/ScriptMenuBuildGate.h`. Rebuild the adapter; changing only the executable's defines does not change an already-built common library.
+
 ## Execution lifetime and limits
 
-The worker exits after returning the declaration. The dialog continues in the host application. Clicking its buttons does not rerun the script, and **Refresh** does not update a Python object in an already-exited worker. There are no persistent Python callbacks in 0.2.
+The worker exits after returning the declaration. The dialog continues in the host application. Clicking its buttons does not rerun the script, and **Refresh** does not update a Python object in an already-exited worker. There are no persistent Python callbacks in 0.3.
 
 The current launcher accepts a script source up to 512 KiB. Worker defaults include a 10-second timeout, a 256 MiB process memory limit, a combined 64 KiB stdout/stderr limit, and a 1 MiB serialized result limit. The process job prevents child processes.
 

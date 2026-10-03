@@ -89,7 +89,7 @@
         "tab": "API reference · Coming soon",
         "groups": [
           {
-            "group": "API 0.2 · Coming soon",
+            "group": "API 0.3 · Coming soon",
             "pages": [
               "api/overview",
               "api/identity-and-errors"
@@ -99,6 +99,8 @@
             "group": "Services",
             "pages": [
               "api/documents-and-parts",
+              "api/avatars-and-measurements",
+              "api/tools-and-context",
               "api/mesh-commands",
               "api/history-and-events",
               "api/ui-reference"
@@ -106,7 +108,7 @@
           },
           {
             "group": "Python",
-            "pages": ["api/python-scripting"]
+            "pages": ["api/python-scripting", "api/blender-scripters"]
           }
         ]
       }

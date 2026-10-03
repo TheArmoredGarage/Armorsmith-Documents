@@ -1,0 +1,83 @@
+---
+title: "Avatars and measurements"
+description: "Read avatar snapshots and request validated, undoable height and measurement changes in API 0.3."
+---
+
+**Coming soon — experimental API 0.3.** These services are in development. Native avatar deformation and tool interaction still need an application smoke test before release. See [availability and scope](/api/overview).
+
+You can read the current avatar and edit supported body parameters through application commands. Measurements use **millimeters**, regardless of the units shown in the application. You cannot modify a live avatar object from a snapshot.
+
+## ReadAvatar
+
+```cpp
+Result<AvatarInfo> ReadAvatar(DocumentHandle document);
+```
+
+Requires `ReadDocument`. Use the document handle from this session's `ReadDocument()` result. The same `AvatarInfo` is included in `DocumentSnapshot.avatar`, so you can inspect the document and body at one observation revision.
+
+| `AvatarInfo` field | Meaning |
+| --- | --- |
+| `document`, `handle`, `revision` | Owning document, opaque `AvatarHandle`, and session observation revision. |
+| `height_mm` | Current avatar height in millimeters. |
+| `minimum_height_mm`, `maximum_height_mm` | Allowed height range; currently `1066.8..2133.6` mm. |
+| `custom_model` | Whether the avatar uses a custom model. |
+| `can_edit`, `reason` | Whether this session can edit the current avatar, and why an edit is unavailable. |
+| `measurements` | Copied `MeasurementInfo` entries. |
+
+If the document has no avatar, its snapshot contains a zero avatar handle. `ReadAvatar` returns `ValidationFailed`. Replacing the avatar retires its handle even when the costume document stays open. Discover the replacement through a new snapshot.
+
+## MeasurementInfo
+
+| Field | Meaning |
+| --- | --- |
+| `id` | String identifier discovered from the snapshot, such as `chest_circumference`. |
+| `name` | Display name. Use `id` when requesting an edit. |
+| `kind` | `MeasurementKind::Length`, `Circumference`, `Compound`, or `Other`. |
+| `value_mm` | Current measurement in millimeters. |
+| `minimum_mm`, `maximum_mm` | Current allowed bounds, including avatar height and supported shape adjustments. |
+| `can_set`, `reason` | Whether the measurement is editable, and why it is unavailable. |
+
+Discover IDs and bounds from the current body. Do not infer identifiers from translated labels or assume all avatar models have the same measurements. Compound totals are read-only in 0.3; edit their individual measurements. A height change can alter measurement values and bounds.
+
+Custom models are readable but cannot be resized through this API version. Document protection, frozen avatars, and unsupported parameter state also prevent edits. Stop and reset an active or retained retargeted animation before editing. A session without `EditAvatar` receives read-only flags and a permission reason.
+
+## SetAvatarMeasurement
+
+```cpp
+Result<CommandResult> SetAvatarMeasurement(const SetAvatarMeasurementRequest& request);
+```
+
+`SetAvatarMeasurementRequest` contains `DocumentHandle document`, `AvatarHandle avatar`, `Revision expected_revision`, `std::string measurement_id`, and `double value_mm`.
+
+Requires `ReadDocument` and `EditAvatar`. Supply handles and the exact nonzero revision from a current snapshot. The host checks the measurement ID, finite value, current bounds, permissions, and editability before invoking the native measurement adapter.
+
+An accepted change uses one application command. That command captures the body parameters before and after the change, including dependent measurements. Undo restores the captured input; redo restores the captured output without rerunning a script. Values that are unchanged at the host's float precision return `changed = false` and create no command.
+
+## SetAvatarHeight
+
+```cpp
+Result<CommandResult> SetAvatarHeight(const SetAvatarHeightRequest& request);
+```
+
+`SetAvatarHeightRequest` contains `DocumentHandle document`, `AvatarHandle avatar`, `Revision expected_revision`, and `double height_mm`.
+
+The permission and revision rules match measurement edits. The host uses Armorsmith's existing height and measurement logic, then refreshes bounds, body controls, and rendering. Read the complete avatar snapshot after a successful edit to obtain the resulting proportions and bounds.
+
+```cpp
+#include "ArmorsmithApi.h"
+using namespace Armorsmith::Api;
+
+void SetBodyHeight(Session& session, double height_mm) {
+    auto snapshot = session.ReadDocument();
+    if (!snapshot || !snapshot.value.avatar.can_edit) return;
+    auto changed = session.SetAvatarHeight({snapshot.value.handle,
+        snapshot.value.avatar.handle, snapshot.value.revision, height_mm});
+    if (!changed) return; // Report the error; refresh before retrying a conflict.
+    if (changed.value.refresh_error.code != ErrorCode::None) {
+        // The edit committed. Read again; do not repeat the command.
+        return;
+    }
+}
+```
+
+These services do not yet expose avatar appearance, pose editing, animation control, photo fitting, or arbitrary custom-model deformation. See [history and changes](/api/history-and-events) for shared undo behavior and [Python scripting](/api/python-scripting) for the floating avatar dialog.

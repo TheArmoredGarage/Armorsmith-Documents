@@ -1,0 +1,57 @@
+---
+title: "For Blender scripters"
+description: "Use familiar data, context, and ops concepts while learning Armorsmith's copied snapshots and host-owned commands."
+---
+
+**Coming soon — experimental API 0.3.** This guide describes the current development surface. The familiar names do not imply `bpy` compatibility.
+
+If you write Blender scripts, start with the same broad division described in the [Blender API quickstart](https://docs.blender.org/api/main/info_quickstart.html): application data, current context, and explicit operations. Armorsmith adapts that structure to its documents, body measurements, viewport tools, and command history.
+
+| Blender concept | Armorsmith entry point | Current behavior |
+| --- | --- | --- |
+| `bpy.data` | `armorsmith.data` | Namespace containing copied `document`, `avatar`, `parts`, and `workspaces` values. The contained records are dictionaries and lists. |
+| `bpy.context` | `armorsmith.context` | Dictionary describing the launch viewport, active tool, and tool catalog. |
+| `bpy.ops` | `armorsmith.ops` | Action builders for buttons in a returned dialog declaration. The host executes the action when the user clicks. |
+| Operator availability | `can_edit`, `can_set`, `can_activate`, and `reason` | Snapshot availability fields. The host revalidates the action against live state. |
+| Undoable operators | Host avatar, mesh, and rename commands | Application history owns the result after the script or session exits. |
+
+## Read copied data
+
+```python
+import armorsmith as arm
+
+avatar = arm.data.avatar
+for measurement in avatar["measurements"]:
+    print(measurement["id"], measurement["value_mm"], measurement["can_set"])
+
+for tool in arm.context["tools"]:
+    print(tool["id"], tool["can_activate"], tool["reason"])
+```
+
+Changing these dictionaries changes only your worker's copy. The data is captured at launch, not a live object graph. Keep handle and revision strings opaque. Discover measurement IDs from the current avatar and use the tool IDs documented in [tools and context](/api/tools-and-context).
+
+## Declare an operation button
+
+```python
+import armorsmith as arm
+from armorsmith import ui
+
+result = ui.dialog("Avatar measurement", [
+    ui.measurement_picker("measurement", "Measurement"),
+    ui.number("value", "Value (mm)", value=1, minimum=0, maximum=10000),
+    ui.button("apply", "Apply", arm.ops.avatar.set_measurement(
+        measurement="measurement", number="value")),
+    ui.button("undo", "Undo", "history.undo"),
+    ui.button("refresh", "Refresh", "document.refresh"),
+], version=(0, 3))
+```
+
+The picker uses editable measurements from a fresh host snapshot. Choosing a measurement updates the linked number's current value and bounds. The `measurement` and `number` arguments are **control IDs**, not a body measurement name or numeric value. The declaration allows the host to resolve the user's current choice when **Apply** is clicked.
+
+Python returns `result` and exits. Armorsmith renders the dialog and executes the validated action on its owning thread. Buttons do not call back into Python. **Refresh** updates the host dialog's snapshot and revision; it does not resume the exited script.
+
+## Current limits
+
+0.3 does not provide direct Python setters, live collections, operator polling methods, custom operator registration, persistent handlers, or scripted operation batches. You cannot run `arm.ops` in a Python loop to apply edits immediately. Its current builders connect native actions to dialog buttons.
+
+This structure leaves room for a future request transport with the same copied types and validated commands. That transport, broader domain operators, and plugin registration remain separate work. You can already create a floating control panel with the [Python helpers and examples](/api/python-scripting).

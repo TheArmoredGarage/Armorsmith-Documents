@@ -3,7 +3,7 @@ title: "Documents, workspaces, and parts"
 description: "Read the current costume and rename eligible parts through application commands."
 ---
 
-**Coming soon — experimental API 0.2.** This page documents the development contract. See [availability and scope](/api/overview).
+**Coming soon — experimental API 0.3.** The original document and part services remain available. See [availability and scope](/api/overview).
 
 The current document is the open costume. It contains workspaces and live parts. The API does not expose a document manager, workspace creation, or a command to switch the active workspace in 0.2.
 
@@ -25,8 +25,12 @@ Avatar body geometry, environment objects, and grouping nodes are not general-pu
 | `dirty` | `bool` | Whether the document has unsaved changes. |
 | `workspaces` | `std::vector<WorkspaceInfo>` | Workspace metadata. |
 | `parts` | `std::vector<PartInfo>` | Live part metadata. |
+| `avatar` | `AvatarInfo` | Copied body parameters and measurement bounds; added in 0.3. |
+| `context` | `ToolContext` | Copied viewport and tool catalog; added in 0.3. |
 
 `WorkspaceInfo` contains `WorkspaceHandle handle`, `std::string name`, and `bool locked`. Join a part to its workspace by handle. Do not assume vector positions are permanent or that names are unique.
+
+The avatar and context use the same observation revision as this document snapshot. See [avatars and measurements](/api/avatars-and-measurements) and [tools and context](/api/tools-and-context) for their fields and edit rules. Body geometry remains excluded from the general-purpose part list.
 
 ## ReadPart
 

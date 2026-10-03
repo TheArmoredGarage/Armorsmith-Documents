@@ -1,10 +1,10 @@
 ---
 title: "API reference — Coming soon"
 sidebarTitle: "Overview · Coming soon"
-description: "Preview the experimental Armorsmith API 0.2 boundary for host integrations and Python dialog scripts."
+description: "Preview the experimental Armorsmith API 0.3 boundary for avatars, tools, host integrations, and Python dialogs."
 ---
 
-**Coming soon.** This reference describes the experimental API 0.2 in development builds. It does not announce availability in a released version of Armorsmith Designer. Native workspace mesh integration is still being verified. Types, limits, and behavior may change before release.
+**Coming soon.** This reference describes experimental API 0.3. The scripting menu is enabled in test builds, including `Release_Test_Build`, and hidden in normal release builds. Native avatar deformation, tool interaction, and workspace mesh behavior still need application smoke tests before release. Types, limits, and behavior may change.
 
 The public API gives you copied document data, opaque handles, validated commands, and application-owned dialogs. It keeps ForgeCore objects, C++ pointers, scene registries, and undo internals inside Armorsmith.
 
@@ -13,9 +13,9 @@ The public API gives you copied document data, opaque handles, validated command
 | Surface | Current development contract |
 | --- | --- |
 | C++ host integration | `Armorsmith::Api::Session` in `ArmorsmithApi.h`. The application creates the session and chooses its permissions. Call it on the host's owning thread. |
-| Python script | A copied launch snapshot and `armorsmith.ui` helpers that return a dialog declaration. Dialog buttons invoke named host actions after Python exits. |
-| Independently compiled native plugin | A stable DLL ABI and plugin loader are not available in 0.2. |
-| External application | An IPC, HTTP, or remote automation transport is not available in 0.2. |
+| Python script | Copied `data` and `context`, `ops` action builders, and `ui` helpers returning a dialog declaration. Buttons invoke named host actions after Python exits. |
+| Independently compiled native plugin | A stable DLL ABI and plugin loader are not available in 0.3. |
+| External application | An IPC, HTTP, or remote automation transport is not available in 0.3. |
 
 The C++ header uses C++17 standard library types and virtual interfaces. It is a **source contract**, not a binary compatibility promise. Do not pass its STL types across independently compiled DLL boundaries. The Python module is injected by Armorsmith's script launcher; it is not a separately installable package.
 
@@ -23,8 +23,9 @@ The C++ header uses C++17 standard library types and virtual interfaces. It is a
 
 | Intent | Use | State rules |
 | --- | --- | --- |
-| Read document, workspace, part, selection, or mesh metadata | Snapshot and query methods | Returned values are copies. Changing a copy does not change Armorsmith. |
-| Rename a part or stretch a mesh | `RenamePart` or `StretchMesh` | The host validates handles, permissions, editability, and the expected document revision. Changes use application commands and history. |
+| Read document, workspace, part, selection, mesh, avatar, or tool metadata | Snapshot and query methods | Returned values are copies. Changing a copy does not change Armorsmith. |
+| Rename a part, stretch a mesh, or edit body measurements | `RenamePart`, `StretchMesh`, `SetAvatarMeasurement`, or `SetAvatarHeight` | The host validates handles, permissions, editability, and the expected document revision. Changes use application commands and history. |
+| Select a supported interactive tool | `ActivateTool` | Checks context and availability. Activation adds no undo entry; subsequent user edits follow application commands. |
 | Navigate history | `Undo` or `Redo` | These operate on the application's history, including edits made outside your integration. |
 | Create or close a floating dialog | `ShowDialog` or `CloseDialog` | Requires a UI permission. Dialog controls and actions are declared as data. |
 | Observe changes | `PollChanges` | Coarse invalidation tells you when to refresh. There are no public subscriptions or callbacks yet. |
@@ -33,9 +34,9 @@ You cannot bypass a lock by requesting a permission. A granted capability means 
 
 ## Version and permissions
 
-`Version` contains `major` and `minor`; its current defaults are `0` and `2`. `SessionOptions.required_version` selects the requested source contract. The current host accepts major `0` with a minor version no greater than `2` and rejects newer versions or a different major with `UnsupportedVersion`. `GetInfo()` reports the actual host version and `experimental = true`.
+`Version` contains `major` and `minor`; its defaults are `0` and `3`. `SessionOptions.required_version` selects the requested source contract. The host accepts major `0` with a minor no greater than `3` and rejects newer versions or a different major with `UnsupportedVersion`. `GetInfo()` reports the actual host version and `experimental = true`.
 
-Acceptance of an earlier version is not a guarantee that future 0.x releases will preserve every contract. Check capabilities as well as the version. Python dialog declarations require exactly version `0.2`.
+Acceptance of an earlier version does not guarantee future 0.x compatibility. Check capabilities as well as version. Python declarations accept exactly `0.2` or `0.3`; new controls and avatar/tool actions require `0.3`. `ui.dialog` retains its `0.2` default for existing scripts. Opt in with `version=(0, 3)`.
 
 The host chooses `SessionOptions.permissions`. The default is `ReadDocument`. C++ permissions use a bit mask; combine values with `Grant(Permission::...)` and `|`.
 
@@ -46,6 +47,8 @@ The host chooses `SessionOptions.permissions`. The default is `ReadDocument`. C+
 | `History` | `4` | Undo and redo commands, with `ReadDocument`. |
 | `FilterMeshes` | `8` | Mesh stretch commands, with `ReadDocument`. |
 | `CreateUi` | `16` | Dialog creation and cleanup. Creation also requires `ReadDocument`; embedded actions need their own permissions. |
+| `EditAvatar` | `32` | Validated height and measurement commands, with `ReadDocument`. |
+| `ActivateTools` | `64` | Supported interactive tool activation, with `ReadDocument`. |
 
 Call `GetInfo()` on the host's owning thread to inspect the session's version and grants:
 
@@ -65,11 +68,15 @@ Result<ApiInfo> GetInfo();
 | `meshes.info` | Query mesh metadata on a host with mesh support. |
 | `meshes.stretch` | Request the built-in stretch filter on a host with mesh support. |
 | `ui.dialogs` | Create dialogs on a host with UI support. |
+| `avatars.read` | Read avatar metadata on a host with avatar support. |
+| `avatars.edit` | Request height and measurement edits. |
+| `tools.read` | Read viewport context and the tool catalog. |
+| `tools.activate` | Request supported interactive tool activation. |
 
 ## Current coverage
 
-0.2 reads the current costume document, workspace metadata, live part metadata, selection flags, and mesh counts. It exposes a part rename command, one mesh filter command, history navigation, change polling, and a small dialog vocabulary.
+0.3 adds avatar snapshots, measurement bounds, undoable body edits, a 19-ID viewport tool catalog, and initial activation adapters. The 0.2 document, part, mesh filter, history, and dialog services remain available. Python adds familiar `data`, `context`, and `ops` entry points; `ops` currently builds button actions rather than applying edits during worker execution.
 
-Dedicated APIs for avatars, measurements, vertices, edges, polygons, transforms, islands, patterns, splines, materials, import/export, custom command registration, menu/tool registration, callbacks, logging, project/plugin data, and filesystem access are not available yet. Reading `selected` does not provide a command to change selection. A mesh query does not expose geometry buffers.
+Dedicated topology, transform, island, pattern, spline, material, import/export, appearance, pose, fitting, custom command registration, menu/tool registration, callback, logging, project/plugin data, and filesystem APIs remain future work. Catalog access does not mean every tool can be executed by a script. Reading `selected` does not provide a command to change selection. A mesh query does not expose geometry buffers.
 
-Start with [handles, revisions, and errors](/api/identity-and-errors). Then use the [document reference](/api/documents-and-parts), [mesh commands](/api/mesh-commands), [history and changes](/api/history-and-events), [dialog reference](/api/ui-reference), or [Python scripting guide](/api/python-scripting).
+Start with [handles, revisions, and errors](/api/identity-and-errors). Then use the [document reference](/api/documents-and-parts), [avatars and measurements](/api/avatars-and-measurements), [tools and context](/api/tools-and-context), [mesh commands](/api/mesh-commands), [history and changes](/api/history-and-events), [dialog reference](/api/ui-reference), or [Python scripting guide](/api/python-scripting). If you use Blender, read [For Blender scripters](/api/blender-scripters).
