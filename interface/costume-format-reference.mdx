@@ -178,9 +178,58 @@ Each role's file reference contains:
 
 That maximum preserves exact integer representation in JSON consumers using IEEE-754 doubles. It does not guarantee that a particular implementation can allocate or read a file that large. Zero-byte files are valid and have the SHA-256 digest of an empty byte string.
 
-File-role names are extensible. The storage layer can retain an unfamiliar role without opening it. A role called `source` or `preview` has no universal byte encoding unless its codec defines one. The initial bridge writes `source` for model chunks and `header`/`footer` for costume-wide state. It does not generate a standardized saved `preview` role.
+File-role names are extensible. The storage layer can retain an unfamiliar role without opening it. A role called `source` or `preview` has no universal byte encoding unless its codec defines one. The bridge writes `source` for model chunks and `header`/`footer` for costume-wide state. Its optional cached `preview` also uses legacy mesh chunks, as defined below.
 
 Writers update supplied roles while preserving other roles. Changing an asset's existing `kind` is rejected by the current storage API.
+
+### Original imported files
+
+A model can have an `originalSource` object separate from its scene geometry. Editable costumes can use:
+
+```json
+{
+  "storage": "external",
+  "name": "helmet.obj",
+  "path": "../source-models/helmet.obj",
+  "sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+  "size": 12345
+}
+```
+
+`path` resolves relative to the directory containing the editable `.costume` manifest. It is an explicit external reference, so it can contain parent components. Runtime import metadata can use an absolute path; ordinary saves rebase it relative to the destination manifest. Cross-volume paths can remain absolute. External paths do not change the safe-path rules for internal dependency files. Readers validate this descriptor without opening the external file.
+
+`name` is the original basename, with no directory separators, colon, NUL, or `.`/`..` value. `sha256` and `size` describe the exact imported bytes. Geometry edits remain in the scene `source` role; they do not rewrite or automatically reload the external original.
+
+Publishing reads and verifies the original bytes. A missing or changed file aborts the publish transaction. The public copy replaces the descriptor with:
+
+```json
+{"storage": "bundled", "name": "helmet.obj", "role": "original"}
+```
+
+The declared `files.original` role contains the original file's raw bytes, despite its generated `.bin` filename. Its hash and size use the ordinary file-reference rules. Only the basename is retained; the external path is removed. A bundled descriptor cannot contain `path`, and a published ZIP cannot retain an external descriptor. Save As from a bundle keeps this source internal. Publishing uses a separate in-memory copy and preserves the working costume's link preference.
+
+This contract includes the linked model file itself. Existing scene serialization carries the imported geometry and saved material data. It does not recursively archive arbitrary neighboring files or define a general external dependency graph.
+
+### Saved display previews
+
+A model with an eligible cached preview has these additional fields:
+
+| Field | Meaning |
+| --- | --- |
+| `previewCodec` | `"armor-chunks"` when usable; null or absent disables the cache. |
+| `previewSourceSha256` | Must equal `files.source.sha256`. |
+| `previewTargetTriangles` | `100000`. |
+| `previewTriangleCount` | Actual positive preview triangle count, at most `100000`. |
+| `sourceTriangleCount` | Triangle count of the full active geometry. |
+| `sourceVertexCount` | Vertex count of the full active geometry. |
+
+`files.preview` contains one complete legacy version 23 `MESH` block representing reduced display geometry. It retains the original mesh name, resource hash, material bucket IDs, framing, and line endings. It has no processed-proxy section. The preview is produced from the full active mesh, including a saved Decimate result when present. Its internal encoding follows the legacy mesh chunk grammar, rather than defining a new neutral binary mesh codec.
+
+The application currently generates these previews only for dense static resources without dependent patterns or cloth work in any workspace using that resource, skinning, active modifiers, or baked geometry. Locked costumes use the full loading path. Smaller models and failed simplifications retain the ordinary full source path.
+
+Before substituting a preview, verify its codec, target, positive bounded triangle count, source-digest binding, and file integrity. If a present preview is stale or damaged, fall back to `source`. A missing declared dependency still fails the container's dependency checks. Opening a valid preview does not verify the full payload's content yet; a later full read or publish does.
+
+A preview is not a source revision. Saving a model that is still using its preview must preserve the original `files.source` bytes and hash. A geometry edit loads the full source first, then invalidates or regenerates the preview's binding when saving. Shared workspace references must resolve to one runtime resource and one deferred source load.
 
 ## Workspace records
 
@@ -314,7 +363,9 @@ A storage reader can open a costume without reading its full mesh payloads:
 
 The current storage layer follows this separation. It validates metadata and dependency presence at open time; full binary content validation happens when payloads are read. A missing payload prevents opening. A present but damaged payload can be detected later when requested or published.
 
-The current Armorsmith scene adapter then reconstructs the legacy scene and loads its full meshes. Storage-level lazy access is available, but preview-only application opening is not yet implemented.
+The Armorsmith scene adapter substitutes a validated `preview` block for an eligible model insertion during opening. It builds that display mesh and remembers the document and asset ID for later access. Other scene metadata still loads through the legacy adapter. A source-dependent operation reads only that model's owned full `MESH` block, restores its source and processed geometry, and updates the shared runtime resource. It preserves current materials and never derives the full source from the preview.
+
+Ordinary lossless legacy reconstruction uses `source` for every insertion. Legacy saves and autosaves from a preview-backed scene can read and copy full blocks without building the full meshes in the live scene. Model exports and geometry tools require full runtime geometry before proceeding.
 
 Before republishing a costume, read and verify all declared dependency bytes. A general-purpose tool should report unsupported codecs separately from malformed containers: metadata inspection and lossless copying can still be useful even when it cannot render the content.
 
@@ -380,4 +431,4 @@ Independent implementations should exercise at least: shared asset references; u
 
 The open container gives future codecs a place to store native source meshes, separately saved display previews, materials, textures, patterns, and product-specific workspace data. Each interoperable codec still needs a published byte-level definition, examples, and versioning rules.
 
-The planned 100,000-triangle preview workflow is to read lightweight display geometry first and request high-detail sources only for operations that need them. Version 1's generic file-role mechanism supports this direction, but a standardized preview encoding and application loading policy are not defined or implemented by this initial specification.
+The cached preview loading path now uses the existing `armor-chunks` codec for eligible models. Native interoperable geometry codecs, wider support for animated and pattern-dependent previews, and more granular loading of other workspace content remain future work.

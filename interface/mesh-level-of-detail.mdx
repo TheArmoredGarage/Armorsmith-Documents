@@ -71,4 +71,4 @@ Use automatic LOD to reduce viewport drawing work on dense models. Importing, me
 
 For mouse controls and zoom shortcuts, see [Navigate the Costume viewport](/interface/viewport-navigation).
 
-For the planned ability to open a costume using saved low-detail previews, see [Costume files](/interface/costume-files#does-this-make-dense-costumes-load-faster). The initial `.costume` storage update still loads full meshes when opening a costume; automatic viewport LOD is a separate feature.
+In builds with saved `.costume` previews, supported dense models can open using a cached 100,000-triangle mesh while their high-detail geometry stays on disk until needed. See [Costume files](/interface/costume-files#does-this-make-dense-costumes-load-faster) for eligibility and the loading workflow. Automatic viewport LOD continues to control drawing after the full model has loaded.
