@@ -22,7 +22,7 @@ Requires `ReadDocument`. Use the document handle from this session's `ReadDocume
 | `minimum_height_mm`, `maximum_height_mm` | Allowed height range; currently `1066.8..2133.6` mm. |
 | `custom_model` | Whether the avatar uses a custom model. |
 | `can_edit`, `reason` | Whether this session can edit the current avatar, and why an edit is unavailable. |
-| `measurements` | Copied `MeasurementInfo` entries. |
+| `measurements` | Copied public `MeasurementInfo` entries. Hidden native fitting helpers stay private. |
 
 If the document has no avatar, its snapshot contains a zero avatar handle. `ReadAvatar` returns `ValidationFailed`. Replacing the avatar retires its handle even when the costume document stays open. Discover the replacement through a new snapshot.
 
@@ -52,6 +52,8 @@ Result<CommandResult> SetAvatarMeasurement(const SetAvatarMeasurementRequest& re
 Requires `ReadDocument` and `EditAvatar`. Supply handles and the exact nonzero revision from a current snapshot. The host checks the measurement ID, finite value, current bounds, permissions, and editability before invoking the native measurement adapter.
 
 An accepted change uses one application command. That command captures the body parameters before and after the change, including dependent measurements. Undo restores the captured input; redo restores the captured output without rerunning a script. Values that are unchanged at the host's float precision return `changed = false` and create no command.
+
+If the native result cannot be captured safely, the adapter restores the input and returns `ValidationFailed`. Armorsmith's existing history manager retains a no-op entry in this exceptional case. Read a fresh snapshot before continuing; the error message explains the restoration.
 
 ## SetAvatarHeight
 
