@@ -3,7 +3,7 @@ title: "History and change polling"
 description: "Navigate application history and refresh copied snapshots when the document changes."
 ---
 
-**Coming soon — experimental API 0.2.** This page documents the development contract. See [availability and scope](/api/overview).
+**Coming soon — experimental API 0.3.** This page documents the development contract. See [availability and scope](/api/overview).
 
 ## ReadHistory
 
@@ -25,6 +25,8 @@ Result<CommandResult> Redo(const HistoryRequest& request);
 Both require `ReadDocument` and `History`. `HistoryRequest` contains `DocumentHandle document` and a mandatory nonzero `Revision expected_revision`.
 
 These commands navigate **the application's history**. They can undo or redo a user's edit or another integration's edit. Your session does not have a private undo stack, and 0.2 does not expose a command to undo only its own operation.
+
+Avatar height and measurement commands also use this history, with captured body parameters for undo and redo. Tool activation creates no history entry; a change to active tools or viewport context can still invalidate a copied snapshot.
 
 Supply a revision from a fresh snapshot. The host checks document state and history availability. If there is no entry to navigate, an otherwise valid request returns success with `changed = false`.
 

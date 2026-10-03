@@ -1,11 +1,11 @@
 ---
 title: "Floating dialog reference"
-description: "Declare application-owned dialogs with labels, numbers, mesh pickers, and named actions."
+description: "Declare native dialogs with mesh, measurement, and tool pickers plus named host actions."
 ---
 
-**Coming soon — experimental API 0.2.** This page documents the development contract. See [availability and scope](/api/overview).
+**Coming soon — experimental API 0.3.** Existing 0.2 declarations remain accepted. See [availability and scope](/api/overview).
 
-0.2 can create a nonmodal floating tool dialog parented to the main application window. You declare controls as values; Armorsmith creates and owns the widgets. Persistent Python callbacks and arbitrary Qt objects are not part of this contract.
+You can create a nonmodal floating tool dialog parented to the main application window. You declare controls as values; Armorsmith creates and owns the widgets. Persistent Python callbacks and arbitrary Qt objects are not part of this contract.
 
 ## ShowDialog
 
@@ -15,7 +15,7 @@ Result<DialogHandle> ShowDialog(const DialogSpec& spec);
 
 Requires `ReadDocument`, `CreateUi`, and a host with UI support. Buttons also require the permission for their declared action.
 
-`DialogSpec` contains `std::string title` and `std::vector<DialogControl> controls`. Controls appear in declaration order. Provide 1 to 32 controls. The current service permits at most eight dialog registrations per session.
+`DialogSpec` contains `std::string title`, `std::vector<DialogControl> controls`, and `Version version`. The C++ version defaults to 0.3. Python's helper defaults to 0.2; pass `version=(0, 3)` for new controls. Controls appear in declaration order. Provide 1 to 32 controls. The service permits at most eight dialog registrations per session.
 
 Titles, labels, and IDs are plain text, not HTML. They must pass the nonempty UTF-8 name validation: no control characters, no value made only of ASCII spaces, and at most 1,024 bytes. IDs must also be unique within the dialog and at most 64 bytes.
 
@@ -26,13 +26,17 @@ Titles, labels, and IDs are plain text, not HTML. They must pass the nonempty UT
 | `Label` | Display explanatory text. | `id`, `label`. |
 | `Number` | Edit a numeric value. | `id`, `label`, `value`, `minimum`, `maximum`. |
 | `MeshPicker` | Choose an eligible workspace mesh. | `id`, `label`. |
+| `MeasurementPicker` | Choose an editable avatar measurement; requires 0.3. | `id`, `label`. |
+| `ToolPicker` | Choose a tool available for activation; requires 0.3. | `id`, `label`. |
 | `Button` | Invoke a named host action. | `id`, `label`, `action`; stretch also needs `mesh_control` and `number_control`. |
 
-`DialogControl.id` and `label` are strings. `kind` defaults to `Label`. The numeric fields are doubles, defaulting to `value = 1.5`, `minimum = 0.25`, and `maximum = 2.0`. In this version, every number control must use finite values within `0.25..2.0`, with `minimum <= value <= maximum`.
+`DialogControl.id` and `label` are strings. `kind` defaults to `Label`. Numeric fields are doubles, defaulting to `value = 1.5`, `minimum = 0.25`, and `maximum = 2.0`. Every number control must use finite values with `minimum <= value <= maximum`. A 0.2 declaration is limited to `0.25..2.0`; a 0.3 declaration allows `-1000000..1000000`. Each action still enforces its domain bounds. A mesh stretch remains limited to `0.25..2.0`.
 
 `action` defaults to `UiAction::None`. Every button must declare a non-`None` action. Other control kinds must use `None`.
 
 The mesh picker offers parts with `can_filter = true`. It tries to preserve the choice on refresh and uses an eligible selected part or the first eligible part when it needs a default. An empty picker means no mesh in the current snapshot meets the command's requirements for this session.
+
+The measurement picker offers entries with `can_set = true`. A linked measurement action initializes its number control from the selected entry's current value and bounds. Choosing another measurement updates that control. Height action inputs also refresh from the current avatar. The tool picker offers entries with `can_activate = true`. Pickers preserve an eligible prior choice when refreshed.
 
 ## Host actions
 
@@ -42,8 +46,13 @@ The mesh picker offers parts with `can_filter = true`. It tries to preserve the 
 | `Undo` | `history.undo` | Navigates the application's undo history. | `History` |
 | `Redo` | `history.redo` | Navigates the application's redo history. | `History` |
 | `Refresh` | `document.refresh` | Refreshes dialog metadata and its stored revision. | No additional permission. |
+| `SetAvatarMeasurement` | `avatar.set_measurement` | Edits the selected measurement using the linked number. Requires 0.3. | `EditAvatar` |
+| `SetAvatarHeight` | `avatar.set_height` | Edits height using the linked number. Requires 0.3. | `EditAvatar` |
+| `ActivateTool` | `tools.activate` | Activates the selected interactive tool. Requires 0.3. | `ActivateTools` |
 
 For a stretch button, `mesh_control` must name a `MeshPicker` and `number_control` must name a `Number` in the same dialog. The host validates these references before displaying the dialog.
+
+For a measurement button, `measurement_control` must name a `MeasurementPicker` and `number_control` must name a `Number`. A height button requires `number_control`. A tool button requires `tool_control` naming a `ToolPicker`. These added fields are strings. The Python `ops` builders supply them for you. Give each measurement or height input its own number control so refreshing one action cannot overwrite another action's input.
 
 Buttons execute through the session and host command layer. They do not call back into Python. The host checks current handles, permissions, target eligibility, and the dialog's stored revision before changing document state.
 
@@ -61,6 +70,6 @@ Closing a window visually does not itself release the C++ service's registration
 
 ## Other UI extensions
 
-0.2 does not expose custom widget classes, dock panels, arbitrary layouts, HTML views, menu/tool registration, or general event callbacks. The development build's **Scripts** menu is an application-provided launcher, not a public menu registration API.
+0.3 does not expose custom widget classes, dock panels, arbitrary layouts, HTML views, menu/tool registration, or general event callbacks. The test build's **Scripts** menu is an application-provided launcher, not a public menu registration API. Normal release builds hide it until it is explicitly enabled.
 
 Use [Python scripting](/api/python-scripting) to create a dialog declaration with the same controls and named actions.

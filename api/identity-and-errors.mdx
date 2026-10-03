@@ -3,11 +3,11 @@ title: "Handles, revisions, and errors"
 description: "Use opaque identities and revision checks without exposing application objects."
 ---
 
-**Coming soon — experimental API 0.2.** This page documents the development contract. See [availability and scope](/api/overview).
+**Coming soon — experimental API 0.3.** This page documents the development contract. See [availability and scope](/api/overview).
 
 ## Handle types
 
-`Handle<Tag>` wraps a `std::uint64_t token`. The public aliases are `DocumentHandle`, `WorkspaceHandle`, `PartHandle`, and `DialogHandle`. Zero is invalid. Handles support equality, inequality, and an explicit boolean check.
+`Handle<Tag>` wraps a `std::uint64_t token`. The public aliases are `DocumentHandle`, `WorkspaceHandle`, `PartHandle`, `AvatarHandle`, and `DialogHandle`. Zero is invalid. Handles support equality, inequality, and an explicit boolean check.
 
 Treat a token as opaque. It is not a pointer, a ForgeCore registry ID, or an index into a snapshot vector. Do not perform arithmetic on it or resolve it through internal engine systems.
 
@@ -15,13 +15,17 @@ Document, workspace, and part handles belong to the session that issued them and
 
 Dialog handles identify UI registrations owned by a session. Use `CloseDialog` to release a registration. The host closes document dialogs when the costume resets, and session cleanup disposes its dialogs.
 
-Do not save handles in project data or exchange them between sessions. Names are display text, not durable identities. There is no persistent object ID API in 0.2.
+Replacing the avatar retires its `AvatarHandle` even if the costume stays open. Measurement and tool identifiers are strings discovered from their catalogs; they are not C++ object handles.
+
+Do not save handles in project data or exchange them between sessions. Names are display text, not durable identities. There is no persistent object ID API in 0.3.
 
 ## Revision checks
 
 `Revision` is a `std::uint64_t`. A document snapshot includes its session's current revision. The revision advances when the host observes a changed document snapshot. It is a coarse invalidation value, not a count of commands or a revision shared by every session.
 
 Every persistent mutation requires a nonzero `expected_revision` equal to the current document revision. Zero never means "ignore conflicts." Use the revision from the snapshot on which you based the edit.
+
+Tool activation also requires this revision even though it creates no undo entry. Avatar values, viewport changes, and active-tool changes participate in observation invalidation.
 
 1. Read the document.
 2. Choose a handle from that snapshot and check its eligibility.

@@ -1,0 +1,69 @@
+---
+title: "Tools and context"
+description: "Inspect the tool catalog and activate supported viewport tools with explicit context checks in API 0.3."
+---
+
+**Coming soon — experimental API 0.3.** The catalog and initial activation adapters are in development. This page does not promise scripted execution of every application tool.
+
+The API separates a tool's identity from its availability. A tool can appear in the catalog while being unregistered in the current view or waiting for a dedicated API adapter. Read `can_activate` and `reason` before building controls around it.
+
+## ReadTools
+
+```cpp
+Result<ToolContext> ReadTools(DocumentHandle document);
+```
+
+Requires `ReadDocument` and a host with tool support. The same copied result is included in `DocumentSnapshot.context`. Headless hosts do not provide viewport tools.
+
+| `ToolContext` field | Meaning |
+| --- | --- |
+| `document`, `revision` | Owning document handle and session observation revision. |
+| `viewport` | `costume`, `patterns`, `pattern_model`, `other`, or an empty string when no view is available. |
+| `active_tool` | Active public tool ID, or an empty string. |
+| `tools` | Copied `ToolInfo` entries. |
+
+The native adapter observes viewport focus and retains the last focused view when a floating dialog takes focus. Before a view has been selected, it uses the costume view. Focus the intended viewport, then click **Refresh** in your dialog to obtain that context. Switching the context or active tool invalidates an older snapshot revision.
+
+| `ToolInfo` field | Meaning |
+| --- | --- |
+| `id`, `name` | Public string ID and display name. Internal C++ enum values are not exposed. |
+| `registered` | Whether the current viewport has this tool in its registry. |
+| `active` | Whether it is currently active in that viewport. |
+| `can_activate` | Whether this session may activate it through the current adapter. |
+| `reason` | Explanation when activation is unavailable. |
+
+## Catalog and current activation support
+
+| Public ID | Tool | 0.3 adapter |
+| --- | --- | --- |
+| `translate` | Translate | Costume and patterns views, when registered. |
+| `rotate` | Rotate | Costume and patterns views, when registered. |
+| `measure` | Measure | Costume and patterns views, when registered. |
+| `avatar` | Edit avatar measurements | Costume view with an editable avatar. |
+| `join_cut` | Join / cut | Catalog only. |
+| `camera` | Camera | Catalog only. |
+| `switch_flap`, `edit_flap` | Flap tools | Catalog only. |
+| `scale` | Scale | Catalog only. |
+| `fillet`, `chamfer` | Corner tools | Catalog only. |
+| `sew_edges`, `rotate_to_edge` | Edge tools | Catalog only. |
+| `curve` | Curve | Catalog only. |
+| `island_paint`, `island_erase`, `island_fill`, `island_pick` | Island tools | Catalog only. |
+| `surface_detail` | Surface detail | Catalog only. |
+
+These 19 IDs cover the current `CostumeTools` registry family. Other application workflows, including FFD, fit checking, shrink fitting, pose editing, and primitive creation, still need separate public adapters. The catalog is an initial foundation for broader coverage.
+
+## ActivateTool
+
+```cpp
+Result<CommandResult> ActivateTool(const ActivateToolRequest& request);
+```
+
+`ActivateToolRequest` contains `DocumentHandle document`, `Revision expected_revision`, and `std::string tool_id`. Requires `ReadDocument` and `ActivateTools`, a current nonzero revision, and an entry with `can_activate = true`.
+
+Activation selects and prepares an interactive tool. It does not translate a part, rotate geometry, take a measurement, or apply an avatar value by itself. Use the tool in the viewport after activation. Its subsequent user edits follow the application's existing commands.
+
+Selecting an already-active tool is a no-op; it does not toggle the tool off. Activation does not add an undo entry. API avatar edits instead use the dedicated undoable [height and measurement commands](/api/avatars-and-measurements).
+
+The adapter rejects document protection and intermediate tool interactions. Switching away from other tools requires finishing or deactivating them in the application first. Tools that can change authored geometry or patterns during setup remain catalog-only until their adapter can preserve command and state rules. You cannot bypass these checks with a registered tool ID.
+
+In Python, `armorsmith.context` is the launch snapshot. `armorsmith.ops.tools.activate(tool="picker_id")` constructs an action for a host-owned button; it does not execute a tool during Python evaluation. See [the Blender-oriented guide](/api/blender-scripters) for the current scripting model.
