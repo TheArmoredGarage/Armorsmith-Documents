@@ -1,0 +1,58 @@
+---
+title: "History and change polling"
+description: "Navigate application history and refresh copied snapshots when the document changes."
+---
+
+**Coming soon — experimental API 0.2.** This page documents the development contract. See [availability and scope](/api/overview).
+
+## ReadHistory
+
+```cpp
+Result<HistoryState> ReadHistory(DocumentHandle document);
+```
+
+Requires `ReadDocument`. Returns `HistoryState` containing `DocumentHandle document`, `Revision revision`, `bool can_undo`, and `bool can_redo`.
+
+Availability can change after the query. Reading it does not grant history navigation permission or bypass document protection.
+
+## Undo and Redo
+
+```cpp
+Result<CommandResult> Undo(const HistoryRequest& request);
+Result<CommandResult> Redo(const HistoryRequest& request);
+```
+
+Both require `ReadDocument` and `History`. `HistoryRequest` contains `DocumentHandle document` and a mandatory nonzero `Revision expected_revision`.
+
+These commands navigate **the application's history**. They can undo or redo a user's edit or another integration's edit. Your session does not have a private undo stack, and 0.2 does not expose a command to undo only its own operation.
+
+Supply a revision from a fresh snapshot. The host checks document state and history availability. If there is no entry to navigate, an otherwise valid request returns success with `changed = false`.
+
+After a successful operation, refresh metadata and reacquire any part identities that may have been retired or restored. Follow [readback handling](/api/identity-and-errors#command-completion-and-readback) if the result contains `refresh_error`.
+
+## PollChanges
+
+```cpp
+Result<ChangeSummary> PollChanges(
+    DocumentHandle document, Revision after);
+```
+
+Requires `ReadDocument`. Refreshes host state and compares `after` with the current session revision.
+
+| `ChangeSummary` field | Type | Meaning |
+| --- | --- | --- |
+| `document` | `DocumentHandle` | Current document identity. |
+| `revision` | `Revision` | Current session revision. |
+| `requires_refresh` | `bool` | Whether the supplied revision differs from the current revision. |
+
+Pass your last snapshot revision. If `requires_refresh` is `true`, call `ReadDocument()` and replace your cached snapshot. Passing zero requests a refresh indication; passing a revision in the future returns `InvalidArgument`.
+
+Polling is coarse invalidation, not an event journal. Multiple edits can be observed together. It does not provide a list of changed vertices, callbacks, event ordering, or delivery of every intermediate edit.
+
+Use polling on the host's owning thread while the application can expose consistent state. Do not spin continuously when it returns `Busy`. On `DocumentClosed`, discard old document handles and decide whether to start again with the new document.
+
+## Dialog refresh behavior
+
+The [host-owned dialog](/api/ui-reference) stores the revision used to populate its mesh picker. A successful dialog action refreshes its controls. Edits made elsewhere can make that revision stale; use the dialog's **Refresh** action before another edit.
+
+The host refuses to silently retarget an existing dialog to a replaced document. Close the dialog and rerun the script for the new document.

@@ -1,0 +1,66 @@
+---
+title: "Floating dialog reference"
+description: "Declare application-owned dialogs with labels, numbers, mesh pickers, and named actions."
+---
+
+**Coming soon — experimental API 0.2.** This page documents the development contract. See [availability and scope](/api/overview).
+
+0.2 can create a nonmodal floating tool dialog parented to the main application window. You declare controls as values; Armorsmith creates and owns the widgets. Persistent Python callbacks and arbitrary Qt objects are not part of this contract.
+
+## ShowDialog
+
+```cpp
+Result<DialogHandle> ShowDialog(const DialogSpec& spec);
+```
+
+Requires `ReadDocument`, `CreateUi`, and a host with UI support. Buttons also require the permission for their declared action.
+
+`DialogSpec` contains `std::string title` and `std::vector<DialogControl> controls`. Controls appear in declaration order. Provide 1 to 32 controls. The current service permits at most eight dialog registrations per session.
+
+Titles, labels, and IDs are plain text, not HTML. They must pass the nonempty UTF-8 name validation: no control characters, no value made only of ASCII spaces, and at most 1,024 bytes. IDs must also be unique within the dialog and at most 64 bytes.
+
+## Controls
+
+| `ControlKind` | Purpose | Fields to set |
+| --- | --- | --- |
+| `Label` | Display explanatory text. | `id`, `label`. |
+| `Number` | Edit a numeric value. | `id`, `label`, `value`, `minimum`, `maximum`. |
+| `MeshPicker` | Choose an eligible workspace mesh. | `id`, `label`. |
+| `Button` | Invoke a named host action. | `id`, `label`, `action`; stretch also needs `mesh_control` and `number_control`. |
+
+`DialogControl.id` and `label` are strings. `kind` defaults to `Label`. The numeric fields are doubles, defaulting to `value = 1.5`, `minimum = 0.25`, and `maximum = 2.0`. In this version, every number control must use finite values within `0.25..2.0`, with `minimum <= value <= maximum`.
+
+`action` defaults to `UiAction::None`. Every button must declare a non-`None` action. Other control kinds must use `None`.
+
+The mesh picker offers parts with `can_filter = true`. It tries to preserve the choice on refresh and uses an eligible selected part or the first eligible part when it needs a default. An empty picker means no mesh in the current snapshot meets the command's requirements for this session.
+
+## Host actions
+
+| `UiAction` | Python action string | Behavior | Additional permission |
+| --- | --- | --- | --- |
+| `StretchMesh` | `meshes.stretch` | Runs the built-in filter with the referenced picker and number value. | `FilterMeshes` |
+| `Undo` | `history.undo` | Navigates the application's undo history. | `History` |
+| `Redo` | `history.redo` | Navigates the application's redo history. | `History` |
+| `Refresh` | `document.refresh` | Refreshes dialog metadata and its stored revision. | No additional permission. |
+
+For a stretch button, `mesh_control` must name a `MeshPicker` and `number_control` must name a `Number` in the same dialog. The host validates these references before displaying the dialog.
+
+Buttons execute through the session and host command layer. They do not call back into Python. The host checks current handles, permissions, target eligibility, and the dialog's stored revision before changing document state.
+
+After edits outside the dialog, click **Refresh**. A revision conflict requires a refresh and a new decision about the target. Replacing the costume requires closing the dialog and creating a new one.
+
+## CloseDialog
+
+```cpp
+Result<bool> CloseDialog(DialogHandle dialog);
+```
+
+Requires `CreateUi` and a handle registered to this session. Success returns `true`, releases the registration, and asks the host to dispose its UI. Repeated calls with a retired handle return `InvalidHandle`.
+
+Closing a window visually does not itself release the C++ service's registration in the current implementation. Use `CloseDialog` when retaining a C++ session and reusing its dialog capacity. Session destruction also disposes its registrations. Script-created dialogs retain their host session while they run and release it when they finish.
+
+## Other UI extensions
+
+0.2 does not expose custom widget classes, dock panels, arbitrary layouts, HTML views, menu/tool registration, or general event callbacks. The development build's **Scripts** menu is an application-provided launcher, not a public menu registration API.
+
+Use [Python scripting](/api/python-scripting) to create a dialog declaration with the same controls and named actions.

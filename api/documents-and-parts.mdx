@@ -1,0 +1,95 @@
+---
+title: "Documents, workspaces, and parts"
+description: "Read the current costume and rename eligible parts through application commands."
+---
+
+**Coming soon — experimental API 0.2.** This page documents the development contract. See [availability and scope](/api/overview).
+
+The current document is the open costume. It contains workspaces and live parts. The API does not expose a document manager, workspace creation, or a command to switch the active workspace in 0.2.
+
+## ReadDocument
+
+```cpp
+Result<DocumentSnapshot> ReadDocument();
+```
+
+Requires `ReadDocument`. Returns a copied snapshot of the current costume, including workspace mesh instances and attached part roots associated with a workspace. Parts are instances, not shared geometry assets. The snapshot is not restricted to the active workspace.
+
+Avatar body geometry, environment objects, and grouping nodes are not general-purpose parts in this API. Do not treat the snapshot as a complete scene graph.
+
+| `DocumentSnapshot` field | Type | Meaning |
+| --- | --- | --- |
+| `handle` | `DocumentHandle` | Current document identity for this session. |
+| `revision` | `Revision` | Revision to use when requesting an edit based on this snapshot. |
+| `name` | `std::string` | Document display name. |
+| `dirty` | `bool` | Whether the document has unsaved changes. |
+| `workspaces` | `std::vector<WorkspaceInfo>` | Workspace metadata. |
+| `parts` | `std::vector<PartInfo>` | Live part metadata. |
+
+`WorkspaceInfo` contains `WorkspaceHandle handle`, `std::string name`, and `bool locked`. Join a part to its workspace by handle. Do not assume vector positions are permanent or that names are unique.
+
+## ReadPart
+
+```cpp
+Result<PartInfo> ReadPart(DocumentHandle document, PartHandle part);
+```
+
+Requires `ReadDocument`. Refreshes document state, validates both identities, and returns the current part metadata. A missing or retired part returns `InvalidHandle`; an expired document returns `DocumentClosed`.
+
+| `PartInfo` field | Type | Meaning |
+| --- | --- | --- |
+| `handle` | `PartHandle` | Part identity. |
+| `workspace` | `WorkspaceHandle` | Owning or originating workspace. |
+| `name` | `std::string` | Display name. |
+| `visible` | `bool` | Local authored visibility. |
+| `frozen` | `bool` | Local authored frozen state. |
+| `selected` | `bool` | Current selection flag. Read-only in 0.2. |
+| `can_rename` | `bool` | Whether this session can request a rename for this part. |
+| `kind` | `PartKind` | `WorkspaceMesh` or `AttachedPart`. |
+| `can_filter` | `bool` | Whether this session can request the supported mesh filter. |
+| `geometry_revision` | `std::uint64_t` | Observed geometry version. |
+| `filter_reason` | `std::string` | Human-readable mesh eligibility explanation from the host. |
+
+`visible` and `frozen` do not compute inherited state from ancestors. Eligibility flags combine the host's target checks with the session's permission. A blank `filter_reason` does not imply a filter permission was granted.
+
+## RenamePart
+
+```cpp
+Result<CommandResult> RenamePart(const RenamePartRequest& request);
+```
+
+Requires `ReadDocument` and `RenameParts`. `RenamePartRequest` contains `DocumentHandle document`, `PartHandle part`, `Revision expected_revision`, and `std::string name`.
+
+The new name must be valid UTF-8, between 1 and 1,024 bytes, contain no control characters, and contain more than ASCII spaces. Supply the nonzero revision on which you based the rename.
+
+The host checks workspace locks, frozen state, name editability, selection locks, and document protection. Use `can_rename` to decide which parts to offer. The current adapter does not support renaming every standalone workspace mesh; a display name alone does not establish a persisted name property.
+
+A successful rename uses the application's command history and updates document state. An eligible part already bearing the requested name returns success with `changed = false`, without creating a rename history entry.
+
+## C++ example
+
+This function uses a session supplied by the application host. It renames the first eligible part; a user-facing integration should let you choose the target.
+
+```cpp
+#include "ArmorsmithApi.h"
+
+Armorsmith::Api::Result<Armorsmith::Api::CommandResult>
+RenameFirstEligible(Armorsmith::Api::Session& session) {
+    using namespace Armorsmith::Api;
+    auto snapshot = session.ReadDocument();
+    if (!snapshot)
+        return Result<CommandResult>::Failure(
+            snapshot.error.code, snapshot.error.message);
+
+    for (const auto& part : snapshot.value.parts) {
+        if (!part.can_rename) continue;
+        return session.RenamePart({
+            snapshot.value.handle, part.handle,
+            snapshot.value.revision, "Left shoulder"});
+    }
+    return Result<CommandResult>::Failure(
+        ErrorCode::ValidationFailed, "No eligible part");
+}
+```
+
+Check the returned result and its `refresh_error`. Follow the [command completion rules](/api/identity-and-errors#command-completion-and-readback) before deciding whether to refresh or retry.
