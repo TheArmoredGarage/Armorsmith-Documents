@@ -105,6 +105,14 @@ Publishing leaves your working costume open at its current location. It does not
 
 Publishing preserves costume password restrictions. If saving or exporting is locked, unlock the costume before publishing.
 
+### Linked source files are included
+
+When importing an OBJ, STL, FBX, or 3MF, you can choose **Link to source file** in **Model Import Options**. Your editable `.costume` keeps the link alongside cached costume geometry. **Save As** adjusts the link when you move the working costume. Legacy `.armor` copies include geometry but do not retain the external link.
+
+**Publish Costume** includes the exact original linked file as well as the saved costume geometry. The recipient does not need your source folder or its path. Publishing leaves the link in your working costume unchanged.
+
+If the source is missing or its contents changed since import, publishing stops before replacing the output file. Restore the original source, or reimport the changed model before publishing. The cached costume geometry still lets you open the working costume. This first implementation does not automatically refresh geometry when an external file changes.
+
 ## Work on a costume as a team
 
 Separate workspace and asset files make it easier to keep a costume in a shared folder or version control. Your team can organize work around its workspaces and reusable models.
@@ -119,9 +127,13 @@ If someone else saves the costume after you open it, Armorsmith can refuse to ov
 
 ## Does this make dense costumes load faster?
 
-The separate asset layout prepares for loading a saved low-detail preview while leaving high-detail geometry on disk. That loading workflow is still planned. In the initial implementation, opening a costume continues to load and build its full meshes.
+In builds with cached preview loading, saving a supported dense model stores a display preview targeting **100,000 triangles**. Opening that `.costume` builds the saved preview first and leaves the high-detail mesh payload on disk. This works with editable costumes and published bundles. An older costume needs a save in a supporting build before it has these previews.
 
-Automatic [mesh level of detail](/interface/mesh-level-of-detail) already reduces viewport drawing work in builds that support it. That is separate from the planned ability to open a costume using only saved previews targeting 100,000 triangles. The first storage update does not yet provide that load-time improvement.
+Viewing, selecting, moving, and rotating a piece can use its preview. A mesh edit, unfolding, **Decimate**, island generation, or model export loads the full geometry when needed. Saving while a preview is displayed preserves the high-detail source; it does not replace that source with the reduced mesh. Published files include both levels.
+
+The first cached preview workflow applies to dense static meshes with no dependent patterns or cloth work, skinning, or active deformation. Models below the target and unsupported cases, including locked costumes, load their full geometry normally. A stale or damaged preview falls back to the source when it can be read. Save uses the existing viewport LOD mesh and reuses a valid preview already stored for an unchanged model. It does not run another mesh reduction just to save. If the first LOD is still being prepared in the background, Save waits for that same job and shows which model it is preparing; you can cancel the save. Later saves reuse the cached result. A display mesh that remains above 100,000 triangles keeps the full loading path.
+
+Automatic [mesh level of detail](/interface/mesh-level-of-detail) still controls viewport drawing after full geometry has loaded. Saved preview loading reduces work during opening. Neither feature changes the geometry you export.
 
 ## Troubleshoot a costume file
 

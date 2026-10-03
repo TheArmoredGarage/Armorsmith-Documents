@@ -3,17 +3,197 @@
   "$id": "https://raw.githubusercontent.com/TheArmoredGarage/Armorsmith-Documents/main/schemas/costume/v1/asset.schema.json",
   "title": "Costume version 1 asset record",
   "type": "object",
-  "required": ["id", "kind", "files"],
+  "required": [
+    "id",
+    "kind",
+    "files"
+  ],
   "properties": {
-    "id": {"$ref": "common.schema.json#/$defs/id"},
-    "kind": {"enum": ["model", "material", "texture", "pattern", "state"]},
-    "name": {"type": "string"},
-    "codec": {"type": "string"},
+    "id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "kind": {
+      "enum": [
+        "model",
+        "material",
+        "texture",
+        "pattern",
+        "state"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "codec": {
+      "type": "string"
+    },
     "files": {
       "type": "object",
-      "propertyNames": {"$ref": "common.schema.json#/$defs/id"},
-      "additionalProperties": {"$ref": "common.schema.json#/$defs/fileReference"}
+      "propertyNames": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "additionalProperties": {
+        "$ref": "common.schema.json#/$defs/fileReference"
+      }
+    },
+    "originalSource": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "storage",
+            "name",
+            "path",
+            "sha256",
+            "size"
+          ],
+          "properties": {
+            "storage": {
+              "const": "external"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^(?!\\.{1,2}$)[^/\\\\:\\u0000]+$"
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[^\\u0000]+$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "size": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "additionalProperties": true
+        },
+        {
+          "type": "object",
+          "required": [
+            "storage",
+            "name",
+            "role"
+          ],
+          "properties": {
+            "storage": {
+              "const": "bundled"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^(?!\\.{1,2}$)[^/\\\\:\\u0000]+$"
+            },
+            "role": {
+              "$ref": "common.schema.json#/$defs/id"
+            }
+          },
+          "not": {
+            "required": [
+              "path"
+            ],
+            "properties": {
+              "path": {}
+            }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "previewCodec": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "previewSourceSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "previewTargetTriangles": {
+      "type": "integer",
+      "const": 100000
+    },
+    "previewTriangleCount": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "sourceTriangleCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sourceVertexCount": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
     }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "originalSource"
+        ],
+        "properties": {
+          "originalSource": {}
+        }
+      },
+      "then": {
+        "properties": {
+          "kind": {
+            "const": "model"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "previewCodec"
+        ],
+        "properties": {
+          "previewCodec": {
+            "const": "armor-chunks"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "previewSourceSha256",
+          "previewTargetTriangles",
+          "previewTriangleCount",
+          "sourceTriangleCount",
+          "sourceVertexCount"
+        ],
+        "properties": {
+          "kind": {
+            "const": "model"
+          },
+          "files": {
+            "type": "object",
+            "required": [
+              "source",
+              "preview"
+            ],
+            "properties": {
+              "source": {},
+              "preview": {}
+            }
+          },
+          "previewSourceSha256": {},
+          "previewTargetTriangles": {},
+          "previewTriangleCount": {},
+          "sourceTriangleCount": {},
+          "sourceVertexCount": {}
+        }
+      }
+    }
+  ]
 }

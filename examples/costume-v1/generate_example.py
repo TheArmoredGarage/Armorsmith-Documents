@@ -62,7 +62,18 @@ def generate(output):
         "kind": "model",
         "name": "Helmet",
         "codec": "armor-chunks",
-        "files": {"source": role(model_directory, "source", model)},
+        "files": {
+            "source": role(model_directory, "source", model),
+            "preview": role(model_directory, "preview", model.replace(b"illustrative-geometry", b"illustrative-preview")),
+            "original": role(model_directory, "original", b"o Helmet\nv 0 0 0\nv 1 0 0\nv 0 1 0\nf 1 2 3\n"),
+        },
+        "originalSource": {"storage": "bundled", "name": "helmet.obj", "role": "original"},
+        "previewCodec": "armor-chunks",
+        "previewTargetTriangles": 100000,
+        "previewTriangleCount": 1,
+        "sourceTriangleCount": 1,
+        "sourceVertexCount": 3,
+        "previewSourceSha256": hashlib.sha256(model).hexdigest(),
         "exampleProduct": {"note": "Preserve unfamiliar fields when editing other data."},
     }
     state_record = {

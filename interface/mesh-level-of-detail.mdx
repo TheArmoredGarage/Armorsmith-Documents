@@ -1,7 +1,7 @@
 ---
 title: "Automatic mesh level of detail (LOD)"
 sidebarTitle: "Mesh level of detail"
-description: "Understand how Armorsmith displays dense meshes at 100,000 and 25,000 triangles while preserving working detail for editing and export."
+description: "Understand how Armorsmith displays dense meshes using a 100,000-triangle target while preserving working detail for editing and export."
 ---
 
 Dense meshes are common in 3D printing, especially sculpted armor and props. Automatic **level of detail (LOD)** reduces the geometry drawn in the viewport when a mesh appears smaller onscreen. You can inspect the working mesh at full detail when you zoom in.
@@ -10,14 +10,11 @@ LOD runs automatically in builds that include this feature. You do not need to r
 
 ## Which meshes get LOD?
 
-A working mesh with **more than 100,000 triangles** qualifies. Armorsmith creates two separate display versions:
-
-- A version targeting **100,000 triangles**.
-- A version targeting **25,000 triangles**.
+A working mesh with **more than 100,000 triangles** qualifies. Armorsmith creates a separate display version targeting **100,000 triangles**.
 
 A mesh with exactly 100,000 triangles or fewer keeps its working detail.
 
-For example, a **1,000,000-triangle mesh** can have its original working geometry plus 100,000- and 25,000-triangle display versions. Both reduced versions are generated directly from the working mesh.
+For example, a **1,000,000-triangle mesh** can have its original working geometry plus a display version targeting 100,000 triangles. The reduced version is generated directly from the working mesh.
 
 <Note>
 The triangle counts are targets. Protecting topology, material boundaries, texture seams, and sharp edges can limit how far a mesh can be reduced. A display version may remain above its target.
@@ -30,10 +27,9 @@ Each viewport chooses a level from the mesh's apparent size in that view. Armors
 | How large the mesh appears | Displayed geometry |
 | --- | --- |
 | Large or close up: roughly 600 pixels or more | Full working detail |
-| Medium size: roughly 180–600 pixels | The level targeting 100,000 triangles |
-| Small or distant: roughly below 180 pixels | The level targeting 25,000 triangles |
+| Smaller or distant: roughly below 600 pixels | The level targeting 100,000 triangles |
 
-The **25,000-triangle version** comes into play when the mesh takes up little space onscreen. As you zoom in, Armorsmith switches to the 100,000-triangle version and then full working detail.
+As you zoom in, Armorsmith switches from the 100,000-triangle target to full working detail.
 
 These boundaries have a small overlap, called **hysteresis**, to prevent repeated switching as you zoom near a threshold. Selection also works in orthographic views. Two views of the same mesh can display different levels.
 
@@ -41,7 +37,7 @@ These boundaries have a small overlap, called **hysteresis**, to prevent repeate
 
 Armorsmith prepares display levels in the background after the geometry has been unchanged for about 300 milliseconds. Large meshes can take longer to finish processing.
 
-Posing, **Free Form Deformation (FFD)**, bone changes, and other geometry edits invalidate old display levels. Running **Decimate** or undoing it also refreshes the LOD cache. Armorsmith falls back to full working detail while replacement levels are being prepared.
+Posing, **Free Form Deformation (FFD)**, and bone changes can update the cached display mesh from its retained source vertices. Topology changes, such as running **Decimate** or undoing it, refresh the LOD cache. Armorsmith falls back to full working detail while replacement geometry is being prepared.
 
 If a reduced level cannot be generated, Armorsmith uses a finer available level or the working mesh. Material changes are applied to cached display levels too.
 
@@ -49,9 +45,9 @@ If a reduced level cannot be generated, Armorsmith uses a finer available level 
 
 ## Does LOD change printing or export?
 
-LOD changes viewport rendering. Selecting geometry, editing, unfolding patterns, saving, printing, and exporting continue to use the **working geometry**.
+Mesh edits, unfolding, printing, and exporting use the **working geometry**. Viewing a million-triangle working mesh through its 100,000-triangle display version does not turn its export into a 100,000-triangle mesh.
 
-Viewing a million-triangle working mesh through its 25,000-triangle display version does not turn its export into a 25,000-triangle mesh.
+Saving a supported `.costume` preserves the working geometry and can store the ready display mesh as a separate preview asset. Save reuses that mesh rather than simplifying the model again. See [Costume files](/interface/costume-files#does-this-make-dense-costumes-load-faster) for the first-save wait and preview loading behavior.
 
 ## How is this different from Decimate?
 
@@ -71,4 +67,4 @@ Use automatic LOD to reduce viewport drawing work on dense models. Importing, me
 
 For mouse controls and zoom shortcuts, see [Navigate the Costume viewport](/interface/viewport-navigation).
 
-For the planned ability to open a costume using saved low-detail previews, see [Costume files](/interface/costume-files#does-this-make-dense-costumes-load-faster). The initial `.costume` storage update still loads full meshes when opening a costume; automatic viewport LOD is a separate feature.
+In builds with saved `.costume` previews, supported dense models can open using a cached 100,000-triangle mesh while their high-detail geometry stays on disk until needed. See [Costume files](/interface/costume-files#does-this-make-dense-costumes-load-faster) for eligibility and the loading workflow. Automatic viewport LOD continues to control drawing after the full model has loaded.
