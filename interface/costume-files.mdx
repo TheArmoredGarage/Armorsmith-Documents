@@ -1,0 +1,136 @@
+---
+title: "Save, share, and publish costume files"
+sidebarTitle: "Costume files"
+description: "Coming soon: understand .costume files, shared assets, workspace folders, legacy .armor saves, and published costume bundles."
+tag: "Coming soon"
+---
+
+<Info>
+**Coming soon:** The `.costume` format and **Publish Costume** command are part of the costume storage overhaul. This guide describes builds that include that change. Earlier releases continue to use `.armor` files.
+</Info>
+
+A costume contains your shared assets and your workspaces. The new `.costume` format saves those pieces as separate files in a companion folder. You keep opening and saving the costume through Armorsmith; the application manages the files inside that folder.
+
+Use the editable format while you work. Use **Publish Costume** when you want a single file to send to someone else.
+
+The format is openly documented. For field definitions, schemas, integrity checks, ZIP packaging, and examples for independent tools, see the [open format reference](/interface/costume-format-reference).
+
+## Choose the right format
+
+| Format | What you keep | When to use it |
+| --- | --- | --- |
+| Editable `.costume` | A `.costume` file and its companion folder | Your ongoing work, backups, and team projects |
+| Published `.costume` | One bundled `.costume` file | Sharing a complete snapshot of your costume |
+| Legacy `.armor` | One `.armor` file | Existing projects or sharing with an Armorsmith version that supports the legacy format |
+
+Both editable and published costumes use the `.costume` extension. Armorsmith recognizes which kind you open. A published costume is a ZIP package containing the costume's saved files.
+
+## Understand shared assets and workspaces
+
+**Shared assets** are the reusable content a costume owns, such as model geometry. Multiple workspaces can refer to the same saved model without each storing another copy of that model.
+
+**Workspaces** save the work associated with a costume piece, including its workspace settings, saved scene information, and pattern work. A workspace refers to the shared assets it needs.
+
+For example, a costume can keep a shared model and have several workspaces that use it. Each workspace has its own saved record, while the model is stored in the costume's asset collection.
+
+Sharing happens within that costume. Saving two separate costumes does not automatically connect their assets or synchronize future edits. Use **File → Merge** to bring another costume into the one you have open, or share a published copy for someone else to open.
+
+The storage format is designed for use by both Armorsmith and Clothsmith. Support for individual tools and workspace features still depends on the application and version you use.
+
+## What is in the companion folder?
+
+Saving `My Costume.costume` creates this layout beside it:
+
+```text
+My Costume.costume
+My Costume/
+  models/
+  workspaces/
+  state/
+```
+
+| File or folder | What it does |
+| --- | --- |
+| `My Costume.costume` | The costume's index. It identifies the saved assets, workspaces, and their order, and points to the files in the companion folder. |
+| `models/` | Stores shared model records and mesh data. |
+| `workspaces/` | Stores a separate record for each workspace and references to its assets. |
+| `state/` | Stores costume-wide information, including saved avatar and costume settings. |
+| `materials/`, `textures/`, and `patterns/` | Supported locations for these asset types as they are stored separately. These folders may be absent. |
+
+In the initial implementation, some materials, images, and pattern information remain inside the saved workspace data. You do not need to create the optional folders yourself.
+
+Files inside the folders have generated identifiers and long revision names. Armorsmith uses those names to find the right content and check that it has not changed unexpectedly. Some older revisions can remain after a save.
+
+<Note>
+Keep the `.costume` file and the whole companion folder together. Copy or back up both. Do not rename, edit, or delete individual files inside the folder, including older revisions. Use **Save As** to change the costume's name or location.
+</Note>
+
+## Save an editable costume
+
+1. Choose **File → Save As**.
+2. Leave **Costume File (*.costume)** selected.
+3. Choose the name and location, then save.
+
+**Save As** defaults to `.costume`. Armorsmith creates the companion folder and saves the workspaces and shared assets there. Later, **File → Save** or **Ctrl+S** updates that editable costume.
+
+**Save As** to another name or location copies the costume's required files into its new companion folder. This is the easiest way to rename a costume or make a separate working copy.
+
+## Open or merge a costume
+
+Choose **File → Open** and select the `.costume` file, rather than a file inside its companion folder. The default file filter shows both `.costume` and `.armor` files.
+
+You can also open a published `.costume` directly. You do not need to unpack it first. When you save an opened bundle, Armorsmith opens **Save As** so you can create an editable costume and its companion folder. It suggests a name ending in `Working.costume`.
+
+Use **File → Merge** to add another costume to the one you already have open. Its file picker also shows both formats by default.
+
+## Keep using legacy .armor files
+
+You can still open and save `.armor` files. Saving an already-open `.armor` file keeps it in that format.
+
+To convert one to the new editable format, open it and choose **File → Save As**, then select **Costume File (*.costume)**. The original `.armor` file remains at its existing location.
+
+To save a legacy copy, choose **File → Save As** and select **Legacy Armor File (*.armor)**. This creates a legacy file and makes it your current saved costume. Use that option when your recipient needs an Armorsmith version that understands `.armor` but not `.costume`.
+
+Changing a filename's extension does not convert its contents. Use **Save As** for conversion.
+
+## Publish one file for sharing
+
+1. Open the costume you want to share.
+2. Choose **File → Publish Costume…**.
+3. Choose a separate destination and save the published `.costume` file.
+
+Publishing captures your current costume, including edits you have not yet saved, and packages its saved assets and workspaces into one ZIP bundle. Send that single file to the recipient. They can open it through **File → Open** in a build that supports `.costume`.
+
+Publishing leaves your working costume open at its current location. It does not mark unsaved edits as saved. Continue to use **Save** to keep those edits in your working copy.
+
+Publishing preserves costume password restrictions. If saving or exporting is locked, unlock the costume before publishing.
+
+## Work on a costume as a team
+
+Separate workspace and asset files make it easier to keep a costume in a shared folder or version control. Your team can organize work around its workspaces and reusable models.
+
+- Agree who is editing each workspace and each shared asset.
+- Keep the `.costume` index and the complete companion folder in the same shared location.
+- Coordinate saves to the same costume. Separate files do not provide live collaboration or automatic merging of simultaneous edits.
+- Finish synchronizing the complete costume before another person opens it.
+- Use **Publish Costume** for a handoff that needs one file.
+
+If someone else saves the costume after you open it, Armorsmith can refuse to overwrite the newer index. Save your work under a new name with **Save As**, then reconcile the two copies with your teammate.
+
+## Does this make dense costumes load faster?
+
+The separate asset layout prepares for loading a saved low-detail preview while leaving high-detail geometry on disk. That loading workflow is still planned. In the initial implementation, opening a costume continues to load and build its full meshes.
+
+Automatic [mesh level of detail](/interface/mesh-level-of-detail) already reduces viewport drawing work in builds that support it. That is separate from the planned ability to open a costume using only saved previews targeting 100,000 triangles. The first storage update does not yet provide that load-time improvement.
+
+## Troubleshoot a costume file
+
+| Problem | What to do |
+| --- | --- |
+| An editable costume cannot find an asset or its companion folder | Restore the complete folder beside the `.costume` file. Check that a copy or synchronization has finished. |
+| A saved file is reported as damaged | Restore a complete known-good backup or ask the sender to publish another copy. Changing an internal filename or editing a generated file cannot repair its references. |
+| The costume changed on disk while you were working | Use **Save As** to preserve your edits in a separate copy, then reconcile changes with your teammate. |
+| You want to edit a published bundle | Open it normally and use **Save As** to create an editable copy. |
+| The format requires a newer version | Open it in a build that supports that format version, or ask the sender for a compatible `.armor` copy. |
+
+Autosave and automatic backup files continue to use `.armor` in this first implementation. For a manual backup of an editable `.costume`, copy the index and its entire companion folder together.

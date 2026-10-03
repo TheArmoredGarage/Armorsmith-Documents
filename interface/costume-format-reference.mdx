@@ -1,0 +1,383 @@
+---
+title: "The open .costume format: version 1 reference"
+sidebarTitle: "Open format reference"
+description: "A detailed public specification of the .costume storage container, JSON records, shared assets, ZIP packaging, integrity checks, and legacy scene compatibility."
+tag: "Coming soon"
+---
+
+<Info>
+**Draft specification:** This reference describes container version `1` in the initial costume storage implementation. The application change is not yet a released format commitment. The reference, JSON schemas, and examples are published under this documentation repository's [MIT license](https://github.com/TheArmoredGarage/Armorsmith-Documents/blob/main/LICENSE).
+</Info>
+
+The `.costume` format is intended to be open. This reference describes the storage structure so independent tools can inspect, validate, copy, package, and preserve costumes without depending on an Armorsmith SDK. Its building blocks are UTF-8 JSON, ordinary files, SHA-256, Base64, and ZIP.
+
+The central relationship is **one costume → shared assets + workspaces**. A costume owns an asset collection. Each workspace lists the assets it uses. Multiple workspaces can reference the same asset ID.
+
+For everyday saving and sharing, start with [Costume files](/interface/costume-files). This page explains the on-disk contract in detail.
+
+## Scope and implementation status
+
+There are two layers:
+
+1. **The storage container:** manifests, asset records, workspace records, file references, hashing, directory layout, and ZIP packaging.
+2. **The content codec:** the meaning of mesh bytes and product-specific scene or workspace fields.
+
+This reference defines the version 1 container and the reconstruction rules for its initial `armor-chunks` compatibility codec. The initial codec preserves legacy scene data instead of introducing a new neutral mesh or scene encoding. A `.bin` suffix does not identify a standard vertex-buffer layout.
+
+An independent tool can validate and republish a costume without decoding geometry. Reconstructing its legacy scene stream is also defined below. Interpreting that stream as a fully editable scene still requires support for the legacy `.armor` grammar and its product-specific data. This reference is not a complete specification of every historical `.armor` field.
+
+Saved preview meshes, a neutral native mesh codec, and loading high-detail geometry only when needed are future work. Do not infer that they are available merely because the container supports multiple file roles.
+
+## Two physical representations
+
+### Editable directory representation
+
+`Example.costume` is a JSON manifest. Its companion directory is `Example`, in the same parent directory. Remove only the last extension to derive the directory name: `Example.v2.costume` uses `Example.v2/`.
+
+All manifest and record paths resolve relative to that companion directory, not relative to the manifest's parent directory.
+
+```text
+Example.costume
+Example/
+  models/<asset-id>/
+    model-<sha256>.json
+    source-<sha256>.bin
+  workspaces/<workspace-id>/
+    workspace-<sha256>.json
+  state/costume-state/
+    state-<sha256>.json
+    header-<sha256>.bin
+    footer-<sha256>.bin
+```
+
+The angle-bracket values in this diagram are placeholders. Real digest suffixes contain 64 lowercase hexadecimal characters.
+
+The manifest is the entry point and current index. Files absent from the current index can remain in the directory after older saves. They are not automatically part of the active costume.
+
+### Published ZIP representation
+
+A published `Example.costume` is a ZIP archive with this root layout:
+
+```text
+manifest.json
+models/...
+workspaces/...
+state/...
+```
+
+There is no enclosing `Example/` directory inside the archive. Use exactly the same relative dependency paths as the editable manifest. `manifest.json` contains the same logical manifest that would be saved in an editable `.costume` file.
+
+The current opener distinguishes the representations by the first two bytes: `PK` means ZIP; otherwise it parses the `.costume` file as JSON. Do not put a prefix before a ZIP archive. The filename suffix is checked without regard to case, but internal path spelling should be preserved exactly.
+
+To match the current ZIP reader:
+
+- Include a root `manifest.json` and every declared dependency.
+- Store entries as regular files. Omit explicit directory entries; nested file paths are enough.
+- Reject duplicate entry names, symbolic links, and unsafe paths.
+- Use ordinary ZIP storage or compression supported by the reader. The format does not require a particular compression level or entry order.
+- Keep large-file limits in mind. Version 1 does not promise ZIP64 support across readers.
+
+Publishing includes all assets declared in the manifest, including assets that no workspace currently references. It includes their JSON records and every declared file role. It omits older unreferenced directory revisions. ZIP comments, filesystem timestamps, and generated archive names carry no costume semantics.
+
+## JSON and identifiers
+
+JSON documents use UTF-8 and must have an object at the root. Object key order and whitespace have no semantic meaning. Hashes, however, cover the exact stored bytes, including whitespace and final newlines. There is no canonical JSON serialization requirement.
+
+Costume IDs, asset IDs, workspace IDs, and file-role names use this pattern:
+
+```text
+^[A-Za-z0-9_-]{1,128}$
+```
+
+Asset and workspace IDs are keys within a costume. File roles are keys within one asset's `files` object. Record IDs must match the corresponding manifest key. These identifiers are distinct from display names and content hashes.
+
+The current creator assigns the costume a UUID without braces. UUIDs are a writer convention; the accepted identifier syntax is broader. Do not interpret a display name as an identifier or silently merge two different asset IDs because their bytes happen to match.
+
+The current **Save As** operation retains the costume ID in the copied document. An ID is therefore not proof that two files at different locations will keep the same content. Treat copies and later edits according to their actual manifests.
+
+## Manifest
+
+The manifest is the costume's top-level JSON object:
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `format` | String | Exactly `"costume"`. |
+| `version` | Integer | Exactly `1` for this container revision. |
+| `id` | Identifier string | Costume identity. |
+| `name` | String | Human-readable costume name. Current writers emit it; the current reader also tolerates its absence. |
+| `assets` | Object | Asset ID → record reference. |
+| `workspaces` | Object | Workspace ID → record reference. |
+| `workspaceOrder` | Array of identifiers | Display/reconstruction order of the workspaces. |
+
+Each record reference is an object with a `path` string pointing to a hashed `.json` file. Additional fields may be present.
+
+`workspaceOrder` must contain every workspace key exactly once. Every entry must refer to an existing workspace. Duplicate or missing entries are invalid. The order of keys in `workspaces` is not a substitute for this array.
+
+An empty asset collection and empty workspace collection are valid at the storage level. The current scene-opening workflow requires at least one workspace.
+
+### Small illustrative manifest
+
+This shortened example uses `<digest>` placeholders and cannot be loaded as written. The downloadable examples below contain actual hashes.
+
+```json
+{
+  "format": "costume",
+  "version": 1,
+  "id": "f47b3d60-e566-4b17-9316-2b83c1a83f88",
+  "name": "Example",
+  "assets": {
+    "model-101-abc": {
+      "path": "models/model-101-abc/model-<digest>.json"
+    },
+    "costume-state": {
+      "path": "state/costume-state/state-<digest>.json"
+    }
+  },
+  "workspaces": {
+    "workspace-101": {
+      "path": "workspaces/workspace-101/workspace-<digest>.json"
+    },
+    "workspace-102": {
+      "path": "workspaces/workspace-102/workspace-<digest>.json"
+    }
+  },
+  "workspaceOrder": ["workspace-101", "workspace-102"]
+}
+```
+
+## Asset records and file roles
+
+An asset record describes one reusable item:
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `id` | Identifier string | Must match its key in `manifest.assets`. |
+| `kind` | String | One of `model`, `material`, `texture`, `pattern`, or `state`. |
+| `files` | Object | File-role name → binary file reference. An empty object is allowed. |
+| `name` | String, optional | Display label. |
+| `codec` | String, optional | Identifies how the content is interpreted. The compatibility bridge uses `"armor-chunks"`. |
+| Other fields | Any JSON value | Product- or codec-specific information. Preserve fields you do not understand. |
+
+The current writer maps asset kinds to these folders and record stems:
+
+| Kind | Directory | Record filename stem |
+| --- | --- | --- |
+| `model` | `models/<id>/` | `model` |
+| `material` | `materials/<id>/` | `material` |
+| `texture` | `textures/<id>/` | `texture` |
+| `pattern` | `patterns/<id>/` | `pattern` |
+| `state` | `state/<id>/` | `state` |
+
+Each role's file reference contains:
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `path` | String | Safe relative path ending in `-<sha256>.bin`. |
+| `sha256` | String | Exactly 64 lowercase hexadecimal characters. SHA-256 of the file's raw bytes. |
+| `size` | Integer | Raw byte count, from `0` through `9007199254740991` inclusive. |
+
+That maximum preserves exact integer representation in JSON consumers using IEEE-754 doubles. It does not guarantee that a particular implementation can allocate or read a file that large. Zero-byte files are valid and have the SHA-256 digest of an empty byte string.
+
+File-role names are extensible. The storage layer can retain an unfamiliar role without opening it. A role called `source` or `preview` has no universal byte encoding unless its codec defines one. The initial bridge writes `source` for model chunks and `header`/`footer` for costume-wide state. It does not generate a standardized saved `preview` role.
+
+Writers update supplied roles while preserving other roles. Changing an asset's existing `kind` is rejected by the current storage API.
+
+## Workspace records
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `id` | Identifier string | Must match its key in `manifest.workspaces`. |
+| `assets` | Array of identifiers | Unique IDs drawn from `manifest.assets`. |
+| `name` | String, optional | Workspace display label. |
+| `codec` | String, optional at the container level | Identifies the workspace representation. Scene opening currently requires `"armor-chunks"`. |
+| `legacyLayout` | Array, required by `armor-chunks` | Ordered byte fragments and shared-model insertions, defined below. |
+| Other fields | Any JSON value | Workspace or product data. Preserve unfamiliar fields. |
+
+Every declared workspace asset must exist. Duplicate references are invalid. The costume-wide `costume-state` asset is a bridge-level dependency, so the bridge does not need to list it separately in each workspace's `assets` array.
+
+Two workspaces sharing an asset ID use the same asset record. Deleting an asset still referenced by a workspace is rejected. Deleting a workspace removes its manifest entry and its entry in `workspaceOrder`; it does not automatically delete every asset or old file that once belonged to it.
+
+## Paths and content integrity
+
+Version 1 uses content-addressed dependency filenames:
+
+```text
+<directory>/<stem>-<sha256>.json
+<directory>/<role>-<sha256>.bin
+```
+
+Compute the digest from the complete raw file bytes. JSON records carry their digest in the filename. Binary file references carry it in both the filename and the `sha256` field. The `.costume` manifest itself is not named by its digest.
+
+Readers must verify JSON record digests before trusting their contents. When reading a binary role, verify its digest and its byte count. A record cannot point to one hash in `sha256` and a different hash in its path suffix.
+
+Independent writers can serialize JSON differently from Armorsmith, provided they calculate filenames from the bytes they actually store. Reformatting a record requires a new digest filename and an updated reference.
+
+Paths must remain inside the costume's dependency root:
+
+- Use forward slashes and relative paths.
+- Do not use absolute paths, drive names, colons, backslashes, NUL characters, or `..` traversal.
+- Use clean paths without `.` components, doubled separators, or trailing separators.
+- No path component may end with a dot or space.
+- Reject symbolic links for the companion directory and any dependency component. The current manifest file must not itself be a symbolic link.
+
+For portable tools, also avoid platform-reserved filenames and additional control characters. Those recommendations are stronger than some checks in the current reader. A secure ZIP reader should impose its own limits on file sizes, entry counts, and decompression work.
+
+SHA-256 detects content changes. It is not a signature or proof of who created a costume. Someone who changes content and recalculates its references can produce a different internally consistent costume.
+
+## Initial armor-chunks codec
+
+The compatibility bridge serializes a legacy scene, then splits that byte stream into costume-wide state, workspace fragments, and owned model blocks. It preserves raw bytes so migration can round-trip legacy scene information.
+
+### Costume-wide state
+
+The bridge writes an asset with:
+
+```json
+{
+  "id": "costume-state",
+  "kind": "state",
+  "codec": "armor-chunks",
+  "files": {
+    "header": {"path": "...", "sha256": "...", "size": 0},
+    "footer": {"path": "...", "sha256": "...", "size": 0}
+  }
+}
+```
+
+This is a structural illustration, not a valid file-reference example. The real `size` values describe the real bytes.
+
+`header` contains the legacy bytes before the first workspace. `footer` contains the bytes after the last workspace, including saved avatar data when present. A role may be empty but is still represented by a real hashed file.
+
+### Model assets
+
+Each owned legacy `MESH` block becomes a `model` asset with `codec: "armor-chunks"`. Its `source` role contains the complete raw block, including its framing and line endings. It may include legacy-encoded mesh arrays and processed geometry; it is not an OBJ file or a newly defined native mesh buffer.
+
+An initial bridge asset ID is derived from its owning workspace's numeric `GUID` and the mesh's hexadecimal `MSID`, for example `model-101-abc`. If the mesh ID is absent, the bridge uses its local ordinal. A collision can add an ordinal suffix. A workspace without a legacy `GUID` also falls back to an ordinal.
+
+These derived names describe the initial adapter. Generic container readers should treat IDs as opaque and should not try to derive ownership or geometry from their spelling.
+
+The bridge resolves an existing shared mesh reference using its owner workspace name, mesh name, and resource hash. It rejects a missing or ambiguous owner. This preserves legacy sharing; it does not automatically deduplicate independently imported models with similar names or identical geometry.
+
+### Workspace layout
+
+Each bridge workspace has `codec: "armor-chunks"` and a `legacyLayout` array. Items have two forms:
+
+1. A string containing standard Base64-encoded raw bytes. Decode strictly, without changing the bytes.
+2. An object of the form `{"asset": "model-101-abc"}`. Read that asset's `source` role and insert its complete bytes at that position.
+
+Every model insertion must be declared in the workspace's `assets` array. Its asset must exist and provide the `source` role. The Base64 strings can be empty.
+
+An owned model is replaced by an insertion object. A legacy redirect to another workspace's model remains a literal Base64 fragment, while the workspace lists the referenced shared asset in `assets`. Therefore a workspace's asset list can contain a model with no insertion object in that workspace's layout.
+
+### Reconstruct the legacy stream
+
+The complete reconstruction algorithm is:
+
+```text
+result = readAssetFile("costume-state", "header")
+
+for workspaceId in manifest.workspaceOrder:
+    workspace = readWorkspace(workspaceId)
+    require workspace.codec == "armor-chunks"
+    for item in workspace.legacyLayout:
+        if item is a string:
+            result += strictBase64Decode(item)
+        else:
+            require item.asset is declared in workspace.assets
+            result += readAssetFile(item.asset, "source")
+
+result += readAssetFile("costume-state", "footer")
+```
+
+Do not add separators, normalize line endings, decode text, or re-encode fragments during reconstruction. The bytes already contain the necessary framing. Preserving them also preserves data an independent storage tool cannot interpret.
+
+The initial application writer emits legacy scene version `23`. That legacy scene version is distinct from container `version: 1`. A neutral future scene codec will need its own encoding definition and compatibility rules.
+
+### Locked legacy costumes
+
+The container does not define ZIP encryption. Legacy password restrictions remain inside the `armor-chunks` scene data, and the bridge retains the encoded bytes. The conversion bridge uses the legacy line decoder to recognize workspace and mesh boundaries, while storing the original byte fragments.
+
+The historical `LOCK` line has two restriction flags and a 64-character hexadecimal value. Container reconstruction can preserve a locked legacy stream without decoding its geometry. A scene reader must implement the legacy locking behavior to interpret it correctly.
+
+Manifest labels and JSON record metadata are still readable. This container does not define a new password encryption system, cryptographic authentication, or confidentiality guarantee.
+
+## Reader workflow and lazy access
+
+A storage reader can open a costume without reading its full mesh payloads:
+
+1. Determine JSON versus ZIP representation.
+2. Parse the manifest and check its format, version, IDs, and collections.
+3. Read referenced asset and workspace JSON records and verify their hashes and matching IDs.
+4. Validate kinds, file references, workspace references, and workspace order.
+5. Check that every declared dependency exists.
+6. Load a binary role when requested, then verify its size and SHA-256.
+
+The current storage layer follows this separation. It validates metadata and dependency presence at open time; full binary content validation happens when payloads are read. A missing payload prevents opening. A present but damaged payload can be detected later when requested or published.
+
+The current Armorsmith scene adapter then reconstructs the legacy scene and loads its full meshes. Storage-level lazy access is available, but preview-only application opening is not yet implemented.
+
+Before republishing a costume, read and verify all declared dependency bytes. A general-purpose tool should report unsupported codecs separately from malformed containers: metadata inspection and lossless copying can still be useful even when it cannot render the content.
+
+## Writer workflow and atomic saves
+
+For an editable costume, write new content-addressed dependencies before replacing the manifest:
+
+1. Acquire a cooperative write lock for the target costume.
+2. Compare the current manifest bytes with the baseline from when the costume was opened. Refuse an unexpected change or removal.
+3. Stage modified payloads and JSON records under their new digest filenames. Update the in-memory index.
+4. Write and commit those dependency files. Keep unchanged files as they are.
+5. Recheck the manifest baseline.
+6. Atomically replace the manifest as the final commit step.
+7. Release the lock and update the saved baseline.
+
+The manifest replacement is the transaction boundary. A failed dependency write leaves the previously committed manifest usable. New orphaned files can remain after a failed attempt; they are not current content until referenced by a committed manifest.
+
+The implementation uses a sibling `<filename>.lock` file through Qt's `QLockFile` and atomic file replacement through `QSaveFile`. The lock's contents are a Qt coordination detail, not portable costume data. Independent writers must coordinate with other writers; the baseline check alone cannot prevent every race between uncooperative processes. Shared or cloud-synchronized folders do not guarantee atomic transactions across machines.
+
+Old immutable dependency files are retained. Version 1 has no automatic garbage collection or user-facing revision history. Do not remove old files as part of an ordinary save. A future cleanup tool must account for every manifest, backup, and external reference it intends to preserve.
+
+**Save As** copies every declared dependency into the new companion directory, including file roles that were never opened for editing. It must preserve unknown data. A new destination should be empty; replacing an existing costume requires an explicitly established overwrite baseline. The current API refuses saving a published ZIP in place as an editable costume.
+
+For a ZIP, build a complete package in a temporary destination and atomically replace the requested output only after all dependencies and archive writing succeed. Keep publishing separate from the active editable file.
+
+## Extensions and compatibility
+
+Preserve unfamiliar JSON fields in manifests, references, assets, and workspaces. Preserve unfamiliar file roles and their bytes when copying or saving. A tool that edits one workspace should not erase another product's fields simply because it cannot interpret them.
+
+Reserve the documented structural fields for their stated meanings. Product-specific fields should use a distinctive name or a nested product object to avoid collisions. That naming advice is a convention, not a required version 1 extension registry.
+
+Current container readers reject a `version` other than `1` and asset kinds outside the five listed above. Do not add a new asset kind and assume every version 1 reader will accept it. The container can preserve unfamiliar `codec` strings, but the current scene adapter rejects workspace codecs other than `armor-chunks` when opening a scene.
+
+Changes to structural meaning need an explicit container version decision. Changes to content encoding need an explicit codec definition. There is no silent downgrade rule, standardized unit system, neutral coordinate convention, or required material/texture/pattern codec in this first container specification.
+
+Sharing a container format between Armorsmith and Clothsmith does not make every product-specific workspace feature interchangeable. Preserve data you cannot interpret and report unsupported editing features clearly.
+
+## Public schemas and reproducible examples
+
+The documentation repository contains [JSON Schemas for version 1](https://github.com/TheArmoredGarage/Armorsmith-Documents/tree/main/schemas/costume/v1):
+
+- `manifest.schema.json`: top-level costume index.
+- `asset.schema.json`: shared asset records and binary file references.
+- `workspace.schema.json`: workspace IDs and asset references.
+- `armor-workspace.schema.json`: the initial workspace compatibility layout.
+- `common.schema.json`: reusable identifiers and path constraints.
+
+Schemas allow extra fields for product data. They describe the writer contract and cannot by themselves check file existence, cross-record ID equality, workspace-order completeness, reference resolution, byte counts, or hashes. Implement those checks separately. Some recommended schema constraints are stricter than the current C++ reader's permissive JSON parsing; do not use a parser's acceptance alone as proof that a document conforms.
+
+The [example generator](https://github.com/TheArmoredGarage/Armorsmith-Documents/blob/main/examples/costume-v1/generate_example.py) uses Python's standard library to produce an editable costume, a ZIP bundle, and the legacy stream they reconstruct. Its fixtures illustrate shared references and exact hashing. The small legacy-shaped payload is a storage example, not a renderable production mesh.
+
+From a local copy of the repository:
+
+```text
+python examples/costume-v1/generate_example.py /path/to/example-output
+```
+
+The script intentionally refuses to replace existing output names. You can inspect its JSON, verify every digest, compare the ZIP representation with the directory representation, and reconstruct the supplied `Example.armor` byte for byte.
+
+Independent implementations should exercise at least: shared asset references; unknown fields and roles; empty payloads; Save As without opening source geometry; damaged records and payloads; missing files; duplicate or incomplete workspace order; unsafe paths; duplicate ZIP entries; interrupted writes; stale manifest baselines; and exact legacy-stream reconstruction.
+
+## Future work
+
+The open container gives future codecs a place to store native source meshes, separately saved display previews, materials, textures, patterns, and product-specific workspace data. Each interoperable codec still needs a published byte-level definition, examples, and versioning rules.
+
+The planned 100,000-triangle preview workflow is to read lightweight display geometry first and request high-detail sources only for operations that need them. Version 1's generic file-role mechanism supports this direction, but a standardized preview encoding and application loading policy are not defined or implemented by this initial specification.

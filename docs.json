@@ -35,6 +35,8 @@
               "interface/measurement-tool",
               "interface/transform-panel",
               "interface/menu-bar",
+              "interface/costume-files",
+              "interface/costume-format-reference",
               "interface/preferences",
               "interface/workspaces-panel",
               "interface/property-grid"

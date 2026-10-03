@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/TheArmoredGarage/Armorsmith-Documents/main/schemas/costume/v1/asset.schema.json",
+  "title": "Costume version 1 asset record",
+  "type": "object",
+  "required": ["id", "kind", "files"],
+  "properties": {
+    "id": {"$ref": "common.schema.json#/$defs/id"},
+    "kind": {"enum": ["model", "material", "texture", "pattern", "state"]},
+    "name": {"type": "string"},
+    "codec": {"type": "string"},
+    "files": {
+      "type": "object",
+      "propertyNames": {"$ref": "common.schema.json#/$defs/id"},
+      "additionalProperties": {"$ref": "common.schema.json#/$defs/fileReference"}
+    }
+  },
+  "additionalProperties": true
+}
