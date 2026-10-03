@@ -18,6 +18,16 @@ Select the pattern and read **Foam preview status** in its properties. The statu
 
 For a layered pattern, enable the base's preview too. A layer depends on the base surface.
 
+The left-hand **Patterns** view shows unattached foam. Enabling **Foam**, changing thickness or forming, or choosing **Use selected base** frames the preview. Use the view's fit controls if you have moved the camera away.
+
+In the main **Costume** view, foam appears only after **Attach as part** is enabled on its base pattern. Setting a layer base alone does not attach it.
+
+## The piece disappears after spherical forming
+
+Open **Form → Spherical form**, click **Gentle curve**, and confirm. The recommended radius scales with the pattern. A smaller radius makes a deeper dome; it must stay above the minimum displayed for this outline and thickness. An older saved radius may be too small after resizing an outline or increasing thickness.
+
+If the preview is still missing, read **Foam preview status**. Check that the outline does not cross itself and undo the last outline edit if needed.
+
 ## A pattern will not fit in a layer
 
 The whole outline must fit inside the base outline. Check corners and segments near concave indentations. Having all corners inside is not enough if a segment crosses a cutout.
@@ -40,7 +50,7 @@ That is the shared forming workflow. **Form** and **Place** route to the base pa
 
 ## Edge depth becomes invalid after a thickness change
 
-A fixed millimeter depth can exceed the new foam thickness. Lower the depth or use a percentage. The tool preserves your millimeter setting rather than silently shortening the cut.
+A fixed millimeter depth can exceed the new foam thickness. The **Thickness** dialog explains this and keeps the previous thickness. Lower the depth or use a percentage, then change thickness again. Editing properties directly can still create an invalid combination; correct the depth to restore the preview.
 
 ## A material changed every pattern in a layer
 
@@ -48,7 +58,7 @@ A fixed millimeter depth can exceed the new foam thickness. Lower the depth or u
 
 ## A detail cannot be placed or moved
 
-Use **Place on surface** or **Move details** in the 3D view. Click a visible foam front or back face. Side walls do not accept placement. A visible costume mesh in front of the foam blocks clicking through to it.
+Use **Place on surface** or **Move details** in the left-hand Patterns preview, or in the Costume view after attachment. Click a visible foam front or back face. Side walls do not accept placement. In the Costume view, a visible costume mesh in front of the foam blocks clicking through to it.
 
 Details stay on the same owner and face during a drag. To put a detail on another pattern, remove it and place a new copy there.
 
