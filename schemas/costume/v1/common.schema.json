@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/TheArmoredGarage/Armorsmith-Documents/main/schemas/costume/v1/common.schema.json",
+  "title": "Costume version 1 shared definitions",
+  "$comment": "MIT licensed; see the repository LICENSE. Hash, size, existence, and reference equality checks require a separate validator.",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,128}$"
+    },
+    "safePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*[\\\\:\\u0000])(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*[. ](?:/|$))(?!.* /)(?!.*\\/$).+$"
+    },
+    "recordReference": {
+      "type": "object",
+      "required": ["path"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "allOf": [
+            {"$ref": "#/$defs/safePath"},
+            {"pattern": "-[0-9a-f]{64}\\.json$"}
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "fileReference": {
+      "type": "object",
+      "required": ["path", "sha256", "size"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "allOf": [
+            {"$ref": "#/$defs/safePath"},
+            {"pattern": "-[0-9a-f]{64}\\.bin$"}
+          ]
+        },
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "size": {"type": "integer", "minimum": 0, "maximum": 9007199254740991}
+      },
+      "additionalProperties": true
+    }
+  }
+}

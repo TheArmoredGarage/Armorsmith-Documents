@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/TheArmoredGarage/Armorsmith-Documents/main/schemas/costume/v1/workspace.schema.json",
+  "title": "Costume version 1 workspace record",
+  "type": "object",
+  "required": ["id", "assets"],
+  "properties": {
+    "id": {"$ref": "common.schema.json#/$defs/id"},
+    "assets": {
+      "type": "array",
+      "items": {"$ref": "common.schema.json#/$defs/id"},
+      "uniqueItems": true
+    },
+    "name": {"type": "string"},
+    "codec": {"type": "string"}
+  },
+  "additionalProperties": true
+}

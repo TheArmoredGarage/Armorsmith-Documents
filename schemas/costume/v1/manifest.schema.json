@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/TheArmoredGarage/Armorsmith-Documents/main/schemas/costume/v1/manifest.schema.json",
+  "title": "Costume version 1 manifest",
+  "type": "object",
+  "required": ["format", "version", "id", "assets", "workspaces", "workspaceOrder"],
+  "properties": {
+    "format": {"const": "costume"},
+    "version": {"type": "integer", "const": 1},
+    "id": {"$ref": "common.schema.json#/$defs/id"},
+    "name": {"type": "string"},
+    "assets": {"$ref": "#/$defs/records"},
+    "workspaces": {"$ref": "#/$defs/records"},
+    "workspaceOrder": {
+      "type": "array",
+      "items": {"$ref": "common.schema.json#/$defs/id"},
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "records": {
+      "type": "object",
+      "propertyNames": {"$ref": "common.schema.json#/$defs/id"},
+      "additionalProperties": {"$ref": "common.schema.json#/$defs/recordReference"}
+    }
+  },
+  "additionalProperties": true
+}
