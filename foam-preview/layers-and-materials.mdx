@@ -24,7 +24,7 @@ All patterns follow the base's forming and 3D placement. Each pattern keeps its 
 6. Select one or more closed foam patterns in the pattern view.
 7. Click **Add selected patterns**.
 
-The tool preserves their flat placement relative to the base where possible. If a pattern is outside the base, it tries centering the pattern. It rejects a pattern that still cannot fit. Resize or reshape that pattern and try again.
+The tool uses their relative placement as an initial assembled position where possible. If a pattern is outside the base, it tries centering the assembled piece. Its cutting-sheet position stays unchanged. It rejects a pattern that still cannot fit. Resize or reshape that pattern and try again.
 
 A pattern that already contains its own foam layers cannot be nested into another stack in this preview.
 
@@ -34,7 +34,11 @@ Single-click a row to choose a destination or material target without replacing 
 
 ## Move a raised pattern
 
+The 2D cutting-sheet layout and the assembled layer placement are saved separately. Translate or rotate the templates in 2D to arrange them for printing without moving the raised pieces in 3D. Use **Move on surface** to change the assembly without moving the paper templates. Editing an outline or changing its scale changes the actual piece, so check that it still fits its base.
+
 Click **Move on surface**, then click and drag a raised foam pattern in the 3D view. The pattern moves across the base's flat coordinates and follows the formed surface as you drag.
+
+Use **Move foam** on the toolbar to move the whole base stack in the left-hand 3D preview. Clicking a layer member or rivet in that mode selects its base. Use **Move on surface** to slide a member within the stack instead. For several independent bases, see [Arrange separate plates](/foam-preview/thickness-and-forming#arrange-separate-plates-such-as-a-set-of-abs).
 
 Its entire outline must stay within the base outline. Movement that would cross the boundary is rejected, including movement across an indentation in a concave base.
 
@@ -52,6 +56,8 @@ The tree shows the base, each layer, and the patterns within it. Pattern rows sh
 - **Remove row** removes the selected pattern or layer, with undo. Removing a layer removes its children from the composition too.
 
 Each layer starts above the tallest pattern in every lower layer, plus the layer gaps. For example, a layer containing both 2 mm and 4 mm patterns contributes 4 mm to the next layer's elevation. This keeps each layer at one shared height; it does not nest upper pieces into the gaps between lower details.
+
+For pieces glued directly onto the base, leave the first **Layer gap** at **0 mm**. Its underside already rests on the base's top surface; do not add the base thickness again. The initial 3D camera shows the raised side. Orbit the view to inspect the back or the side profile.
 
 Hiding a layer changes visibility, rather than the physical stack height. Remove or reorder a layer when you want the composition itself to change.
 
