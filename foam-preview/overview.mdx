@@ -30,18 +30,20 @@ The 2D outline remains your flat cut template. Forming, edge finishes, materials
 
 <Columns cols={2}>
   <Card title="Draw and edit" icon="bezier-curve" href="/foam-preview/drawing-and-editing">Create an outline and refine its curves.</Card>
+  <Card title="Instances and gluing" icon="link" href="/foam-preview/instances-and-gluing">Link matching outlines, glue separate pieces, and form their assembly.</Card>
   <Card title="Thickness and forming" icon="cube" href="/foam-preview/thickness-and-forming">Form the foam piece and attach it to the costume.</Card>
   <Card title="Edge Style" icon="scissors" href="/foam-preview/edge-style">Use angle cuts or rounded edges with depth in mm or percent.</Card>
   <Card title="Layers and materials" icon="layer-group" href="/foam-preview/layers-and-materials">Compose several patterns under one shared forming shape.</Card>
   <Card title="Detail library" icon="circle" href="/foam-preview/surface-details">Place and move decorative hardware on foam.</Card>
   <Card title="Build a layered bracer" icon="pen-ruler" href="/foam-preview/tutorial-layered-bracer">Follow a complete example from outline to finished preview.</Card>
+  <Card title="Build a shoulder bell" icon="copy" href="/foam-preview/tutorial-shoulder-bell">Glue mirrored halves and form them over one sphere.</Card>
   <Card title="Troubleshooting" icon="wrench" href="/foam-preview/troubleshooting">Resolve missing previews, layer placement, and edge settings.</Card>
 </Columns>
 
 ## Understand the preview
 
-Foam forming is a geometric design preview. Use it to judge placement, layering, and appearance. It does not predict heat, foam stretching, glue behavior, or springback. Spherical forming changes distances across the formed surface; test your physical cut pattern before committing to a finished build.
+Single-piece forming is a geometric preview. Glued assemblies add a bounded foam relaxation pass that resists stretching, keeps connected edge samples together, and accounts for thickness, stiffness, and heat softness. Use it to judge construction, placement, layering, and appearance. It does not predict temperatures, glue curing, self-collision, gravity, or springback.
 
-This preview includes the drawing, editing, forming, layering, edge, and detail tools described here. Offset outlines, trim/extend, join/split, persistent symmetry constraints, automatic seam allowances, darts, and notches are outside this documented preview. Existing tools for other pattern types have their own behavior.
+This preview includes drawing, editing, linked and mirrored instances, live half-outline symmetry, gluing, forming, layering, edge, and detail tools. Offset outlines, trim/extend, general spline joining, automatic seam allowances, darts, and notches are outside this documented preview. Existing tools for other pattern types have their own behavior.
 
 For paper layout and print scale, continue with [Print patterns](/patterns/printing).

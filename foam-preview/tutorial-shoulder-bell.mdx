@@ -1,0 +1,61 @@
+---
+title: "Build a mirrored foam shoulder bell"
+sidebarTitle: "Mirrored shoulder bell"
+description: "Create linked halves, glue their center edges, and form the assembly over a sphere."
+hidden: true
+noindex: true
+---
+
+This exercise makes two separate foam halves that share an editable outline and one assembled heat form. Start with a simple center edge before trying curved glue joints.
+
+## 1. Draw and promote the first half
+
+In **Create 2D**, choose **Line**. Draw a closed half-panel with a straight center segment and a rounded outer shoulder profile. Keep the outline on one side of its center edge. Use **Ctrl** to place curve anchors, then refine the outline with right-click **Edit Shape**.
+
+Right-click the closed outline and choose **Promote to foam pattern**. Set **Thickness** to **6 mm** and start with **Form → Flat**.
+
+**Checkpoint:** one flat cutting outline and one thick foam half appear in the Patterns workspace.
+
+## 2. Create its mirrored partner
+
+Select the half and choose **Create mirror instance**. The second piece starts beside it. Move a point on one half and confirm that its mirrored partner changes too. Undo the test edit if needed.
+
+Keep the cutting outlines apart on the sheet. You do not need to overlap them to assemble the shoulder.
+
+**Checkpoint:** two selectable pieces have matching reflected shapes and separate physical identities.
+
+## 3. Glue the center edges
+
+Click **Glue**. In the 2D view, click the center segment of the first half, then the corresponding segment of the mirror. Press **Escape** to finish.
+
+The 3D preview aligns the halves at their center edges. Their paper positions remain unchanged. If the tool reports different lengths, check the pieces' scales and select corresponding segments.
+
+## 4. Heat form the whole shoulder
+
+Select either half and open **Form → Spherical form**. Start with **Gentle curve**. The recommended radius uses the size and thickness of the combined assembly.
+
+Reduce the radius gradually for a deeper shoulder shape. Both halves use one sphere center and direction. Open **Foam forming properties** to adjust piece stiffness and assembly heat softness.
+
+Read **Foam preview status** for the remaining glue error and maximum edge stretch. A deeper dome asks more of the flat pattern. You can adjust the outline, forming radius, or glue edge as you refine the design.
+
+**Checkpoint:** the halves form one shoulder bell while remaining two separate cutting patterns.
+
+## 5. Add raised details
+
+Select the half that will support a detail and open **Layers**. Use it as the base, add a layer, and add smaller promoted patterns. Move those patterns with **Move on surface**. Assign each its own material or apply one material to its whole layer.
+
+Use **Details** to place dome rivets, eyelets, or washers on either half. Change the shoulder's sphere radius and check that the layers and details follow their host surfaces.
+
+## 6. Position and copy the shoulder
+
+Use **Move foam** or **Place** to position the assembled shoulder in the left-hand 3D view. Clicking either half moves the assembly. Enable **Attach as part** when you want it in the main Costume view.
+
+Select the assembly's original base/root pattern and choose **Create mirror instance** to make the opposite shoulder. Its pieces and glue connections are copied and mirrored. Corresponding outlines remain linked, while the new shoulder keeps independent forming, placement, and materials.
+
+Use ordinary copy/paste or **Duplicate independently** when the second shoulder should have its own geometry. The copied halves retain their links to each other.
+
+## 7. Arrange the cutting sheet
+
+Move and rotate the 2D outlines into a printable layout. This does not rearrange the glued shoulder in 3D. Each half remains a separate template.
+
+Continue with [Print patterns](/patterns/printing). Review [Instances and gluing](/foam-preview/instances-and-gluing) for making individual pieces unique and repairing glue connections.

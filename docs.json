@@ -123,6 +123,7 @@
             "pages": [
               "foam-preview/overview",
               "foam-preview/drawing-and-editing",
+              "foam-preview/instances-and-gluing",
               "foam-preview/thickness-and-forming",
               "foam-preview/edge-style",
               "foam-preview/layers-and-materials",
@@ -133,6 +134,7 @@
             "group": "Tutorial and help",
             "pages": [
               "foam-preview/tutorial-layered-bracer",
+              "foam-preview/tutorial-shoulder-bell",
               "foam-preview/troubleshooting"
             ]
           }

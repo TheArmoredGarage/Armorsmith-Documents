@@ -47,11 +47,11 @@ For **Straight**, **Curve**, and **Divide**, the selected anchor identifies the 
 
 ## Mirror and close
 
-**Mirror H** mirrors the outline left to right about its center. **Mirror V** mirrors it top to bottom. These commands change the selected outline and support undo; they do not create a linked mirrored copy.
+**Mirror H** mirrors the outline left to right about its center. **Mirror V** mirrors it top to bottom. These commands edit the shared outline and support undo; linked instances follow that shape edit. Use **Create mirror instance** to create a separate reflected piece.
 
 **Open / close** toggles the closing segment. Opening a pattern removes its solid foam preview. Close it again when the cut outline is ready.
 
-The existing polygon creation dialog also supports completing a symmetric outline during drawing. That creates the mirrored outline at completion; later edits are independent.
+The polygon creator also supports symmetric drawing. Converting or promoting a symmetric shape to the new manager retains live half-outline symmetry. **Enable live symmetry** adds this behavior to an open half-outline with at least three anchors. **Bake symmetric outline** turns the reflection into ordinary editable points. See [Instances and gluing](/foam-preview/instances-and-gluing) for the difference between one continuous symmetric pattern and two linked halves.
 
 ## Check measurements and output
 
