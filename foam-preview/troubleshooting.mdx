@@ -8,11 +8,11 @@ noindex: true
 
 ## The foam tools are missing
 
-This section covers an unreleased preview. Use a build that includes the new spline foam tools. Older spline objects may use the legacy editing tools. Start a new pattern with **Draw foam** to use the new system.
+This section covers an unreleased preview. Use a build that includes the new spline foam tools. Draw using **Create 2D**, then right-click a selected closed spline and choose **Promote to foam pattern**. Existing ordinary splines can use the same command. Dedicated cloth patterns use their own tools.
 
 ## The 3D foam preview is missing
 
-Check that **Foam** is enabled and that the pattern and its parent layers are visible. The outline must be closed, enclose an area, and have no self-intersections. Open paths remain drawing lines.
+First promote the closed spline with right-click **Promote to foam pattern**. Closing a drawing or setting a layer base alone does not create foam. After promotion, check that **Foam** is enabled and that the pattern and its parent layers are visible. The outline must be closed, enclose an area, and have no self-intersections. Open paths remain drawing lines.
 
 Select the pattern and read **Foam preview status** in its properties. The status explains invalid geometry or settings. Check thickness, sphere radius, and edge depth.
 
@@ -30,7 +30,7 @@ If the preview is still missing, read **Foam preview status**. Check that the ou
 
 ## The sphere curves inward
 
-Select the piece and choose **Form → Reverse forming direction**. This changes the whole base stack, including its layers and attached details. New spherical forms start with an outward dome, but an existing saved sphere keeps its previous direction.
+Select the piece and choose **Form → Reverse forming direction**. This changes the whole base stack or glued assembly, including its layers and attached details. New spherical forms start with an outward dome, but an existing saved sphere keeps its previous direction.
 
 ## The preview looks too dense or angular
 
@@ -74,6 +74,18 @@ That is the shared forming workflow. **Form** and **Place** route to the base pa
 
 A fixed millimeter depth can exceed the new foam thickness. The **Thickness** dialog explains this and keeps the previous thickness. Lower the depth or use a percentage, then change thickness again. Editing properties directly can still create an invalid combination; correct the depth to restore the preview.
 
+## Glue will not connect two edges
+
+Use two distinct promoted base patterns in the same workspace. Upper layer patterns use their own surface attachment and cannot be edge-glued. Edge lengths must match within **2% or 0.5 mm**, whichever is larger. Scaling changes the physical edge length, so check both pieces after resizing.
+
+Choose **Glue**, click the first segment, and then click the matching segment on the other piece. The second piece aligns in 3D while both cutting templates keep their paper positions. For the complete workflow, see [Instances, symmetry, and gluing](/foam-preview/instances-and-gluing).
+
+## A glue connection stops working after an edit
+
+Adding a point on a connected segment preserves the original glue span. Reversing an outline also preserves it. Deleting one of its endpoint anchors invalidates that connection; the formed pieces remain visible so you can repair it.
+
+Undo the endpoint deletion, or use **Manage glue** to remove the affected connection and glue the new edges. Removing a connection leaves the pieces in their shared forming assembly.
+
 ## A material changed every pattern in a layer
 
 **Apply material to whole layer** updates all current members and the default for later additions. Undo to restore the prior assignments. Use **Set pattern material** on a pattern row for a single-piece change.
@@ -94,4 +106,4 @@ The detail model has its own opening. It does not subtract material from the foa
 
 ## The real foam does not match the spherical preview
 
-The preview shows a geometric forming shape. It does not calculate stretching, heating, glue, or springback. Test a physical sample and adjust the flat cut pattern and forming radius for your foam and construction method.
+An individual piece uses geometric forming. A glued assembly adds a bounded foam relaxation preview with stretch resistance, bending resistance, and glue constraints. **Heat softness** is an artistic control, not a measured temperature. The preview does not calculate glue curing, self-collision, gravity, or springback. Test a physical sample and adjust the cut pattern and forming settings for your foam and construction method.

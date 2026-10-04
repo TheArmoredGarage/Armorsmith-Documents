@@ -1,0 +1,69 @@
+---
+title: "Linked patterns, symmetry, and gluing"
+sidebarTitle: "Instances and gluing"
+description: "Keep mirrored outlines linked, glue separate foam pieces, and heat form their assembly."
+hidden: true
+noindex: true
+---
+
+Linking outlines, connecting pieces with glue, and sharing a heat form are separate operations. You can edit matching shapes together while giving each physical piece its own material and glue connections.
+
+## Choose how to repeat a shape
+
+Select a spline and use its right-click menu. Managed outlines also offer these commands under the **Instances and symmetry** toolbar icon.
+
+| Command | Result |
+| --- | --- |
+| **Create linked instance** | Another piece with the same editable outline. |
+| **Create mirror instance** | A separate piece with a reflected, linked outline. |
+| **Duplicate independently** | A copy whose outline is independent of the original. Internal links within a copied assembly are preserved. |
+| **Make unique** | Detach the selected piece's outline from its linked partners while retaining its placement and glue connections. |
+
+Move an anchor or Bézier handle on either linked piece to update their shared shape. Each piece keeps its own 2D layout, material, thickness, and edge style. Glue connections belong to individual pieces; creating a mirror does not create matching glue connections automatically.
+
+Creating an instance of an assembly root copies its pieces and existing glue connections. Linked instances share the corresponding outlines with the source assembly. A mirrored assembly reflects its assembled placements as well as its outlines. The copied assembly has separate physical identities and can be formed and positioned independently.
+
+Ordinary copy/paste keeps links inside the copied selection and gives the copied group its own geometry. It does not link pasted pieces back to their originals. Copy both halves or their assembly root to retain their relationship in the copy.
+
+## Create one continuous symmetric pattern
+
+Finish an open half-outline with at least three anchors. Select it and choose **Enable live symmetry**. The first and last anchors define the reflection axis. Edits to the half update the reflected boundary immediately.
+
+The result is one closed pattern, with no glue connection along its center. Promote it when you want a single foam piece. Choose **Bake symmetric outline** to turn the reflected boundary into ordinary editable points and end live symmetry.
+
+The polygon creator's existing symmetric drawing mode remains available. Converting or promoting that shape to the new spline system retains its live symmetry.
+
+Use **Create mirror instance** when you need two physical halves with a center glue joint. A continuous symmetric pattern and a mirrored pair have different cutting and assembly behavior.
+
+## Glue two foam pieces
+
+1. Promote each closed outline to foam. You can promote the first piece before creating its mirror; the mirror then starts as foam too.
+2. Click **Glue** and work in the 2D pattern view.
+3. Click a boundary segment on the first piece. It highlights orange.
+4. Click the matching segment on the second piece. Hovered candidates highlight light blue.
+5. Inspect the joined pieces in the left-hand 3D preview. Press **Escape** to finish the tool.
+
+The command aligns the pieces on opposite sides of their chosen edges and joins them into a shared forming assembly. It leaves their cutting-sheet positions unchanged. Edges must match in length within 2% or 0.5 mm. Scale and the instance's reflection are included in this check.
+
+Use **Form** on either piece to bend the whole assembly horizontally, vertically, or over one sphere. **Place**, **Move foam**, and **Attach as part** also act on the assembled group. **Thickness**, **Edge Style**, and material assignment remain per piece.
+
+Gluing assemblies together combines their pieces and existing connections. The preview supports up to 64 base pieces per assembly, with a separate 2,000-triangle limit for each foam solid.
+
+## Adjust foam relaxation
+
+Open **Foam forming properties**:
+
+- **Foam stiffness** controls bending resistance for the selected piece. Thickness also affects that resistance.
+- **Heat softness** softens bending resistance across the assembly. Higher values make it easier to follow the chosen forming shape.
+
+These are design controls rather than calibrated temperatures or material measurements. The bounded relaxation pass resists stretching and pulls glued edge samples together. **Foam preview status** reports maximum edge stretch and the remaining glue error in millimeters.
+
+The preview does not include self-collision, gravity, glue curing, or springback. Curved glue edges can require substantial deformation; inspect the reported stretch and glue error as well as the appearance.
+
+## Edit or repair a connection
+
+Splitting a glued segment preserves the connection over its original span. Reversing an outline preserves the same physical glue edge. Deleting a connected endpoint invalidates that connection and produces a status message. The foam remains visible so you can repair it.
+
+Use **Manage glue** to remove an individual connection, then reconnect the intended edges with **Glue**. Removing a connection keeps the pieces in their shared forming assembly. Glue creation, removal, and making a piece unique support undo and redo.
+
+Layers and detail bits remain attached to their own host piece and follow its relaxed surface. See [Layers and materials](/foam-preview/layers-and-materials), or build a [mirrored shoulder bell](/foam-preview/tutorial-shoulder-bell).

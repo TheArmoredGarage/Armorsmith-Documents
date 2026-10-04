@@ -6,7 +6,7 @@ hidden: true
 noindex: true
 ---
 
-Once you close an outline, its foam preview appears on the left of the **Patterns** tab. Use **Foam** to show or hide the preview. The piece starts flat with a thickness of 6 mm. Creating a pattern or choosing **Use selected base** does not add it to the main **Costume** view.
+After you promote a closed outline with **Promote to foam pattern**, its foam preview appears on the left of the **Patterns** tab. Use **Foam** to show or hide the preview. The piece starts flat with a thickness of 6 mm. Creating a pattern or choosing **Use selected base** does not add it to the main **Costume** view.
 
 The initial camera shows the top surface, where raised layers and edge finishes appear. Use the front-view control to return to that side, or orbit to inspect the thickness. Curved previews add interior mesh samples automatically; spherical forming is not limited to the outline's original triangles.
 
@@ -42,7 +42,7 @@ The sphere dialog starts with a gentle radius based on your pattern's physical s
 The dialog shows the minimum radius for the current outline and thickness and prevents values below it. There is no single radius that suits every pattern. For example, a pattern extending about 100 mm from its center starts near a 400 mm radius. The old 100 mm setting would produce a much tighter curve on that piece.
 
 <Note>
-These controls preview the shape you might create by heat forming. They do not simulate temperature, foam stretching, or springback. Test spherical pieces in physical foam because forming in two directions can change their surface dimensions.
+Single pieces use a geometric forming preview. Glued assemblies add thickness-aware foam relaxation, with stiffness, heat softness, and reported edge stretch and glue error. These controls are not calibrated temperatures and do not model springback or self-collision. See [Instances and gluing](/foam-preview/instances-and-gluing).
 </Note>
 
 ## Place the piece on the costume
@@ -59,9 +59,13 @@ When the selected pattern belongs to a foam layer, **Form** and **Place** apply 
 
 Change the base's forming after composing the stack to check that raised shapes stay in the intended locations. Continue with [Layers and materials](/foam-preview/layers-and-materials).
 
+## Form glued pieces together
+
+Use **Glue** to connect matching boundary segments on separate foam pieces. **Form**, **Place**, and **Attach as part** then apply to their shared assembly. Sphere forming uses the combined bounds, with one center and radius for all its pieces. Layers and details follow their own host piece's relaxed surface. The cutting outlines keep independent paper positions. Try the [shoulder bell tutorial](/foam-preview/tutorial-shoulder-bell).
+
 ## Arrange separate plates, such as a set of abs
 
-Create each plate with **Draw foam**, or copy and paste an existing pattern. Leave the plates as separate base patterns so each keeps its own thickness, material, and forming. For an ab plate, choose **Form → Spherical form** and start with **Gentle curve**. Repeat for the other plates.
+Draw each plate in **Create 2D**, then right-click its closed spline and choose **Promote to foam pattern**. You can also copy and paste an existing foam pattern. Leave the plates as separate base patterns so each keeps its own thickness, material, and forming. For an ab plate, choose **Form → Spherical form** and start with **Gentle curve**. Repeat for the other plates.
 
 Click **Move foam**, then click a plate in the left-hand **Patterns** 3D view to select its base. Drag to arrange it beside the other plates. Clicking a raised layer or an attached rivet selects and moves the whole base stack. Each completed drag is one undoable move; press **Escape** during a drag to restore its starting position.
 

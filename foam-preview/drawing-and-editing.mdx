@@ -11,20 +11,22 @@ The outline defines what you cut from a flat sheet. Start with a few anchors at 
 ## Draw an outline
 
 1. Open a workspace with the pattern view available.
-2. Click **Draw foam** on the **Pattern tools** toolbar.
+2. In the **Create 2D** panel, choose **Line** to draw a spline. You can also start with **Rectangle** or **Circle**.
 3. Click in the 2D view to place anchors. Hold **Ctrl** while placing an anchor to make it a curve point.
 4. Click near the first anchor to close the outline. A closed outline needs at least three anchors and must enclose an area.
-5. Select the resulting pattern to adjust its thickness and forming.
+5. Select the closed spline, right-click it, and choose **Promote to foam pattern**. It becomes a solid foam piece in the left-hand **Patterns** preview. You can now adjust thickness and forming.
 
-Press **Enter** while drawing to finish an open path. Press **Escape** to discard the unfinished drawing. An open path stays a drawing line until you close it with **Open / close**.
+Press **Enter** while drawing to finish an open path. Press **Escape** to discard the unfinished drawing. Closing a construction spline does not create foam automatically. Promotion requires one closed outline that encloses an area and does not cross itself.
 
 <Tip>
 Avoid placing several anchors at almost the same location. Extra anchors make curves harder to edit and can produce overlapping edges.
 </Tip>
 
+Promotion preserves the spline curve, its 2D position, rotation, scale, and appearance. It supports undo. Promoted rectangles and circles become editable spline outlines. Existing cloth patterns are not converted through this foam command.
+
 ## Edit anchors and handles
 
-Select the pattern, then click **Edit points**. Select an anchor or handle and move it with the pattern editing controls. Click **Edit points** again to leave point editing.
+Select the shape, right-click, then choose **Edit Shape**. Once promoted, **Edit points** is also a shortcut. Select an anchor or handle and move it with the pattern editing controls. Click **Edit points** again to leave point editing on a promoted pattern.
 
 | Tool | When to use it | Effect |
 | --- | --- | --- |
@@ -45,11 +47,11 @@ For **Straight**, **Curve**, and **Divide**, the selected anchor identifies the 
 
 ## Mirror and close
 
-**Mirror H** mirrors the outline left to right about its center. **Mirror V** mirrors it top to bottom. These commands change the selected outline and support undo; they do not create a linked mirrored copy.
+**Mirror H** mirrors the outline left to right about its center. **Mirror V** mirrors it top to bottom. These commands edit the shared outline and support undo; linked instances follow that shape edit. Use **Create mirror instance** to create a separate reflected piece.
 
 **Open / close** toggles the closing segment. Opening a pattern removes its solid foam preview. Close it again when the cut outline is ready.
 
-The existing polygon creation dialog also supports completing a symmetric outline during drawing. That creates the mirrored outline at completion; later edits are independent.
+The polygon creator also supports symmetric drawing. Converting or promoting a symmetric shape to the new manager retains live half-outline symmetry. **Enable live symmetry** adds this behavior to an open half-outline with at least three anchors. **Bake symmetric outline** turns the reflection into ordinary editable points. See [Instances and gluing](/foam-preview/instances-and-gluing) for the difference between one continuous symmetric pattern and two linked halves.
 
 ## Check measurements and output
 
