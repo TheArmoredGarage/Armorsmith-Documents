@@ -1,0 +1,36 @@
+name: Licensing documentation checks
+
+on:
+  pull_request:
+    paths:
+      - 'getting-started/**'
+      - 'troubleshooting/updates-and-licensing.mdx'
+      - 'introduction.mdx'
+      - 'index.mdx'
+      - 'docs.json'
+      - 'tests/**'
+      - '.github/workflows/licensing.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'getting-started/**'
+      - 'troubleshooting/updates-and-licensing.mdx'
+      - 'introduction.mdx'
+      - 'index.mdx'
+      - 'docs.json'
+      - 'tests/**'
+      - '.github/workflows/licensing.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  licensing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check licensing pages and navigation
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
