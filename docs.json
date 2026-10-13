@@ -113,7 +113,8 @@
             "group": "Python",
             "pages": ["api/python-scripting", "api/blender-scripters"]
           }
-        ]
+        ],
+        "hidden": true
       },
       {
         "tab": "Foam patterns preview",
