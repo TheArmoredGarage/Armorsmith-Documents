@@ -1,0 +1,53 @@
+---
+title: "Fit an avatar from photos"
+sidebarTitle: "Photo fitting"
+description: "Load front and side photos, calibrate height, review body points and measurements, and apply a first fitting pass."
+---
+
+Photo fitting provides a starting shape for a built-in avatar. It estimates dimensions from photos and your standing height. Verify those estimates with a tape measure before fitting final costume parts.
+
+## Prepare the photos
+
+- Take a front photo with the whole body, head to feet, in frame. Stand upright with arms slightly away from the torso and wear fitted clothing.
+- Place the camera at chest height and keep it level. Avoid wide-angle distortion.
+- Add a profile photo taken in the same pose, turned 90 degrees, to improve estimates of chest, waist, and hip depth.
+- Record standing height without shoes. The photo dialog accepts centimetres or inches and scales its estimates from that height.
+
+Photo fitting currently supports built-in avatars. Imported bodies can still use reference images for visual comparison.
+
+## Add and analyze photos
+
+1. Choose **Avatar → Edit Avatar**. On the Avatar 4 **Avatar** tab, find **Photo fitting** and click **Fit avatar from photos…**.
+2. Under **Front photo**, click **Choose photo…** and open a JPG, JPEG, PNG, or WebP. The front photo is required.
+3. Optionally choose a **Side photo**. Use a true profile rather than a second front view.
+4. Enter **Standing height** and choose **cm** or **in**.
+5. Click **Analyze photo**. Wait for the **Refine fit** stage, then review the front and side views.
+
+## Review the fit before applying
+
+1. Inspect the detected body points. Use **Adjust points** and drag misplaced dots to their intended body locations. Use the **Avatar outline** slider to compare the preview with the person.
+2. Review **Measurements**. Lengths follow the dots; some girths need a side photo or manual input. A value marked **Kept** or **Current avatar** has not been reliably estimated from the photo.
+3. Enter verified tape measurements in the value fields as needed. Use **Keep left and right matched** when you want paired values to change together.
+4. Open **Show all … measurements** to review additional values. Resolve out-of-range warnings and check regions where arms touch the torso.
+5. Click **Apply to avatar**, inspect the result in the Costume viewport, and save your avatar. Use **Cancel** to leave without applying the fitting pass.
+
+The applied result is a circumference and shape approximation, not a certified body scan. Recheck head, chest, waist, and limb dimensions with the measurement guides. Applying photo fitting is undoable through **Edit → Undo**.
+
+## Optional review tools
+
+The **Adjust points** menu includes **Edit girth edges instead of body points**, **Mirror point edits left/right**, **Undo point edit**, **Redo point edit**, and **Reset points to detected**. These help correct the photo evidence before applying it.
+
+Use **Reset to photo values** to discard manual measurement changes in the dialog. Use **Save printable tailor sheet (PDF)…** to record the photo/avatar values alongside tape measurements.
+
+## If the estimate is incomplete
+
+| Symptom | Next step |
+| --- | --- |
+| Girths keep their current values | Add a profile photo or enter tape measurements. Retake photos with arms away from the torso. |
+| The side photo is reported as facing the camera | Replace it with a true profile. |
+| Detection fails | Review the message and place the dots by hand, or use a clearer photo. |
+| A value is outside the supported range | Check height, units, dot placement, and the entered measurement. |
+| The avatar changed while you were reviewing | Reopen photo fitting to refresh the estimates against the current body. |
+| The reference photo cannot be saved | Resolve the reported file-saving problem; the application leaves the avatar unchanged. |
+
+Return to [body measurements](/avatar/body-measurements) to refine the result, then use [Fit Checker](/parts/fit-checker) on attached parts.

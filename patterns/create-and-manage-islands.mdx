@@ -41,3 +41,9 @@ Start with broad areas using Flood Fill Island, then refine their boundaries wit
 <Note>
 Decimation changes the geometry you use for pattern work. Check the model after reducing its polygon count, especially around details you need to preserve.
 </Note>
+
+## Adjust flood fill boundaries
+
+Select **Flood Fill Island** above the 3D model. The floating **Island Flood Fill** dialog provides **Edge threshold**, from **0 to 180 degrees**, as a slider and numeric value. Lower values fill smaller areas; raise the threshold when you want the fill to continue across more changes in the surface.
+
+Choose the island, set the threshold, and click the connected area to fill. Inspect the boundary before continuing. Changing the threshold affects the next fill; it does not redraw a completed island by itself. Refine excess faces with **Erase Island**, or undo the fill and try another threshold.

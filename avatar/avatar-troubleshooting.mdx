@@ -20,11 +20,11 @@ Compare front and side views. Two bodies can share a circumference but differ in
 
 Check where you took the measurement. Upper and lower hip readings are different. For lengths, compare your endpoints with the highlighted guide.
 
-Use local **Details** controls after the larger dimensions are correct. See [Body measurements](/avatar/body-measurements).
+On Avatar 4, use **Head** and **Circumferences** shape controls after the larger dimensions are correct. Older bodies use **Details**. See [Body measurements](/avatar/body-measurements).
 
 ## The female chest looks too full or sits in the wrong place
 
-Adjust **Breast Size**, **Breast Height**, and **Breast Projection** independently under **Details → Torso**. Start with size, then adjust height and forward projection.
+On Avatar 4, use **Circumferences → Breast shape**, choose an approximate cup preset, then refine spacing, support, and the additional controls. Older bodies use **Breast Size**, **Breast Height**, and **Breast Projection** under **Details → Torso**.
 
 Do not shrink a correctly measured ribcage solely to reduce breast fullness. [Chest and breast shape](/avatar/chest-and-breast-shape) explains the controls and how to use full-bust notes as a reference.
 
@@ -36,15 +36,15 @@ Leave the converted values if you want that shape. Moving all three sliders to t
 
 ## Changing height alters other measurements
 
-**Height Estimate** scales the avatar and its existing dimensions together. Set it first, then refine individual measurements. Recheck lengths and circumferences if you change it later.
+**Standing height** changes the body height while respecting measurement locks. Set it before fine-tuning. Recheck lengths and circumferences after changing it; unlock a field if you intend to let that dimension change.
 
 ## Changing arm length or inseam moves a joint
 
 These compound measurements adjust their component segments proportionally. Set the total first, then refine upper/lower arm or leg measurements to place the elbow or knee correctly.
 
-## Switching gender resets the setup
+## Switching the base avatar changes the shape
 
-**Gender** changes the base body and resets its measurements and customizations. Choose it before fine-tuning. Use [separate avatar files](/avatar/saving-and-reusing-avatars) to retain more than one setup.
+**Base avatar** switches between the built-in Male and Female bodies and transfers the measurement profile and supported appearance settings. The new base geometry can still change the silhouette. Inspect the result and use **Edit → Undo** to reverse the switch. Use [separate avatar files](/avatar/saving-and-reusing-avatars) to retain distinct setups.
 
 ## A costume part no longer fits after an avatar change
 
@@ -67,3 +67,7 @@ For posing, verify a compatible skeleton. OBJ and STL meshes are static body ref
 | **Avatar → Reset Avatar** | Restore measurements and appearance settings to defaults. Save a copy first. |
 
 If the issue persists, include the application version, whether the avatar is built-in or custom, your steps, and a screenshot through **Help → Submit Bug**. Include the affected `.avatar` or custom model when it helps reproduce the problem.
+
+## Photo fitting leaves some values unchanged
+
+Values marked **Kept** need a clearer photo, a side photo, or manual measurements. Review the detected points and enter tape measurements before applying. See [photo-fitting troubleshooting](/avatar/photo-fitting#if-the-estimate-is-incomplete).

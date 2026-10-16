@@ -158,9 +158,6 @@ Rotation snapping constrains object rotation to fixed angular increments.
 
 The **Rendering** tab controls the visual quality of the Work Area and the rendering features used to display your avatar and costume.
 
-<Frame>
-  ![Rendering Preferences](/images/preferences-rendering.png)
-</Frame>
 
 ### Display Settings
 
@@ -181,31 +178,31 @@ These options allow you to adjust the balance between visual quality and renderi
     Higher values can produce smoother-looking surfaces but may require additional rendering resources.
   </Accordion>
 
-  <Accordion title="Enable FXAA">
+  <Accordion title="EnableFXAA">
     Enables **Fast Approximate Anti-Aliasing (FXAA)**.
 
     FXAA reduces the appearance of jagged edges in the rendered scene with a relatively small performance cost.
   </Accordion>
 
-  <Accordion title="Enable Ambient Occlusion">
+  <Accordion title="EnableAmbientOcclusion">
     Enables ambient occlusion, which adds subtle shading where surfaces meet or are close together.
 
     This provides additional depth and makes the shape of objects easier to perceive.
   </Accordion>
 
-  <Accordion title="Enable Shadows">
+  <Accordion title="EnableShadows">
     Enables real-time shadows in the Work Area.
   </Accordion>
 
-  <Accordion title="Enable Lighting">
+  <Accordion title="EnableLighting">
     Enables lighting calculations when rendering the scene.
   </Accordion>
 
-  <Accordion title="Enable Reflections">
+  <Accordion title="EnableReflections">
     Enables reflections on supported materials and surfaces.
   </Accordion>
 
-  <Accordion title="Global Light Intensity">
+  <Accordion title="GlobalLightIntensity">
     Controls the overall intensity of the lighting in the Work Area.
 
     Increase this value to make the scene brighter or decrease it for softer lighting.
@@ -219,3 +216,6 @@ These options allow you to adjust the balance between visual quality and renderi
 <Note>
   Rendering preferences affect how your project is displayed in Armorsmith Designer. They do not change the dimensions or geometry of your costume pieces.
 </Note>
+### Advanced effects in this build
+
+Bloom, depth of field, and the Environment Lighting panel are available in this build. The generated render controls display compact names such as **EnableBloom**, **BloomIntensity**, **EnableDepthOfField**, **EnableLighting**, and **EnableReflections**. See [lighting and rendering](/interface/lighting) for their defaults, practical uses, and indirect-lighting controls.

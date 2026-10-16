@@ -8,9 +8,7 @@ The **Fit Checker** colors your attached costume parts according to their estima
 
 Fit checking changes the display colors. It does not resize your parts or change their material thickness.
 
-<Note>
-The color-range dialog, improved group support, and preparation spread across frames described below are upcoming improvements. Earlier builds use a fixed **20 mm** color range, may not show heatmaps for groups, and can pause when you first enable Fit Checker on a dense model.
-</Note>
+
 
 ## Check a part's fit
 
@@ -23,7 +21,7 @@ The color-range dialog, improved group support, and preparation spread across fr
   <Step title="Turn on Fit Checker">
     Click **Fit Checker** in the toolbar above the **Costume viewport**. The heatmap appears on your attached parts; you do not need to select each part to check it.
 
-    In builds with the updated controls, a small **Fit Check** dialog appears in the viewport's top-right corner. Wait for **Preparing fit check...** to change to **Fit check ready** before judging the result.
+    A small **Fit Check** dialog appears in the viewport's top-right corner. Wait for **Preparing fit check...** to change to **Fit check ready** before judging the result.
   </Step>
   <Step title="Inspect and adjust the fit">
     Rotate the view and inspect each part from several angles. Use [**Translate**](/interface/translate-tool), [**Rotate**](/interface/rotate-tool), and [**Scale**](/interface/scale-tool) to adjust its placement and size. The heatmap updates as the fit changes.
@@ -67,14 +65,16 @@ Closing the dialog with **×** leaves the heatmap active. Toggle **Fit Checker**
 
 ## Check grouped parts
 
-In builds with improved group support, attached groups show a heatmap on their individual mesh parts. You can move, rotate, or scale the group and inspect the resulting clearance without ungrouping it.
+Attached groups show a heatmap on their individual mesh parts. You can move, rotate, or scale the group and inspect the resulting clearance without ungrouping it.
 
 Each member uses its own source workspace's material thickness when that setting is available. Group fit checking also works after loading a costume and after grouping or ungrouping with undo and redo.
 
 ## Dense models and practical limits
 
-The first check can take longer on a dense model. Updated builds spread preparation over multiple frames so the viewport can continue responding while the heatmap is prepared. Large models may still take time to finish, especially after geometry changes.
+The first check can take longer on a dense model. Preparation runs over multiple frames so the viewport can continue responding while the heatmap is prepared. Large models may still take time to finish, especially after geometry changes.
 
 The heatmap is an estimate based on sampled geometry. Dense meshes can use reduced geometry for the fit calculation, so small features may need closer inspection. See [mesh level of detail](/interface/mesh-level-of-detail) for how reduced display geometry works.
 
 Fit Checker measures part-to-avatar clearance. It does not simulate muscle contraction, padding compression, straps, or collisions between separate costume parts. Increasing the color range helps you review a larger clearance allowance, but does not simulate those effects. Inspect several poses and verify critical gaps with [**Measure**](/interface/measurement-tool) and a physical test fit.
+
+For an open or non-solid custom avatar, the dialog can report **Surface distance only: avatar is not a closed solid.** Treat that result as distance to the visible surface; it cannot reliably distinguish inside from outside.
