@@ -18,9 +18,9 @@ Use **File** to create, open, save, import, and export costume files and pattern
 | **Merge** | Merge an existing costume file with the costume you have open. |
 | **Save** | Save to the current file location. For a costume you have never saved, this opens **Save As**. Shortcut: **Ctrl+S**. |
 | **Save As** | Save the costume with a new name or in a new location. Shortcut: **Ctrl+Shift+S**. |
-| [**Publish Costume…**](/interface/costume-files#publish-one-file-for-sharing) | Coming soon: package the current costume into one `.costume` file for sharing. Your working costume stays open. |
+| [**Publish Costume**](/interface/costume-files#publish-one-file-for-sharing) | Package the current costume into one `.costume` file for sharing, including required linked sources. Your working costume stays open. |
 | **New Workspace** | Create a blank workspace for making templates with the 2D spline tools. |
-| [**Import**](/parts/importing-models) | Import an external 3D model and attach it to the current costume. Check the import dialog for supported file types. |
+| [**Import**](/parts/importing-models) | Import a model into a workspace. For OBJ/STL/3MF/FBX, choose storage and review orientation before attaching it to the avatar. |
 | **Recent Imports** | Open a submenu of recently imported files. |
 | **Search Online** | Open a search window for Armorsmith's online repository of files. |
 | [**Export**](/patterns/export-formats) | Export costume parts as 3D models or generated templates as printable files, such as PDF pattern sheets. |
@@ -44,7 +44,7 @@ Use **Avatar** to edit measurements and poses, load a custom model, and save ava
 | [**Open Avatar**](/avatar/saving-and-reusing-avatars) | Choose an existing avatar file from your computer. |
 | [**Save Avatar**](/avatar/saving-and-reusing-avatars) | Save the current avatar to its existing file location. For an avatar you have never saved, this opens **Save As**. |
 | [**Save As**](/avatar/saving-and-reusing-avatars) | Save the avatar with a new name or in a new location. |
-| [**Custom Avatar**](/avatar/custom-avatars) | Load an OBJ, STL, or FBX body model. Check its scale, skeleton, and attachment points before fitting parts. |
+| [**Custom Mesh → Import**](/avatar/custom-avatars) | Load an OBJ, STL, or FBX body model. Check its scale, skeleton, and attachment points before fitting parts. |
 | **Export Avatar** | Export the avatar as a 3D model. Check the export dialog for supported file types. |
 | **Save Pose** | Save the current pose to a file. |
 | **Load Pose** | Open a pose file and apply it to the current avatar. |
@@ -140,3 +140,10 @@ Use **Help** to find documentation, updates, support, and community resources.
 - **Import first, position second.** Use **File → Import** to bring in models, then fine-tune their placement with the [Transform Panel](/interface/transform-panel).
 - **Check for updates.** Use **Help → Check For Updates**, then read the changelog to see what changed.
 </Tip>
+
+## Additional tools in this build
+
+- [**File → Export → Costume to FBX...**](/parts/exporting-costumes#export-the-costume-to-fbx) exports the avatar and costume pieces as separate meshes.
+- [**File → Export → Printable Figure (STL)...**](/parts/exporting-costumes#build-a-printable-miniature) builds a preview of a solid miniature before saving STL.
+- [**Tools → Environment Lighting**](/interface/lighting#environment-lighting-panel) opens lighting authoring and bake controls in the release build.
+- [**Avatar → Custom Mesh → Import**](/avatar/custom-avatars) imports an OBJ, STL, or compatible FBX body. It is separate from File → Import.

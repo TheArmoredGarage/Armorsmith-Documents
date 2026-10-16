@@ -1,90 +1,55 @@
 ---
 title: "Creating your avatar"
 sidebarTitle: "Create avatar"
-description: "Create an avatar from your measurements, refine its shape, and save it before fitting costume parts."
+description: "Set up Avatar 4, enter body measurements, refine your shape, and save a fitting reference."
 ---
 
-Your avatar is the body you fit costume parts around. Start with the built-in body closest to your proportions, enter your measurements, and refine the silhouette before attaching parts.
-
-Open **Avatar → Edit Avatar** to show **Avatar Customization**. Changes appear immediately in the **Costume viewport**. Expand **Full Body**, **Measurements**, **Circumferences**, and **Details** as you work.
-
-<Frame>
-  ![Avatar Customization panel beside an avatar with measurement guides](/images/Avatar-Customization.png)
-</Frame>
+Your avatar is the body you fit costume parts around. In this build, the included male and female bodies use **Avatar 4**. Open **Avatar → Edit Avatar** to show **Avatar Customization**.
 
 ## Before you start
 
-Have a flexible tape measure, your recorded measurements, and the clothing you expect to wear beneath the costume. Set your preferred measurement units in [**Settings → Preferences**](/interface/preferences).
+Have a flexible tape measure and your recorded measurements. Wear the base layers and supportive garment intended for the costume. Set your preferred units in [Preferences](/interface/preferences).
 
-For a costume worn over a bodysuit or supportive undergarment, measure while wearing it. Keep a separate set of measurements if you also need an avatar for a different clothing setup.
+Save an existing setup before changing bodies or resetting it. An avatar is a fitting reference; check critical dimensions and make a physical test fit before committing to final materials.
 
 ## Create a built-in avatar
 
-<Steps>
-  <Step title="Choose the base body">
-    Under **Full Body**, choose **Male** or **Female** in **Gender**. Use the body whose starting shape best suits the person you are fitting.
+1. On the **Avatar** tab, choose **Male** or **Female** in **Base avatar**. Choose the starting body closest to your proportions. Switching bodies transfers the existing measurement profile and supported appearance settings; inspect the resulting shape rather than assuming a reset.
+2. Set **Age** and the **Body build** controls as a starting shape. **Body mass** and **Muscularity** are relative shape controls, not weight in kilograms or pounds.
+3. Enter **Standing height** with units, such as `175 cm`, and press **Enter**. Set height before refining other dimensions. Entering a height makes later age changes preserve your chosen standing height.
+4. Open **Measurements** and enter lengths using the highlighted guides as your endpoints. Set compound lengths before their component segments. See [Body measurements](/avatar/body-measurements).
+5. Open **Circumferences** and match the levels shown by the rings. Compare front and side views while adjusting size and shape. Use [Chest and breast shape](/avatar/chest-and-breast-shape) for torso and breast controls.
+6. Use **Head** for head dimensions and face shape. Use **Hands** for the available hand and finger measurements. Availability depends on the loaded avatar rig.
+7. Inspect the body from the front, side, and back. Recheck values after larger shape changes, then choose **Avatar → Save As** to save an `.avatar` file.
 
-    Choose this before entering measurements: changing **Gender** resets measurements and customizations to the selected body's defaults.
-  </Step>
-  <Step title="Set the overall height">
-    Set **Height Estimate** first. Use its slider or enter a measurement in the value field and press **Enter**.
+## Find the right tab
 
-    Height scales the avatar and its existing dimensions together. Set it before refining individual lengths and circumferences.
-  </Step>
-  <Step title="Match the body lengths">
-    Expand **Measurements**. Start with **Torso Length**, **Arm Length**, and **Inseam**, then refine the individual segments.
-
-    Hover over a measurement to highlight its guide in orange. Use the endpoints to identify where to measure your body. Enter the value and press **Enter**.
-
-    [Body measurements](/avatar/body-measurements) explains the fields and how compound measurements affect individual segments.
-  </Step>
-  <Step title="Set circumferences and shape">
-    Expand **Circumferences**. Enter measurements around your head, torso, arms, and legs at the levels shown by the guides.
-
-    **Size** adjusts the circumference setting. **Shape** adjusts the balance between width and depth. Compare front and side views as you refine the shape.
-  </Step>
-  <Step title="Refine the silhouette">
-    Expand **Details**. Use **Head** for facial features and **Torso** for breast size, height, projection, and butt size.
-
-    The three breast controls have neutral midpoints and work independently. Follow [Chest and breast shape](/avatar/chest-and-breast-shape) to adjust them without using ribcage size to compensate for breast fullness.
-  </Step>
-  <Step title="Check and save">
-    Inspect the avatar from the front, side, and back. Recheck the numbers after changing height or compound lengths.
-
-    Choose **Avatar → Save As** and save an `.avatar` file with a descriptive name. See [Saving and reusing avatars](/avatar/saving-and-reusing-avatars).
-  </Step>
-</Steps>
-
-## Understand the editor sections
-
-| Section | Use it for |
+| Tab | Use it for |
 | --- | --- |
-| **Full Body** | Base body, height, hair, colors, visibility, and a reference image. |
-| **Measurements** | Body lengths and the positions of joints and body segments. |
-| **Circumferences** | Dimensions around the body and the width/depth balance of those regions. |
-| **Details** | Local shape adjustments for the face and torso. These sliders are shape controls rather than tape-measure values. |
+| **Avatar** | Base avatar, standing height, age, body build, photo fitting, appearance, and viewport display. |
+| **Measurements** | Lengths, proportions, and body measurement guides. |
+| **Circumferences** | Body rings, local shape, and the available breast-shape controls. |
+| **Head** | Head circumference, width/depth dimensions, and face shaping. |
+| **Hands** | Available hand/finger measurements and left/right hand framing. |
 
-## Use a reference photograph
+Older built-in avatars use collapsible **Full Body**, **Measurements**, **Circumferences**, and **Details** sections. Their layout and detail controls differ from Avatar 4. Imported bodies have their own [custom-avatar workflow](/avatar/custom-avatars).
 
-Under **Full Body**, enable **Show Reference Image** and choose a JPG or PNG. Use **Reference Size** to scale the displayed image and **Reference Offset** to move it vertically.
+## Start from photographs
 
-Use a photograph taken straight on, with the whole body visible and the camera level. A side photograph helps you check depth. Wide-angle distortion, a tilted camera, and loose clothing can make a photograph misleading.
+On **Avatar**, under **Photo fitting**, click **Fit avatar from photos…**. Supply a front photo and your standing height; a side photo helps estimate depth. Review the detected points and measurements before applying them. Follow [Fit an avatar from photos](/avatar/photo-fitting).
 
-Treat the image as a visual reference. Loading it does not automatically extract measurements or resize the avatar.
+**Show reference image** displays an image for visual comparison. Loading a reference image alone does not run photo fitting or resize the body.
 
-## Check the avatar before fitting parts
+## Refine measurements in the viewport
 
-- Hide attached parts with **Show Costume** to see the body clearly.
-- Use [viewport navigation](/interface/viewport-navigation) to inspect the front, side, and back.
-- Check shoulder and hip width, torso depth, limb lengths, and the position of the fullest chest area.
-- Check the intended clothing setup, including footwear, hair, padding, and supportive undergarments.
+While editing the avatar, hover over a measurement control to identify its guide. Drag an available guide handle to preview an adjustment, then release it to commit the change. Check the value in the panel. A locked measurement cannot be dragged; unlock it first if you intend to change it.
 
-An avatar is a fitting reference. Its shape does not guarantee that an imported costume part fits. [Attach the part](/parts/attaching-parts), adjust its position and scale, and use [Fit Checker](/parts/fit-checker) to inspect clearance before generating final patterns.
+On **Head**, open **More head measurements** for **Head Width (side to side)** and **Head Length (front to back)**. Editing one keeps the other dimension while circumference changes with the shape.
 
-## Reset a measurement or start again
+Use the lock beside a measurement to preserve it while related dimensions change. Locking is undoable. If a combination cannot be applied, read the panel's error and review the affected values rather than forcing every field to a new target.
 
-Use the **Reset** button beside a length or circumference to restore that field's default. Recheck related values after resetting a compound measurement.
+## Check and save before fitting parts
 
-**Avatar → Reset Avatar** restores the avatar's defaults, including measurements and appearance settings. Save a copy before using it. To discard only pose changes, use **Avatar → Reset Pose** instead.
+Use **Show Costume** to hide attachments while you inspect the body. Check clothing, footwear, head shape, and the intended hairstyle. Choose **Avatar → Save As** to keep separate setups for different wearers or clothing.
 
-For a scan or a model made in another application, follow [Custom avatars](/avatar/custom-avatars). For a shape that still does not look right, see [Avatar troubleshooting](/avatar/avatar-troubleshooting).
+Then [attach a costume part](/parts/attaching-parts), adjust its fit, and use [Fit Checker](/parts/fit-checker). For recovery and reset choices, see [Avatar troubleshooting](/avatar/avatar-troubleshooting).

@@ -1,69 +1,75 @@
 ---
-title: "Importing 3D Costume Models into Armorsmith Designer"
+title: "Import costume models"
 sidebarTitle: "Importing"
-description: "Learn how to import OBJ, STL, FBX, and PDO model files into Armorsmith Designer to start building and fitting your cosplay costume."
-hidden: true
+description: "Import OBJ, STL, 3MF, FBX, PDO, and ADO files; choose storage, review orientation, and organize multi-model imports."
 ---
 
-Armorsmith Designer supports several common 3D file formats, so you can bring in models from a wide variety of sources — whether you downloaded them from a model-sharing site, exported them from your own 3D software, or unfolded them in Pepakura. Once a model is in the scene, you can attach it to your avatar and begin fitting your costume.
+Import a model into a workspace before attaching it to your avatar. A workspace holds the source model and its pattern work; importing does not automatically fit or attach the model.
 
-## Supported File Formats
+## Before you import
 
-<CardGroup cols={2}>
-  <Card title="OBJ" icon="cube" href="#importing-a-model">
-    A widely supported, geometry-only format. Most 3D modeling tools and model libraries export OBJ files. Materials may be stored in a companion `.mtl` file.
-  </Card>
+Save your costume. Keep the source model and any companion material or texture files together. Know a real dimension of the part so you can check its size after importing.
 
-  <Card title="STL" icon="print" href="#importing-a-model">
-    The standard format for 3D printing. STL files contain only mesh geometry — no color or material data. Common for armor pieces sourced from print-ready libraries.
-  </Card>
+Use **File → Import** for costume parts. Use [**Avatar → Custom Mesh → Import**](/avatar/custom-avatars) for a body model, or [**Add Animation**](/avatar/posing#import-an-animation) for an animation clip.
 
-  <Card title="FBX" icon="layer-group" href="#importing-a-model">
-    A full-featured format that can carry mesh data, textures, and scene hierarchy. Useful when importing models exported from tools like Blender, Maya, or 3ds Max.
-  </Card>
+## Supported file formats
 
-  <Card title="PDO" icon="scissors" href="#importing-a-model">
-    Pepakura Designer's native format. Armorsmith loads PDO files directly and can generate unfolded patterns from them — no copy of Pepakura Designer required.
-  </Card>
-</CardGroup>
+| Format | What to expect |
+| --- | --- |
+| **OBJ** | Mesh geometry; keep its companion MTL and texture files available. |
+| **STL** | Mesh geometry without color or texture information. Check size because the file does not identify its measurement units. |
+| **3MF** | Model geometry, declared units, assembly transforms, and supported colors. A file can contain several models. |
+| **FBX** | Model geometry and supported scene/material information. Importing a costume model is separate from importing a rigged avatar or animation. |
+| **PDO** | A Pepakura model and its pattern data. Uses its existing import workflow rather than the new model storage/orientation dialog. |
+| **ADO** | An Armorsmith part file. Uses its existing part import workflow. |
 
-## Importing a Model
+## Importing a model
 
-<Steps>
-  <Step title="Open the Import dialog">
-    In the menu bar, go to **File → Import**. The file browser will open.
-  </Step>
-  <Step title="Select your file">
-    Navigate to the location of your model file. Select a file with a supported extension (`.obj`, `.stl`, `.fbx`, or `.pdo`) and click **Open**.
-  </Step>
-  <Step title="Review the import settings">
-    Armorsmith may present options such as unit scale or axis orientation depending on the file type. Adjust these if needed, then confirm.
-  </Step>
-  <Step title="Confirm the import">
-    Click **Import** (or **OK**) to bring the model into your scene. The part will appear in the 3D viewport and in the Parts list in the side panel.
-  </Step>
-</Steps>
+1. Choose **File → Import**. In **Import a Model/PDO**, select your file and click **Open**. You can select several files at once.
+2. For OBJ, STL, 3MF, or FBX, the **Model import** dialog opens. Under **Store the source file**, choose:
+   - **Include in costume**: the default; saves the model inside the costume.
+   - **Link to original file**: keeps the original file as the full-detail source. Keep that file available at its saved location. See [linked model files](/parts/linked-files).
+3. Leave **Review orientation before import** checked to preview alignment. Click **Next: Review orientation**. To keep the source orientation without reviewing it, clear the checkbox and click **Import**.
+4. If you selected several model files, answer the **Multiple Imports** question. Choose **Yes** and enter a group name to preserve an assembly as a group, or **No** to import independently. This group choice is not offered when the selection contains PDO or ADO files. Group imports skip orientation review to preserve assembly layout.
+5. If a 3MF contains several models, choose how to organize them as described below.
+6. Complete any orientation review, then wait for loading to finish. Find the imported workspace or workspaces in the [Workspaces Panel](/interface/workspaces-panel).
+7. Inspect the model from several angles. Use [Measure](/interface/measurement-tool) to compare a known dimension. Correct size or orientation before [attaching the workspace](/parts/attaching-parts).
 
-<Note>
-  PDO files are the native format for Pepakura Designer, a popular tool for creating paper-craft armor patterns. When you import a PDO file into Armorsmith, the app reads the 3D mesh and lets you generate flat patterns directly — you do not need a separate Pepakura Designer license to work with these files.
-</Note>
+Opening an OBJ, STL, FBX, or 3MF from **File → Recent Imports** also asks for the model storage and orientation choices.
 
-## After Importing
+## Review orientation
 
-<Info>
-  **Coming soon:** You will be able to include imported meshes in your armor file or link to their source files. See [Linked files](/parts/linked-files) for storage choices, missing-file recovery, and portable copies.
-</Info>
+The **Review orientation** dialog compares **Before** and **After** previews. Use **View: Front**, **Side**, and **Top** to check that the part is upright and faces the intended direction.
 
-<Note>
-  Models created in different software often use different unit scales or coordinate systems. A model that looks correct in its source app may appear very large, very small, or rotated unexpectedly after import. Use the **Scale** and **Rotate** transform tools to correct the size and orientation before attaching the part to your avatar. See [Move, Rotate, and Scale Costume Parts](/parts/transforming-parts) for details.
-</Note>
+1. Inspect the suggested alignment. A suggestion can keep the original orientation when no reliable correction is found.
+2. Open **Adjust orientation** if you need a different result. Choose an **Automatic alignment** option, use **Reapply suggestion**, enter X/Y/Z rotations in degrees, or use a **Flip** button for a 180-degree turn.
+3. Use **Reset to original** to discard the adjustments in the preview.
+4. Click **Import with orientation** to accept the preview, or **Import original** to keep the source orientation.
 
-<Tip>
-  Looking for models to import? Several free and paid libraries host print-ready and cosplay-specific 3D files:
+Alignment changes orientation, not the part's intended physical size. Check its dimensions separately. If no usable surface is available for review, inspect the loaded model directly.
 
-  - [**Thingiverse**](https://www.thingiverse.com) — large community library of free STL and OBJ files
-  - [**MyMiniFactory**](https://www.myminifactory.com) — curated models, including many cosplay and prop designs
-  - [**Printables**](https://www.printables.com) — Prusa's model-sharing platform with a growing cosplay section
+## Import several models from a 3MF
 
-  You can also model parts from scratch in tools like Blender, Fusion 360, or ZBrush and export them as OBJ or FBX for import into Armorsmith.
-</Tip>
+In **Import 3MF Models**, choose one of these options:
+
+| Option | Use it when |
+| --- | --- |
+| **Separate Workspaces** | You want to manage and attach the models independently. This is the default choice. |
+| **Merge into One Workspace** | You want the models together in one workspace. |
+| **Cancel** | You want to stop this 3MF import. |
+
+For example, choose **Separate Workspaces** for a helmet and separate cheek pieces you plan to fit individually. Choose **Merge into One Workspace** when you want to manage the assembly together. This choice concerns models inside one 3MF; the **Multiple Imports** group question concerns several selected files.
+
+The importer converts declared 3MF units to the application's internal millimetres and reads supported model/component transforms. It is a model importer: do not assume slicer settings, supports, printer profiles, or every 3MF extension will transfer.
+
+## Troubleshoot an import
+
+| Symptom | What to check |
+| --- | --- |
+| The part is too large or small | Compare a known dimension with Measure. Check source units, then use Scale or correct the source model. |
+| The model faces the wrong direction | Use orientation review, or Rotate after loading. Check front and side views before attaching it. |
+| **3MF Import Error** appears | Read the specific error. Unsupported required extensions, invalid assemblies, or missing material resources can prevent import. Try a model-only 3MF or export OBJ/STL from the source application. |
+| A linked file cannot be bundled | The current implementation rejects linked source files larger than 2 GB. Import with **Include in costume** instead. |
+| A linked costume cannot find its model later | Restore the expected original file or follow [missing-source recovery](/parts/linked-files#find-a-moved-or-missing-source-file). |
+
+Save your costume after importing and fitting. For a single-file handoff, use [Publish Costume](/interface/costume-files#publish-one-file-for-sharing).

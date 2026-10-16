@@ -6,19 +6,14 @@ description: "Learn how to update Armorsmith Designer, retrieve a lost serial nu
 
 Armorsmith Designer uses a one-time purchase model through Gumroad. Each paid seat licenses one named individual on up to three computers, with all future updates included at no extra cost. Your serial number is an activation credential for that seat; sharing a serial number does not authorize additional users. Studios need a separately paid seat for every user, whether or not they use the software simultaneously. See the [Licensing guide](/getting-started/licensing). If you need to update the app, recover a lost serial number, or move to a new PC, everything you need is covered below.
 
-<Accordion title="How do I update Armorsmith Designer?">
-  There are two ways to get the latest version:
+## Update Armorsmith Designer
 
-  **Option 1 — In-app update (easiest):**
-  1. Open Armorsmith Designer.
-  2. Go to **Help → Check For Updates**.
-  3. If an update is available, follow the on-screen prompts to download and install it.
+1. Save your work.
+2. Choose **Help → Check For Updates**.
+3. Follow the prompts if an update is available.
 
-  **Option 2 — Re-download from Gumroad:**
-  1. Log in to [gumroad.com](https://gumroad.com) with the email address you used to purchase.
-  2. Go to **Purchases** and find **Armorsmith Designer**.
-  3. Download the latest installer and run it over your existing installation.
-</Accordion>
+You can also download the installer from your Gumroad purchase and run it over the existing installation. For the background startup check and its opt-out, see [Automatic startup update checks](#automatic-startup-update-checks).
+
 
 <Accordion title="I lost my serial number">
   Your serial number is always retrievable from your Gumroad account as long as you have access to the email address used at purchase.
@@ -61,3 +56,11 @@ Armorsmith Designer uses a one-time purchase model through Gumroad. Each paid se
 <Tip>
   Save your serial number somewhere safe — such as a password manager or a dedicated notes file — as soon as you purchase. This makes it easy to retrieve if you ever reinstall, switch computers, or can't access your Gumroad account.
 </Tip>
+
+## Automatic startup update checks
+
+The full Designer build checks for updates in the background once its main window is ready. If a newer valid update is found, **Update Available** asks whether to download and install it. Choose **Yes** to proceed or **No** to continue working. The check does not install an update without that choice.
+
+Select **Don't ask me again** in that prompt to disable automatic startup checks. You can still choose **Help → Check For Updates** manually. Startup checks are not installed in the trial build.
+
+An unsuccessful background request can finish without a message. Silence alone does not confirm that you have the latest version; use the manual check when you need to verify.

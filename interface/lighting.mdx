@@ -1,0 +1,52 @@
+---
+title: "Adjust lighting and rendering"
+sidebarTitle: "Lighting"
+description: "Use bloom, depth of field, indirect lighting, and the Environment Lighting panel to inspect and present a costume."
+---
+
+Lighting changes how your avatar and costume look in the viewport. It does not change part dimensions, pattern scale, or fit clearance. Use clear lighting while fitting; recheck geometry with [Fit Checker](/parts/fit-checker) and [Measure](/interface/measurement-tool).
+
+## Rendering preferences
+
+Open **Settings → Preferences → Rendering**. The generated render-settings labels use the names below, including their capitalization and lack of spaces. Click **OK** to save preferences.
+
+| Control | Use it for | Initial default |
+| --- | --- | --- |
+| **EnableBloom** | Glow around bright highlights. | On |
+| **BloomIntensity** | Strength of the bloom. | 0.15 |
+| **BloomThreshold** | Brightness threshold for bloom. | 1.0 |
+| **BloomSoftKnee** | Softness of the transition into bloom. | 0.5 |
+| **EnableDepthOfField** | Depth-based viewport blur. Disable for inspecting fine edges. | Off |
+| **DofStrength** | Strength of the depth-of-field effect. | 0.65 |
+| **DofRadiusPixels** | Blur radius in pixels. | 1.5 |
+| **EnableLighting** | Scene lighting. | On |
+| **EnableReflections** | Reflections on supported surfaces. | On |
+| **GlobalLightIntensity** | Overall light intensity. | 1.0 |
+
+Saved preferences can differ from these initial defaults. If highlights obscure an edge, lower bloom or turn it off. Turn off depth of field when checking small details.
+
+## Environment Lighting panel
+
+In this release build, choose **Tools → Environment Lighting**. Test builds put the same authoring panel under **Developer**.
+
+Indirect lighting represents light reflected around the environment. Static lightmaps affect the room; diffuse probes provide lighting to avatars and attachments; specular probes supply baked reflections. The advanced renderer can use these alongside direct lights. This build keeps the original room; the Workshop environment is not enabled.
+
+1. Open the panel and choose the lighting setup you want to evaluate. **Create Point**, **Create Spot**, and **Create Tube** add lights for authoring.
+2. Use **Save lighting rig…** or **Load lighting rig…** for a reusable JSON rig. Re-bake indirect lighting after changes to lights, the environment, or the skybox.
+3. Click **Bake environment lighting** to generate the indirect lighting and probes.
+4. Compare the result using the live multipliers below. Recheck your costume from several angles.
+5. If the panel reports that the specular capture needs refreshing, use **Regenerate specular probe**.
+
+| Control | What it changes |
+| --- | --- |
+| **Static indirect (live)** | Environment lightmap brightness. |
+| **Dynamic indirect (live)** | Diffuse probe brightness on the avatar and attachments. |
+| **Specular probe boost (live)** | Baked reflection intensity on supported surfaces. |
+| **Bake workers** | CPU workers used for baking. Auto uses half the logical processors; fewer workers leave more CPU time for other work. |
+| **Lightmap resolution**, **Samples per texel**, **Diffuse bounces** | Bake quality and work required. Higher settings can take longer. |
+| **Lightmap blur radius** | Smoothing within a lightmap island; re-bake to apply. |
+| **Diffuse probe spacing** | Spacing of diffuse samples, shown in metres. |
+
+The three live intensity controls range from **0 to 20×** and do not require a full re-bake just to change their multiplier. A changed static intensity or specular probe position can still require a refreshed specular capture. Read the panel status before judging reflections.
+
+Use [Preferences](/interface/preferences#rendering) for the other rendering options.

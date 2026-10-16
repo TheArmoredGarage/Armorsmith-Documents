@@ -37,6 +37,12 @@ Measuring does not move, resize, or reshape your avatar or costume parts. Choose
 
 Open **Settings > Preferences**, select the **Measurements** tab, and change **Current Units**. The distance readout uses your current unit setting. See [measurement preferences](/interface/preferences#current-units) for more information.
 
+## Use the snapped target
+
+An orange target shows the point the next click will use. Near a mesh vertex, the target snaps to that vertex; elsewhere it follows a surface hit. Check the target before clicking, especially near openings or overlapping parts. Orbit the view if the target is ambiguous.
+
+Vertex snapping uses a small screen-space search radius, so zooming changes which vertices are close to the pointer. It works with available geometry in the model and pattern views as well as visible, unfrozen scene meshes. This point selection is separate from movement-grid snapping.
+
 ## Tips for choosing points
 
 - Orbit and zoom the [Costume Viewport](/interface/viewport-navigation) so you can clearly see both surfaces you want to measure.

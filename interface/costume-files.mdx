@@ -1,13 +1,10 @@
 ---
 title: "Save, share, and publish costume files"
 sidebarTitle: "Costume files"
-description: "Coming soon: understand .costume files, shared assets, workspace folders, legacy .armor saves, and published costume bundles."
-tag: "Coming soon"
+description: "Understand .costume files, shared assets, workspace folders, legacy .armor saves, and published costume bundles."
 ---
 
-<Info>
-**Coming soon:** The `.costume` format and **Publish Costume** command are part of the costume storage overhaul. This guide describes builds that include that change. Earlier releases continue to use `.armor` files.
-</Info>
+
 
 A costume contains your shared assets and your workspaces. The new `.costume` format saves those pieces as separate files in a companion folder. You keep opening and saving the costume through Armorsmith; the application manages the files inside that folder.
 
@@ -96,14 +93,14 @@ Changing a filename's extension does not convert its contents. Use **Save As** f
 ## Publish one file for sharing
 
 1. Open the costume you want to share.
-2. Choose **File → Publish Costume…**.
+2. Choose **File → Publish Costume**.
 3. Choose a separate destination and save the published `.costume` file.
 
 Publishing captures your current costume, including edits you have not yet saved, and packages its saved assets and workspaces into one ZIP bundle. Send that single file to the recipient. They can open it through **File → Open** in a build that supports `.costume`.
 
 Publishing leaves your working costume open at its current location. It does not mark unsaved edits as saved. Continue to use **Save** to keep those edits in your working copy.
 
-Publishing preserves costume password restrictions. If saving or exporting is locked, unlock the costume before publishing.
+Publishing preserves costume password restrictions. Sending a bundle does not remove its save or export locks.
 
 ## Work on a costume as a team
 
@@ -117,11 +114,11 @@ Separate workspace and asset files make it easier to keep a costume in a shared 
 
 If someone else saves the costume after you open it, Armorsmith can refuse to overwrite the newer index. Save your work under a new name with **Save As**, then reconcile the two copies with your teammate.
 
-## Does this make dense costumes load faster?
+## Linked models and loading detail
 
-The separate asset layout prepares for loading a saved low-detail preview while leaving high-detail geometry on disk. That loading workflow is still planned. In the initial implementation, opening a costume continues to load and build its full meshes.
+The model import dialog lets you choose **Include in costume** or **Link to original file**. Linked models keep a saved level-of-detail representation for loading; full detail comes from the original source when required. Keep that source unchanged and available.
 
-Automatic [mesh level of detail](/interface/mesh-level-of-detail) already reduces viewport drawing work in builds that support it. That is separate from the planned ability to open a costume using only saved previews targeting 100,000 triangles. The first storage update does not yet provide that load-time improvement.
+Use **Publish Costume** to bundle the required source files for a handoff. This build does not add a mobile-viewer scene to the published bundle. See [linked model files](/parts/linked-files) for import choices and missing-file recovery, and [mesh level of detail](/interface/mesh-level-of-detail) for viewport display behavior.
 
 ## Troubleshoot a costume file
 

@@ -4,11 +4,11 @@ sidebarTitle: "Custom avatars"
 description: "Rig your custom avatar mesh with Mixamo, download a skinned FBX, and use it in Armorsmith with animations, modifications, and attachment points."
 ---
 
-Use **Avatar → Custom Avatar** to fit costume parts around a scan or a body model created in another application. The import dialog accepts **OBJ**, **STL**, and **FBX** files.
+Use **Avatar → Custom Mesh → Import** to fit costume parts around a scan or a body model created in another application. The import dialog accepts **OBJ**, **STL**, and **FBX** files.
 
 A custom model is useful when the built-in body's proportions cannot represent the shape you need. Its geometry and skeleton determine which editing and posing workflows are available.
 
-If you upload your custom mesh to [Mixamo](https://www.mixamo.com/), complete its rigging process, and download the **skinned mesh as an FBX**, you can use that file directly in Armorsmith's avatar system. The imported avatar supports animations, avatar modifications, and body attachment points for your costume parts.
+If you upload your custom mesh to [Mixamo](https://www.mixamo.com/), complete its rigging process, and download the **skinned mesh as an FBX**, you can use that file directly in Armorsmith's avatar system. A compatible import supports animation and body attachment points. The importer checks for skin weights and a `mixamorig:Hips` skeleton root; an arbitrary rigged FBX is not enough. Test deformation and fitting before relying on it.
 
 ## Before you start
 
@@ -40,7 +40,7 @@ A **rigged** mesh has a skeleton. A **skinned** mesh also has weights that conne
     Keep this FBX and any associated textures together. A **Without Skin** download contains animation data without the body mesh, so use **With Skin** when preparing the custom avatar.
   </Step>
   <Step title="Load the FBX as an Armorsmith avatar">
-    In Armorsmith, choose **Avatar → Custom Avatar**, select the downloaded `.fbx`, and open it. Load it through this avatar command so it becomes the body you fit costume parts around.
+    In Armorsmith, choose **Avatar → Custom Mesh → Import**, select the downloaded `.fbx`, and open it. Load it through this avatar command so it becomes the body you fit costume parts around.
 
     The skinned FBX from Mixamo can be used directly with Armorsmith's avatar system. Armorsmith recognizes the compatible skeleton and creates body attachment points.
 
@@ -66,7 +66,7 @@ For more help preparing a mesh, see Adobe's [Mixamo rigging guide](https://helpx
 
 ## Import an existing body model
 
-If you already have a skinned FBX with a compatible skeleton, you can go straight to **Avatar → Custom Avatar**. You can also import an OBJ or STL as a static fitting reference.
+If you already have a skinned FBX with a compatible skeleton, you can go straight to **Avatar → Custom Mesh → Import**. You can also import an OBJ or STL as a static fitting reference.
 
 ### Prepare the model
 
@@ -79,7 +79,7 @@ If you already have a skinned FBX with a compatible skeleton, you can go straigh
 
 <Steps>
   <Step title="Load the body model">
-    Choose **Avatar → Custom Avatar**, select the OBJ, STL, or FBX, and open it.
+    Choose **Avatar → Custom Mesh → Import**, select the OBJ, STL, or FBX, and open it.
   </Step>
   <Step title="Verify scale and orientation">
     Inspect the front and side. Use the [Measurement tool](/interface/measurement-tool) to check a known distance, such as height.
@@ -113,3 +113,9 @@ The built-in measurement guides and face/torso detail regions are designed for t
 Prepare the custom body's dimensions and shape in the source application. For a scan, check posture and any clothing captured in the mesh before relying on its surface for clearance.
 
 For the standard measurement workflow, use [Creating your avatar](/avatar/creating-your-avatar). For import or fit problems, see [Avatar troubleshooting](/avatar/avatar-troubleshooting).
+
+## Import an animation for the body
+
+Leave **Edit Avatar**, then use **Add Animation** beside **Animations:** in the Costume toolbar. Choose an FBX in **Open Animation File**, then play the imported clip and check that joints and attached parts follow the intended body regions. See [animation import](/avatar/posing#import-an-animation).
+
+The model storage/orientation dialog used by **File → Import** is for costume models. The **Import Custom Avatar** dialog has its own OBJ/STL/FBX filters and does not offer 3MF body import or built-in photo fitting.

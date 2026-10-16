@@ -39,6 +39,7 @@
               "interface/costume-files",
               "interface/costume-format-reference",
               "interface/preferences",
+              "interface/lighting",
               "interface/workspaces-panel",
               "interface/property-grid"
             ]
@@ -47,6 +48,7 @@
             "group": "Avatar",
             "pages": [
               "avatar/creating-your-avatar",
+              "avatar/photo-fitting",
               "avatar/body-measurements",
               "avatar/chest-and-breast-shape",
               "avatar/customizing-appearance",
@@ -65,7 +67,8 @@
               "parts/transforming-parts",
               "parts/fit-checker",
               "parts/grouping-and-measuring",
-              "parts/materials"
+              "parts/materials",
+              "parts/exporting-costumes"
             ]
           },
           {
@@ -111,7 +114,10 @@
           },
           {
             "group": "Python",
-            "pages": ["api/python-scripting", "api/blender-scripters"]
+            "pages": [
+              "api/python-scripting",
+              "api/blender-scripters"
+            ]
           }
         ],
         "hidden": true
