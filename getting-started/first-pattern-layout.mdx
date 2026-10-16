@@ -1,0 +1,46 @@
+---
+title: "Prepare a fitted piece for pattern layout"
+sidebarTitle: "8. Prepare pattern pages"
+description: "Define islands or use automatic unfolding, then arrange the resulting patterns on correctly sized pages."
+---
+
+Turn a fitted, low-polygon costume piece into flat patterns you can arrange and test on paper. Use a simple bracer with broad panels before attempting a dense helmet.
+
+## Before you start
+
+Finish the part's fit, save the costume, and select its source workspace in **Workspaces**. Choose a modest model for this exercise: the traditional editable model/pattern path requires fewer than **65,355 triangles**. Saved display LOD alone does not make a dense working mesh suitable for this path.
+
+Open **Workshop**, or choose **View → Workshop**. This is the model-and-pattern area called Pattern or Patterns in older guides. For a suitable mesh, the 3D model and 2D pattern view are available side by side.
+
+## 1. Define a pattern area with an island
+
+1. Above the 3D model, click **+**, whose tooltip is **Add Island**. A default-named island is added and selected in the island selector.
+2. Activate the paintbrush button, with tooltip **Activate painting island tool**, and paint the faces for one broad panel of the bracer.
+3. For a connected area, activate the flood-fill button, with tooltip **Activate flood fill tool**. In **Island Flood Fill**, choose **Edge threshold**, then click the area to fill. Lower values fill smaller areas.
+4. Inspect the colored region. Use the erase tool to remove excess faces, or use **Edit → Undo** to reverse the fill.
+5. Add another island for the next panel. Repeat until you have covered the regions you intend to build.
+
+**Check:** Island patterns update in the 2D view as you edit the regions. Changing the flood-fill threshold affects your next fill; it does not repaint an existing island.
+
+## 2. Choose automatic unfolding instead when appropriate
+
+Islands and **Unfold** are separate routes. You do not need to click Unfold to finish an island. If you want an automatic unfold of the model instead, save a separate working copy and follow this route there:
+
+1. Select the model's workspace and click **Unfold** above the 2D pattern view.
+2. In **Unfold**, review **Choose an angle for the unfold threshold (0-180)**. Keep the displayed starting value for the first attempt.
+3. Click **Apply** and wait for the unfolded result.
+4. Inspect the pieces. The toolbar provides **UndoUnfold**, with tooltip **Undo the unfold of the geometry**, to return from the automatic unfold if needed.
+
+Use the result that gives you understandable construction pieces. Curved surfaces and seam choices can require revision after a paper test.
+
+## 3. Set paper and arrange the pieces
+
+1. Select the workspace and expand **Print** in the **Property Grid**.
+2. Set **Paper Size** to the paper you will use, then check **Side Margins** and **Top/Bottom Margins** for the printer's printable area.
+3. Click the packing button (**Repack Unfold**; tooltip **Re-calculate the layout of the pattern parts**) to calculate an arrangement.
+4. Select **Transform** above the 2D view. Drag a piece to move it; drag its circular rotation handle to turn it.
+5. Inspect every occupied page for unwanted overlap, clipped details, and awkward splits. Repacking recalculates the arrangement, so do it before your final manual adjustments.
+
+**Result:** Your selected workspace has a reviewed pattern layout on the intended paper. Save the costume before printing.
+
+If the 2D area is absent for a dense mesh, use a lower-polygon practice model or review [mesh reduction](/interface/mesh-level-of-detail); display LOD and editable geometry are different. Next, [print a measured test template](/getting-started/print-first-template).

@@ -24,6 +24,21 @@
             ]
           },
           {
+            "group": "Getting Started",
+            "pages": [
+              "getting-started/first-costume",
+              "getting-started/measure-avatar",
+              "getting-started/photo-avatar",
+              "getting-started/import-first-model",
+              "getting-started/fit-mirror-armor",
+              "getting-started/custom-body",
+              "getting-started/reshape-helmet",
+              "getting-started/first-pattern-layout",
+              "getting-started/print-first-template",
+              "getting-started/share-and-export"
+            ]
+          },
+          {
             "group": "Interface",
             "pages": [
               "interface/overview",

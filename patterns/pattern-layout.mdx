@@ -18,15 +18,17 @@ The **Unfold** button starts an automatic unfold. Islands follow a separate work
 
 | Tool | What it does |
 | --- | --- |
-| **Transform Pattern** | Moves or rotates the selected pattern in the 2D layout. |
+| **Transform** | Moves or rotates the selected pattern in the 2D layout. |
 | **Join/Cut** | Joins pattern edges or cuts a connection to separate pieces. |
 | **Measurement Tool** | Measures in the pattern view. |
 | **Edit Current Shape** | Edits a selected editable shape. The button is unavailable until an editable shape is selected. |
 | **Grid** | Shows or hides the grid in the pattern view. |
 | **3D Panel** | Shows or hides the 3D view on the left, giving the pattern view more room. |
 | **Print** | Opens the printing workflow. |
-| **Pack Patterns** | Arranges pattern pieces in the layout automatically. |
-| **Unfold / Cancel Unfold** | Starts an automatic unfold, or cancels one that is running. |
+| **Repack Unfold** | Arranges pattern pieces in the layout automatically. |
+| **Unfold / UndoUnfold** | Opens the automatic unfold threshold dialog, or undoes the model unfold. |
+
+Hover over an icon to identify it. **Transform** has tooltip **Transform Tool**; **Repack Unfold** has tooltip **Re-calculate the layout of the pattern parts**.
 
 ## Move or rotate a pattern
 
@@ -36,7 +38,7 @@ Select a pattern in the 2D view to work with it. The selected pattern is outline
   ![A selected pattern with its move and rotation handles](/images/edit-patterns-toolbar.png)
 </Frame>
 
-1. Select **Transform Pattern**, then click the pattern you want to change.
+1. Select **Transform**, then click the pattern you want to change.
 2. Click and drag the pattern to move it.
 3. To rotate it, click the small circular handle above the selection and drag.
 
@@ -50,7 +52,7 @@ Hide the 3D panel when you want more room for arranging patterns. Turn it back o
 
 Alignment lines up two or more selected pieces using their combined bounds. It moves the pieces without changing their size or orientation.
 
-1. Select **Transform Pattern** and click a piece.
+1. Select **Transform** and click a piece.
 2. Hold **Ctrl** and click additional pieces to add them to the selection.
 3. Click an alignment button on the vertical **Pattern Layout** toolbar.
 
@@ -89,7 +91,7 @@ The two buttons at the bottom of the vertical toolbar turn each selected pattern
 | **Rotate left** | Turns each selected pattern 90° to the left (counterclockwise). |
 | **Rotate right** | Turns each selected pattern 90° to the right (clockwise). |
 
-Select one pattern, or hold **Ctrl** to select several, then click the rotation button. Each click applies another 90° turn. Use these controls to change a piece's orientation before aligning or distributing the layout. For other angles, drag the rotation handle with **Transform Pattern**.
+Select one pattern, or hold **Ctrl** to select several, then click the rotation button. Each click applies another 90° turn. Use these controls to change a piece's orientation before aligning or distributing the layout. For other angles, drag the rotation handle with **Transform**.
 
 ## Change how pieces connect
 
@@ -97,8 +99,8 @@ Select **Join/Cut** to work with connections between pattern pieces. Cut a conne
 
 ## Arrange and check the layout
 
-Use **Pack Patterns** to arrange pieces automatically, then refine the layout with the alignment, distribution, and rotation controls. Use **Transform Pattern** to adjust individual pieces. Turn on the **Grid** when it helps you position the layout. Use the **Measurement Tool** to check sizes before printing.
+Use **Repack Unfold** to arrange pieces automatically, then refine the layout with the alignment, distribution, and rotation controls. Use **Transform** to adjust individual pieces. Turn on the **Grid** when it helps you position the layout. Use the **Measurement Tool** to check sizes before printing.
 
-Check for overlapping pieces and pieces crossing page boundaries after changing the layout. If you run **Pack Patterns** again, it recalculates the arrangement.
+Check for overlapping pieces and pieces crossing page boundaries after changing the layout. If you run **Repack Unfold** again, it recalculates the arrangement.
 
 When the layout is ready, select **Print**. See [Printing](/patterns/printing) for page and print settings.
