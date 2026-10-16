@@ -1,0 +1,52 @@
+---
+title: "Start your avatar from photographs"
+sidebarTitle: "3. Start from photos"
+description: "Load front and profile photos, review detected points, correct measurements, and apply a first avatar fit."
+---
+
+Use photographs to create a first fitting pass for a built-in avatar, then replace uncertain estimates with tape measurements. Finish by saving the reviewed body for your costume.
+
+## Before you start
+
+Open a costume with a built-in avatar. Save its existing setup with **Avatar → Save As** if you want to keep it. Photo fitting does not support imported body meshes.
+
+Prepare a front photo showing the whole body, head to feet. Stand upright in fitted clothing with arms slightly away from the torso. Keep the camera level at chest height. A second photo in the same pose turned 90 degrees provides a profile for depth estimates. Have your standing height without shoes and tape measurements ready.
+
+## 1. Load and calibrate the photos
+
+1. Choose **Avatar → Edit Avatar** and open the **Avatar** tab.
+2. Under **Photo fitting**, click **Fit avatar from photos…**.
+3. Under **Front photo**, click **Choose photo…** and open a JPG, JPEG, PNG, or WebP.
+4. Add a **Side photo** if available. Use a true profile, not another front view.
+5. Enter **Standing height**, choose **cm** or **in**, and click **Analyze photo**.
+
+**Check:** The dialog reaches **Refine fit** with body points and measurement values to review. Height calibrates the estimates, so check its units before editing other values.
+
+## 2. Correct the photo evidence
+
+1. Inspect the **Front** and **Side** views.
+2. Use **Adjust points** to drag misplaced dots to the intended body locations.
+3. Adjust **Avatar outline** to compare the preview with the person in the photo.
+4. Check regions where the arms overlap the torso. Replace an unsuitable photo, or enter measurements manually when its outline is unclear.
+
+If detection fails, read the message and place points manually or use a clearer photo. The detected dots are a starting point, not proof that the body has been measured correctly.
+
+## 3. Review the measurements
+
+1. Inspect **Measurements** and open **Show all … measurements** for the additional values.
+2. Check readings marked **Kept** or **Current avatar**. These have not been reliably estimated from the photograph.
+3. Enter tape measurements where you have them. Keep **Keep left and right matched** enabled if paired values should change together.
+4. Resolve any out-of-range warnings before applying. If you want to discard manual value edits in this dialog, use **Reset to photo values**.
+
+## 4. Apply and save
+
+1. Click **Apply to avatar**.
+2. Inspect the body from front and side in the Costume viewport. Check the important dimensions in **Measurements**, **Circumferences**, and **Head**.
+3. Use **Edit → Undo** if the applied pass is unsuitable. Reopen photo fitting to review it again.
+4. Save with **Avatar → Save As**, then save the costume with **File → Save**.
+
+**Result:** You have an estimated body refined with your own measurements. Loading an image with **Show reference image** alone does not run this fitting process.
+
+If the application says the avatar changed during review, reopen photo fitting to refresh the baseline. For incomplete estimates, see [photo-fitting troubleshooting](/avatar/photo-fitting#if-the-estimate-is-incomplete).
+
+Next, [import your first costume model](/getting-started/import-first-model).

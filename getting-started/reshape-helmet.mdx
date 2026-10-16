@@ -1,0 +1,50 @@
+---
+title: "Reshape a helmet with FFD"
+sidebarTitle: "7. Reshape a helmet"
+description: "Use a small deformation cage to flare a helmet opening, edit lattice counts, and check the resulting fit."
+---
+
+Flare the lower edge of a helmet without enlarging the entire model. Free Form Deformation (FFD) reshapes the mesh using a cage of control points.
+
+## Before you start
+
+Attach a helmet workspace to a measured avatar and make its broad position, rotation, and scale adjustments first. Follow the [attachment tutorial](/getting-started/fit-mirror-armor) if needed. Save a copy of the costume before changing its shape.
+
+Use Scale for whole-part resizing. Choose FFD when one region, such as the neck opening, needs a different adjustment from the crown.
+
+## 1. Create a simple cage
+
+1. Open the **Costume** view and select the attached helmet.
+2. Click **FFD Tool** above the viewport.
+3. In **Free Form Deformation**, set **Width**, **Height**, and **Depth** to **2**.
+4. Click **Apply**.
+
+**Check:** A cage surrounds the helmet. A 2 × 2 × 2 cage has eight corner control points. Counts are the number of control points, not physical dimensions; the dialog accepts 2–20 on each axis.
+
+## 2. Flare the opening
+
+1. Orbit so that you can see a lower cage control point near the opening.
+2. Click that point, activate **Translate**, and move it outward a small amount using the handle.
+3. Inspect the edge and crown from the side. A point influences the surrounding surface, so check that details you want to keep have not moved too far.
+4. Adjust the corresponding point on the other side for a balanced opening. Do not assume cage edits are automatically symmetric.
+5. Use **Edit → Undo** if an adjustment damages the silhouette, then try a smaller movement.
+
+## 3. Add control only if needed
+
+1. Open the dropdown beside **FFD Tool** and choose **Edit Lattice Counts...**.
+2. Increase a count if the existing cage cannot make the local adjustment you need.
+3. Click **Apply** and inspect the shape again.
+4. Use **Edit → Undo** to restore the previous counts and deformation if the result is unsuitable.
+
+Increasing counts preserves the current deformation. Reducing a count can change it because fewer control points must represent the shape. Start with the smallest cage that does the job.
+
+## 4. Finish and check the result
+
+1. Click **FFD Tool** again to leave cage editing. The adjusted helmet shape remains.
+2. Enable **Fit Checker** and wait for its heatmap to finish updating.
+3. Check the head and neck from several angles, including the opening the wearer must pass through. A visual gap in one pose is not proof that the helmet can be put on.
+4. Open **Workshop** to refresh affected pattern work, then save your costume. If Workshop is not visible, use **View → Workshop**.
+
+**Result:** The helmet opening has a local shape adjustment while the rest of the fit remains available for review. Re-select the helmet and activate FFD Tool to resume editing its cage.
+
+If no cage appears, select an attached part rather than only its workspace. If the adjustment is too broad, undo it and increase the cage resolution. Next, [prepare pattern pages](/getting-started/first-pattern-layout).

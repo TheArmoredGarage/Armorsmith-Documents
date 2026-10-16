@@ -1,0 +1,53 @@
+---
+title: "Save, share, and export your costume"
+sidebarTitle: "10. Save and export"
+description: "Keep an editable project, publish a portable costume, export FBX, and build a miniature STL."
+---
+
+Keep your editable fitting work and choose an output suited to the next task. A costume bundle, FBX model, and miniature STL serve different purposes; this tutorial gives you a complete route for each.
+
+## Before you start
+
+Open a saved costume containing an avatar and at least one model workspace. These publishing/export procedures require the full version. If the costume has save or export restrictions, unlock it when prompted before continuing.
+
+## 1. Preserve your editable project
+
+1. Choose **File → Save** to preserve the current costume edits.
+2. Use **File → Save As** and **Costume File (*.costume)** if you need a separate working copy.
+3. Keep the `.costume` index and its whole companion folder together when backing up.
+4. Keep any original files used by linked models available and unchanged.
+
+**Check:** You know which file is your working costume. Saving an `.avatar` separately is useful for reusing the body, but it does not replace saving the costume's fitted parts.
+
+## 2. Publish one file for sharing
+
+1. Choose **File → Publish Costume**.
+2. Choose a different filename, such as `First costume shared.costume`, and save it.
+3. Keep using **File → Save** for later changes to your working costume. Publishing leaves that working file open and does not mark unsaved edits as saved.
+4. To check the published copy, first save your work, then use **File → Open** to open the published `.costume`. A recipient needs a build that supports this format.
+
+Publishing bundles required assets and linked original sources. Password restrictions remain in place. When you save an opened bundle, **Save As** creates an editable costume and companion folder. This build's enabled features do not provide a mobile-viewer scene.
+
+## 3. Export model geometry to FBX
+
+1. Reopen the working costume if necessary. Review its avatar and fitted parts.
+2. Remove unwanted spare workspaces from a separate export copy if you do not want their models included. Unattached workspaces are also exported under **Unattached Pieces**.
+3. Choose **File → Export → Costume to FBX...**, select a destination, and save.
+4. Open the FBX in the destination application and check scale, orientation, and the separate meshes.
+
+An FBX is a model export. Keep the editable costume for Armorsmith's fitting and pattern work; do not assume the FBX is an animated rig.
+
+## 4. Build and save a miniature STL
+
+1. Open the costume and choose the pose you want for the figure.
+2. Choose **File → Export → Printable Figure (STL)...**.
+3. Set **Figure height (without base)**, for example **100 mm**. Start with **Detail spacing** around **0.4 mm** and review **Surface thickness**.
+4. Decide whether to **Include hidden fitted costume parts**, and optionally enable **Add a circular display base**.
+5. Click **Build Preview**. Drag to turn the preview and scroll to zoom. Inspect warnings, connections, and small gaps before saving.
+6. Click **Save STL...**. Open the result in a slicer using **millimetres** and prepare printer settings and supports there.
+
+Smaller detail spacing uses more memory. Surface thickness expands surfaces and can close gaps; it is not a guaranteed minimum wall thickness. If the figure cannot be built as one connected solid, read the error, adjust the settings or arrangement, and build again.
+
+**Result:** You have the appropriate outputs while retaining an editable project. The miniature exporter is available independently of the separate 3D Printing workspace, which is not enabled for this build.
+
+For full settings and restrictions, see [costume exports](/parts/exporting-costumes) and [costume files](/interface/costume-files). Return to [the first project tutorial](/getting-started/first-costume) when starting another build.

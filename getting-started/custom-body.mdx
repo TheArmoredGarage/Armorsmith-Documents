@@ -1,0 +1,50 @@
+---
+title: "Use a custom avatar or body scan"
+sidebarTitle: "6. Use a custom body"
+description: "Import a scan or compatible rigged FBX as your body reference, check scale, and test attachment points."
+---
+
+Use a body mesh instead of the included avatar. You will import it through the Avatar menu, check its dimensions, and test whether its rig and attachment points suit your fitting work.
+
+## Before you start
+
+Use a separate saved costume or a copy made with **File → Save As**. Save the current avatar with **Avatar → Save As** before replacing its body reference.
+
+Prepare an upright OBJ, STL, or FBX body with known dimensions. A scan should represent the posture and clothing you intend to use. A static OBJ or STL is suitable for a stationary reference; animation needs a supported skinned skeleton, such as the compatible Mixamo FBX described in [custom avatars](/avatar/custom-avatars).
+
+## 1. Import the body
+
+1. Choose **Avatar → Custom Mesh → Import**. Do not use File → Import, which creates costume-part workspaces.
+2. In **Import Custom Avatar**, select the OBJ, STL, or FBX and click **Open**.
+3. Wait for loading, then choose **View → Zoom All** if you cannot see the result clearly.
+4. Inspect the body from front and side for missing geometry or a wrong orientation.
+
+**Check:** The imported body is the avatar reference, rather than a new armor workspace. This dialog does not offer 3MF body import or the costume model storage/orientation options.
+
+## 2. Check physical dimensions
+
+1. Click **Measure** above the Costume viewport.
+2. Click two recognizable points whose distance you know, such as a straight height reference.
+3. Read the distance and compare it with your source model or measurement record. Check the snapped target at each endpoint.
+4. If size or orientation is wrong, correct it in the source application and repeat the body import before fitting parts.
+
+The built-in measurement guides do not automatically identify anatomy on an arbitrary mesh. Photo fitting is for the built-in bodies; prepare a custom body's actual geometry in its source application.
+
+## 3. Test the attachment workflow
+
+1. Select a simple imported armor workspace and click **Attach**.
+2. Choose a body-region attachment point, then position the part with Translate and Rotate.
+3. For an unrigged body, use **Avatar → Edit Pose** to position the attachment points for fitting. Treat the body surface as a static reference.
+4. For a compatible rigged FBX, leave **Edit Avatar**, choose a clip under **Animations:**, and briefly play it. Pause to inspect whether limbs and attached parts follow the intended regions.
+
+A skeleton alone does not ensure compatibility. The source importer checks for skinning and the expected Mixamo skeleton root. If playback is unavailable, confirm that Edit Avatar is off and that the source contains a supported rig and skin weights.
+
+## 4. Save a reusable setup
+
+1. Stop playback. Inspect the resulting reference pose and your attachment positions.
+2. Save the avatar with **Avatar → Save As**, then save the costume.
+3. Keep the original body file and its companion files with the project. Verify the setup after reopening it.
+
+**Result:** You have checked a custom body for scale and the attachment behavior you need. An open or non-solid scan can make Fit Checker report surface distance only; it cannot reliably distinguish inside from outside in that case.
+
+Next, [reshape a fitted helmet](/getting-started/reshape-helmet), or return to the [standard avatar workflow](/getting-started/measure-avatar) if a built-in body is more suitable.

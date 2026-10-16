@@ -1,0 +1,55 @@
+---
+title: "Import your first costume model"
+sidebarTitle: "4. Import a model"
+description: "Import a model, choose included or linked storage, check orientation, and organize a multi-model 3MF."
+---
+
+Bring a costume model into a workspace and check it before attaching it to your avatar. Use a single shoulder piece, bracer, or helmet for your first import.
+
+## Before you start
+
+Open your saved costume and prepare an OBJ, STL, FBX, 3MF, PDO, or ADO you are allowed to edit. If you already imported the practice piece in the first tutorial, skip to the result checks below, or use another model to practise the dialog steps. Know one real dimension of the part. Keep any companion material and texture files with the source.
+
+This is the costume-part workflow. For a scan or body model, use [custom body import](/getting-started/custom-body).
+
+## 1. Choose the file and storage
+
+1. Choose **File → Import**.
+2. In **Import a Model/PDO**, select the file and click **Open**.
+3. For OBJ, STL, FBX, or 3MF, review **Model import**. Leave **Include in costume** selected for this first project. It stores the model with the costume.
+4. For OBJ, STL, or FBX, leave **Review orientation before import** checked and click **Next: Review orientation**. For this tutorial's 3MF route, clear the checkbox and click **Import**, then continue to the organization choices below.
+
+**Link to original file** instead keeps the original as the full-detail source. Use it only when you can keep that source unchanged and available; see [linked files](/parts/linked-files). PDO and ADO use their existing import procedure without this storage/orientation dialog.
+
+## 2. Review the orientation
+
+1. In **Review orientation**, compare **Before** and **After**.
+2. Select **Front**, **Side**, and **Top** under **View:** to inspect the part.
+3. Open **Adjust orientation** if necessary. Adjust X/Y/Z rotations or use the 180-degree **Flip** controls.
+4. Click **Import with orientation** to use the preview, or **Import original** to keep the source orientation.
+
+For the 3MF route, inspect direction after loading and use Rotate when fitting the attachment if a correction is needed.
+
+## 3. Organize several models when needed
+
+If one 3MF contains several models, **Import 3MF Models** offers:
+
+- **Separate Workspaces** for pieces you want to manage and attach independently.
+- **Merge into One Workspace** for models you want together in one workspace.
+- **Cancel** to stop that import.
+
+For example, keep a helmet and separate cheek pieces in separate workspaces when you intend to fit them independently.
+
+Selecting several files in the file picker is different. For a selection containing only model formats, **Multiple Imports** can offer to import them as a group. Choose **Yes** and name the group to preserve assembly layout, or **No** to import independently. Group imports skip orientation review. A selection containing PDO or ADO does not offer that grouping question.
+
+## 4. Check the imported result
+
+1. Select the new workspace in **Workspaces** and open **Workshop** to inspect its model.
+2. Orbit and zoom to check its orientation and completeness.
+3. Activate **Measure**, click two known points, and compare the distance with your reference dimension. Check the orange target before clicking because it can snap to vertices.
+4. If size or orientation is wrong, correct the source and import again, or adjust the attached part with Scale/Rotate in the next tutorial.
+5. Choose **File → Save**.
+
+**Result:** Your model is stored in a workspace. It is not attached or automatically fitted yet. A 3MF imports supported geometry, units, transforms, and colors; slicer profiles and supports are not a guaranteed part of the transfer.
+
+For **3MF Import Error**, read the specific message and try a model-only export or OBJ/STL if the file requires unsupported data. Next, [fit and mirror a pair of armor pieces](/getting-started/fit-mirror-armor).

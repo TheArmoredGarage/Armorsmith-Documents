@@ -1,0 +1,51 @@
+---
+title: "Fit and mirror a pair of armor pieces"
+sidebarTitle: "5. Fit and mirror armor"
+description: "Attach a bracer, position and scale it, create its linked mirror, and inspect clearance in several poses."
+---
+
+Fit one bracer to your avatar, create its opposite-side mirror, and check both pieces in a neutral stance and a bent-arm pose. The same procedure works for paired shoulder pads or greaves.
+
+## Before you start
+
+Use a [measured avatar](/getting-started/measure-avatar) and an [imported bracer workspace](/getting-started/import-first-model). Save the costume before making fitting changes. Choose a roughly neutral pose through **Avatar → Change Pose**.
+
+## 1. Attach and position the bracer
+
+1. Select the bracer in **Workspaces** and click **Attach**.
+2. Move the ghosted preview to the avatar's forearm attachment point and click that point.
+3. Select the attached bracer in the Costume viewport or **Attachment Tree**.
+4. Click **Translate** and drag its axis handles to position it. Click **Rotate** and use the rotation handles to align it with the forearm.
+5. Orbit around the arm. Check the wrist and elbow openings rather than judging only the front view.
+
+**Check:** The bracer appears under an attachment point in the Attachment Tree. If it is attached to the wrong region, right-click it in that tree and use **Move Part** to choose the correct point.
+
+## 2. Adjust its size and inspect clearance
+
+1. Select the bracer and open the **Scale** controls in **Transforms**.
+2. Set **Scale Mode** to **Percentage**. Enable **Uniform Scale** for a broad size adjustment; on an initially unscaled part, changing 100% to 105% makes it larger.
+3. If only one dimension needs adjustment, disable **Uniform Scale** and change one axis at a time. Check **Transform Mode** before using local or world directions.
+4. In the selected attachment's **Property Grid**, check **Thickness** against the material you intend to use. This setting is shared by attachments from the same source workspace.
+5. Click **Fit Checker** above the Costume viewport and wait for preparation to finish.
+
+In **Fit Check**, set **Color range** to **20 mm** for a consistent first comparison. Red indicates estimated distance at or below material thickness; green begins at thickness plus the range. The range changes display colors, not the part's size. Adjust placement and scale, then let the colors update.
+
+## 3. Create the opposite-side mirror
+
+1. Select the original bracer and focus the Costume viewport.
+2. Press **Shift+M**, or enable **Mirror** in the Property Grid.
+3. Inspect the reflected bracer on the opposite forearm.
+4. Adjust the original to update the linked pair. Use **Edit → Undo** if you want to reverse the mirror command.
+
+**Check:** There are two bracers, and editing the original updates its partner. If you need different geometry or independent placement on the two sides, attach separate parts instead of a linked mirror.
+
+## 4. Check a pose and save
+
+1. Choose **Avatar → Edit Pose**. Select an appropriate joint and use Translate, or select a bone and use Rotate, to bend the arm slightly.
+2. Leave Edit Pose when finished. Re-enable **Fit Checker** if changing modes turned it off.
+3. Check body clearance and look directly for contact between neighboring pieces. Fit Checker does not test part-to-part collisions.
+4. Choose **Avatar → Reset Pose** to return to the default pose, then save the costume.
+
+**Result:** You have a fitted linked pair and have reviewed a second pose. This visual check does not simulate straps or guarantee comfortable movement; make a physical test before final fabrication.
+
+If both pieces move unexpectedly, check that you selected the original and that Mirror is enabled. If the shape needs a local change, continue with [FFD fitting](/getting-started/reshape-helmet). For another body source, try [a custom avatar](/getting-started/custom-body).
