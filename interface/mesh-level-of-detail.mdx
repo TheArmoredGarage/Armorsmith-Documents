@@ -1,61 +1,69 @@
 ---
 title: "Automatic mesh level of detail (LOD)"
 sidebarTitle: "Mesh level of detail"
-description: "Understand how Armorsmith displays dense meshes at 100,000 and 25,000 triangles while preserving working detail for editing and export."
+description: "Use simplified display meshes, switch to full resolution, and understand how LOD affects fitting, editing, and costume loading."
 ---
 
-Dense meshes are common in 3D printing, especially sculpted armor and props. Automatic **level of detail (LOD)** reduces the geometry drawn in the viewport when a mesh appears smaller onscreen. You can inspect the working mesh at full detail when you zoom in.
+Automatic **level of detail (LOD)** creates a simplified display mesh for dense models. Armorsmith uses that mesh at every zoom level to reduce viewport drawing work. Zooming in does not switch to full resolution.
 
-LOD runs automatically in builds that include this feature. You do not need to run the **Decimate** tool to create display levels.
+You can show the working mesh with **Toggle Full Resolution** in the Costume toolbar. You do not need to run **Decimate** to create a display LOD.
 
 ## Which meshes get LOD?
 
-A working mesh with **more than 100,000 triangles** qualifies. Armorsmith creates two separate display versions:
+A working mesh with **more than 100,000 triangles** qualifies for automatic simplification. Armorsmith creates **one display version targeting 100,000 triangles per mesh**. A mesh with exactly 100,000 triangles or fewer normally keeps its working detail.
 
-- A version targeting **100,000 triangles**.
-- A version targeting **25,000 triangles**.
-
-A mesh with exactly 100,000 triangles or fewer keeps its working detail.
-
-For example, a **1,000,000-triangle mesh** can have its original working geometry plus 100,000- and 25,000-triangle display versions. Both reduced versions are generated directly from the working mesh.
+For example, a 1,000,000-triangle mesh can have its full working geometry and a separate display mesh targeting 100,000 triangles. There is no additional 25,000-triangle display level.
 
 <Note>
-The triangle counts are targets. Protecting topology, material boundaries, texture seams, and sharp edges can limit how far a mesh can be reduced. A display version may remain above its target.
+The triangle count is a target, not a guarantee. The simplified result can remain above it. If Armorsmith cannot create a usable display mesh, it keeps drawing the working mesh.
 </Note>
 
 ## When does each level appear?
 
-Each viewport chooses a level from the mesh's apparent size in that view. Armorsmith measures the larger dimension of the mesh's projected bounds in pixels.
+Once a display LOD is ready, Armorsmith normally uses it at every distance and zoom, including in orthographic views. Before it is ready, you see the working mesh. A saved costume can also open directly using its saved LOD.
 
-| How large the mesh appears | Displayed geometry |
-| --- | --- |
-| Large or close up: roughly 600 pixels or more | Full working detail |
-| Medium size: roughly 180–600 pixels | The level targeting 100,000 triangles |
-| Small or distant: roughly below 180 pixels | The level targeting 25,000 triangles |
+**Wireframe** follows the displayed geometry too. Turning on wireframe alone does not show the full working topology.
 
-The **25,000-triangle version** comes into play when the mesh takes up little space onscreen. As you zoom in, Armorsmith switches to the 100,000-triangle version and then full working detail.
+### Show full resolution
 
-These boundaries have a small overlap, called **hysteresis**, to prevent repeated switching as you zoom near a threshold. Selection also works in orthographic views. Two views of the same mesh can display different levels.
+1. In the Costume toolbar, find the **eye icon** beside **Toggle Environment**. Its tooltip says, "Click to show every model at full resolution instead of its simplified display version".
+2. Click **Toggle Full Resolution** to turn it on. Armorsmith displays the full working meshes. If a model opened using a saved LOD, Armorsmith loads its full geometry first.
+3. Inspect the model, or use **Wireframe** to inspect its working topology.
+4. Click **Toggle Full Resolution** again to return to simplified display where an LOD is available.
+
+The toggle applies across models, rather than only to the selected part. Showing full resolution can make dense costumes slower to draw. Armorsmith continues preparing display LODs while full resolution is enabled.
 
 ## What happens while you edit?
 
-Armorsmith prepares display levels in the background after the geometry has been unchanged for about 300 milliseconds. Large meshes can take longer to finish processing.
+Armorsmith generates display LODs in the background. Posing, animation, bone changes, and **Free Form Deformation (FFD)** update the existing display mesh to follow the model instead of starting simplification again for every movement. Some FFD previews use the working mesh while you drag.
 
-Posing, **Free Form Deformation (FFD)**, bone changes, and other geometry edits invalidate old display levels. Running **Decimate** or undoing it also refreshes the LOD cache. Armorsmith falls back to full working detail while replacement levels are being prepared.
+Changes to topology, such as **Decimate** or undoing it, require a replacement LOD. After a topology change, Armorsmith normally waits about 300 milliseconds before starting simplification. It draws the working mesh until a replacement is ready. Initial preparation can start immediately.
 
-If a reduced level cannot be generated, Armorsmith uses a finer available level or the working mesh. Material changes are applied to cached display levels too.
+Material changes also appear on the display LOD.
 
-**Wireframe** shows the working mesh so you can inspect its actual topology.
+### Fitting uses simplified geometry too
+
+**Fit Checker** and **Shrink Fit** use the fitting mesh, which is the LOD when available. Their results are approximate: small local intersections can remain. Inspect the fit colors and check important clearances yourself.
+
+**Toggle Full Resolution** changes viewport display. It does not force these fitting tools to use the full mesh.
 
 ## Does LOD change printing or export?
 
-LOD changes viewport rendering. Selecting geometry, editing, unfolding patterns, saving, printing, and exporting continue to use the **working geometry**.
+Viewing a simplified mesh does not replace the working geometry. Mesh export and pattern operations that require full geometry use the working mesh, including any **Decimate** result you have applied. They can load full geometry first when the costume opened from a saved LOD.
 
-Viewing a million-triangle working mesh through its 25,000-triangle display version does not turn its export into a 25,000-triangle mesh.
+For example, displaying a million-triangle working mesh through its LOD does not make its mesh export a 100,000-triangle mesh. Display LOD also does not make a dense model suitable for every pattern-editing workflow.
+
+### Saved costumes and loading detail
+
+The `.costume` format can store an LOD alongside the model's full geometry or its linked source reference. When a compatible saved LOD is available, Armorsmith can open the model using that representation and defer loading full detail until an operation needs it. Saving can include a step to prepare the LOD.
+
+An operation that needs full detail can show **Loading the full-resolution model...** while the viewport continues displaying the LOD. If you cancel the wait, that operation stops, but loading can finish in the background. With full resolution enabled, models switch to full detail as it becomes available.
+
+For linked models, keep the original source file available and unchanged. See [linked model files](/parts/linked-files) and [costume files](/interface/costume-files#linked-models-and-loading-detail).
 
 ## How is this different from Decimate?
 
-The **Decimate** tool intentionally changes the working mesh. Its result can therefore affect editing, unfolding, and export. Automatic LOD creates temporary display copies.
+**Decimate** intentionally changes the working mesh. Its result can affect editing, unfolding, and export. Automatic LOD keeps a separate simplified representation for display and fitting.
 
 Armorsmith chooses its working geometry in this order:
 
@@ -65,10 +73,4 @@ Armorsmith chooses its working geometry in this order:
 
 LOD follows whichever working mesh is active. Changing the original pose or FFD after decimation does not silently regenerate your Decimate result.
 
-<Tip>
-Use automatic LOD to reduce viewport drawing work on dense models. Importing, mesh edits, unfolding, and export still depend on the complexity of the working mesh.
-</Tip>
-
 For mouse controls and zoom shortcuts, see [Navigate the Costume viewport](/interface/viewport-navigation).
-
-For the planned ability to open a costume using saved low-detail previews, see [Costume files](/interface/costume-files#does-this-make-dense-costumes-load-faster). The initial `.costume` storage update still loads full meshes when opening a costume; automatic viewport LOD is a separate feature.
