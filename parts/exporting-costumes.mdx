@@ -1,10 +1,10 @@
 ---
-title: "Export a costume or printable figure"
+title: "Export costume geometry"
 sidebarTitle: "Costume exports"
-description: "Export avatar and costume meshes to FBX, or build and preview a solid miniature before saving an STL."
+description: "Export avatar and costume meshes to FBX, or share an editable costume bundle."
 ---
 
-Use **File → Export** to take the fitted costume into another application or create a miniature. Save your editable costume first. These exports do not replace the costume project or its pattern work.
+Use **File → Export** to take the fitted costume into another application. Save your editable costume first. These exports do not replace the costume project or its pattern work.
 
 ## Export the costume to FBX
 
@@ -15,21 +15,10 @@ Use **File → Export** to take the fitted costume into another application or c
 
 The command exports the avatar and costume pieces as separate meshes. Workspaces without attachments are also exported under **Unattached Pieces**; remove unused workspaces before exporting if you do not want those models included. It is available in the full version. A costume locked for export must be unlocked before exporting. This is a model export, not an editable Armorsmith project or a promise of an animated rig in the destination application.
 
-## Build a printable miniature
-
-1. Load the costume and avatar and choose the desired pose. This procedure requires the full version and an export-unlocked costume.
-2. Choose **File → Export → Printable Figure (STL)...**.
-3. Set **Figure height (without base)**, between **20 and 300 mm**.
-4. Start with **Detail spacing** around **0.4 mm**, then choose **Surface thickness**. Smaller spacing preserves finer features but uses more memory. Thickness expands surfaces in both directions before filling, so grooves and gaps may close; it does not guarantee wall strength.
-5. Review **Include hidden fitted costume parts**, which starts enabled. Unused source models are excluded; the complete active avatar body is included.
-6. Optionally enable **Add a circular display base** and set **Base thickness**.
-7. Click **Build Preview**. Inspect **Printable Figure Preview** by dragging to turn and scrolling to zoom. Check warnings, thin features, and connections between costume pieces and the body.
-8. Click **Save STL...** when satisfied. Open the STL in your slicer using **millimetres**, inspect it, and prepare supports and printer settings there.
-
-The builder aims to produce one connected solid mesh. If it cannot, read **Unable to Build Figure**, adjust spacing, thickness, or the costume arrangement, and build again. Finer detail can exceed memory/export limits. A successful preview is not a guarantee that a particular printer or material can reproduce every feature.
-
-This miniature workflow is available in this build. The separate **3D Printing workspace**, mesh splitting, joints, and printer-layout tools are not enabled.
+<Note>
+**Printable Figure** is disabled because it does not work. Miniature STL export is not available.
+</Note>
 
 ## Share an editable costume
 
-Use [**File → Publish Costume**](/interface/costume-files#publish-one-file-for-sharing) for a single costume bundle. It serves a different purpose from FBX or STL. The mobile/free-viewer scene is not included with this build's feature selection.
+Use [**File → Publish Costume**](/interface/costume-files#publish-one-file-for-sharing) for a single costume bundle. It preserves editable costume data rather than producing an FBX model. The mobile/free-viewer scene is not included with this build's feature selection.
