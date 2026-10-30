@@ -1,10 +1,14 @@
 ---
 title: "Armorsmith Designer Menu Bar"
 sidebarTitle: "Menu Bar"
-description: "A quick reference for the File, Avatar, Edit, View, Settings, Windows, and Help menus in Armorsmith Designer."
+description: "A quick reference for the File, Avatar, Edit, View, Settings, Window, and Help menus in Armorsmith Designer."
 ---
 
-The menu bar runs across the top of the Armorsmith Designer window. Use it to manage files, edit your avatar and costume parts, arrange panels, and find help. Each table lists the commands in menu order.
+<Info>
+These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+</Info>
+
+The menu bar runs across the top of the Armorsmith Designer window. Use it to manage files, edit your avatar and costume parts, arrange panels, and find help. The tables group commands by purpose; availability depends on the selected object and view.
 
 ## File menu
 
@@ -20,7 +24,7 @@ Use **File** to create, open, save, import, and export costume files and pattern
 | **Save As** | Save the costume with a new name or in a new location. Shortcut: **Ctrl+Shift+S**. |
 | [**Publish Costume**](/interface/costume-files#publish-one-file-for-sharing) | Package the current costume into one `.costume` file for sharing, including required linked sources. Your working costume stays open. |
 | **New Workspace** | Create a blank workspace for making templates with the 2D spline tools. |
-| [**Import**](/parts/importing-models) | Import a model into a workspace. For OBJ/STL/3MF/FBX, choose storage and review orientation before attaching it to the avatar. |
+| [**Import**](/parts/importing-models) | Import a model into a workspace. For OBJ/STL/3MF/FBX, choose storage and review orientation and size before attaching it to the avatar. |
 | **Recent Imports** | Open a submenu of recently imported files. |
 | **Search Online** | Open a search window for Armorsmith's online repository of files. |
 | [**Export**](/patterns/export-formats) | Export costume parts as 3D models or generated templates as printable files, such as PDF pattern sheets. |
@@ -36,7 +40,7 @@ Use **Avatar** to edit measurements and poses, load a custom model, and save ava
 
 | Command | What it does |
 | --- | --- |
-| [**Edit Avatar**](/avatar/creating-your-avatar) | Open Avatar Customization to set measurements, hair, colors, and local shape details before fitting costume parts. |
+| [**Edit Avatar**](/avatar/creating-your-avatar) | Open avatar customization in Workbench Edit to set measurements, hair, colors, and local shape details before fitting costume parts. |
 | [**Edit Pose**](/avatar/posing) | Enter pose editing mode. Select sphere joints and use **Translate** to move them, or select bones and use **Rotate** to turn them. |
 | **Reset Avatar** | Restore the default pose and proportions, discarding avatar customizations. |
 | **Reset Pose** | Restore the default pose, discarding pose changes. |
@@ -70,8 +74,6 @@ Use **Edit** to undo changes, manage selected objects, and work with pattern geo
 | [**Unfold**](/patterns/pattern-layout) | Generate 2D patterns from the selected low-polygon mesh for arranging, editing, and printing. |
 | **Join Adjacent Edges** | Join neighboring open edges within a specified tolerance to repair patterns. |
 | [**Measure**](/interface/measurement-tool) | Measure a distance in the scene. Click one point to start, then a second point to finish. |
-| **Reset Material Colors** | Restore the default material colors on selected objects. |
-| **Cleanup Open Edges** | Attempt to repair Pepakura edges marked as open that should be connected. |
 
 To join patterns with **Join/Cut**, select one edge and then a second edge. Use the arrow on the connecting join line to choose which pattern moves to the other. To separate pieces, click a connected edge.
 
@@ -98,23 +100,19 @@ Use **Settings** to change application preferences and the profile included with
 | [**Preferences**](/interface/preferences) | Open the dialog for changing application settings. |
 | **Edit Profile** | Edit the profile bundled with saved costumes. You can include your information, social media details, and logo as a watermark when sharing a costume. |
 
-## Windows menu
+## Window menu
 
-Use **Windows** to show or hide panels without closing your costume.
+Use **Window** to recover panels without closing the costume.
 
 | Command | What it does |
 | --- | --- |
-| **Attachment Tree** | Show or hide the panel listing parts attached to the avatar. |
-| **Command History** | Show or hide the command history as you undo and redo actions. |
-| [**Costume**](/interface/viewport-navigation) | Show or hide the viewport containing your avatar and costume. |
-| **Create 2D** | Show or hide the tools for creating shapes, images, and text for patterns. |
-| **Debug Log** | Show or hide session logs that can help diagnose a crash. |
-| **Layers** | Show or hide the panel for adding, removing, and toggling pattern layers. |
-| [**Workshop**](/patterns/patterns-workspace) | Show or hide the workspace for creating and editing patterns associated with a low-poly model. |
-| [**Property Grid**](/interface/property-grid) | Show or hide the Property Grid. Use this command to restore it if you cannot find it. |
-| [**Transforms**](/interface/transform-panel) | Show or hide the panel for entering exact position, rotation, and scale values. |
-| [**Workspaces**](/interface/workspaces-panel) | Show or hide the panel listing loaded models and controls for adding or removing workspaces. |
-| **Reset Window Layout** | Restore the default panel layout used by a fresh installation. |
+| **Workbench** | Show the shared Browse, Edit, and Inspect dock. Browse holds workspaces and context-specific attachments or patterns. |
+| **Transforms** | Show numeric position, rotation, and scale controls. |
+| **Costume**, **Workshop** | Show the corresponding work view. |
+| **Command History**, **Debug Log** | Show the available history or diagnostic panel. |
+| **Reset Window Layout** | Restore the default dock arrangement. |
+
+Create 2D is replaced by the pattern view's **Create** menu. The former separate Workspaces and Property Grid controls are now in [Workbench](/interface/overview#use-workbench). Use [Browse → Patterns](/patterns/layers-and-groups) to organize drawings and **Edit Foam → Layers** for physical foam stacks.
 
 ## Help menu
 
@@ -136,7 +134,7 @@ Use **Help** to find documentation, updates, support, and community resources.
 ## Quick tips
 
 <Tip>
-- **Save often.** Press **Ctrl+S** after meaningful changes. Armorsmith Designer does not auto-save.
+- **Save often.** Press **Ctrl+S** after meaningful changes. Do not rely on a backup alone; save the working costume deliberately.
 - **Import first, position second.** Use **File → Import** to bring in models, then fine-tune their placement with the [Transform Panel](/interface/transform-panel).
 - **Check for updates.** Use **Help → Check For Updates**, then read the changelog to see what changed.
 </Tip>
@@ -144,5 +142,5 @@ Use **Help** to find documentation, updates, support, and community resources.
 ## Additional tools in this build
 
 - [**File → Export → Costume to FBX...**](/parts/exporting-costumes#export-the-costume-to-fbx) exports the avatar and costume pieces as separate meshes.
-- [**Tools → Environment Lighting**](/interface/lighting#environment-lighting-panel) opens lighting authoring and bake controls in the release build.
+- [**Tools → Environment Lighting**](/interface/lighting#author-and-check-indirect-lighting) opens lighting authoring and bake controls in the release build.
 - [**Avatar → Custom Mesh → Import**](/avatar/custom-avatars) imports an OBJ, STL, or compatible FBX body. It is separate from File → Import.

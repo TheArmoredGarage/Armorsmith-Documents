@@ -1,75 +1,85 @@
 ---
 title: "Import costume models"
 sidebarTitle: "Importing"
-description: "Import OBJ, STL, 3MF, FBX, PDO, and ADO files; choose storage, review orientation, and organize multi-model imports."
+description: "Choose included or linked storage, review orientation and physical size, and replace a fitted model."
 ---
 
-Import a model into a workspace before attaching it to your avatar. A workspace holds the source model and its pattern work; importing does not automatically fit or attach the model.
+<Info>
+These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+</Info>
+
+Import a costume model into a workspace before attaching it to your avatar. Importing does not automatically fit or attach the part.
 
 ## Before you import
 
-Save your costume. Keep the source model and any companion material or texture files together. Know a real dimension of the part so you can check its size after importing.
+Save your costume. Keep the source model and its companion materials and textures together. Know a real dimension of the piece so you can check its size.
 
-Use **File → Import** for costume parts. Use [**Avatar → Custom Mesh → Import**](/avatar/custom-avatars) for a body model, or [**Add Animation**](/avatar/posing#import-an-animation) for an animation clip.
+Use **File → Import** for costume parts. Use [Avatar → Custom Mesh → Import](/avatar/custom-avatars) for a body model and [Add Animation](/avatar/posing#import-an-animation) for a compatible rig's animation clip.
 
-## Supported file formats
+## Supported formats
 
 | Format | What to expect |
 | --- | --- |
-| **OBJ** | Mesh geometry; keep its companion MTL and texture files available. |
-| **STL** | Mesh geometry without color or texture information. Check size because the file does not identify its measurement units. |
-| **3MF** | Model geometry, declared units, assembly transforms, and supported colors. A file can contain several models. |
-| **FBX** | Model geometry and supported scene/material information. Importing a costume model is separate from importing a rigged avatar or animation. |
-| **PDO** | A Pepakura model and its pattern data. Uses its existing import workflow rather than the new model storage/orientation dialog. |
-| **ADO** | An Armorsmith part file. Uses its existing part import workflow. |
+| **OBJ** | Mesh geometry; keep MTL and texture files available. |
+| **STL** | Geometry without color or texture information. Check size because STL does not identify its units. |
+| **3MF** | Supported model geometry, declared units, assembly transforms, and colors. One file can hold multiple models. |
+| **FBX** | Supported geometry and scene/material information. Costume-part import is separate from body or animation import. |
+| **PDO** | Pepakura model and pattern data, using its own import workflow. |
+| **ADO** | Armorsmith part data, using its own import workflow. |
 
-## Importing a model
+## Import a model
 
-1. Choose **File → Import**. In **Import a Model/PDO**, select your file and click **Open**. You can select several files at once.
-2. For OBJ, STL, 3MF, or FBX, the **Model import** dialog opens. Under **Store the source file**, choose:
-   - **Include in costume**: the default; saves the model inside the costume.
-   - **Link to original file**: keeps the original file as the full-detail source. Keep that file available at its saved location. See [linked model files](/parts/linked-files).
-3. Leave **Review orientation before import** checked to preview alignment. Click **Next: Review orientation**. To keep the source orientation without reviewing it, clear the checkbox and click **Import**.
-4. If you selected several model files, answer the **Multiple Imports** question. Choose **Yes** and enter a group name to preserve an assembly as a group, or **No** to import independently. This group choice is not offered when the selection contains PDO or ADO files. Group imports skip orientation review to preserve assembly layout.
-5. If a 3MF contains several models, choose how to organize them as described below.
-6. Complete any orientation review, then wait for loading to finish. Find the imported workspace or workspaces in the [Workspaces Panel](/interface/workspaces-panel).
-7. Inspect the model from several angles. Use [Measure](/interface/measurement-tool) to compare a known dimension. Correct size or orientation before [attaching the workspace](/parts/attaching-parts).
+1. Choose **File → Import** and select the source file. You can select several files together.
+2. For OBJ, STL, 3MF, or FBX, review **Model Import**. Leave **Include in costume** selected to store the model with the costume, or choose **Link to original file** if the original will remain available. See [linked sources](/parts/linked-files).
+3. Leave **Review orientation and size before import** checked and click **Next: Review Import**. To skip review and keep the source setup, clear it and click **Import**.
+4. Complete any grouping or 3MF organization choices below.
+5. Complete orientation/size review when offered, then wait for loading.
+6. Find the workspace under **Workbench → Browse → Workspaces**. Inspect and measure it before attaching it.
 
-Opening an OBJ, STL, FBX, or 3MF from **File → Recent Imports** also asks for the model storage and orientation choices.
+PDO and ADO do not use the new storage/review dialog. Recent Imports also offers the applicable model storage/review choices.
 
-## Review orientation
+## Review orientation and size
 
-The **Review orientation** dialog compares **Before** and **After** previews. Use **View: Front**, **Side**, and **Top** to check that the part is upright and faces the intended direction.
+**Review Orientation And Size** compares Before and After. Use Front, Side, and Top views to check the direction and proportions.
 
-1. Inspect the suggested alignment. A suggestion can keep the original orientation when no reliable correction is found.
-2. Open **Adjust orientation** if you need a different result. Choose an **Automatic alignment** option, use **Reapply suggestion**, enter X/Y/Z rotations in degrees, or use a **Flip** button for a 180-degree turn.
-3. Use **Reset to original** to discard the adjustments in the preview.
-4. Click **Import with orientation** to accept the preview, or **Import original** to keep the source orientation.
+1. Check the suggested alignment. An uncertain suggestion can keep the original direction.
+2. Set **Longest Side** in **millimetres** if you know the required largest dimension. All dimensions scale together. Read the resulting X/Y/Z dimensions and percentage before accepting.
+3. Use **Reset Size** to discard sizing changes.
+4. Open **Adjust Orientation** for automatic-axis choices, X/Y/Z angles, or the axis **Rotate … (90 deg)** controls. Use **Reapply Suggestion** or **Reset To Original** when needed.
+5. Click **Import Adjusted** when you have changed size, or **Import With Orientation** for an orientation-only correction. **Import Original** keeps the original setup instead of accepting the review adjustments.
 
-Alignment changes orientation, not the part's intended physical size. Check its dimensions separately. If no usable surface is available for review, inspect the loaded model directly.
+Sizing is still available when automatic orientation is uncertain. For example, if a practice bracer's largest dimension is 100 mm and you enter 200 mm, its other dimensions scale by the same factor. This is uniform sizing, not a local fit adjustment.
 
-## Import several models from a 3MF
+After importing, use [Measure](/interface/measurement-tool) to verify a known dimension. Review sizing is baked into imported geometry, so it does not need to appear as a non-neutral workspace scale. Continue with [attaching and fitting](/parts/attaching-parts).
 
-In **Import 3MF Models**, choose one of these options:
+## Organize multiple imports
 
-| Option | Use it when |
+For several selected model files, **Multiple Imports** can ask whether to import as a group. Choose Yes and name the assembly to preserve its relative layout, or No for independent imports. Group imports skip orientation/size review to preserve that assembly. A selection containing PDO or ADO does not offer this grouping question.
+
+For multiple models inside one 3MF, **Import 3MF Models** offers **Separate Workspaces**, **Merge into One Workspace**, or **Cancel**. Keep helmet cheek pieces separate when they need individual fitting. This choice concerns models inside one file, not the group question for several selected files.
+
+3MF transfers supported model data. Do not assume slicer profiles, supports, printer settings, or every extension will transfer.
+
+## Replace a fitted model
+
+Use replacement when the source geometry has changed and you need to inspect it with the existing fitted placement. Save a copy first.
+
+1. Select the fitted attachment in Costume.
+2. Right-click it and choose **Re-import Model**.
+3. Choose a replacement **PDO**, **OBJ**, or **STL**. This command has a narrower filter than initial import.
+4. Inspect the replacement, linked mirrors, placement, dimensions, and pattern work before saving the new version.
+
+Replacement stages the new geometry before changing the fitted model. If loading fails, the original is kept. Retained placement is not a promise that arbitrary topology changes preserve every downstream edit; compare the result carefully.
+
+## Troubleshoot import
+
+| Symptom | Next check |
 | --- | --- |
-| **Separate Workspaces** | You want to manage and attach the models independently. This is the default choice. |
-| **Merge into One Workspace** | You want the models together in one workspace. |
-| **Cancel** | You want to stop this 3MF import. |
+| The piece is too large or small | Check the known dimension and units. Use review sizing during import or the attached part's Scale tool. |
+| The model faces the wrong way | Review orientation from several views; use the axis rotation controls or Rotate after import. |
+| A recent import is missing or unreadable | Restore the file or select it at its new location through File → Import. |
+| 3MF Import Error appears | Read the specific error. Try a model-only file or an OBJ/STL export when required data is unsupported. |
+| A linked source cannot be bundled | The current bundling implementation rejects linked sources larger than 2 GB. Use Include in costume instead. |
+| A saved linked costume needs its source | Follow [missing-source recovery](/parts/linked-files#find-a-moved-or-missing-source-file). |
 
-For example, choose **Separate Workspaces** for a helmet and separate cheek pieces you plan to fit individually. Choose **Merge into One Workspace** when you want to manage the assembly together. This choice concerns models inside one 3MF; the **Multiple Imports** group question concerns several selected files.
-
-The importer converts declared 3MF units to the application's internal millimetres and reads supported model/component transforms. It is a model importer: do not assume slicer settings, supports, printer profiles, or every 3MF extension will transfer.
-
-## Troubleshoot an import
-
-| Symptom | What to check |
-| --- | --- |
-| The part is too large or small | Compare a known dimension with Measure. Check source units, then use Scale or correct the source model. |
-| The model faces the wrong direction | Use orientation review, or Rotate after loading. Check front and side views before attaching it. |
-| **3MF Import Error** appears | Read the specific error. Unsupported required extensions, invalid assemblies, or missing material resources can prevent import. Try a model-only 3MF or export OBJ/STL from the source application. |
-| A linked file cannot be bundled | The current implementation rejects linked source files larger than 2 GB. Import with **Include in costume** instead. |
-| A linked costume cannot find its model later | Restore the expected original file or follow [missing-source recovery](/parts/linked-files#find-a-moved-or-missing-source-file). |
-
-Save your costume after importing and fitting. For a single-file handoff, use [Publish Costume](/interface/costume-files#publish-one-file-for-sharing).
+Save after fitting. For a single-file handoff use [Publish Costume](/interface/costume-files#publish-one-file-for-sharing).

@@ -1,99 +1,77 @@
 ---
-title: "Tutorial: create a layered foam bracer"
+title: "Create a layered foam bracer"
 sidebarTitle: "Layered bracer tutorial"
-description: "Draw a base, form it, add raised patterns, finish their edges, and place rivet details."
+description: "Draft a measured base, form it, add raised trim, and check the fitted and printed results."
 hidden: true
 noindex: true
 ---
 
-Build a curved bracer with a 6 mm base, two raised 2 mm details in one layer, and decorative dome rivets. This exercise uses the unreleased foam tools and keeps the flat cut outlines available throughout.
+<Info>
+These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+</Info>
 
-The sizes below are practice settings. Fit the finished design to your costume before cutting foam.
+Build a practice bracer from a **180 × 100 mm** base with two **40 × 25 mm** raised pieces. Use **6 mm** foam for the base and **2 mm** foam for the details. These are practice dimensions; fit the finished design to the wearer before using final material.
 
-## 1. Draw the base
+## 1. Draw and size the base
 
-Open a workspace and choose the **Patterns** tab. Click **Draw foam**. Use the 2D drawing view on the right and the 3D foam preview on the left.
+1. Open Workshop and create a blank workspace.
+2. Use **Create → Rectangle** above the 2D view and complete a rectangle.
+3. Select it and open **Inspect**. Set Width to **180 mm** and Height to **100 mm**, using equivalent values if your display units differ.
+4. Right-click the closed outline and choose **Promote To Foam Pattern**.
+5. Click **Edit Foam** and set Thickness to **6 mm** on the Pattern tab.
 
-In the 2D view, click four anchors to draw a broad rectangle or tapered bracer plate. Make it large enough to leave room for two smaller details. Click near the first anchor to close it.
+**Check:** The flat outline is visible in 2D and a solid appears in the 3D preview. If the preview is hidden, enable **Foam** in the pattern tools.
 
-Select the new pattern. Click **Thickness**, enter **6 mm**, and confirm. Check that the solid foam preview appears in the 3D view. Toggle **Foam** if it is hidden.
+## 2. Refine the cut outline
 
-**Checkpoint:** you have a flat outline in 2D and a solid 6 mm piece in 3D.
+Open **Edit Shape** and choose Vertex or Segment to make a small change to a corner or curve. Keep the outline closed and avoid crossing edges. Use **Edit → Undo** if the change damages the outline. Click **Done**, then reopen Edit Foam.
 
-## 2. Refine the outline
+## 3. Form the bracer
 
-Click **Edit points**. Select a corner and move it to adjust the taper.
+1. On Pattern, choose **Horizontal Bend** in Form.
+2. Set **Bend (Degrees)** to **90**.
+3. Orbit the 3D view to inspect the bend. Use **Advanced Forming → Reverse Forming Direction** if it bends the wrong way.
+4. Release any slider and let the final preview settle.
 
-Try **Curve** on one segment, then drag its handles to soften that side. If you need another anchor, select the segment's starting anchor and use **Divide** with one new anchor. The curve keeps its shape until you edit the new point.
+**Check:** The formed piece changes in 3D while the flat cut outline stays available in 2D.
 
-Leave point editing with **Edit points**. Keep the outline closed and avoid crossing its edges.
+## 4. Finish the base edge
 
-## 3. Form and place the bracer
+In **Edge Finish**, choose **Angle Cut (45 Degrees)**, set Units to **% Of Foam Thickness**, and Depth to **50**. On a 6 mm base, this means 3 mm down and 3 mm inward. Orbit to inspect the edge.
 
-Open **Form**, choose **Horizontal bend**, and enter **90°**. This bends across the pattern's flat X direction.
+## 5. Create the raised pieces
 
-Orbit the left-hand 3D preview to inspect the bend. Adjust the angle as needed. Use **Reverse forming direction** if it curves the wrong way. You will attach the completed stack to the costume in step 9.
+1. Create two more rectangles. In Inspect, size each to **40 × 25 mm**.
+2. Leave them apart in the 2D cutting layout.
+3. Select the base, open **Edit Foam → Layers**, and choose **Use Selected Pattern As Base** if needed.
+4. Click **Add Layer** and select that layer as the destination.
+5. Use **Choose Patterns…** to select the two closed rectangles and confirm their addition.
+6. Double-click each raised pattern row to open Pattern and set its Thickness to **2 mm**.
 
-Briefly try **Vertical bend** to see the other axis, then return to horizontal. You can also try **Spherical form** and click **Gentle curve** to see forming in two directions. Increase the radius for a flatter piece, or decrease it toward the displayed minimum for a deeper dome. Return to the mode you want for your bracer.
+Eligible outlines are promoted when added. If a piece is rejected, read the message and check its size, closed outline, and fit within the base.
 
-**Checkpoint:** the formed piece changes in 3D while its flat cut outline stays the same.
+## 6. Set height and placement
 
-## 4. Give the base an angle cut
+Select the layer and set **Height Above Base** to **0 mm**, so the raised pieces sit directly on the base's outer surface. This value excludes the base's 6 mm thickness.
 
-Select the base and click **Edge Style**. Choose **Angle cut — 45°**, **50%**, then confirm.
+Select a raised pattern in the 3D view and use **Translate** to move it across the base with local X/Y handles. Use **Rotate** for local Z rotation. Keep its whole outline inside the base. Move the second piece similarly.
 
-For 6 mm foam, this removes 3 mm down from the top edge and 3 mm inward. Open the dialog again and switch to **Millimeters**. It should read **3 mm**. Switch back to percent if you want the cut to follow later thickness changes.
+**Check:** Both pieces follow the bend. Their assembly positions change without moving their flat paper templates. Use Undo/Redo to check one placement edit.
 
-Inspect the edge from the side in 3D. The bottom cut outline remains intact.
+## 7. Color and inspect the stack
 
-## 5. Create a layer with two patterns
+Give the base a neutral Preview Color and the trim a contrasting color. Use a layer color action for a common starting color, then override one selected pattern if useful. A shared edit applies to the selected targets, so check the target name first.
 
-Select the base, click **Layers**, then click **Use selected base**. Click **Add layer** and single-click its row.
+Give one 2 mm detail a Rounded edge at 50% depth for a 1 mm radius. Inspect it from the side. Move Up/Down changes layer list order, not physical height.
 
-Return to **Draw foam** and create a smaller closed raised plate. Give it **2 mm** thickness. Create a second small pattern beside it. To make a rounded badge, place curve anchors with **Ctrl** or refine a small outline with **Smooth** and its handles.
+## 8. Fit and save
 
-Select both smaller patterns in the 2D view. Keep the destination layer row selected in **Foam layers**, then click **Add selected patterns**.
+Enable **Attach As Part** for the base and attach the workspace to a forearm slot when needed. Use **Refresh Costume Meshes** after changing the patterns, then inspect the generated part in Costume. Refresh preserves placement but replaces mesh edits; save a copy before refreshing further mesh work.
 
-If a shape is rejected, make it smaller or change its outline so it fits within the base. The tool attempts to center an out-of-bounds shape before rejecting it.
+Check clearance against the avatar from several views. Save the costume, reopen it, and check that the layer heights, preview colors, and placement remain as intended.
 
-**Checkpoint:** one layer contains two separate patterns, and both follow the base bend.
+## 9. Check the cut templates
 
-## 6. Slide a detail across the bend
+Arrange the flat shapes on paper. [Print a test page](/getting-started/print-first-template) at 100% / Actual Size and verify a known dimension with a ruler before cutting foam. Record stock thickness, bend, edge depth, and glue placement separately.
 
-Click **Move on surface**. In the 3D view, click and drag one of the raised foam patterns.
-
-Move it across the curved bracer and toward the outer edge. It follows the bend and stays within the base outline. Release to keep the move. Try undo, then redo, to check its position.
-
-Click **Finish moving**. Double-click the raised pattern's row to select it. Give it a **Rounded** Edge Style with **50%** depth. On 2 mm foam, that is a 1 mm radius.
-
-## 7. Color the layer, then override one pattern
-
-Single-click the layer row. Choose a material, or **Custom color...**, then click **Apply material to whole layer**. For this exercise, use a dark metallic color or a dark gray.
-
-Click one raised pattern's row. Choose a contrasting material or color, then click **Set pattern material**. Only that pattern changes.
-
-Double-click the base row, then use **Form** to change the bend slightly. The colored raised patterns still share the same forming.
-
-**Checkpoint:** the layer has a common starting material, with one independent pattern override.
-
-## 8. Place decorative rivets
-
-Click **Details**. Choose a **6 mm** or **8 mm Dome rivet**, then click **Place on surface**.
-
-Click on the base and on a raised pattern to place several rivets. Each rivet takes the material of the piece you clicked. Keep them away from the outer edge for this exercise.
-
-Click **Move details** and drag one rivet along its current surface. Click **Finish** when you are done.
-
-Change the base bend once more. The rivets remain attached. Their own dimensions stay fixed while their position and orientation follow the surface.
-
-## 9. Review, save, and prepare the cut patterns
-
-Use layer checkboxes to inspect the base and raised shapes separately. Check the stack from several camera angles.
-
-Select the base and click **Attach as part**. Open the **Costume** tab and use **Place** to position and rotate the stack near the forearm. Check its fit against the avatar, then save the project. The whole stack shares the base placement. You can turn **Attach as part** off to keep it only in the Patterns preview.
-
-Review the flat patterns in 2D. Forming, edge finishes, and materials do not replace the outlines you cut. Decorative hardware does not automatically add drilling marks.
-
-Continue with [Print patterns](/patterns/printing). Print a test page, verify its scale with a ruler, and label the foam thickness, edge depth, and hardware positions for your physical build.
-
-If something does not match a checkpoint, use [Foam troubleshooting](/foam-preview/troubleshooting).
+**Result:** You have a saved layered design, fitted geometry to inspect, and flat cut shapes for a physical test. Forming is geometric; it does not predict heating or foam stretch. For a missing preview or rejected layer member, see [foam troubleshooting](/foam-preview/troubleshooting).

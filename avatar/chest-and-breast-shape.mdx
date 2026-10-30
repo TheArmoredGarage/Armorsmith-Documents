@@ -1,39 +1,45 @@
 ---
 title: "Fit chest and breast shape"
 sidebarTitle: "Chest shape"
-description: "Fit the torso, choose approximate Avatar 4 cup presets, and refine breast shape for your costume base layer."
+description: "Match underbust and full bust, then refine Avatar 4 chest placement and fullness."
 ---
 
-Measure while wearing the supportive garment or base layer intended for the costume. Record **Underbust** around the ribcage beneath the breasts and **Full bust** around the fullest area. Keep the tape level without compressing the body.
+<Info>
+These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+</Info>
+
+Measure while wearing the supportive garment or base layer intended for the costume. Record **Underbust** around the ribcage beneath the breasts and **Full Bust** around the fullest area. Keep the tape level without compression.
 
 ## Avatar 4 workflow
 
-Open **Avatar → Edit Avatar → Circumferences**. Fit the overall height and torso proportions first. **Breast shape** is shown for a Female Avatar 4 aged 18 or older when the loaded asset includes the required breast shapes.
+Open **Avatar → Edit Avatar**, then use **Circumferences → Breast Shape** in Workbench Edit. These controls are available for an adult female Avatar 4 with the required body shapes.
 
-1. Match the torso rings to your measurements and check front and side views.
-2. Enable **Adjust breasts separately from torso** for the independent breast layer. **Fit torso before breasts** uses torso circumference fitting while preserving breast shape on the resized chest.
-3. Choose **Cup system** (**US / Canada** or **UK**) and an approximate **Cup size** starting preset.
-4. Adjust **Spacing** and **Support** to match the intended garment's silhouette.
-5. Open **More breast controls** only if needed. Tune one control at a time, checking the front and profile views.
-6. Inspect the displayed approximate ring values, compare with your tape measurements, then show the costume and [check clearance](/parts/fit-checker).
+1. Fit standing height and larger torso proportions first.
+2. Set Underbust to match the ribcage and check the front and profile views.
+3. Set Full Bust to the supported measurement. The difference between Full Bust and Underbust controls approximate cup and breast fullness.
+4. Choose **Cup System** and use **Cup Size** as an approximate starting preset if useful.
+5. Refine placement and silhouette with the controls below.
+6. Recheck the readings, show the fitted costume, and [check clearance](/parts/fit-checker).
 
-| Control | What it changes |
+Changing Underbust preserves the bust-minus-underbust difference, so recheck Full Bust after a torso-size edit. Full Bust cannot be lower than Underbust. Measurement locks can constrain a requested edit; read any error and use Undo rather than repeatedly forcing conflicting values.
+
+## Refine the silhouette
+
+| Control | Use it for |
 | --- | --- |
-| **Cup size** | An approximate starting shape calibrated using the current underbust at selection. |
-| **Spacing** | Closer together or farther apart; the centre preserves authored spacing. |
-| **Support** | The breast layer's supported shape. Compare it with the actual garment you plan to wear. |
-| **Fine size** | Local size adjustment; 100% is neutral. Editing it changes the cup preset to Custom. |
-| **Firmness** | A blend between authored soft and firm shapes; 50% is neutral. It is not a measured tissue property. |
-| **Width**, **Projection** | Local shape adjustments; 100% preserves the local shape. |
+| **Cup System** | Choose US / Canada or UK labels for approximate presets. |
+| **Cup Size** | Start from an approximate cup difference at the current torso size. |
+| **Spacing** | Bring the breasts closer together or farther apart. |
+| **Vertical Position** | Adjust height on the torso without using cup size as a position control. |
+| **Firmness** | Blend the authored soft-to-firm appearance. It is not a measured tissue property. |
+| **Outer Fullness** | Refine the outer breast root toward the side of the chest. |
 
-Cup letters vary by sizing system and brand. A preset does not guarantee a particular bra fit or final bust circumference. Later underbust edits keep breast size fixed, so recheck the silhouette and choose or tune the preset again if needed.
-
-If a preset is outside the supported shape range, read the message and use **Fine size** and shape tuning. Do not shrink an accurate ribcage solely to make a breastplate fit; adjust the part instead.
+Cup letters vary by brand and sizing system. The preset does not guarantee bra fit or a final breastplate shape. Compare the silhouette with the support intended for the costume, and avoid shrinking an accurate ribcage merely to reduce local fullness. Adjust the armor part when appropriate.
 
 ## Older built-in avatars
 
-Older bodies use **Details → Torso** with independent **Breast Size**, **Breast Height**, and **Breast Projection** controls. Their midpoint preserves the base shape for that control. These sliders are shape amounts, not tape-measure values or cup sizes.
+Older bodies use **Details → Torso** with independent Breast Size, Breast Height, and Breast Projection controls. Their midpoint preserves the base shape for that control; the sliders are not tape readings or cup sizes.
 
-Older files made with the combined Breast Size slider are converted to independent settings to retain the saved shape. Leave the converted settings in place unless you intend to change that shape. Save a copy before refining an older avatar.
+Older files using the combined Breast Size slider are converted into independent settings to retain the saved shape. Keep the converted values if that is the shape you want. Moving every slider to its midpoint changes it back toward the original base mesh.
 
-See [Body measurements](/avatar/body-measurements) and [Saving and reusing avatars](/avatar/saving-and-reusing-avatars).
+Save a copy before refining an older setup. See [body measurements](/avatar/body-measurements), [avatar troubleshooting](/avatar/avatar-troubleshooting), and [saving avatars](/avatar/saving-and-reusing-avatars).

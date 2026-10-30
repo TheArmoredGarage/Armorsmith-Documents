@@ -4,6 +4,10 @@ sidebarTitle: "Posing"
 description: "Use preset poses and pose editing to inspect costume clearance, then save and reuse a pose."
 ---
 
+<Info>
+These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+</Info>
+
 Pose your avatar after fitting parts to check how they sit around joints and neighboring pieces. A shoulder piece can clear the body in a neutral stance and intersect another piece when the arm moves.
 
 ## Choose a preset pose
@@ -17,7 +21,7 @@ Use a neutral stance while entering measurements and initially fitting parts. Us
 1. Choose **Avatar → Edit Pose**.
 2. Select a sphere joint and use [**Translate**](/interface/translate-tool) to move it, or select a bone and use [**Rotate**](/interface/rotate-tool) to turn it.
 3. Make small changes and inspect the limb and attached parts.
-4. Toggle **Edit Pose** off when you finish.
+4. Finish the editing mode with its **Done** control when shown, or toggle **Edit Pose** off.
 
 Start with one joint, such as an elbow or shoulder. Check neighboring pieces before adjusting another joint. A posed avatar is a visual clearance check, not a simulation of straps, flexible materials, or the wearer's full range of motion.
 
@@ -48,20 +52,22 @@ Give pose files names that describe the stance or check, such as `arms-raised.po
 
 ## Play and inspect animations
 
-The toolbar above the **Costume viewport** contains **Animations:**, a clip selector, play/pause, stop, and a position slider. The expanded clip library is available on supported built-in and custom avatars.
+Activate **Animation** above the Costume viewport. Its controls open in **Workbench → Edit**, with **Animation Clip**, **Play/Pause**, **Stop**, and **Playback Position**. Clips are available on supported built-in and custom avatars.
 
 1. Leave **Edit Avatar** so playback is enabled.
-2. Choose a clip from **Animations:** and click the play button.
-3. Click it again to pause. Use the position slider to inspect a particular point in the motion.
+2. Choose a clip in **Animation Clip** and click **Play**.
+3. Click it again to pause. Use **Playback Position** to inspect a particular point in the motion.
 4. Inspect attached parts from several angles. Pause and let [Fit Checker](/parts/fit-checker) finish updating before judging its colors.
 5. Click stop to finish. Built-in avatars return to their default pose; supported custom avatars return to their reference pose.
 
 Playback needs an avatar that supports animation. A static OBJ or STL body does not gain a skeleton by importing a clip. Animation provides visual motion review; attachment physics is not enabled in this build.
 
+Click **Done** to leave the Animation tool. It pauses playback and retains the clip and position for resuming; **Stop** is the separate command for ending playback and restoring the reference pose.
+
 ## Import an animation
 
 1. Prepare an FBX containing animation compatible with the avatar's rig.
-2. Click the plus button whose tooltip is **Add Animation**, beside the **Animations:** selector.
+2. Open the **Animation** tool and click **Add Animation** beside **Animation Clip** in Workbench Edit.
 3. In **Open Animation File**, select the FBX and click **Open**.
 4. A successfully imported clip appears in the selector and is selected. Play it and inspect joint motion and attachment placement before relying on it for fit checks.
 

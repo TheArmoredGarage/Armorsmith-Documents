@@ -4,7 +4,11 @@ sidebarTitle: "Linked files"
 description: "Choose included or linked model storage, recover missing sources, and publish a costume for sharing."
 ---
 
-When you import OBJ, STL, FBX, or 3MF models, choose whether the costume stores the model or links to its original file. These choices appear after file selection in **Model import**.
+<Info>
+These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+</Info>
+
+When you import OBJ, STL, FBX, or 3MF models, choose whether the costume stores the model or links to its original file. These choices appear after file selection in **Model Import**.
 
 ## Choose how to save your models
 
@@ -18,11 +22,17 @@ Your costume still saves fitting and workspace work. Linked storage does not mak
 ## Link a model during import
 
 1. Choose **File → Import** and select an OBJ, STL, FBX, or 3MF.
-2. In **Model import**, choose **Link to original file**.
-3. Leave **Review orientation before import** checked and click **Next: Review orientation**, or clear it and click **Import**.
+2. In **Model Import**, choose **Link to original file**.
+3. Leave **Review orientation and size before import** checked and click **Next: Review Import**, or clear it and click **Import**.
 4. Complete the [model import procedure](/parts/importing-models), then save your costume.
 
-Use **Show file storage details** for the dialog's explanation. Linked source files larger than 2 GB cannot be bundled by the current implementation; choose **Include in costume** for those files.
+Use **Show File Storage Details** for the dialog's explanation. Linked source files larger than 2 GB cannot be bundled by the current implementation; choose **Include in costume** for those files.
+
+## Keep the accepted import size
+
+Accepted orientation and sizing are saved with a supported linked source and replayed when its full geometry is loaded. Do not apply the same import scale a second time. Check a known dimension after saving and reopening.
+
+Linked storage does not replace a changed source automatically. For a deliberate geometry replacement, use [Re-import Model](/parts/importing-models#replace-a-fitted-model) and inspect the retained fit.
 
 ## Find a moved or missing source file
 

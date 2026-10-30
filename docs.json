@@ -90,6 +90,7 @@
             "group": "Templates & Patterns",
             "pages": [
               "patterns/patterns-workspace",
+              "patterns/layers-and-groups",
               "patterns/create-and-manage-islands",
               "patterns/pattern-layout",
               "patterns/printing",

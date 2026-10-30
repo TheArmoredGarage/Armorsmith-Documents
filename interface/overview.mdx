@@ -1,44 +1,49 @@
 ---
-title: "Armorsmith Designer Interface: A Complete Overview"
+title: "Find your way around Armorsmith Designer"
 sidebarTitle: "Overview"
-description: "A guided tour of the Armorsmith Designer interface — the Menu Bar, 3D Viewport, and Property Grid — so you can start designing with confidence."
+description: "Find the Costume and Workshop views, use Workbench, and locate precise editing controls."
 ---
 
-Armorsmith Designer organizes its work area into a set of focused panels that work together — you build and refine your costume design entirely within a single window, moving between tools as your project grows. Getting familiar with where each panel lives will make your workflow faster and more intuitive from the start.
+<Info>
+These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+</Info>
 
-## UI Regions at a Glance
+Use **Costume** to fit armor to the avatar and **Workshop** to work with a model and its flat patterns. **Workbench** holds the browsing, editing, and inspection controls beside those views.
 
-The application window is divided into the following major areas:
+## Choose a view
 
-<CardGroup cols={2}>
-  <Card title="Menu Bar" icon="bars" href="/interface/menu-bar">
-    Runs across the very top of the window. Contains the **File**, **Avatar**, **Edit**, **View**, **Settings**, **Window**, and **Help** menus, giving you access to project management, avatar controls, panel toggles, and application settings.
-  </Card>
+| Area | Use it for |
+| --- | --- |
+| **Costume** | Place and fit attached parts around the avatar. Inspect the fit from several angles. |
+| **Workshop** | Edit a workspace's model, draw outlines, and arrange patterns on paper. |
+| **Menu bar** | Open, save, import, export, change preferences, and show panels. See the [menu reference](/interface/menu-bar). |
 
-  <Card title="3D Viewport" icon="cube" href="/interface/viewport-navigation">
-    The large central area that takes up most of the screen. This is where your 3D avatar and all attached costume parts are displayed. All navigation and hands-on manipulation happens here. You can also flip between the patterns and costume tabs from here.
-  </Card>
+The model and pattern views serve different tasks. Moving a paper template does not reposition its fitted attachment on the avatar.
 
-  <Card title="Workspaces Panel" icon="table-list" href="/interface/workspaces-panel">
-    Lets you import existing models or create a blank workspace to begin drafting patterns. All of the workspaces you have loaded will be displayed here with a thumbnail to remind you of what the file is.
-  </Card>
+## Use Workbench
 
-  <Card title="Transform Panel" icon="sliders" href="/interface/transform-panel">
-    This is where you can type in the Position, Rotation, and Scale of your object. All transformations are done in the units you have chosen.
-  </Card>
+Choose **Window → Workbench** if the dock is not visible.
 
-  <Card title="Property Grid" icon="table-list" href="/interface/property-grid">
-    A panel — usually docked to the right side — that displays the editable properties of whatever object you currently have selected. If you don't see it, see the note below.
-  </Card>
-</CardGroup>
+| Tab | What it shows |
+| --- | --- |
+| **Browse** | [Workspaces](/interface/workspaces-panel) and their content. Costume offers attachment browsing; Workshop offers drawing layers and patterns. |
+| **Edit** | Controls for the active tool, such as avatar customization, FFD, Fit Check, Edit Shape, or Edit Foam. |
+| **Inspect** | [Properties](/interface/property-grid) of the selected object or workspace. |
 
-## Tips for First-Time Users
+Activate a tool from its normal menu or viewport button to open its editing controls. Use **Done** to finish a tool when that button is shown. Tools with **Apply** and **Cancel** use those controls to accept or abandon the proposed operation. Changing the visible Workbench tab alone is not a substitute for finishing a tool.
 
-**Start with the avatar.** Before attaching any 3D models, use **Avatar → Edit Avatar** or select the <img src="/images/edit-avatar-button.png" alt="Edit Avatar toolbar button" noZoom style={{ display: "inline-block", height: "1.5em", verticalAlign: "middle" }} /> button on the toolbar to enter your measurements. For generating a well fitted costume, accurate measurements are critical.
+Workbench moves as one dock. Browse, Edit, and Inspect are pages inside it, rather than separate docks to rearrange individually.
 
-- **Look for panel headers.** Each panel has a title bar you can use to drag and re-dock it. If a panel seems to have disappeared, it may have been moved off-screen or collapsed — check the **Windows** menu to restore it.
-- **The Transform Panel is your precision tool.** Clicking and dragging objects in the viewport is great for rough positioning, but typing exact values into the Transform Panel will get you a precision fit.
+## Enter precise transforms
 
-<Note>
-  **Property Grid not visible?** A known issue in some early versions of Armorsmith Designer causes the Property Grid panel to be hidden by default after an update. If you can't see it, go to **Windows → Property Grid** in the Menu Bar to make it visible again. The panel will reappear in its last docked position.
-</Note>
+The separate **Transforms** panel contains position, rotation, and scale. Use it for exact values and use the viewport gizmos for interactive adjustment. See [Transform Panel](/interface/transform-panel).
+
+## Start a costume
+
+1. [Create and save a costume](/getting-started/first-costume).
+2. Choose **Avatar → Edit Avatar** to enter body measurements in Workbench Edit.
+3. Import a model and select it under **Browse → Workspaces**.
+4. Attach it to the avatar, then position and check the fit.
+5. Open Workshop when you are ready to work on its patterns.
+
+For camera controls, see [viewport navigation](/interface/viewport-navigation). If the panel arrangement becomes difficult to use, choose **Window → Reset Window Layout**.

@@ -4,15 +4,20 @@ sidebarTitle: "Preferences"
 description: "Configure Armorsmith Designer Preferences to set your unit system (mm, cm, or inches), adjust the viewport grid, and tune display options."
 ---
 
+<Info>
+These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+</Info>
+
 Armorsmith Designer's **Preferences** window lets you tailor the application to the way you work — from the unit system your measurements use to how the 3D Viewport's grid and display options behave. Taking a few minutes to configure Preferences before you start a project will save you from confusing mismatches between your real-world measurements and the values you see on screen.
 
 # Preferences
 
-Preferences are divided into three tabs:
+Preferences are divided into four tabs:
 
 - **General** — Language, environment, autosave, and Color Key settings.
 - **Measurements** — Units, grid spacing, and snapping settings.
-- **Rendering** — Display and rendering quality settings.
+- **Rendering** — Display-effect switches.
+- **Graphics Hardware** — Requested and current graphics processor.
 
 ---
 
@@ -156,66 +161,25 @@ Rotation snapping constrains object rotation to fixed angular increments.
 
 ## Rendering
 
-The **Rendering** tab controls the visual quality of the Work Area and the rendering features used to display your avatar and costume.
+Use **Settings → Preferences → Rendering** to enable or disable visual effects. Available switches include **EnableFXAA**, **Ambient Occlusion**, **EnableBloom**, **Depth Of Field**, **EnableShadows**, **EnableLighting**, **EnableReflections**, and **Reflection Imposters**.
 
+**Depth Of Field** allows the background-blur settings used by the environment. Turning it off preserves those room settings. **Reflection Imposters** similarly permits reflections supplied by the environment. Disabling Ambient Occlusion preserves stored AO maps and tuning.
 
-### Display Settings
+Use clear lighting and disable depth blur when checking small edges. Room-specific bloom strength, blur radius, and other atmosphere tuning are separate from these switches; see [lighting and rendering](/interface/lighting).
 
-<AccordionGroup>
-  <Accordion title="Line Size">
-    Controls the thickness of lines displayed throughout the 3D Work Area.
-  </Accordion>
-</AccordionGroup>
+Display effects change appearance, not costume dimensions or pattern scale. Click **OK** to save Preferences.
 
-### Render Settings
+## Graphics Hardware
 
-These options allow you to adjust the balance between visual quality and rendering performance.
+Open **Graphics Hardware** to choose **Graphics Processor (Restart Required)**:
 
-<AccordionGroup>
-  <Accordion title="Max Smoothness">
-    Controls the maximum amount of surface smoothing used when rendering supported objects.
+| Choice | When to use it |
+| --- | --- |
+| **High Performance (Recommended)** | Prefer the higher-performance graphics device. It can use more battery power. |
+| **Power Saving** | Prefer a lower-power device when supported. |
+| **System Default** | Let the system choose. |
+| A named adapter | Request a specific listed device. |
 
-    Higher values can produce smoother-looking surfaces but may require additional rendering resources.
-  </Accordion>
+**Current Graphics Processor** shows the active adapter. Restart Armorsmith after changing the requested processor, then check that value again. **Help → About** also reports the graphics processor, which is useful when describing a rendering problem.
 
-  <Accordion title="EnableFXAA">
-    Enables **Fast Approximate Anti-Aliasing (FXAA)**.
-
-    FXAA reduces the appearance of jagged edges in the rendered scene with a relatively small performance cost.
-  </Accordion>
-
-  <Accordion title="EnableAmbientOcclusion">
-    Enables ambient occlusion, which adds subtle shading where surfaces meet or are close together.
-
-    This provides additional depth and makes the shape of objects easier to perceive.
-  </Accordion>
-
-  <Accordion title="EnableShadows">
-    Enables real-time shadows in the Work Area.
-  </Accordion>
-
-  <Accordion title="EnableLighting">
-    Enables lighting calculations when rendering the scene.
-  </Accordion>
-
-  <Accordion title="EnableReflections">
-    Enables reflections on supported materials and surfaces.
-  </Accordion>
-
-  <Accordion title="GlobalLightIntensity">
-    Controls the overall intensity of the lighting in the Work Area.
-
-    Increase this value to make the scene brighter or decrease it for softer lighting.
-  </Accordion>
-</AccordionGroup>
-
-<Tip>
-  If Armorsmith Designer is running slowly on your computer, disabling **Ambient Occlusion**, **Shadows**, or **Reflections** can help improve rendering performance.
-</Tip>
-
-<Note>
-  Rendering preferences affect how your project is displayed in Armorsmith Designer. They do not change the dimensions or geometry of your costume pieces.
-</Note>
-### Advanced effects in this build
-
-Bloom, depth of field, and the Environment Lighting panel are available in this build. The generated render controls display compact names such as **EnableBloom**, **BloomIntensity**, **EnableDepthOfField**, **EnableLighting**, and **EnableReflections**. See [lighting and rendering](/interface/lighting) for their defaults, practical uses, and indirect-lighting controls.
+An unavailable saved adapter can appear as **Unavailable Adapter (Use Fallback)**. Choose an available device or a preference mode and restart.

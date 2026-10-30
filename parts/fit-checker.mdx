@@ -4,6 +4,10 @@ sidebarTitle: "Fit Checker"
 description: "Inspect clearance between costume parts and your avatar, read the fit heatmap, and adjust the color range to highlight tighter areas."
 ---
 
+<Info>
+These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+</Info>
+
 The **Fit Checker** colors your attached costume parts according to their estimated distance from the avatar. Use the heatmap to find tight areas while you position and size a part, then inspect the fit in the poses you plan to use.
 
 Fit checking changes the display colors. It does not resize your parts or change their material thickness.
@@ -16,12 +20,12 @@ Fit checking changes the display colors. It does not resize your parts or change
   <Step title="Prepare your avatar and attachments">
     Set your [avatar measurements](/avatar/body-measurements), then [attach and position your parts](/parts/attaching-parts) in the **Costume viewport**.
 
-    Select an attachment and check its **Thickness** in the **Property Grid**. This is the source workspace's default material thickness, shared by attachments from that workspace. Use the thickness you intend to build with.
+    Select an attachment and check its **Thickness** in **Workbench → Inspect**. This is the source workspace's default material thickness, shared by attachments from that workspace. Use the thickness you intend to build with.
   </Step>
   <Step title="Turn on Fit Checker">
     Click **Fit Checker** in the toolbar above the **Costume viewport**. The heatmap appears on your attached parts; you do not need to select each part to check it.
 
-    A small **Fit Check** dialog appears in the viewport's top-right corner. Wait for **Preparing fit check...** to change to **Fit check ready** before judging the result.
+    **Fit Check** opens in **Workbench → Edit**. Wait for **Preparing fit check...** to change to **Fit check ready** before judging the result.
   </Step>
   <Step title="Inspect and adjust the fit">
     Rotate the view and inspect each part from several angles. Use [**Translate**](/interface/translate-tool), [**Rotate**](/interface/rotate-tool), and [**Scale**](/interface/scale-tool) to adjust its placement and size. The heatmap updates as the fit changes.
@@ -54,14 +58,14 @@ The **5 mm** in that example is material thickness, not a universal allowance fo
 
 ## Adjust the color range
 
-In the **Fit Check** dialog, drag the **Color range** slider or enter a value beside it. The control accepts **1–100 mm** and starts at **20 mm**, matching the earlier fixed color scale.
+In the **Fit Check** editor, drag the **Color range** slider or enter a value beside it. The control accepts **1–100 mm** and starts at **20 mm**, matching the earlier fixed color scale.
 
 - **Increase the range** to make a larger band of limited clearance appear warm. With a **40 mm** range and **5 mm** thickness, green starts at **45 mm**.
 - **Decrease the range** to focus the transition on a smaller gap above the material thickness.
 
 Changing this value recolors the existing fit results. The red cutoff stays at the material thickness, and your parts keep their current shape and placement.
 
-Closing the dialog with **×** leaves the heatmap active. Toggle **Fit Checker** off and on to reopen the controls. Your chosen range is retained when you toggle the tool during the same session.
+Click **Done** or toggle **Fit Checker** off to finish the mode and restore normal colors. Activate it again to reopen the controls. Your chosen range is retained when you toggle the tool during the same session.
 
 ## Check grouped parts
 
@@ -77,4 +81,4 @@ The heatmap is an estimate based on sampled geometry. Dense meshes can use reduc
 
 Fit Checker measures part-to-avatar clearance. It does not simulate muscle contraction, padding compression, straps, or collisions between separate costume parts. Increasing the color range helps you review a larger clearance allowance, but does not simulate those effects. Inspect several poses and verify critical gaps with [**Measure**](/interface/measurement-tool) and a physical test fit.
 
-For an open or non-solid custom avatar, the dialog can report **Surface distance only: avatar is not a closed solid.** Treat that result as distance to the visible surface; it cannot reliably distinguish inside from outside.
+For an open or non-solid custom avatar, the editor can report **Surface distance only: avatar is not a closed solid.** Treat that result as distance to the visible surface; it cannot reliably distinguish inside from outside.
