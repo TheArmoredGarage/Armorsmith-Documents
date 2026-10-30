@@ -1,11 +1,11 @@
 ---
 title: "Adjust lighting and rendering"
 sidebarTitle: "Lighting"
-description: "Choose clear fitting lighting, separate rendering permissions from room tuning, and inspect baked lighting status."
+description: "Use rendering preferences to keep costume edges clear while checking fit."
 ---
 
 <Info>
-These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
 </Info>
 
 Use clear lighting while fitting a costume. Appearance changes do not alter physical size, pattern scale, or clearance. Use [Measure](/interface/measurement-tool) and [Fit Checker](/parts/fit-checker) to inspect geometry.
@@ -19,37 +19,8 @@ Use clear lighting while fitting a costume. Appearance changes do not alter phys
 
 The Preferences tab exposes display switches, not every room-tuning value. It no longer provides the old table of BloomIntensity, blur radius, and global-intensity fields. See [Preferences](/interface/preferences#rendering).
 
-## Tune an installed environment
+## Keep fitting checks consistent
 
-Environment controls depend on the room and build installed. When the Astra Bay room exposes **Environment Settings** in the **Window** menu, its controls include:
+Use the same camera and pose when comparing appearance changes. For a slow viewport, simplify the view or disable costly effects in Preferences. Lighting and rendering quality do not establish fit or replace a physical test.
 
-| Control | Purpose |
-| --- | --- |
-| **Fixture Color**, **Fixture Emission** | Color and glow of the room's practical fixtures. |
-| **Light Rig Intensity** | Strength of the room's lighting rig. |
-| **Bloom Enabled**, **Bloom Strength**, **Bloom Threshold** | Glow around bright areas. |
-| **Background Depth Of Field**, **Background Softness** | Background blur. The global Depth Of Field preference must also allow it. |
-| **Blur Radius (1080p px)**, **Focus Offset (mm)**, **Focus Range (mm)** | Blur size and the region kept in focus. |
-| **Background Smoke**, **Dust Motes** | Decorative atmosphere. Reduce it when inspecting edges. |
-| **Floor Roughness** | The floor's reflective finish. |
-
-Use **Front Camera** or **Three-Quarter Camera** for a repeatable comparison. **Save Viewport Image…** captures the current view when that control is available. The same camera and pose make before/after comparisons more useful.
-
-The global **Reflection Imposters** preference permits environment-provided imposters; the room's **Crate Reflection Imposters** control enables the specific crate reflections when their atlas is installed. An unavailable atlas is an asset issue, not a costume geometry problem.
-
-## Author and check indirect lighting
-
-Choose **Tools → Environment Lighting** in the full release configuration. Test builds can place this authoring panel under Developer.
-
-Indirect lighting represents light reflected around the room. Static lightmaps affect the environment; diffuse probes light moving avatars and attachments; specular probes supply baked reflections.
-
-1. Load or author the lighting rig. **Create Point**, **Create Spot**, and **Create Tube** add lights.
-2. Use **Save lighting rig…** or **Load lighting rig…** for reusable JSON rigs.
-3. Re-bake after changes to lights, environment geometry, or the skybox using **Bake environment lighting**.
-4. Check the status and refresh the specular probe with **Regenerate specular probe** when requested.
-
-**Static indirect (live)**, **Dynamic indirect (live)**, and **Specular probe boost (live)** change the respective brightness multipliers without requiring a full bake just to alter the multiplier. Read the status before judging reflections; some changes still require a refreshed capture.
-
-Higher lightmap resolution, samples, and bounce counts can take longer. **Bake workers** controls CPU concurrency; Auto uses half the logical processors. Keep authoring experiments in a saved copy of a useful rig.
-
-For a slow viewport, first simplify the view or disable costly effects in Preferences. Changing rendering quality does not substitute for checking fit or a physical test.
+Room-specific lighting authoring and Environment Settings are internal development tools, not customer controls. Use the Rendering switches described above for the available display options.

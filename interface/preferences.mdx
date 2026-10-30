@@ -5,7 +5,7 @@ description: "Configure Armorsmith Designer Preferences to set your unit system 
 ---
 
 <Info>
-These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
 </Info>
 
 Armorsmith Designer's **Preferences** window lets you tailor the application to the way you work — from the unit system your measurements use to how the 3D Viewport's grid and display options behave. Taking a few minutes to configure Preferences before you start a project will save you from confusing mismatches between your real-world measurements and the values you see on screen.
@@ -161,15 +161,25 @@ Rotation snapping constrains object rotation to fixed angular increments.
 
 ## Rendering
 
+![Rendering preferences showing current display and render settings including Ambient Occlusion and Depth Of Field.](/images/preferences-rendering-2110.png)
+
+*Rendering preferences control display effects without changing costume dimensions.*
+
+
 Use **Settings → Preferences → Rendering** to enable or disable visual effects. Available switches include **EnableFXAA**, **Ambient Occlusion**, **EnableBloom**, **Depth Of Field**, **EnableShadows**, **EnableLighting**, **EnableReflections**, and **Reflection Imposters**.
 
 **Depth Of Field** allows the background-blur settings used by the environment. Turning it off preserves those room settings. **Reflection Imposters** similarly permits reflections supplied by the environment. Disabling Ambient Occlusion preserves stored AO maps and tuning.
 
-Use clear lighting and disable depth blur when checking small edges. Room-specific bloom strength, blur radius, and other atmosphere tuning are separate from these switches; see [lighting and rendering](/interface/lighting).
+Use clear lighting and disable depth blur when checking small edges. Room-specific tuning is handled internally. For a clear fitting view, see [lighting and rendering](/interface/lighting).
 
 Display effects change appearance, not costume dimensions or pattern scale. Click **OK** to save Preferences.
 
 ## Graphics Hardware
+
+![Graphics Hardware preferences showing High Performance recommended, restart requirement, and current NVIDIA graphics processor.](/images/preferences-graphics-hardware-2110.png)
+
+*Current Graphics Processor reports the active device. Changing the requested processor takes effect after restart.*
+
 
 Open **Graphics Hardware** to choose **Graphics Processor (Restart Required)**:
 

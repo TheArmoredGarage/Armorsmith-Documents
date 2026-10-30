@@ -2,12 +2,10 @@
 title: "Draw and edit a foam pattern"
 sidebarTitle: "Draw and edit"
 description: "Create a cut outline, choose Vertex, Segment, or Spline editing, and promote a closed shape to foam."
-hidden: true
-noindex: true
 ---
 
 <Info>
-These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
 </Info>
 
 Draw the flat outline first, then refine it before giving it thickness. A simple bracer or trim panel is easier to edit when it uses only a few corners and curve changes.
@@ -25,6 +23,11 @@ Creating an outline alone does not make a solid foam piece. Open or self-crossin
 
 ## Choose what to edit
 
+![Edit Shape showing Chest Trim group with two patterns, editable vertices, and labeled Vertex Tools.](/images/edit-shape-controls-2110.png)
+
+*Edit Shape provides Vertex, Segment, and Spline selection levels, including grouped outlines.*
+
+
 In Workbench Edit, choose the appropriate selection level:
 
 | Selection | Use it for |
@@ -37,7 +40,7 @@ Tools change with the selection level. Select the intended target before applyin
 
 ## Refine anchors and curves
 
-Use **Corner**, **Smooth**, or independent handles for the selected vertex. Straighten or curve the intended segment rather than adding extra anchors to approximate a curve. **Add Point** inserts a vertex on a segment without changing that curve. **Delete Segment** removes selected segments while keeping the remaining pieces.
+Use **Corner**, **Bezier**, or **Bezier Corner** for the selected vertex. Straighten or curve the intended segment rather than adding extra anchors to approximate a curve. **Add Point** inserts a vertex on a segment without changing that curve. **Delete Segment** removes selected segments while keeping the remaining pieces.
 
 **Break** separates a segment into independent endpoints and keeps Edit Shape active. **Connect** joins two open endpoints with a straight segment. Breaking or opening a foam outline can remove its solid preview until you close it again.
 

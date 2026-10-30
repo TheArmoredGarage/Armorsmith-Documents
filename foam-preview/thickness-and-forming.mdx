@@ -2,17 +2,20 @@
 title: "Set thickness and form foam in 3D"
 sidebarTitle: "Thickness and forming"
 description: "Use Edit Foam to set thickness, form a piece, choose preview detail, and refresh its costume attachment."
-hidden: true
-noindex: true
 ---
 
 <Info>
-These instructions describe the upcoming **Armorsmith Designer 2.1.1.0** interface. The public 2.1.0.10 release can show different panels and labels.
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
 </Info>
 
 Use **Edit Foam → Pattern** in Workbench Edit to turn a flat cut pattern into a 3D design. [Promote the closed outline](/foam-preview/drawing-and-editing#create-and-promote-an-outline) first.
 
 ## Match the foam stock
+
+![Foam Pattern controls with thickness 12 mm, Horizontal Bend 90 degrees, and Triangle Budget 2000.](/images/foam-pattern-controls-2110.png)
+
+*Thickness and forming affect the 3D preview; the flat cutting outline remains available beside it.*
+
 
 Select the foam pattern and enter **Thickness** in millimetres. Each pattern keeps its own thickness, including members of the same layer. Choose stock thickness before judging edge depth and physical layer height.
 
@@ -42,6 +45,11 @@ An unusually complex boundary may still be invalid at a small budget. The cuttin
 During a bend/radius slider gesture or placement drag, the preview can temporarily use less detail. Release the control and inspect the finished result before judging smoothness.
 
 ## Place a base or a raised member
+
+![Base Pattern Spline 1 selected with Translate active, a gizmo on the foam stack, and Refresh Costume Meshes visible.](/images/foam-placement-refresh-2110.png)
+
+*Select the base to place its whole stack in 3D; cutting layout stays independent.*
+
 
 Use the editor's **3D Placement** Translate/Rotate controls in the 3D view. Selecting the base moves its whole stack. A raised member uses local X/Y movement across its base and local Z rotation; see [Move a raised pattern](/foam-preview/layers-and-materials#move-a-raised-pattern).
 

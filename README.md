@@ -18,7 +18,7 @@ The existing GitHub Actions workflow runs licensing checks and Mintlify validati
 
 ## Current and upcoming releases
 
-Keep corrections for the current public version separate from upcoming interface changes. The 2.1.1.0 documentation branch describes the upcoming Workbench and foam workflow; its per-page version notes do not establish that a public build has shipped.
+Keep corrections for the current public version separate from upcoming interface changes. The 2.1.1.0 documentation covers Workbench and the foam workflow, illustrated with creator-supplied application captures. Version notes distinguish these instructions from 2.1.0.10; documentation publication does not establish installer availability.
 
 The immediate Printable Figure correction removes a nonworking, disabled feature from supported export instructions. It does not enable that implementation.
 
@@ -26,9 +26,9 @@ Application Perforce changelists and the read-only source mirror supply implemen
 
 ## Foam documentation visibility
 
-The eight foam guides already exist on `main` under `foam-preview/` and are served by direct URL. Their tab has `hidden: true`; the pages also have `hidden: true` and `noindex: true`. Hidden navigation is not access control.
+Seven foam workflow pages are visible under the Foam patterns navigation tab after the creator's capture review and publication authorization. The surface-details availability page remains hidden/noindex because decorative hardware behavior was not verified. Hidden navigation is not access control.
 
-Keep those fields while the workflow is unreleased or unverified. Before making the section visible, run the layered-bracer tutorial in the release candidate, verify every exposed entry point and output, complete essential matching-version captures, and validate navigation and links. Do not add withheld features just because their code exists.
+See [the capture review](drafts/2.1.1.0-capture-review.md) and asset manifest for accepted images, corrections, and verification limits. Environment Settings is an internal dev-build tool and is excluded from customer procedures. Printable Figure remains disabled.
 
 ## Publishing
 

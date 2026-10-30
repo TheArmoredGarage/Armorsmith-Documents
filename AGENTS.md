@@ -29,7 +29,7 @@ Use the configured Mintlify MCP tools when available. Otherwise edit this reposi
 
 Keep current-release fixes separate from upcoming-release instructions. Label upcoming version-specific pages and hold their branch until the candidate's controls and behavior are verified. Do not present source-only observations as native application tests.
 
-The foam navigation tab and its eight pages remain hidden; pages also retain `noindex: true` until the complete workflow is checked for release. Hidden pages remain publicly reachable by URL. Do not add broken image placeholders while captures are pending.
+The foam workflow was reviewed with creator-supplied application captures for 2.1.1.0 and authorized for publication. Its navigation and seven workflow pages are visible. The unverified surface-details page remains hidden/noindex. Hidden pages remain publicly reachable by URL. Use accepted final captures rather than provisional bug screenshots. Environment Settings is internal to dev builds; do not document it as a customer control.
 
 Printable Figure is disabled because it does not work. Do not document miniature STL export as supported or expose its dormant implementation. Printable Details, model-derived Create Patterns, and foam build sheets require explicit release qualification before documenting their entry points as available.
 
