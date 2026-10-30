@@ -1,47 +1,49 @@
 ---
-title: "Foam patterns preview"
+title: "Foam patterns in 2.1.1.0"
 sidebarTitle: "Start here"
-description: "Draw flat foam patterns, form them in 3D, and compose layered armor."
-hidden: true
-noindex: true
+description: "Create closed cut outlines, promote them to foam, and compose formed armor with raised layers."
 ---
 
-<Note>
-This section describes the unreleased foam pattern tools. You need a preview build that includes the new spline system. The tools and labels may change before release.
-</Note>
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
 
-Start with the shape you want to cut from a flat sheet of foam. Draw its outline in 2D, give it a thickness, then form the resulting piece in the left-hand 3D preview on the **Patterns** tab. Keep editing the same outline as you refine the design. Use **Attach as part** when you want the piece to appear in the main **Costume** view.
+Start with the shape you want to cut from a flat foam sheet. Promote a closed outline to a foam pattern, set its thickness, and inspect the formed result in Workshop's 3D view. The flat outline stays available for cutting and paper layout.
 
-## Work from the cut pattern to the costume
+## Start a foam pattern
 
-1. **Draw foam** creates the flat outline.
-2. **Edit points** refines anchors, handles, and individual segments.
-3. **Thickness** gives the piece its physical depth.
-4. **Form** previews horizontal bending, vertical bending, or forming over a sphere.
-5. **Place** positions and rotates the piece in 3D.
-6. **Layers** adds smaller patterns that follow the same forming.
-7. **Edge Style** previews angle cuts or rounded top edges.
-8. **Details** attaches decorative dome rivets, eyelets, and washers.
-9. **Attach as part** shows the completed foam stack in the main costume view. Toggle it off to keep working only in the Patterns preview.
+1. Open Workshop and select or create a workspace.
+2. Use **Create** above the pattern view to draw a line, rectangle, or circle.
+3. Use **Edit Shape** to finish a closed, non-crossing outline.
+4. Right-click the selected outline and choose **Promote To Foam Pattern**.
+5. Click **Edit Foam** above the 3D view. Its controls open in **Workbench → Edit**.
 
-The 2D outline remains your flat cut template. Forming, edge finishes, materials, and decorative hardware change the 3D preview without replacing that outline.
+An open path is drawing geometry. Close it and give it a valid area before promoting it to foam.
+
+## Use Pattern and Layers
+
+![Formed gray chest armor with two orange raised chevrons beside flat outlines and expanded foam layer controls.](/images/foam-layer-stack-2110.png)
+
+*A formed foam stack and its flat cutting outlines share geometry while retaining separate placement.*
+
+
+The **Pattern** tab holds thickness, forming, triangle budget, edge finish, preview color, and placement controls. The **Layers** tab composes smaller patterns over a base. A layer member inherits its base's forming while keeping its own thickness and edge finish.
+
+Use **Done** when you finish the editor. A flat paper-layout move and a formed 3D placement are separate edits.
 
 ## Choose a guide
 
-<Columns cols={2}>
-  <Card title="Draw and edit" icon="bezier-curve" href="/foam-preview/drawing-and-editing">Create an outline and refine its curves.</Card>
-  <Card title="Thickness and forming" icon="cube" href="/foam-preview/thickness-and-forming">Form the foam piece and attach it to the costume.</Card>
-  <Card title="Edge Style" icon="scissors" href="/foam-preview/edge-style">Use angle cuts or rounded edges with depth in mm or percent.</Card>
-  <Card title="Layers and materials" icon="layer-group" href="/foam-preview/layers-and-materials">Compose several patterns under one shared forming shape.</Card>
-  <Card title="Detail library" icon="circle" href="/foam-preview/surface-details">Place and move decorative hardware on foam.</Card>
-  <Card title="Build a layered bracer" icon="pen-ruler" href="/foam-preview/tutorial-layered-bracer">Follow a complete example from outline to finished preview.</Card>
-  <Card title="Troubleshooting" icon="wrench" href="/foam-preview/troubleshooting">Resolve missing previews, layer placement, and edge settings.</Card>
-</Columns>
+| Task | Guide |
+| --- | --- |
+| Refine the cut outline | [Draw and edit](/foam-preview/drawing-and-editing) |
+| Set thickness, forming, and costume geometry | [Thickness and forming](/foam-preview/thickness-and-forming) |
+| Compose raised pieces | [Layers and preview colors](/foam-preview/layers-and-materials) |
+| Preview an angle cut or rounded edge | [Edge finish](/foam-preview/edge-style) |
+| Complete an example | [Layered bracer tutorial](/foam-preview/tutorial-layered-bracer) |
+| Recover an invalid or missing preview | [Troubleshooting](/foam-preview/troubleshooting) |
 
-## Understand the preview
+## Understand the limits
 
-Foam forming is a geometric design preview. Use it to judge placement, layering, and appearance. It does not predict heat, foam stretching, glue behavior, or springback. Spherical forming changes distances across the formed surface; test your physical cut pattern before committing to a finished build.
+Forming is a geometric design preview. It does not predict heating, foam stretch, glue behavior, or springback. Test a physical sample, especially for spherical forming.
 
-This preview includes the drawing, editing, forming, layering, edge, and detail tools described here. Offset outlines, trim/extend, join/split, persistent symmetry constraints, automatic seam allowances, darts, and notches are outside this documented preview. Existing tools for other pattern types have their own behavior.
-
-For paper layout and print scale, continue with [Print patterns](/patterns/printing).
+The **Printable Details** control can appear in the editor, but decorative detail placement is not covered by this guide. Decorative hardware placement is not part of this documented workflow. Foam build sheets and automatic model-derived Create Patterns are also unavailable through their release entry points. Use [ordinary pattern printing](/patterns/printing) for the flat cut outlines and record construction notes separately.

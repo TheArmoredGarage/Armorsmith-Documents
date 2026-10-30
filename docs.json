@@ -90,6 +90,7 @@
             "group": "Templates & Patterns",
             "pages": [
               "patterns/patterns-workspace",
+              "patterns/layers-and-groups",
               "patterns/create-and-manage-islands",
               "patterns/pattern-layout",
               "patterns/printing",
@@ -107,10 +108,10 @@
         ]
       },
       {
-        "tab": "API reference · Coming soon",
+        "tab": "API reference \u00b7 Coming soon",
         "groups": [
           {
-            "group": "API 0.3 · Coming soon",
+            "group": "API 0.3 \u00b7 Coming soon",
             "pages": [
               "api/overview",
               "api/identity-and-errors"
@@ -138,8 +139,7 @@
         "hidden": true
       },
       {
-        "tab": "Foam patterns preview",
-        "hidden": true,
+        "tab": "Foam patterns",
         "groups": [
           {
             "group": "Foam patterns",
@@ -148,8 +148,7 @@
               "foam-preview/drawing-and-editing",
               "foam-preview/thickness-and-forming",
               "foam-preview/edge-style",
-              "foam-preview/layers-and-materials",
-              "foam-preview/surface-details"
+              "foam-preview/layers-and-materials"
             ]
           },
           {

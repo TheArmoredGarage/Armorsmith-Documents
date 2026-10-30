@@ -1,60 +1,65 @@
 ---
 title: "Draw and edit a foam pattern"
 sidebarTitle: "Draw and edit"
-description: "Use anchors and curve handles to create a flat foam cut outline."
-hidden: true
-noindex: true
+description: "Create a cut outline, choose Vertex, Segment, or Spline editing, and promote a closed shape to foam."
 ---
 
-The outline defines what you cut from a flat sheet. Start with a few anchors at major corners and curve changes. Add detail after the overall shape reads correctly.
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
 
-## Draw an outline
+Draw the flat outline first, then refine it before giving it thickness. A simple bracer or trim panel is easier to edit when it uses only a few corners and curve changes.
 
-1. Open a workspace with the pattern view available.
-2. Click **Draw foam** on the **Pattern tools** toolbar.
-3. Click in the 2D view to place anchors. Hold **Ctrl** while placing an anchor to make it a curve point.
-4. Click near the first anchor to close the outline. A closed outline needs at least three anchors and must enclose an area.
-5. Select the resulting pattern to adjust its thickness and forming.
+## Create and promote an outline
 
-Press **Enter** while drawing to finish an open path. Press **Escape** to discard the unfinished drawing. An open path stays a drawing line until you close it with **Open / close**.
+1. Open Workshop and select a workspace.
+2. Open **Create** above the pattern view and choose **Line**, **Rectangle**, or **Circle**.
+3. Complete the shape in the 2D view. For a free outline, place a few anchors and close the path when ready.
+4. Select it and use **Edit Shape** for further changes.
+5. When the outline is closed and encloses a valid area, right-click it and choose **Promote To Foam Pattern**.
+6. Open **Edit Foam** to set thickness and forming.
 
-<Tip>
-Avoid placing several anchors at almost the same location. Extra anchors make curves harder to edit and can produce overlapping edges.
-</Tip>
+Creating an outline alone does not make a solid foam piece. Open or self-crossing outlines cannot form a valid solid.
 
-## Edit anchors and handles
+## Choose what to edit
 
-Select the pattern, then click **Edit points**. Select an anchor or handle and move it with the pattern editing controls. Click **Edit points** again to leave point editing.
+![Edit Shape showing Chest Trim group with two patterns, editable vertices, and labeled Vertex Tools.](/images/edit-shape-controls-2110.png)
 
-| Tool | When to use it | Effect |
-| --- | --- | --- |
-| **Corner** | A sharp corner or polygon edge | Removes the anchor's curve handles. |
-| **Smooth** | A continuous curve through an anchor | Links the incoming and outgoing handles in opposite directions. |
-| **Handles** | A curve meeting a corner or two differently shaped curves | Lets you edit incoming and outgoing handles independently. |
-| **Straight** | One segment should become straight | Straightens the segment following the selected anchor. |
-| **Curve** | One straight segment needs curvature | Adds editable handles to the following segment. |
-| **Divide** | You need another editing point within a segment | Inserts the requested number of anchors while preserving the curve. |
-| **Delete point** | An anchor no longer helps define the shape | Removes selected anchors and reconnects the surrounding outline. |
-| **Chamfer** | You want to clip a corner in the flat cut outline | Replaces a corner between straight segments with a short diagonal. |
+*Edit Shape provides Vertex, Segment, and Spline selection levels, including grouped outlines.*
 
-For **Straight**, **Curve**, and **Divide**, the selected anchor identifies the start of the affected segment. Use **Reverse** when you need to reverse the outline direction without changing its shape.
 
-<Note>
-**Chamfer** changes the 2D cut outline. **Edge Style** changes the top edge of the foam's thickness in 3D. Use [Edge Style](/foam-preview/edge-style) for a 45° thickness cut or a rounded top edge.
-</Note>
+In Workbench Edit, choose the appropriate selection level:
 
-## Mirror and close
+| Selection | Use it for |
+| --- | --- |
+| **Vertex** | Anchors, handles, and individual corners. |
+| **Segment** | A section of the outline between anchors. |
+| **Spline** | The outline as a whole. |
 
-**Mirror H** mirrors the outline left to right about its center. **Mirror V** mirrors it top to bottom. These commands change the selected outline and support undo; they do not create a linked mirrored copy.
+Tools change with the selection level. Select the intended target before applying an operation. **Ctrl** adds to selection. Use **Done** to finish editing.
 
-**Open / close** toggles the closing segment. Opening a pattern removes its solid foam preview. Close it again when the cut outline is ready.
+## Refine anchors and curves
 
-The existing polygon creation dialog also supports completing a symmetric outline during drawing. That creates the mirrored outline at completion; later edits are independent.
+Use **Corner**, **Bezier**, or **Bezier Corner** for the selected vertex. Straighten or curve the intended segment rather than adding extra anchors to approximate a curve. **Add Point** inserts a vertex on a segment without changing that curve. **Delete Segment** removes selected segments while keeping the remaining pieces.
 
-## Check measurements and output
+**Break** separates a segment into independent endpoints and keeps Edit Shape active. **Connect** joins two open endpoints with a straight segment. Breaking or opening a foam outline can remove its solid preview until you close it again.
 
-The toolbar displays the length of the flat outline in millimeters. This is perimeter length, rather than width, height, or the distance between two anchors. Forming does not change this measurement.
+## Trim, extend, or offset
 
-Arrange and print the flat outlines through the [pattern workspace](/patterns/patterns-workspace) and [printing tools](/patterns/printing). Edge depth, material choice, and decorative details do not automatically add construction notes or drill marks to a paper template.
+- **Trim** removes a clicked portion between crossing paths. Provide a crossing boundary in the same workspace.
+- **Extend** starts from an open endpoint and follows its tangent to a crossing path.
+- **Offset Outline…** creates a separate outline at an entered distance in millimetres. Inspect tight or concave corners. If the offset collapses or crosses itself, reduce the distance; the original remains unchanged.
 
-Continue with [Thickness and forming](/foam-preview/thickness-and-forming).
+Press **Escape** to finish a click-based construction operation. Use **Edit → Undo** if the result is unsuitable.
+
+## Reuse a design
+
+Right-click an outline for **Create Instance** or **Create Mirrored Instance**. Linked instances share outline edits but retain their own placement. Use **Make Unique** before making an outline change that should affect only one copy.
+
+**Enable Live Symmetry** links the outline's symmetric construction. **Bake Symmetric Outline** turns that relationship into a complete outline for independent editing. These commands differ from mirroring an attached part on the avatar.
+
+## Set physical dimensions
+
+Select a supported rectangle, circle, or ellipse and use [Inspect](/interface/property-grid#set-shape-dimensions) for Width/Height or Radius. Recheck layer containment after resizing a raised piece.
+
+Keep the flat cut outline separate from the [formed preview](/foam-preview/thickness-and-forming). A 2D corner chamfer changes the outline; [Edge Finish](/foam-preview/edge-style) changes the thickness edge in 3D.

@@ -1,42 +1,50 @@
 ---
 title: "Workshop: model and pattern views"
 sidebarTitle: "Workshop"
-description: "Find your way around the 3D model, pattern viewport, and layout tools for aligning and rotating pieces."
+description: "Use the model and pattern views, find drawing objects, and prepare workspace display settings."
 ---
 
-Open **View → Workshop** to work with the model and its flat patterns. Earlier guides call this area Pattern or Patterns. For an editable low-polygon model, Workshop places the 3D model beside its printable patterns; the 2D area can remain hidden for a dense source without pattern content. Use the model view to see where pieces come from, then work with the pieces and pages in the pattern view.
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
 
-<Frame>
-  ![The Patterns workspace with a 3D chest model on the left, pattern pages in the center, and the alignment, distribution, and rotation toolbar beside the pattern viewport](/images/patterns-workspace.png)
-</Frame>
+Open **Workshop** to work on a workspace's model and flat patterns. Earlier guides call this area Pattern or Patterns. Choose a workspace under **Workbench → Browse → Workspaces** before editing it.
 
 ## Find your way around
 
-| Area | What you'll find there |
+| Area | What you use it for |
 | --- | --- |
-| **3D model view** | The model and the island tools above it. Select an island to work on a particular area of the model. |
-| **Pattern viewport** | The unfolded pieces arranged on pages, with rulers along the top and left. The toolbar above the view contains pattern editing tools. |
-| **Pattern layout toolbar** | The vertical toolbar along the left edge of the pattern viewport. Use it to align selected pieces, distribute them in rows or columns, and rotate their orientation by 90°. |
-| **Workspaces** | Your model workspaces and their import, creation, deletion, and attachment controls. |
-| **Property Grid** | Settings for the selected workspace, including pattern display and appearance options. |
-| **Transforms** | Position, rotation, and scale fields for a selected item when those controls are available. |
+| **3D model view** | Inspect the source model, paint islands, or review formed foam. |
+| **Pattern viewport** | Edit and arrange the flat pieces you will print. |
+| **Pattern layout toolbar** | Align, distribute, and rotate pieces on the pages. |
+| **Browse → Patterns** | Find drawing layers, groups, and shapes in the active workspace. |
+| **Edit** | Work with the active tool's controls, including Edit Shape and Edit Foam. |
+| **Inspect** | Edit selected-object or workspace properties. |
+| **Transforms** | Enter precise position, rotation, or scale values where available. |
+
+For an editable low-polygon model, Workshop shows the model beside its patterns. The paper area can remain hidden for a dense source without pattern content. Display LOD does not automatically make a dense source suitable for every pattern-editing operation.
+
+## Choose the right pattern workflow
+
+- [Islands](/patterns/create-and-manage-islands) mark areas on a source model; their patterns update as you edit those areas.
+- **Unfold** generates an automatic layout from an appropriate model.
+- [Drawing layers and groups](/patterns/layers-and-groups) organize shapes, images, and other drafting content.
+- [Foam patterns](/foam-preview/overview) start from closed outlines and show a formed 3D design beside the flat cut shapes.
+
+Drawing layers organize content. Foam layers place raised pieces at a physical height above a foam base; they are edited in **Edit Foam → Layers**.
 
 ## Show the details you need
 
-Select a workspace and expand **Display** in the Property Grid. You can choose whether the pattern view shows edge angles, edge IDs, page numbers, registration marks, fold lines, tabs, and textures.
+Select the workspace, then open **Inspect**. Use **Pattern Appearance** for general appearance, **Folds & Labels** for edge labels and registration marks, **Assembly Tabs** for tabs, and **Paper & Printing** for page size, margins, and page numbers.
 
-<Tip>
-If the page looks busy, hide the details you don't need while arranging pieces. Turn them back on when checking the layout before printing.
-</Tip>
+Hide unnecessary details while arranging pieces, then turn on the information you need for assembly before printing.
 
-For a complete first exercise, follow [Prepare a fitted piece for pattern layout](/getting-started/first-pattern-layout).
+## Prepare a layout
 
-## A typical workflow
+1. Choose the workspace containing the model or patterns.
+2. Generate or edit the required pieces.
+3. Arrange them on the paper with the [pattern layout tools](/patterns/pattern-layout).
+4. Check paper size, labels, and margins in Inspect.
+5. [Print a measured test page](/getting-started/print-first-template).
 
-1. Choose the workspace containing the model you want to work on.
-2. Create islands on the 3D model to define areas you want to work with.
-3. Watch the island patterns update in the pattern view as you edit the islands.
-4. Inspect and arrange the pattern pieces on the pages. Use the layout toolbar to align, distribute, or rotate selected pieces.
-5. Check the display and print settings before printing.
-
-See [Edit patterns](/patterns/pattern-layout) for the pattern editing and layout tools. See [Create and manage islands](/patterns/create-and-manage-islands) for the tools above the 3D view.
+For a first exercise, follow [Prepare a fitted piece for pattern layout](/getting-started/first-pattern-layout).

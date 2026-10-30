@@ -1,72 +1,74 @@
 ---
 title: "Set thickness and form foam in 3D"
 sidebarTitle: "Thickness and forming"
-description: "Preview horizontal, vertical, and spherical forming while retaining the flat cut template."
-hidden: true
-noindex: true
+description: "Use Edit Foam to set thickness, form a piece, choose preview detail, and refresh its costume attachment."
 ---
 
-Once you close an outline, its foam preview appears on the left of the **Patterns** tab. Use **Foam** to show or hide the preview. The piece starts flat with a thickness of 6 mm. Creating a pattern or choosing **Use selected base** does not add it to the main **Costume** view.
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
 
-The initial camera shows the top surface, where raised layers and edge finishes appear. Use the front-view control to return to that side, or orbit to inspect the thickness. Curved previews add interior mesh samples automatically; spherical forming is not limited to the outline's original triangles.
+Use **Edit Foam → Pattern** in Workbench Edit to turn a flat cut pattern into a 3D design. [Promote the closed outline](/foam-preview/drawing-and-editing#create-and-promote-an-outline) first.
 
-Each foam pattern's complete 3D solid stays within **2,000 triangles**, including the front, back, finished edge, and side walls. The preview shares this budget between curvature and edge shaping and uses smooth shading for curved faces. Your 2D cutting outline, measurements, and layer bounds retain their full precision. A stack contains several separately budgeted patterns; attached detail bits are separate models.
+## Match the foam stock
 
-## Match your foam stock
+![Foam Pattern controls with thickness 12 mm, Horizontal Bend 90 degrees, and Triangle Budget 2000.](/images/foam-pattern-controls-2110.png)
 
-Select the pattern and click **Thickness**. Enter the thickness in millimeters. Each pattern keeps its own thickness, including patterns in the same layer.
+*Thickness and forming affect the 3D preview; the flat cutting outline remains available beside it.*
 
-Choose the thickness before judging edge finishes and stack height. A thicker piece changes the amount of material available for an angle cut and the height of patterns above it.
 
-## Choose a forming shape
+Select the foam pattern and enter **Thickness** in millimetres. Each pattern keeps its own thickness, including members of the same layer. Choose stock thickness before judging edge depth and physical layer height.
 
-Open **Form** and choose a mode:
+Enable **Foam** in the pattern tools if its preview is hidden. The outline must be closed, valid, and visible through its parent layers.
 
-| Mode | Typical use | Control |
+## Choose a form
+
+| Form | Use it for | Control |
 | --- | --- | --- |
-| **Flat** | Flat plates, reference layout, or resetting a formed piece | No bend. |
-| **Horizontal bend** | Wrap the pattern across its flat X direction | Bend angle in degrees. |
-| **Vertical bend** | Wrap the pattern across its flat Y direction | Bend angle in degrees. |
-| **Spherical form** | Dome-like armor or a curved shoulder detail | Sphere radius in millimeters. |
+| **Flat** | A flat plate or a reset to the cut shape | No bend. |
+| **Horizontal Bend** | Wrapping across the pattern's flat X direction | **Bend (Degrees)**. |
+| **Vertical Bend** | Wrapping across the pattern's flat Y direction | **Bend (Degrees)**. |
+| **Spherical Form** | A dome or shoulder-like curvature | **Radius (mm)**. |
 
-Horizontal and vertical refer to the pattern's flat axes. Rotating the piece in 3D rotates those axes with it.
+Use the numeric field or slider to adjust the form. A smaller sphere radius gives tighter curvature; a larger radius makes the piece flatter. Stay within the displayed valid range. Use **Advanced Forming → Reverse Forming Direction** when the piece bends the wrong way.
 
-A larger bend angle produces more wrap across the pattern. A smaller sphere radius produces tighter curvature. **Reverse forming direction** changes which way the surface curves.
+The flat axes belong to the pattern. Rotating its 3D placement does not change what Horizontal Bend means in those local axes.
 
-Switching a flat or bent piece to **Spherical form** starts with an outward dome on the raised side. Opening the sphere dialog again preserves your chosen direction. Existing saved spherical pieces retain their direction; use **Form → Reverse forming direction** if a piece curves inward and you want it to bulge outward.
+For a layer member, forming belongs to the base. Use **Edit Base Form** to change the shared form instead of treating each raised pattern as an independent bend.
 
-### Start with a gentle spherical curve
+## Choose 3D preview detail
 
-The sphere dialog starts with a gentle radius based on your pattern's physical size. Click **Gentle curve** to return to that recommendation. Larger values make the piece flatter; smaller values create a deeper dome.
+**Triangle Budget** controls the maximum triangles for that solid, including front, back, and sides. The field accepts **64–64,000**. Increase it when curved forms or rounded edges need more detail; lower it when many pieces make editing slow.
 
-The dialog shows the minimum radius for the current outline and thickness and prevents values below it. There is no single radius that suits every pattern. For example, a pattern extending about 100 mm from its center starts near a 400 mm radius. The old 100 mm setting would produce a much tighter curve on that piece.
+An unusually complex boundary may still be invalid at a small budget. The cutting outline and layer containment retain their precision independently of this 3D setting.
+
+During a bend/radius slider gesture or placement drag, the preview can temporarily use less detail. Release the control and inspect the finished result before judging smoothness.
+
+## Place a base or a raised member
+
+![Base Pattern Spline 1 selected with Translate active, a gizmo on the foam stack, and Refresh Costume Meshes visible.](/images/foam-placement-refresh-2110.png)
+
+*Select the base to place its whole stack in 3D; cutting layout stays independent.*
+
+
+Use the editor's **3D Placement** Translate/Rotate controls in the 3D view. Selecting the base moves its whole stack. A raised member uses local X/Y movement across its base and local Z rotation; see [Move a raised pattern](/foam-preview/layers-and-materials#move-a-raised-pattern).
+
+Paper layout is saved separately. Moving a template in 2D arranges it for cutting; it does not move its raised assembly placement. Resizing or changing the outline changes the physical piece and can make it stop fitting its base.
+
+For several independent armor plates, leave them as separate bases so each has its own forming and placement.
+
+## Read the displayed dimensions
+
+The 3D view's width, height, and depth can describe the combined visible foam geometry, including raised pieces and their spacing. Those formed bounds are different from the width and height of a flat cut outline. Check the measurement you actually need before changing scale.
+
+## Attach and refresh the costume
+
+Enable **Attach As Part** for a base when you want its foam geometry available in Costume. Use the workspace's **Attach To Costume** action to fit it to an avatar slot when needed.
+
+After editing foam patterns, use **Refresh Costume Meshes** to rebuild generated costume geometry. Its existing placement is preserved; mesh edits are replaced. Save a copy before refreshing a part with further mesh adjustments.
+
+Inspect the refreshed part in Costume and save the project. A correct Workshop preview alone does not confirm that the generated attachment is up to date.
 
 <Note>
-These controls preview the shape you might create by heat forming. They do not simulate temperature, foam stretching, or springback. Test spherical pieces in physical foam because forming in two directions can change their surface dimensions.
+Forming does not simulate foam heating, stretch, glue, or springback. Make a physical test, especially for a spherical form, before cutting final material.
 </Note>
-
-## Place the piece on the costume
-
-Select the pattern and click **Place**. Set its **Foam position (mm)** and **Foam rotation (degrees)** for X, Y, and Z. These settings control its placement in the 3D view independently of the paper layout.
-
-Use the left-hand 3D camera to check the piece from the front, side, and back. The preview reframes after forming, thickness, and placement changes.
-
-When you are ready to check the piece against the avatar, click **Attach as part** and open the **Costume** tab. Adjust **Place** until it sits where you want it. This setting applies to the whole foam stack and is saved with the project. Toggle **Attach as part** off to remove it from the costume view while retaining the Patterns preview.
-
-## Form a whole stack
-
-When the selected pattern belongs to a foam layer, **Form** and **Place** apply to the stack's base pattern. All patterns in the stack follow that forming and placement. **Thickness** and **Edge Style** still apply to the individual selected pattern.
-
-Change the base's forming after composing the stack to check that raised shapes stay in the intended locations. Continue with [Layers and materials](/foam-preview/layers-and-materials).
-
-## Arrange separate plates, such as a set of abs
-
-Create each plate with **Draw foam**, or copy and paste an existing pattern. Leave the plates as separate base patterns so each keeps its own thickness, material, and forming. For an ab plate, choose **Form → Spherical form** and start with **Gentle curve**. Repeat for the other plates.
-
-Click **Move foam**, then click a plate in the left-hand **Patterns** 3D view to select its base. Drag to arrange it beside the other plates. Clicking a raised layer or an attached rivet selects and moves the whole base stack. Each completed drag is one undoable move; press **Escape** during a drag to restore its starting position.
-
-Dragging moves across the camera's viewing plane at the point you grabbed. Use a front view to arrange rows and spacing. Orbit to a side view and drag to adjust depth, or use **Place** for exact X, Y, and Z position and rotation. The flat 2D cut outlines stay in their existing paper positions.
-
-**Move foam** finishes other active 3D tools. Finish detail placement or layer surface movement before arranging separate bases. To move a raised pattern within its base instead, use **Layers → Move on surface**.
-
-Attach each base with **Attach as part** when you want the set to appear in the main Costume view. Separate bases keep independent forming; patterns within one base's layers share its forming.

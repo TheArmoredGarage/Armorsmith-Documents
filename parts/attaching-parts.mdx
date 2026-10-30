@@ -4,21 +4,30 @@ sidebarTitle: "Attachments"
 description: "Understand attachments and attachment points, adjust part properties, and use Shift+M to toggle linked mirrors with undo and redo."
 ---
 
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
+
 An **attachment** is a costume part placed on your avatar from a [workspace](/interface/workspaces-panel). The workspace holds the model and its patterns. The attachment gives that model a position, rotation, and scale on the avatar so you can check its fit.
 
 An **attachment point** anchors the part to a body region, such as the head, shoulder, forearm, or calf. The part follows that point as you pose the avatar. You can adjust its placement after attaching it.
 
 ## Attach a workspace to your avatar
 
+![Attachments browser showing slots, a selected forearm and mirrored copy, and visibility controls.](/images/workbench-attachments-2110.png)
+
+*Browse attachments by avatar slot; the selected forearm and its mirror are highlighted.*
+
+
 <Steps>
   <Step title="Select a workspace">
-    [Import a model](/parts/importing-models), then select it in the **Workspaces Panel**.
+    [Import a model](/parts/importing-models), then select it in the **Workbench → Browse → Workspaces**.
   </Step>
   <Step title="Choose an attachment point">
-    Click **Attach**. A ghosted preview of the part follows your pointer. Click the attachment point on the avatar where the part belongs.
+    Click **Attach To Costume**. A ghosted preview of the part follows your pointer. Click the attachment point on the avatar where the part belongs.
   </Step>
   <Step title="Position and fit the part">
-    Select the attached part in the **Costume viewport** or **Attachment Tree**. Use [**Translate**](/interface/translate-tool) (**T**), [**Rotate**](/interface/rotate-tool) (**R**), and [**Scale**](/interface/scale-tool) (**S**) to fit it to the avatar.
+    Select the attached part in the **Costume viewport** or **Browse → Attachments**. Use [**Translate**](/interface/translate-tool) (**T**), [**Rotate**](/interface/rotate-tool) (**R**), and [**Scale**](/interface/scale-tool) (**S**) to fit it to the avatar.
 
     Use the [Transform Panel](/interface/transform-panel) for exact values. Inspect the fit from several angles before moving on to the next part. Enable [**Fit Checker**](/parts/fit-checker) to see a heatmap of clearance around the avatar.
   </Step>
@@ -30,15 +39,17 @@ Start in the avatar's neutral **T-Pose** when fitting parts. After positioning t
 
 ## Select and manage attachments
 
-The **Attachment Tree** lists your attached parts under their attachment points. Click a part's name to select it. Use its **Visible** checkbox to show or hide it.
+The **Browse → Attachments** lists your attached parts under their attachment points. Click a part's name to select it. Use its **Visible** checkbox to show or hide it.
 
-If you attached a part to the wrong body region, right-click the selected part in the **Attachment Tree**, choose **Move Part**, and select another attachment point. Use **Delete Part** to remove the attachment from the avatar.
+If you attached a part to the wrong body region, right-click the selected part in the **Browse → Attachments**, choose **Move To Slot**, and select another attachment point. Use **Delete Attachment** to remove the attachment from the avatar.
 
 Deleting an attachment leaves its source workspace available. Deleting the workspace also removes its connected attachments.
 
+Use **Search Slots Or Attachments**, **Hidden Only**, and **Empty Slots** to narrow the browser. **Hide Unselected** isolates work you want to inspect; **Unhide All** reveals hidden attachments. **Reveal Workspace** finds the selected fitted part's source in the workspace browser.
+
 ## Attachment properties
 
-Select an attachment to inspect its **Property Grid**. Use the **Transform Panel** for position, rotation, and scale.
+Select an attachment to inspect its properties in **Workbench → Inspect**. Use the **Transform Panel** for position, rotation, and scale.
 
 | Property | What it controls |
 | --- | --- |
@@ -47,7 +58,7 @@ Select an attachment to inspect its **Property Grid**. Use the **Transform Panel
 | **Frozen** | Whether the part is excluded from viewport selection. Freeze a fitted part to avoid selecting it while working nearby. |
 | **Color** | The part's display color. |
 | **Opacity** | How transparent the part appears. Lower it to see the avatar through the part while fitting. |
-| **DrawTextures** | Whether the part displays its textures. Turn it off to inspect the shape without texture detail. |
+| **Show Textures** | Whether the part displays its textures. Turn it off to inspect the shape without texture detail. |
 | **Wireframe** | Whether the mesh displays as wireframe. You can also toggle this with **W** in the Costume viewport. |
 | **Thickness** | The source workspace's default material thickness. Attachments from that workspace use the same workspace setting. |
 | **Mirror** | Whether a linked mirrored copy is attached on the other side of the avatar. |
@@ -61,10 +72,10 @@ Armorsmith uses the opposite attachment point when one is available. For an atta
 
 <Steps>
   <Step title="Select the original attachment">
-    Select the part in the **Costume viewport** or **Attachment Tree**.
+    Select the part in the **Costume viewport** or **Browse → Attachments**.
   </Step>
   <Step title="Toggle the mirror">
-    Focus the **Costume viewport** and press **Shift+M**. You can also change the attachment's **Mirror** property in the Property Grid.
+    Focus the **Costume viewport** and press **Shift+M**. You can also change the attachment's **Mirror** property in Workbench Inspect.
 
     Press **Shift+M** again to turn mirroring off and remove the mirrored copy from the avatar. The original remains attached.
   </Step>

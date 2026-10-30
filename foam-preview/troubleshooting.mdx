@@ -1,97 +1,79 @@
 ---
 title: "Troubleshoot foam patterns"
 sidebarTitle: "Troubleshooting"
-description: "Resolve invalid outlines, edge depths, layer placement, and detail attachments."
-hidden: true
-noindex: true
+description: "Resolve missing previews, invalid outlines, layer placement, mixed values, and stale costume geometry."
 ---
 
-## The foam tools are missing
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
 
-This section covers an unreleased preview. Use a build that includes the new spline foam tools. Older spline objects may use the legacy editing tools. Start a new pattern with **Draw foam** to use the new system.
+## I cannot find the old foam toolbar
 
-## The 3D foam preview is missing
+In the 2.1.1.0 interface, select an outline and use **Edit Shape** or **Edit Foam**. Their controls appear in **Workbench → Edit**. Physical stacks are in **Edit Foam → Layers**; there is no separate Browse Foam Layers tab in this workflow.
 
-Check that **Foam** is enabled and that the pattern and its parent layers are visible. The outline must be closed, enclose an area, and have no self-intersections. Open paths remain drawing lines.
+The public 2.1.0.10 release has different controls. Check your version under Help → About before following these steps.
 
-Select the pattern and read **Foam preview status** in its properties. The status explains invalid geometry or settings. Check thickness, sphere radius, and edge depth.
+## A new outline has no solid preview
 
-For a layered pattern, enable the base's preview too. A layer depends on the base surface.
+Creating an outline makes drawing geometry. Close it, make sure it encloses an area without crossing itself, then right-click it and choose **Promote To Foam Pattern**. Enable **Foam** and make sure the pattern and its parent drawing layers are visible.
 
-The left-hand **Patterns** view shows unattached foam. Enabling **Foam**, changing thickness or forming, or choosing **Use selected base** frames the preview. Use the view's fit controls if you have moved the camera away.
+For a layer member, its base must also have a valid preview. Read the editor's feedback for invalid thickness, radius, edge depth, or outline geometry. Use the viewport's fit/zoom controls if the preview is offscreen.
 
-In the main **Costume** view, foam appears only after **Attach as part** is enabled on its base pattern. Setting a layer base alone does not attach it.
+## A piece disappears after editing its outline
 
-## The piece disappears after spherical forming
+Opening or breaking a closed outline can remove solid eligibility. Reclose it before judging the foam preview. A raised pattern can also stop fitting inside the base after an outline or scale edit. Undo the edit or bring its whole boundary back inside.
 
-Open **Form → Spherical form**, click **Gentle curve**, and confirm. The recommended radius scales with the pattern. A smaller radius makes a deeper dome; it must stay above the minimum displayed for this outline and thickness. An older saved radius may be too small after resizing an outline or increasing thickness.
+## The form bends the wrong way
 
-If the preview is still missing, read **Foam preview status**. Check that the outline does not cross itself and undo the last outline edit if needed.
+Select the base and use **Advanced Forming → Reverse Forming Direction**. Check the front and side views. A layer member inherits the base's form; use **Edit Base Form** to edit that shared surface.
 
-## The sphere curves inward
+## A spherical form is invalid
 
-Select the piece and choose **Form → Reverse forming direction**. This changes the whole base stack, including its layers and attached details. New spherical forms start with an outward dome, but an existing saved sphere keeps its previous direction.
+Use a larger Radius for a gentler dome and stay within the valid range shown for the outline and thickness. Recheck the radius after resizing the outline. A geometric spherical preview is not a prediction of foam stretching; test a physical sample.
 
-## The preview looks too dense or angular
+## The preview is angular or changes detail during a drag
 
-Each foam pattern's complete solid uses at most **2,000 triangles**. Curvature and edge finishes share that budget; the 2D cutting outline keeps its full precision. Curved faces use smooth shading, while side walls retain a distinct edge. Tighter spherical curvature may show more visible facets within the same budget. Try **Gentle curve** for a subtle form.
+Adjust **Triangle Budget** for the selected pattern. It covers the complete 3D solid, not the flat cutting outline. Curvature and rounded edges share that detail budget. Very complex outlines can still fail with too small a budget.
 
-If **Foam preview status** reports too many corners for the preview, simplify an unusually complex outline. The preview keeps concave corners to avoid bridging across cutouts.
+Interactive sliders or movement can temporarily reduce detail. Release the control and inspect the settled result. A missing final mesh or geometry error is different from this temporary preview.
 
-## A pattern will not fit in a layer
+## A pattern is skipped when added to a layer
 
-The whole outline must fit inside the base outline. Check corners and segments near concave indentations. Having all corners inside is not enough if a segment crosses a cutout.
+Read the skipped-pattern feedback. Use a closed, valid, editable outline in the same workspace. It must fit completely inside the base; corners inside the base are not enough if a segment crosses a concave cutout. A pattern that already owns a stack cannot be nested as a raised member.
 
-Make the pattern smaller or reshape it, then add it again. A pattern with its own foam layers cannot become a member of another stack in this preview.
+Select the destination layer before **Add Selected**. **Choose Patterns…** lists eligible outlines when viewport selection is awkward.
 
-## The layer looks like one flat plate
+## Reordering did not change a layer's height
 
-Orbit to the raised side, or use the front-view control. Looking at the back of the base can hide the pieces on top. The first layer rests above the base automatically; keep **Layer gap** at **0 mm** for glued pieces. A different material color on an upper pattern can make the composition easier to see.
+That is expected. **Move Up** and **Move Down** reorder the list. Use **Height Above Base** for physical height, measured from the base's outer surface to the layer underside. A first layer glued directly to the base uses 0 mm.
 
-The 2D view shows the cutting-sheet layout, not an assembled overlay. Use **Move on surface** in the 3D view to reposition a layer member. Translating or rotating its template in 2D leaves that assembled placement unchanged.
+A new layer starts above the previous layer once; later thickness or ordering edits do not automatically restack the assembly. Check each layer's height deliberately.
 
-## Clicking a foam plate does not move it
+## Moving a pattern changes the wrong thing
 
-Click **Move foam**, then left-drag a visible plate in the left-hand Patterns view. Release modifier keys first. Locked layers and frozen patterns cannot be moved. A small click selects the base without moving it; drag farther to start movement.
+Check the selected target. The base moves the whole stack. A raised member uses local X/Y Translate and local Z Rotate in the 3D view. The 2D view arranges paper templates independently.
 
-The move follows the camera's viewing plane. Orbit to a side view to change depth, or enter exact coordinates with **Place**. Finish **Details** placement or **Move on surface** before arranging bases. Press **Escape** to cancel an unfinished drag.
+Use Escape during an unfinished drag to restore its starting placement. Double-click a pattern row to open that pattern's settings.
 
-## A layered pattern disappears after a 2D edit
+## The editor shows mixed values
 
-The new outline or transform may extend outside the base. Surface dragging prevents out-of-bounds moves, but other editing controls can create an invalid arrangement. Undo that change or bring the outline back inside the base. Read **Foam preview status** for the affected pattern.
-
-## An upper layer floats above a gap
-
-Each layer starts above the tallest pattern in the lower layers. It shares one elevation across the base surface. Reduce **Set layer gap**, adjust thickness, or change layer order. The preview does not place upper pieces into empty spaces between lower patterns.
-
-Hiding a lower layer does not remove its thickness from the stack. Remove it from the composition if you want to change stack height.
-
-## Changing a layer member's Form changes the whole stack
-
-That is the shared forming workflow. **Form** and **Place** route to the base pattern. Thickness, Edge Style, and material remain individual pattern settings.
+Several selected patterns have different settings. Enter a shared value only if you intend to change all selected targets. For mixed Edge Finish units, choose common Units before entering Depth.
 
 ## Edge depth becomes invalid after a thickness change
 
-A fixed millimeter depth can exceed the new foam thickness. The **Thickness** dialog explains this and keeps the previous thickness. Lower the depth or use a percentage, then change thickness again. Editing properties directly can still create an invalid combination; correct the depth to restore the preview.
+A fixed millimetre depth can exceed the new thickness. Reduce Depth, increase Thickness, or choose a suitable percentage. Inspect every piece after a batch edit; thinner trim may need a different depth from the base.
 
-## A material changed every pattern in a layer
+## I removed the wrong pattern
 
-**Apply material to whole layer** updates all current members and the default for later additions. Undo to restore the prior assignments. Use **Set pattern material** on a pattern row for a single-piece change.
+Use **Edit → Undo**. **Remove From Layer** preserves a member in the workspace. **Delete Layer…** deletes the layer and its patterns. Detach members you want to keep before deleting a layer.
 
-## A detail cannot be placed or moved
+## Costume geometry does not match Workshop
 
-Use **Place on surface** or **Move details** in the left-hand Patterns preview, or in the Costume view after attachment. Click a visible foam front or back face. Side walls do not accept placement. In the Costume view, a visible costume mesh in front of the foam blocks clicking through to it.
+Use **Refresh Costume Meshes** after editing the foam patterns. Check that the base is enabled for **Attach As Part** and that the workspace has been attached where intended. Refresh regenerates geometry and replaces mesh edits, so save a copy before updating a further-edited attachment.
 
-Details stay on the same owner and face during a drag. To put a detail on another pattern, remove it and place a new copy there.
+Recheck placement and appearance, save, and reopen a test copy. If it still differs, report the build version, affected costume, and the smallest sequence that reproduces the result.
 
-## A detail disappeared after an outline edit
+## Printable Details is missing
 
-Its stored anchor may now be outside the foam outline. Undo the edit or adjust the detail's flat surface anchor to place it inside again. Removing the owner also removes the detail from the visible composition; undo restores the attachment.
-
-## An eyelet has no hole through the foam
-
-The detail model has its own opening. It does not subtract material from the foam. Plan and mark the physical hole separately.
-
-## The real foam does not match the spherical preview
-
-The preview shows a geometric forming shape. It does not calculate stretching, heating, glue, or springback. Test a physical sample and adjust the flat cut pattern and forming radius for your foam and construction method.
+The control can appear in the editor, but decorative hardware placement is not verified by this guide. Foam build sheets are not part of this supported route. Use the [layered bracer tutorial](/foam-preview/tutorial-layered-bracer) and ordinary pattern printing, with construction notes kept separately.

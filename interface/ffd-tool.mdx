@@ -4,6 +4,10 @@ sidebarTitle: "FFD Tool"
 description: "Use Free Form Deformation to reshape costume parts with a lattice cage, adjust control points, and refine their fit on your avatar."
 ---
 
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
+
 Use **Free Form Deformation (FFD)** to reshape a costume part with a lattice cage. Moving the cage's control points changes the mesh smoothly across the part. For example, you can flare a helmet's lower edge while keeping the crown closer to its original shape.
 
 Use [Scale](/interface/scale-tool) when you need to resize the whole part. Use FFD when different areas need different adjustments, such as tapering armor or changing the curvature of a helmet.
@@ -14,12 +18,17 @@ Use [Scale](/interface/scale-tool) when you need to resize the whole part. Use F
 
 ## Activate the tool
 
+![Helmet inside a two by two by two FFD cage, with selected handles and Width, Height, Depth, Apply, and Done controls.](/images/ffd-workbench-controls-2110.png)
+
+*Set cage counts in Workbench Edit, apply them, then adjust cage points in the viewport.*
+
+
 1. Left-click a costume part in the [Costume Viewport](/interface/viewport-navigation) to select it.
 2. Click **FFD Tool** in the toolbar above the viewport. You can also right-click the selected part and choose **Free Form Deformation**.
-3. In the **Free Form Deformation** dialog, choose **Width**, **Height**, and **Depth** for the cage.
+3. In **Workbench → Edit → Free Form Deformation**, choose **Width**, **Height**, and **Depth** for the cage.
 4. Click **Apply** to create the cage around the part.
 
-If the part already has an FFD cage, the dialog shows its current counts. Keep the values and click **Apply** to resume editing, or change them to adjust the cage resolution.
+If the part already has an FFD cage, the editor shows its current counts. Keep the values and click **Apply** to resume editing, or change them to adjust the cage resolution.
 
 ## Choose the cage resolution
 
@@ -40,7 +49,7 @@ These values control the cage resolution. They are not measurements of the part'
 You can change an existing cage's counts without removing and reimporting the model.
 
 1. Select the costume part, or keep editing its active cage.
-2. Open the dropdown beside **FFD Tool** and choose **Edit Lattice Counts...**.
+2. Activate **FFD Tool** if needed and open its **Free Form Deformation** controls in **Workbench → Edit**.
 3. Adjust **Width**, **Height**, and **Depth**.
 4. Click **Apply** to update the cage and continue editing.
 
@@ -71,9 +80,9 @@ Make small changes. A control point influences the surrounding shape, so check v
 
 ## Finish or resume editing
 
-Press **Esc** or click **FFD Tool** again to leave cage editing. The cage is hidden and the part keeps its adjusted shape. You do not need to click **Apply** when leaving the tool.
+Click **Done** in Workbench Edit, or click **FFD Tool** again, to leave cage editing. The cage is hidden and the part keeps its adjusted shape. You do not need to click **Apply** when leaving the tool.
 
-To resume, select the part and activate **FFD Tool** again. Keep or change the current counts in the dialog, then click **Apply**.
+To resume, select the part and activate **FFD Tool** again. Keep or change the current counts in Workbench Edit, then click **Apply**.
 
 Save your costume when you are satisfied with the fit. For overall positioning and orientation, see the [Translate](/interface/translate-tool) and [Rotate](/interface/rotate-tool) guides.
 
@@ -81,4 +90,4 @@ Save your costume when you are satisfied with the fit. For overall positioning a
 
 The 3D mesh updates as you move the cage. Pattern recalculation and packing wait until you switch to the **Workshop** tab, so individual FFD adjustments do not trigger packing progress popups.
 
-Switching to **Workshop** also leaves cage editing and refreshes the affected patterns. Pressing **Esc** keeps your deformation, but does not refresh the patterns until you open **Workshop**.
+Switching to **Workshop** leaves cage editing and refreshes the affected patterns. Finishing the tool with Done keeps your deformation; open Workshop when you need to check the updated patterns.

@@ -1,0 +1,35 @@
+{
+  "review_date": "2026-10-30",
+  "source": "Creator-supplied application captures in this chat",
+  "assets": {
+    "workbench-overview-2110": "c57db814-ff40-4abd-b801-4887a103970f",
+    "workbench-attachments-2110": "337e35c7-ddcd-40ff-83d0-e4af1c8f3cf3",
+    "inspect-attachment-2110": "3713af06-2db5-4638-9f43-4bad4526782a",
+    "pattern-layers-groups-2110": "01d6e937-866a-420b-b61d-2bfc3b11e0ff",
+    "import-review-size-2110": "bf57e0d6-42e2-495f-9bfa-254b5eeaa716",
+    "ffd-workbench-controls-2110": "2af782cc-c188-4597-a7db-ae7bc37284b4",
+    "fit-check-workbench-2110": "441e67ee-ef85-43fc-92c3-725d148189fc",
+    "animation-workbench-2110": "7d9369b7-14a7-4204-bda8-499b83be188f",
+    "avatar-guide-step-2110": "9ac0ca71-17cf-436d-b5da-818001a0243c",
+    "avatar-measurement-locks-2110": "fe07c236-e832-4852-b743-51db87d3b987",
+    "avatar-chest-shape-2110": "8b2c5106-d4f6-4aa2-a36a-dff802c384d7",
+    "foam-pattern-controls-2110": "6de2146f-ead4-48ab-b87c-ecdb1a526d1c",
+    "foam-layer-stack-2110": "81336b33-4ee6-42af-a50c-db7abd24659a",
+    "foam-placement-refresh-2110": "f1837fb2-41d3-47ce-a5c4-983355b9a328",
+    "edit-shape-controls-2110": "55e99301-6856-4932-9906-6fd6b0a9e371",
+    "foam-edge-finish-2110": "b51e248b-cf02-4807-881d-da96cf9c609f",
+    "workspace-paper-layout-2110": "093f01da-462e-41b1-8ab0-37171d88bcb5",
+    "pdf-actual-size-2110": "88bc0e3f-761c-4d8a-b06c-d4185e396db9",
+    "preferences-graphics-hardware-2110": "7a325236-e00d-4a4c-99dd-7326c5e64514",
+    "preferences-rendering-2110": "fe438179-4372-45cd-bb9d-cf57ef8f76b8",
+    "unsaved-costume-2110": "49a159a0-eaac-4d15-8b6d-6b6d02c334cf"
+  },
+  "skipped": "S18 Environment Settings is dev-only",
+  "replacements": "Final S14 grouped Edit Shape capture replaces provisional missing-label screenshot",
+  "limitations": [
+    "Exact About/build ID not supplied",
+    "Screenshots reviewed; no automated native workflow run",
+    "No physical test print measured",
+    "Printable Details visible but its workflow remains unverified"
+  ]
+}

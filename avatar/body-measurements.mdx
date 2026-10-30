@@ -4,6 +4,10 @@ sidebarTitle: "Measurements"
 description: "Take consistent body measurements and use the avatar's length, circumference, and shape controls."
 ---
 
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
+
 Measure the person who will wear the costume, then enter those values in **Avatar → Edit Avatar**. The highlighted guides on the avatar are your reference for each field's location and endpoints.
 
 ## Prepare your measurements
@@ -17,6 +21,8 @@ Set the unit display in [**Settings → Preferences**](/interface/preferences). 
 <Tip>
 Measure the body or its intended base layer first. Allow for armor thickness, padding, and movement when [fitting costume parts](/parts/attaching-parts), rather than adding an arbitrary amount to every avatar measurement.
 </Tip>
+
+For illustrated entry, open **Avatar Guide** on the Avatar tab. Its changes apply as you go. Return to the detailed controls to refine proportions and inspect the result.
 
 ## Enter a measurement
 
@@ -73,7 +79,12 @@ Save a matching [avatar file](/avatar/saving-and-reusing-avatars) so you can ret
 
 ## Preserve a measurement while changing proportions
 
-Click the lock beside an editable measurement to preserve it while related dimensions change. Locked fields stay disabled until you unlock them. A viewport drag also respects the lock. Use **Edit → Undo** to reverse a lock change or committed body edit.
+![Measurements panel with Sleeve locked at 55.5 cm, matching arm guide, and Lock All and Unlock All.](/images/avatar-measurement-locks-2110.png)
+
+*Lock a verified measurement before adjusting related proportions. Sleeve is locked at 55.5 cm here.*
+
+
+Click the lock beside an editable measurement to preserve its displayed physical value while related dimensions change. **Lock All** and **Unlock All** apply to the editable measurements on the current tab. Check the scope before using them. Locked fields stay disabled until you unlock them. A viewport drag also respects the lock. Use **Edit → Undo** to reverse a lock change or committed body edit.
 
 Hover over a field to identify its guide, or drag an available guide handle in the viewport and read the resulting value in the panel. Check compound lengths after changing a component and read any constraint error before continuing.
 

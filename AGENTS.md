@@ -1,33 +1,48 @@
-> **First-time setup**: Customize this file for your project. Prompt the user to customize this file for their project.
-> For Mintlify product knowledge (components, configuration, writing standards),
-> install the Mintlify skill: `npx skills add https://mintlify.com/docs`
-
 # Documentation project instructions
 
-## About this project
+## Product and source
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
-- Pages are MDX files with YAML frontmatter
-- Configuration lives in `docs.json`
-- Use the Mintlify MCP server, `https://mcp.mintlify.com`, to edit content and settings via MCP
-- Use the Mintlify docs MCP server, `https://www.mintlify.com/docs/mcp`, to query information about using Mintlify via MCP
+This repository contains the Armorsmith Designer help site. Pages are MDX with YAML frontmatter; navigation, theme, and branding live in `docs.json`.
+
+Application development uses Perforce as the primary source and a read-only GitHub mirror. This documentation repository uses Git branches and pull requests. An application feature being present in source does not establish that it is released.
+
+Use the configured Mintlify MCP tools when available. Otherwise edit this repository directly and validate with the Mintlify CLI.
+
+## Writing
+
+- Write for costume and cosplay makers. Explain when to use a feature, prerequisites, practical steps, and the expected result.
+- Use active voice, second person, concise sentences, and sentence-case headings.
+- Use exact visible UI labels in bold. Use code formatting for filenames, commands, and source references.
+- Keep implementation details and source-validation notes out of user instructions. Put release review notes under `drafts/`, which is ignored by Mintlify.
+- Preserve existing URLs when changing a title or reorganizing a page. Check inbound fragments when replacing headings.
 
 ## Terminology
 
-{/* Add product-specific terms and preferred usage */}
-{/* Example: Use "workspace" not "project", "member" not "user" */}
+- A **workspace** contains model and pattern content.
+- **Workshop** is the model-and-pattern work view; **Costume** is the avatar-fitting view.
+- **Workbench** is the dock with **Browse**, **Edit**, and **Inspect** pages.
+- **Transforms** is the separate numeric position, rotation, and scale panel. Do not call it Property Grid.
+- **Drawing layers** organize drafting content. **Foam layers** position raised pieces at a physical height above a base.
+- **Preview Color** is the foam appearance control; it does not select physical stock or establish material-library availability.
 
-## Style preferences
+## Release boundaries
 
-{/* Add any project-specific style rules below */}
+Keep current-release fixes separate from upcoming-release instructions. Label upcoming version-specific pages and hold their branch until the candidate's controls and behavior are verified. Do not present source-only observations as native application tests.
 
-- Use active voice and second person ("you")
-- Keep sentences concise — one idea per sentence
-- Use sentence case for headings
-- Bold for UI elements: Click **Settings**
-- Code formatting for file names, commands, paths, and code references
+The foam workflow was reviewed with creator-supplied application captures for 2.1.1.0 and authorized for publication. Its navigation and seven workflow pages are visible. The unverified surface-details page remains hidden/noindex. Hidden pages remain publicly reachable by URL. Use accepted final captures rather than provisional bug screenshots. Environment Settings is internal to dev builds; do not document it as a customer control.
 
-## Content boundaries
+Printable Figure is disabled because it does not work. Do not document miniature STL export as supported or expose its dormant implementation. Printable Details, model-derived Create Patterns, and foam build sheets require explicit release qualification before documenting their entry points as available.
 
-{/* Define what should and shouldn't be documented */}
-{/* Example: Don't document internal admin features */}
+## Validation and publication
+
+Before a PR is ready to merge, run:
+
+```text
+python -m unittest discover -s tests -p 'test_*.py' -v
+npx --yes mint@4.2.988 validate
+npx --yes mint@4.2.988 broken-links --check-anchors
+```
+
+Inspect the rendered pages and verify changed procedures against an identified application build. Use real matching-version captures, readable UI scale, descriptive captions and useful alt text. Reuse an accurate image instead of recapturing it solely for visual polish.
+
+Pushing to the configured default branch can deploy to the public site. Prepare changes on branches/PRs and check the served result after an authorized release.

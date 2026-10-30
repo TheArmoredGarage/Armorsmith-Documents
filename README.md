@@ -1,69 +1,35 @@
-# Mintlify Starter Kit
+# Armorsmith Designer help
 
-## Foam preview documentation
+This repository is the Mintlify source for [Armorsmith Designer help](https://armorsmith-designer.mintlify.site/introduction). Read [AGENTS.md](AGENTS.md) for writing conventions and product terminology.
 
-The unreleased foam guides live under `foam-preview/`. Their navigation tab in
-`docs.json` has `hidden: true`; each page also has `hidden: true` and `noindex: true`.
-After deploying this branch, the entry route is `/foam-preview/overview` and the
-tutorial route is `/foam-preview/tutorial-layered-bracer`. Hidden pages remain
-public to anyone who knows the URL. The overview links to every preview guide.
+## Edit and preview
 
-Keep the preview branch separate until its contents are ready for link-only
-access. To make the section visible at release, remove the tab's `hidden` field
-and the `hidden` and `noindex` frontmatter fields from these eight pages. Recheck
-the tutorial against the released UI, then run `mint validate` and
-`mint broken-links` before merging. The existing Manual and API tabs are unchanged.
+Use a branch for documentation work. Pages are `.mdx`; `docs.json` controls navigation. Preserve existing routes and check related tutorial steps when changing a reference page.
 
-Use the starter kit to get your docs deployed and ready to customize.
+Run `npx --yes mint@4.2.988 dev` from the repository root to preview locally. For checks, run:
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
-
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
-
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
-
-## AI-assisted writing
-
-Set up your AI coding tool to work with Mintlify:
-
-```bash
-npx skills add https://mintlify.com/docs
+```text
+python -m unittest discover -s tests -p 'test_*.py' -v
+npx --yes mint@4.2.988 validate
+npx --yes mint@4.2.988 broken-links --check-anchors
 ```
 
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
+The existing GitHub Actions workflow runs licensing checks and Mintlify validation for its configured changed paths.
 
-See the [AI tools guides](/ai-tools) for tool-specific setup.
+## Current and upcoming releases
 
-## Development
+Keep corrections for the current public version separate from upcoming interface changes. The 2.1.1.0 documentation covers Workbench and the foam workflow, illustrated with creator-supplied application captures. Version notes distinguish these instructions from 2.1.0.10; documentation publication does not establish installer availability.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+The immediate Printable Figure correction removes a nonworking, disabled feature from supported export instructions. It does not enable that implementation.
 
-```
-npm i -g mint
-```
+Application Perforce changelists and the read-only source mirror supply implementation evidence. Release status also needs an identified application build. See [the 2.1.1.0 review checklist](drafts/2.1.1.0-review.md) for source references, capture IDs, and pending native checks. Review files under `drafts/` are excluded by `.mintignore`.
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+## Foam documentation visibility
 
-```
-mint dev
-```
+Seven foam workflow pages are visible under the Foam patterns navigation tab after the creator's capture review and publication authorization. The surface-details availability page remains hidden/noindex because decorative hardware behavior was not verified. Hidden navigation is not access control.
 
-View your local preview at `http://localhost:3000`.
+See [the capture review](drafts/2.1.1.0-capture-review.md) and asset manifest for accepted images, corrections, and verification limits. Environment Settings is an internal dev-build tool and is excluded from customer procedures. Printable Figure remains disabled.
 
-## Publishing changes
+## Publishing
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
-
-## Need help?
-
-### Troubleshooting
-
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+The configured Mintlify GitHub integration deploys the default branch. Merge current-release corrections through the normal review flow. Keep upcoming-release changes in draft until their release checks are complete. After an authorized merge, verify the affected live text and images rather than assuming deployment succeeded.

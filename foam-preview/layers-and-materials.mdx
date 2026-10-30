@@ -1,81 +1,64 @@
 ---
-title: "Compose foam layers and assign materials"
-sidebarTitle: "Layers and materials"
-description: "Put several patterns in a layer, move them across a shared formed base, and set their materials."
-hidden: true
-noindex: true
+title: "Compose foam layers and set preview colors"
+sidebarTitle: "Layers and colors"
+description: "Add raised patterns to a base, set absolute layer heights, and edit placement without changing the cut layout."
 ---
 
-A foam stack starts with one base pattern. Add layers above it, then put smaller patterns into each layer. One layer can contain several circles, strips, or other detail shapes.
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
 
-All patterns follow the base's forming and 3D placement. Each pattern keeps its own outline, thickness, edge finish, and material.
-
-<Frame>
-![Illustrative foam stack cross-section: a 6 mm base, two patterns of 2 mm and 4 mm in the first layer, and a second layer above the taller 4 mm pattern. All layers follow the same bend.](/images/foam-layer-stack.svg)
-</Frame>
+A foam stack has one base and one or more layers of raised patterns. Every member follows the base's form while keeping its own thickness, edge finish, and preview color.
 
 ## Create the stack
 
-1. Select a closed foam pattern with a working **Foam** preview.
-2. Click **Layers** to open the **Foam layers** panel.
-3. Click **Use selected base**.
-4. Click **Add layer**.
-5. Click the new layer's row in the panel to make it the destination.
-6. Select one or more closed foam patterns in the pattern view.
-7. Click **Add selected patterns**.
+![Layer 1 expanded with Chest Trim group, two 6 mm orange members, a 12 mm gray base, and Height Above Base 0 mm.](/images/foam-layer-stack-2110.png)
 
-The tool uses their relative placement as an initial assembled position where possible. If a pattern is outside the base, it tries centering the assembled piece. Its cutting-sheet position stays unchanged. It rejects a pattern that still cannot fit. Resize or reshape that pattern and try again.
+*Height Above Base is measured from the outer base surface. The 6 mm trim sits directly on the 12 mm base at 0 mm height.*
 
-A pattern that already contains its own foam layers cannot be nested into another stack in this preview.
 
-<Tip>
-Single-click a row to choose a destination or material target without replacing your viewport selection. Double-click a row to select that pattern or layer in the application.
-</Tip>
+1. Select a closed foam pattern and open **Edit Foam → Layers**.
+2. Click **Use Selected Pattern As Base** if a stack has not been started.
+3. Click **Add Layer** and select the new layer row as the destination.
+4. Select smaller closed outlines in the viewport and click **Add Selected**, or use **Choose Patterns…** to pick them from a list.
+5. Read the feedback and check the result in the 3D view.
+
+Eligible drawing outlines become foam patterns when added. Open, locked, invalid, nested, or nonfitting patterns can be skipped. Make a rejected piece smaller or correct its outline, then try again.
+
+The whole raised outline must fit inside the base, including segments near concave cutouts. A pattern that already owns a stack cannot be nested inside another stack.
+
+## Set height above the base
+
+Select a layer row and edit **Height Above Base**. It measures from the outer surface of the base foam to the underside of that layer. Use **0 mm** for a first layer glued directly to the base; do not add the base thickness again.
+
+A new layer starts above the previous layer once. After creation, each layer's height is independent. **Move Up** and **Move Down** change the order in the list without changing height. Reordering is not a way to raise or lower a physical piece.
+
+For example, two 2 mm details can occupy a first layer at 0 mm. A badge placed over them can occupy another layer at 2 mm. Check its footprint: the layer does not automatically find support in gaps or decide where glue should be applied.
+
+Hiding a row changes visibility. It does not set a new physical height or automatically restack other pieces.
 
 ## Move a raised pattern
 
-The 2D cutting-sheet layout and the assembled layer placement are saved separately. Translate or rotate the templates in 2D to arrange them for printing without moving the raised pieces in 3D. Use **Move on surface** to change the assembly without moving the paper templates. Editing an outline or changing its scale changes the actual piece, so check that it still fits its base.
+1. Select the raised pattern in the 3D view or its stack row.
+2. Activate **Translate** for local X/Y movement across the base, or **Rotate** for local Z rotation.
+3. Drag a handle and inspect its position on the formed surface.
+4. Release to keep the move. Use **Escape** during a drag to cancel that unfinished move.
 
-Click **Move on surface**, then click and drag a raised foam pattern in the 3D view. The pattern moves across the base's flat coordinates and follows the formed surface as you drag.
+Selecting the base instead moves the whole owner and its layers. Double-click a pattern row to open its **Pattern** settings. Check the target name before editing.
 
-Use **Move foam** on the toolbar to move the whole base stack in the left-hand 3D preview. Clicking a layer member or rivet in that mode selects its base. Use **Move on surface** to slide a member within the stack instead. For several independent bases, see [Arrange separate plates](/foam-preview/thickness-and-forming#arrange-separate-plates-such-as-a-set-of-abs).
+The flat cutting layout is independent. Move or rotate a template in 2D to arrange paper without changing assembly placement. Outline or scale edits change the physical piece, so recheck containment afterward.
 
-Its entire outline must stay within the base outline. Movement that would cross the boundary is rejected, including movement across an indentation in a concave base.
+## Set preview colors and shared values
 
-Release to keep the move as one undoable action. Press **Escape** during an unfinished drag to restore the starting position. Click **Finish moving** to leave the tool.
+Use **Preview Color** for the selected pattern. When a layer row is selected, the layer color action applies to its current patterns and the default for later additions. A pattern can then receive its own override.
 
-The boundary is the stack's base outline. Upper patterns do not need to sit directly above another small pattern in the preceding layer.
+Select several patterns to edit shared thickness, color, or edge finish. Mixed values do not mean every piece has the same setting. Set a shared value only when you intend it to apply to the whole selection. Choose common edge units before entering a mixed selection's depth.
 
-## Read the composition
+Preview colors help you read the assembly; they are not a physical foam-stock database. They do not change the cut outline.
 
-The tree shows the base, each layer, and the patterns within it. Pattern rows show thickness and material. Layer rows show the number of patterns and the height above the base surface.
+## Remove a member or delete a layer
 
-- Use the row checkboxes to show or hide pieces while inspecting the composition.
-- **Raise layer** and **Lower layer** change layer order.
-- **Set layer gap** adds space above the preceding layer.
-- **Remove row** removes the selected pattern or layer, with undo. Removing a layer removes its children from the composition too.
+- **Remove From Layer** detaches the selected member while keeping its pattern in the workspace and preserving its cutting layout. Use this to keep working on the piece independently.
+- **Delete Layer…** removes the layer and its patterns from the project. Detach any members you want to keep first.
 
-Each layer starts above the tallest pattern in every lower layer, plus the layer gaps. For example, a layer containing both 2 mm and 4 mm patterns contributes 4 mm to the next layer's elevation. This keeps each layer at one shared height; it does not nest upper pieces into the gaps between lower details.
-
-For pieces glued directly onto the base, leave the first **Layer gap** at **0 mm**. Its underside already rests on the base's top surface; do not add the base thickness again. The initial 3D camera shows the raised side. Orbit the view to inspect the back or the side profile.
-
-Hiding a layer changes visibility, rather than the physical stack height. Remove or reorder a layer when you want the composition itself to change.
-
-## Set one pattern's material
-
-1. Click the pattern row in **Foam layers**, including the base row if needed.
-2. Choose a material from the list, or choose **Custom color...**.
-3. Click **Set pattern material**.
-4. If you chose a custom color, select it in the color picker.
-
-The selected pattern changes independently. Its attached hardware inherits the same material.
-
-## Set the whole layer's material
-
-Choose a layer row, select a material, then click **Apply material to whole layer**. This updates every pattern currently in the layer and sets the default for patterns added later.
-
-The patterns receive independent material copies. You can override one pattern afterward with **Set pattern material** without changing its neighbors. Undo restores each pattern's previous assignment.
-
-Materials affect the 3D appearance. They do not change the paper cut outlines, thickness, or forming.
-
-Continue with [Add surface details](/foam-preview/surface-details).
+Use **Edit → Undo** to reverse an unwanted change. Finish by checking the stack's [form and refreshed costume geometry](/foam-preview/thickness-and-forming#attach-and-refresh-the-costume), then save.

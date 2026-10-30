@@ -4,6 +4,10 @@ sidebarTitle: "7. Reshape a helmet"
 description: "Use a small deformation cage to flare a helmet opening, edit lattice counts, and check the resulting fit."
 ---
 
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
+
 Flare the lower edge of a helmet without enlarging the entire model. Free Form Deformation (FFD) reshapes the mesh using a cage of control points.
 
 ## Before you start
@@ -16,10 +20,10 @@ Use Scale for whole-part resizing. Choose FFD when one region, such as the neck 
 
 1. Open the **Costume** view and select the attached helmet.
 2. Click **FFD Tool** above the viewport.
-3. In **Free Form Deformation**, set **Width**, **Height**, and **Depth** to **2**.
+3. In **Workbench → Edit → Free Form Deformation**, set **Width**, **Height**, and **Depth** to **2**.
 4. Click **Apply**.
 
-**Check:** A cage surrounds the helmet. A 2 × 2 × 2 cage has eight corner control points. Counts are the number of control points, not physical dimensions; the dialog accepts 2–20 on each axis.
+**Check:** A cage surrounds the helmet. A 2 × 2 × 2 cage has eight corner control points. Counts are the number of control points, not physical dimensions; the editor accepts 2–20 on each axis.
 
 ## 2. Flare the opening
 
@@ -31,7 +35,7 @@ Use Scale for whole-part resizing. Choose FFD when one region, such as the neck 
 
 ## 3. Add control only if needed
 
-1. Open the dropdown beside **FFD Tool** and choose **Edit Lattice Counts...**.
+1. Open the active FFD controls in **Workbench → Edit**. Activate **FFD Tool** again first if you have finished editing.
 2. Increase a count if the existing cage cannot make the local adjustment you need.
 3. Click **Apply** and inspect the shape again.
 4. Use **Edit → Undo** to restore the previous counts and deformation if the result is unsuitable.
@@ -40,10 +44,10 @@ Increasing counts preserves the current deformation. Reducing a count can change
 
 ## 4. Finish and check the result
 
-1. Click **FFD Tool** again to leave cage editing. The adjusted helmet shape remains.
+1. Click **Done** in Workbench Edit to leave cage editing. The adjusted helmet shape remains.
 2. Enable **Fit Checker** and wait for its heatmap to finish updating.
 3. Check the head and neck from several angles, including the opening the wearer must pass through. A visual gap in one pose is not proof that the helmet can be put on.
-4. Open **Workshop** to refresh affected pattern work, then save your costume. If Workshop is not visible, use **View → Workshop**.
+4. Open **Workshop** to refresh affected pattern work, then save your costume. If Workshop is not visible, use **Window → Workshop**.
 
 **Result:** The helmet opening has a local shape adjustment while the rest of the fit remains available for review. Re-select the helmet and activate FFD Tool to resume editing its cage.
 

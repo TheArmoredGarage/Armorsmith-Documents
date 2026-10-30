@@ -4,6 +4,10 @@ sidebarTitle: "4. Import a model"
 description: "Import a model, choose included or linked storage, check orientation, and organize a multi-model 3MF."
 ---
 
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
+
 Bring a costume model into a workspace and check it before attaching it to your avatar. Use a single shoulder piece, bracer, or helmet for your first import.
 
 ## Before you start
@@ -16,17 +20,18 @@ This is the costume-part workflow. For a scan or body model, use [custom body im
 
 1. Choose **File → Import**.
 2. In **Import a Model/PDO**, select the file and click **Open**.
-3. For OBJ, STL, FBX, or 3MF, review **Model import**. Leave **Include in costume** selected for this first project. It stores the model with the costume.
-4. For OBJ, STL, or FBX, leave **Review orientation before import** checked and click **Next: Review orientation**. For this tutorial's 3MF route, clear the checkbox and click **Import**, then continue to the organization choices below.
+3. For OBJ, STL, FBX, or 3MF, review **Model Import**. Leave **Include in costume** selected for this first project. It stores the model with the costume.
+4. For OBJ, STL, or FBX, leave **Review orientation and size before import** checked and click **Next: Review Import**. For this tutorial's 3MF route, clear the checkbox and click **Import**, then continue to the organization choices below.
 
 **Link to original file** instead keeps the original as the full-detail source. Use it only when you can keep that source unchanged and available; see [linked files](/parts/linked-files). PDO and ADO use their existing import procedure without this storage/orientation dialog.
 
-## 2. Review the orientation
+## 2. Review orientation and size
 
-1. In **Review orientation**, compare **Before** and **After**.
+1. In **Review Orientation And Size**, compare **Before** and **After**.
 2. Select **Front**, **Side**, and **Top** under **View:** to inspect the part.
-3. Open **Adjust orientation** if necessary. Adjust X/Y/Z rotations or use the 180-degree **Flip** controls.
-4. Click **Import with orientation** to use the preview, or **Import original** to keep the source orientation.
+3. Open **Adjust Orientation** if necessary. Adjust X/Y/Z angles or use the axis **Rotate … (90 deg)** controls.
+4. Set **Longest Side** in millimetres if a known largest dimension needs correction. Check the resulting dimensions; **Reset Size** restores its source size.
+5. Click **Import Adjusted** after sizing, or **Import With Orientation** for direction alone. **Import Original** discards the review adjustments.
 
 For the 3MF route, inspect direction after loading and use Rotate when fitting the attachment if a correction is needed.
 
@@ -44,10 +49,10 @@ Selecting several files in the file picker is different. For a selection contain
 
 ## 4. Check the imported result
 
-1. Select the new workspace in **Workspaces** and open **Workshop** to inspect its model.
+1. Select the new workspace in **Workbench → Browse → Workspaces** and open **Workshop** to inspect its model.
 2. Orbit and zoom to check its orientation and completeness.
 3. Activate **Measure**, click two known points, and compare the distance with your reference dimension. Check the orange target before clicking because it can snap to vertices.
-4. If size or orientation is wrong, correct the source and import again, or adjust the attached part with Scale/Rotate in the next tutorial.
+4. If size is wrong, check the review target and units before importing again. Use Scale/Rotate for later attachment fitting. Review sizing is already baked into imported geometry; do not apply it twice.
 5. Choose **File → Save**.
 
 **Result:** Your model is stored in a workspace. It is not attached or automatically fitted yet. A 3MF imports supported geometry, units, transforms, and colors; slicer profiles and supports are not a guaranteed part of the transfer.

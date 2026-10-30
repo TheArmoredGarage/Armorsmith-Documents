@@ -1,63 +1,58 @@
 ---
-title: "View and attach your loaded objects in the Workspace Panel"
-sidebarTitle: "Workspace Panel"
-description: "Learn how to use the Workspace panel to view, import, attach and delete your loaded model files."
+title: "Browse and manage workspaces"
+sidebarTitle: "Workspaces"
+description: "Find imported models, manage workspace groups, and attach a workspace to your avatar."
 ---
 
-# Workspaces Panel
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
 
-The **Workspaces Panel** manages the imported files of armor parts called **Workspaces**. Workspaces contain the imported 3D model, materials, and unfolded patterns generated from that model. Users can also create blank workspaces and then create their own custom patterns for drafting their own armor from scratch.
+A **workspace** holds a model and its pattern work. An **attachment** places that workspace's geometry on the avatar. Keep this distinction in mind when deleting or fitting a part.
 
-In builds with the new [`.costume` format](/interface/costume-files), the costume owns shared assets and separate workspace records. Keep its `.costume` file and companion folder together when copying or backing up your work. Use **File → Publish Costume…** to make a single file for sharing.
+Open **Window → Workbench**, then select **Browse → Workspaces**.
 
-A preview of the currently selected workspace is displayed on the left side of the panel, while the available workspaces are listed on the right.
+## Find a workspace
 
-<Frame>
-  ![Image](/images/WorkspacePanel.png "Image")
-</Frame>
+![Workspaces grid with search, selected workspace details, and Attach Another Copy.](/images/workbench-overview-2110.png)
 
----
+*Select a workspace to see its details and attachment action.*
 
-## Workspace Preview
 
-The preview window displays a thumbnail of the currently selected workspace, allowing you to quickly identify its contents before attaching it to your project.
+Choose **Grid** for thumbnails or **Rows** for a compact list. Use **Search workspaces** to find a name and the group filter to narrow the list. Select a workspace to see its preview and available actions.
 
----
+Clear the search and choose **All workspaces** if you cannot find an imported item. Selecting a workspace does not automatically attach it to the avatar.
 
-## Workspace List
+## Import or create
 
-The **Workspace List** displays all available workspaces that have been imported into Armorsmith Designer.
+- **Import Model** opens the [model import workflow](/parts/importing-models).
+- **New Workspace** creates a blank workspace for drafting your own patterns.
 
-Select a workspace to view its preview and enable the available workspace actions.
+Keep any original model files and textures available, particularly when using [linked sources](/parts/linked-files).
 
----
+## Manage names and groups
 
-## Import
+Right-click a workspace for actions such as **Rename…**, **Export Model…**, and **Manage Group…**. Group related sources when they belong to one assembly, such as a helmet and its separate cheek pieces. Use the group filter to find them together.
 
-The **Import** button adds a new workspace to the Workspace Library.
+**Attach Group To Costume** places an assembly as a group. Inspect the result before fitting individual regions; grouping does not automatically make an assembly fit the wearer.
 
----
+## Attach a workspace
 
-## New
+1. Select a workspace containing geometry that can be attached.
+2. Click **Attach To Costume**. If it already has an attachment, the button can read **Attach Another Copy**.
+3. Move over the avatar and click the intended attachment point.
+4. Use Translate, Rotate, and Scale to fit the part.
 
-The **New** button creates a new blank workspace from the current selection.
+An empty drafting workspace may need [foam geometry](/foam-preview/thickness-and-forming#attach-and-refresh-the-costume) before it can be attached. Follow [Attachments](/parts/attaching-parts) for fitting, mirroring, and managing fitted copies.
 
-Use this feature if you want to draft your own patterns for a costume piece.
+## Browse attachments or patterns
 
----
+In Costume, use **Browse → Attachments** to find fitted parts by body slot. **Reveal Workspace** takes you back to a selected attachment's source workspace.
 
-## Delete
+In Workshop, use **Browse → Patterns** to [organize drawing layers and groups](/patterns/layers-and-groups). Physical foam stacks are edited through **Edit Foam → Layers**, not a separate Browse Foam Layers tab.
 
-The **Delete** button permanently removes the selected workspace from the Workspace Library.
+## Delete a workspace safely
 
-Deleting a workspace removes it from the library. It will also delete any attachments that are connected to that workspace.
+Deleting a workspace also removes attachments that depend on it. If you only want to remove a fitted copy, use **Delete Attachment** in attachment browsing instead. Save a copy of a useful costume before removing source workspaces.
 
----
-
-## Attach
-
-The **Attach** button will allow you to attach the part on to the Avatar. A ghosted version of the part will follow the mouse around until the User clicks on an **Attachment Point**.
-
-Once attached, the part can be moved, rotated, scaled, or edited. See [Attachments](/parts/attaching-parts) to learn about attachment points and properties, or [mirror a part with Shift+M](/parts/attaching-parts#mirror-an-attached-part) to create a linked pair.
-
----
+For backups, keep an editable `.costume` file and its companion folder together. Use [Publish Costume](/interface/costume-files#publish-one-file-for-sharing) for a single-file handoff.

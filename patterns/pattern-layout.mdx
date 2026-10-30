@@ -4,11 +4,11 @@ sidebarTitle: "Edit Patterns"
 description: "Unfold a model, edit pattern edges, and use the pattern viewport tools to align, distribute, and rotate pieces."
 ---
 
-Use the pattern viewport to edit unfolded pieces and arrange them on the pages. The toolbar above the 2D view contains pattern editing tools. The vertical **Pattern Layout** toolbar along its left edge contains alignment, distribution, and orientation controls.
+<Info>
+These instructions are for **Armorsmith Designer 2.1.1.0**. Earlier versions, including 2.1.0.10, can show different panels and labels.
+</Info>
 
-<Frame caption="The pattern editing toolbar sits above the 2D view. The alignment, distribution, and rotation controls run down its left edge.">
-  ![The Patterns workspace showing both toolbars around the pattern viewport](/images/patterns-workspace.png)
-</Frame>
+Use the pattern viewport to edit unfolded pieces and arrange them on the pages. The toolbar above the 2D view contains pattern editing tools. The vertical **Pattern Layout** toolbar along its left edge contains alignment, distribution, and orientation controls.
 
 <Note>
 The **Unfold** button starts an automatic unfold. Islands follow a separate workflow: their patterns update dynamically as you edit the islands in the 3D view. See [Create and manage islands](/patterns/create-and-manage-islands).
@@ -21,7 +21,7 @@ The **Unfold** button starts an automatic unfold. Islands follow a separate work
 | **Transform** | Moves or rotates the selected pattern in the 2D layout. |
 | **Join/Cut** | Joins pattern edges or cuts a connection to separate pieces. |
 | **Measurement Tool** | Measures in the pattern view. |
-| **Edit Current Shape** | Edits a selected editable shape. The button is unavailable until an editable shape is selected. |
+| **Edit Shape** | Opens contextual Vertex, Segment, and Spline editing in Workbench Edit for a supported selected outline. |
 | **Grid** | Shows or hides the grid in the pattern view. |
 | **3D Panel** | Shows or hides the 3D view on the left, giving the pattern view more room. |
 | **Print** | Opens the printing workflow. |
@@ -29,6 +29,20 @@ The **Unfold** button starts an automatic unfold. Islands follow a separate work
 | **Unfold / UndoUnfold** | Opens the automatic unfold threshold dialog, or undoes the model unfold. |
 
 Hover over an icon to identify it. **Transform** has tooltip **Transform Tool**; **Repack Unfold** has tooltip **Re-calculate the layout of the pattern parts**.
+
+## Create and edit a drawing
+
+Open **Create** above the pattern view for **Line**, **Rectangle**, **Circle**, **Text**, and **Image**. This menu replaces the separate Create 2D dock. Organize the result in [Browse → Patterns](/patterns/layers-and-groups), and check Drawing Into before creating more items.
+
+Select an outline and open **Edit Shape**. Choose Vertex for anchors/corners, Segment for sections between anchors, or Spline for the whole outline. Available tools depend on that level. Use Done when finished. For closed foam cut outlines, see [drawing and promotion](/foam-preview/drawing-and-editing).
+
+## Reuse an outline
+
+Right-click a supported outline for **Create Instance**, **Create Mirrored Instance**, **Copy**, and **Paste**. Instances link outline edits while keeping independent placement. Use **Make Unique** before changing only one copy's outline. **Enable Live Symmetry** and **Bake Symmetric Outline** control a symmetric construction relationship, rather than mirroring an attachment on the avatar.
+
+## Accept or cancel an unfold
+
+The Unfold editor uses **Apply** and **Cancel** in Workbench Edit. Check its settings before applying; Cancel leaves the model and unfold settings unchanged. Use UndoUnfold to return from an applied automatic unfold.
 
 ## Move or rotate a pattern
 
