@@ -1,0 +1,129 @@
+---
+title: "Paint materials on a model"
+sidebarTitle: "Paint tool"
+description: "Paint color and surface finishes in Workshop using Brush, Fill, Erase, and Eyedropper, and organize changes in material passes."
+---
+
+<Info>
+These instructions describe the **Paint Materials** workflow being prepared for **Armorsmith Designer 2.1.1.0**. Controls can differ in earlier builds.
+</Info>
+
+Use **Paint Materials** to add color and a surface finish directly to a 3D model. This is different from **Paint Islands**, which assigns model faces to pattern islands rather than coloring them.
+
+Painting belongs to the source model in its workspace, so attached copies of that source use the same painting. Save the **costume** to keep your changes.
+
+## Start painting
+
+1. Open a costume with an imported 3D model. In **Workshop**, select its workspace under **Workbench → Browse → Workspaces**.
+2. Click **Paint Materials** above the 3D model view. Its controls open in **Workbench → Edit**.
+3. Allow **Preparing Materials** to finish if the model has not been prepared for painting. If preparation fails, read the status in Edit and use **Retry Paint Preparation** after resolving the issue.
+4. Open **Browse → Material Passes**. A newly prepared model can start with a **Paint 1** pass. If you need a new pass, choose **Add Pass → Paint Pass**.
+5. Select the **Paint Pass** you want to change. Its painting tools appear in **Edit**.
+
+A pass must be visible to paint on it. If you cannot paint, check that you have the right workspace and pass selected and that the model is not hidden or locked.
+
+## Choose a painting mode
+
+| Mode | Use it for |
+| --- | --- |
+| **Brush** | Paint strokes over the model with the selected color and finish. |
+| **Erase** | Remove coverage from the selected Paint Pass to reveal passes underneath. It does not erase the model geometry. |
+| **Eyedropper** | Pick the color, finish, and metal setting from a painted point on the model. Press **Esc** to return to the previous tool. |
+| **Fill** | Apply paint to a triangle, connected surface, whole part, UV island, or model, according to the fill settings. |
+
+For most first-time painting, use **Fill → Model** to establish a base color, then add a second Paint Pass for brush-painted detail.
+
+## Brush and eraser settings
+
+| Setting | What it changes |
+| --- | --- |
+| **Size** | Brush diameter, shown in millimetres. Press **[** or **]** to adjust the size while painting. |
+| **Flow** | How much pigment each brush dab deposits. Lower flow builds color gradually as dabs overlap. |
+| **Stroke Opacity** | Maximum coverage for one stroke. A new stroke can add further coverage. |
+| **Spacing** | Distance between dabs, as a percentage of brush diameter. Lower values give a more continuous stroke. |
+| **Brush** | The selected brush stamp or shape. The preview shows its appearance. |
+
+Expand **Advanced** for additional settings:
+
+| Setting | What it changes |
+| --- | --- |
+| **Rotation** | Angle of the selected brush stamp. |
+| **Rotation Jitter** | Random variation in stamp angle. |
+| **Scatter** | Random position offset, measured as a percentage of brush size. |
+| **Scale Jitter** | Random size variation between dabs. |
+| **Variation Seed** | Repeats the same pattern of brush variation when the other settings are unchanged. |
+| **Visibility** | **Fast Visibility** skips per-sample occlusion checks for speed; **Precise Visibility** checks samples against overlapping geometry. Use Precise when a brush could reach front-facing surfaces hidden behind another part. |
+| **Wrap Into Crevices** | Lets the stroke extend into recessed areas near the brush. |
+| **Crevice Depth** | Sets the maximum reach into crevices as a percentage of brush radius when wrapping is enabled. |
+
+<Tip>
+Start with low **Flow**, moderate **Stroke Opacity**, and a simple brush. Add scatter and jitter only when you want a less uniform edge.
+</Tip>
+
+## Set the paint color and finish
+
+Under **Material** in Edit:
+
+- **Color** opens the paint color picker.
+- **Finish** chooses **Matte**, **Satin**, **Semi-Gloss**, or **Gloss**.
+- **Metal** changes the paint's surface response to metallic.
+
+These are appearance settings for the model. They do not specify real-world paint or foam stock.
+
+## Fill an area
+
+Select **Fill** in Edit, then choose **Gesture** and **Fill Mode**.
+
+| Fill mode | What it targets |
+| --- | --- |
+| **Triangle** | One triangle on the paintable mesh. |
+| **Polygon** | Unavailable: the painting mesh does not retain original polygon boundaries. Use Triangle or Surface instead. |
+| **Part** | A connected mesh component, including across UV and normal seams. |
+| **UV Island** | One prepared paint UV island; available only when the model has paint UV islands. |
+| **Surface** | Connected faces up to the chosen **Edge Threshold**. |
+| **Model** | All paintable geometry in the model. |
+
+**Edge Threshold** (0–180°) controls where a Surface fill stops at bends between neighboring faces. Lower values stop at smaller bends; higher values can reach farther around curved forms.
+
+- Choose **Click** to fill a region you point at.
+- Choose **Drag Box** to fill from a box selection in the viewport. Under **Hit Testing**, **Visible Faces Only** limits which faces can be included, and **Box Includes** controls **Any Overlap** versus **Center Inside**.
+
+Preview the highlighted area before committing a fill. If you cover too much, undo the fill or remove coverage on that Paint Pass with Erase.
+
+## Organize material passes in Browse
+
+Open **Workbench → Browse → Material Passes** to work with the selected model's stack. The upper pass appears above lower passes in the list and contributes its visible result on top.
+
+| Control | Purpose |
+| --- | --- |
+| **Add Pass** | Create a **Paint Pass**, **Decal Pass**, or **Weathering Pass**. |
+| Pass checkbox | Show or hide a pass without deleting it. |
+| **Opacity** | Adjust the selected pass's overall contribution (0–100%). |
+| **Duplicate** / **Delete** | Copy or remove the selected pass. |
+| **Move Up** / **Move Down** | Change pass order. You can also drag pass rows. |
+| **Undo** / **Redo** | Undo or redo material-pass edits where available. |
+
+Double-click a pass name or press **F2** to rename it. **Blend** currently supports **Normal** blending only. Selecting a Paint Pass determines which pass **Brush**, **Fill**, and **Erase** affect.
+
+**Decal Pass** is for placed stamps or decals. **Weathering Pass** is for procedural effects such as edge wear and black wash; those controls differ from the direct paint modes described here.
+
+## Save and check your result
+
+1. Switch between your Paint Passes to inspect each layer's contribution.
+2. Hide a detail pass briefly to check your base paint.
+3. Return to the 3D view and orbit the model to check hidden or curved surfaces.
+4. Save with **File → Save** or **Ctrl+S**.
+5. Reopen a saved test costume to confirm the painting is retained.
+
+## Troubleshooting
+
+| Symptom | What to check |
+| --- | --- |
+| No painting controls | Select a workspace in Workshop and use **Paint Materials**, not **Paint Islands**. |
+| Painting has not started | Wait for **Preparing Materials**; check Edit status and **Retry Paint Preparation** if it fails. |
+| A stroke changes nothing | Select a visible **Paint Pass** and check pass **Opacity**, brush **Flow**, and **Stroke Opacity**. |
+| Fill reaches too far | Change **Fill Mode** or lower **Edge Threshold** for Surface fills. |
+| Paint appears on hidden geometry behind the front surface | Use **Precise Visibility** for complex overlapping meshes. |
+| Edits do not appear on an attachment | Confirm the attachment uses the same source workspace/model and save the costume. |
+
+For a first complete example, follow [Paint a model with base color and details](/painting/paint-tutorial).
