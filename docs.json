@@ -98,6 +98,13 @@
             ]
           },
           {
+            "group": "Painting",
+            "pages": [
+              "painting/paint-materials",
+              "painting/paint-tutorial"
+            ]
+          },
+          {
             "group": "Troubleshooting",
             "pages": [
               "troubleshooting/common-issues",
@@ -108,10 +115,10 @@
         ]
       },
       {
-        "tab": "API reference \u00b7 Coming soon",
+        "tab": "API reference · Coming soon",
         "groups": [
           {
-            "group": "API 0.3 \u00b7 Coming soon",
+            "group": "API 0.3 · Coming soon",
             "pages": [
               "api/overview",
               "api/identity-and-errors"
