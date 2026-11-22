@@ -5,7 +5,7 @@ description: "Paint color and surface finishes in Workshop using Brush, Fill, Er
 ---
 
 <Info>
-These instructions describe the **Paint Materials** workflow being prepared for **Armorsmith Designer 2.1.1.0**. Controls can differ in earlier builds.
+This page is being prepared for the **Armorsmith Designer 2.1.2.0** painting release. The final feature set and exact build still require release review. Older versions may not have these controls.
 </Info>
 
 Use **Paint Materials** to add color and a surface finish directly to a 3D model. This is different from **Paint Islands**, which assigns model faces to pattern islands rather than coloring them.
@@ -31,7 +31,7 @@ A pass must be visible to paint on it. If you cannot paint, check that you have 
 | **Eyedropper** | Pick the color, finish, and metal setting from a painted point on the model. Press **Esc** to return to the previous tool. |
 | **Fill** | Apply paint to a triangle, connected surface, whole part, UV island, or model, according to the fill settings. |
 
-For most first-time painting, use **Fill → Model** to establish a base color, then add a second Paint Pass for brush-painted detail.
+For most first-time painting, use **Fill → Model** to establish a base color, then add a second Paint Pass for brush-painted detail. The **Done** button in Workbench finishes the active painting tool when you are ready.
 
 ## Brush and eraser settings
 
@@ -72,7 +72,7 @@ These are appearance settings for the model. They do not specify real-world pain
 
 ## Fill an area
 
-Select **Fill** in Edit, then choose **Gesture** and **Fill Mode**.
+Select **Fill** in Edit, then choose **Selection** and **Fill Mode**. For example, **Selection → Click** with **Fill Mode → Model** paints the entire model in one operation.
 
 | Fill mode | What it targets |
 | --- | --- |
@@ -105,7 +105,9 @@ Open **Workbench → Browse → Material Passes** to work with the selected mode
 
 Double-click a pass name or press **F2** to rename it. **Blend** currently supports **Normal** blending only. Selecting a Paint Pass determines which pass **Brush**, **Fill**, and **Erase** affect.
 
-**Decal Pass** is for placed stamps or decals. **Weathering Pass** is for procedural effects such as edge wear and black wash; those controls differ from the direct paint modes described here.
+**Decal Pass** is for placed stamps or decals. **Weathering Pass** is for procedural effects such as **Edge Wear** and **Black Wash**; those controls differ from the direct paint modes described here.
+
+When you select a Weathering Pass, its effect settings appear under **Workbench → Edit**. In **Black Wash**, the visible controls include **Wash Strength**, **Bleed Distance**, **Patch Size**, and **Patchiness**, along with the effect's **Material** color and finish. The **Apply Selected Material** button applies the chosen material, while **Show Coverage Preview** helps examine the effect mask. We will expand the weathering walkthrough in a later documentation pass.
 
 ## Save and check your result
 
