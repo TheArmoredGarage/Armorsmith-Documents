@@ -2,7 +2,7 @@
 
 Date prepared: November 20, 2026
 Target: Armorsmith Designer 2.1.2.0 painting release (build awaiting owner confirmation)
-Status: DRAFT — user supplied four genuine application screenshots on November 21, 2026. Screenshots are packaged and named, but repository image upload is not yet complete. Do not merge until assets are uploaded and procedures validated.
+Status: DRAFT — all four user-supplied screenshots are uploaded to this PR branch and linked in the appropriate MDX pages. Release/build verification and documentation checks remain outstanding. Do not merge before approval.
 
 ## Scope
 
@@ -33,9 +33,9 @@ The Paint Materials UI code is conditional on testing/build flags in inspected s
 - [ ] Confirm labels for visibility, Wrap Into Crevices, and Finish.
 - [ ] Confirm when Weathering Pass and Decal Pass can be selected; exclude unfinished or experimental controls from release text.
 
-## Screenshot captures received — assets staged for repository upload
+## Screenshot captures uploaded to the PR branch
 
-All four original user captures were inspected and renamed without editing. A ZIP named `Armorsmith_Paint_Documentation_Screenshots.zip` was prepared in the conversation. The GitHub text-file connector cannot write binary screenshot files; keep this PR in draft and do not add broken image references until the PNGs exist in the branch.
+All four user-supplied captures were uploaded by the owner to `images/` on this branch, and the resulting file sizes match the supplied originals. The reference and tutorial pages now include image links and descriptive alt text. These are repository-image checks, not rendered Mintlify checks.
 
 | Upload this PNG to the branch | Use in | Suggested accessible image caption |
 | --- | --- | --- |
@@ -44,10 +44,10 @@ All four original user captures were inspected and renamed without editing. A ZI
 | `images/paint-weathering-2120.png` | Weathering Pass overview | "A blue helmet with Black Wash weathering applied around its edges and recesses; effect strength and bleed controls are open." |
 | `images/paint-passes-2120.png` | Browse → Material Passes section and Workbench overview | "Browse showing two Weathering Passes above Paint 1, with pass controls for adding, moving, visibility, and opacity." |
 
-Add image syntax and captions to the indicated pages after the PNGs exist in the repository. The fourth capture is a close-up of Browse rather than a full-window view, which is suitable for the control reference.
+Image syntax and captions are present in `painting/paint-materials.mdx` and `painting/paint-tutorial.mdx`. The fourth capture is a close-up of Browse rather than a full-window view, which is suitable for the control reference.
 
 Optional next-week improvements: a dedicated brush stroke before/after, full-page Browse capture, and an advanced Edge Wear/Black Wash tutorial. Retain these captures as baseline documentation; additional captures are editorial improvements rather than blockers once the build is verified.
 
 ## Publishing gates
 
-Run the documented unit/Mintlify checks, inspect rendered pages, resolve link/anchor warnings, and verify procedures in the identified application build before moving the PR from draft or merging. No checks were run during source-only drafting.
+Run the documented unit/Mintlify checks, inspect rendered pages, resolve link/anchor warnings, and verify procedures in the identified application build before moving the PR from draft or merging. Repository file existence and Markdown link targets were checked; local Mintlify CLI and native app tests have not been run.
