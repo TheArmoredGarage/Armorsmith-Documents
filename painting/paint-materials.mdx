@@ -14,7 +14,7 @@ Painting belongs to the source model in its workspace, so attached copies of tha
 
 ![Workshop showing an unpainted helmet with Paint Materials open in the Workbench Edit panel, Brush mode selected, and material controls visible.](/images/paint-brush-2120.png)
 
-*Paint Materials opens in Workbench Edit while you work on the source model in Workshop.*
+*Paint Materials opens in Workbench Edit while you work on the source model in Workshop. This screenshot predates the new Density and Sharpness sliders described below.*
 
 ## Start painting
 
@@ -45,7 +45,13 @@ For most first-time painting, use **Fill → Model** to establish a base color, 
 | **Flow** | How much pigment each brush dab deposits. Lower flow builds color gradually as dabs overlap. |
 | **Stroke Opacity** | Maximum coverage for one stroke. A new stroke can add further coverage. |
 | **Spacing** | Distance between dabs, as a percentage of brush diameter. Lower values give a more continuous stroke. |
-| **Brush** | The selected brush stamp or shape. The preview shows its appearance. |
+| **Density** | Thins the **existing features** of the selected brush inward. **100%** retains the original pattern; decreasing it narrows the painted marks instead of randomly removing entire regions. **0%** deposits no paint. |
+| **Sharpness** | Controls how soft or crisp the edges of each brush feature appear. **50%** retains the source softness; higher values make the same contour sharper. |
+| **Brush** | Choose a stamp or brush mask. The preview shows the chosen shape, density, sharpness, flow, opacity, spacing, and variation. |
+
+A stamp is applied once across the brush's **Size**. Increasing Size enlarges the whole pattern; it does not tile or repeat the image. The old **Feature Size** control is no longer used.
+
+Choose a built-in brush under **Brush**, or click **Load Mask...** to use your own image. White areas paint and black areas are empty; image transparency also reduces coverage. Supported images include PNG, JPG, BMP, and TIFF.
 
 Expand **Advanced** for additional settings:
 
@@ -61,7 +67,7 @@ Expand **Advanced** for additional settings:
 | **Crevice Depth** | Sets the maximum reach into crevices as a percentage of brush radius when wrapping is enabled. |
 
 <Tip>
-Start with low **Flow**, moderate **Stroke Opacity**, and a simple brush. Add scatter and jitter only when you want a less uniform edge.
+Start with low **Flow**, moderate **Stroke Opacity**, **100% Density**, and **50% Sharpness** to learn the original brush shape. Lower Density to narrow marks, then adjust Sharpness for a softer or crisper border. Add scatter and jitter only when you want less regular placement.
 </Tip>
 
 ## Set the paint color and finish
@@ -117,13 +123,28 @@ Open **Workbench → Browse → Material Passes** to work with the selected mode
 
 Double-click a pass name or press **F2** to rename it. **Blend** currently supports **Normal** blending only. Selecting a Paint Pass determines which pass **Brush**, **Fill**, and **Erase** affect.
 
-**Decal Pass** is for placed stamps or decals. **Weathering Pass** is for procedural effects such as **Edge Wear** and **Black Wash**; those controls differ from the direct paint modes described here.
+**Decal Pass** is for placed image decals. **Weathering Pass** is for procedural **Edge Wear** and **Black Wash**; these are different from drawing with a Paint Pass.
 
-When you select a Weathering Pass, its effect settings appear under **Workbench → Edit**. In **Black Wash**, the visible controls include **Wash Strength**, **Bleed Distance**, **Patch Size**, and **Patchiness**, along with the effect's **Material** color and finish. The **Apply Selected Material** button applies the chosen material, while **Show Coverage Preview** helps examine the effect mask. We will expand the weathering walkthrough in a later documentation pass.
+## Add and arrange decals
+
+1. Under **Browse → Material Passes**, choose **Add Pass → Decal Pass**, then select it.
+2. In **Workbench → Edit**, choose **Add Decal...** and select the image you want to project.
+3. Use **Place**, **Move**, **Rotate**, or **Scale** under **Selected Decal** to position the image on the model.
+4. Adjust **Projection Depth**, **Opacity**, and **Wrap Angle** under **Projection Settings**. **Stick To Surface** is also available.
+5. To change its painted appearance, choose **Color**, **Finish**, and **Metal** under **Material**, then select **Apply Material To Selected Decal**.
+6. Use **Up**, **Down**, and **Remove** to manage decals inside that pass. The top decal appears in front.
+
+A decal is a placed object, not a paint brush. Choose the selected decal in the list before transforming, recoloring, reordering, or removing it. Use pass **Opacity** in Browse to adjust the whole Decal Pass.
+
+## Add weathering
+
+Select a **Weathering Pass** in Browse to open its effect controls in **Workbench → Edit**. Choose **Black Wash** to add grime around recesses or **Edge Wear** to expose a finish along convex edges. The pass has its own material, strength, and shape controls.
+
+For an explanation of the newer **Relative Width**, **Width Variation**, **Chip Amount**, curvature shaping, and Black Wash controls, see [Add black wash and edge wear](/painting/weathering-passes).
 
 ![Blue helmet with the Black Wash Weathering Pass selected; effect strength, bleed, patch, and material controls are displayed in Workbench Edit.](/images/paint-weathering-2120.png)
 
-*Weathering Pass settings appear in Edit when the pass is selected in Browse.*
+*Black Wash on a painted model. This screenshot reflects an earlier Weathering Pass control layout; refer to the [current weathering guide](/painting/weathering-passes) for the updated controls.*
 
 ## Save and check your result
 
@@ -139,7 +160,7 @@ When you select a Weathering Pass, its effect settings appear under **Workbench 
 | --- | --- |
 | No painting controls | Select a workspace in Workshop and use **Paint Materials**, not **Paint Islands**. |
 | Painting has not started | Wait for **Preparing Materials**; check Edit status and **Retry Paint Preparation** if it fails. |
-| A stroke changes nothing | Select a visible **Paint Pass** and check pass **Opacity**, brush **Flow**, and **Stroke Opacity**. |
+| A stroke changes nothing | Select a visible **Paint Pass** and check pass **Opacity**, brush **Flow**, **Stroke Opacity**, and **Density**. Density at 0% paints nothing. |
 | Fill reaches too far | Change **Fill Mode** or lower **Edge Threshold** for Surface fills. |
 | Paint appears on hidden geometry behind the front surface | Use **Precise Visibility** for complex overlapping meshes. |
 | Edits do not appear on an attachment | Confirm the attachment uses the same source workspace/model and save the costume. |
