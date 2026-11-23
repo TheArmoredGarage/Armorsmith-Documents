@@ -58,11 +58,13 @@ The accent pass sits above the base, so you can remove or adjust the accent with
 
 1. Start with a simple **Brush** stamp.
 2. Set **Size** for the width of the area you want to color. Press **[** to decrease size and **]** to increase it.
-3. Set **Flow** to about **40%**, **Stroke Opacity** to **100%**, and **Spacing** to **10%** as a starting point.
+3. Set **Flow** to about **40%**, **Stroke Opacity** to **100%**, **Spacing** to **10%**, **Density** to **100%**, and **Sharpness** to **50%** as a starting point.
 4. Drag a short stroke over a visible edge, raised feature, or trim area on the 3D model.
 5. Add another stroke if you want stronger coverage. Orbit and continue around the part.
 
 **Check:** The detail appears on the Accent pass without replacing the base color everywhere else. Adjust brush size and flow to suit your model.
+
+For a textured or patterned brush, reduce **Density** to thin each feature within the stamp. Adjust **Sharpness** to soften or sharpen those feature edges. The brush **Size** enlarges the entire stamp instead of repeating it across the area. The [Paint tool reference](/painting/paint-materials#brush-and-eraser-settings) explains these controls and **Load Mask...**.
 
 <Tip>
 If you need crisp coverage across a clearly separated section, try **Fill → Surface** with a suitable **Edge Threshold**, rather than painting its entire area by hand.
@@ -92,6 +94,6 @@ Click **Done** to finish the Paint Materials tool, then choose **File → Save**
 
 For an extra check, save a test copy, close and reopen it, and inspect the two material passes.
 
-**Result:** You have a painted model with a full base color and a separate editable accent. From here, explore **Decal Pass** and **Weathering Pass** for additional finishing effects after you are comfortable with painting.
+**Result:** You have a painted model with a full base color and a separate editable accent. Next, try a [Decal Pass](/painting/paint-materials#add-and-arrange-decals) to place an image, or follow [Add black wash and edge wear](/painting/weathering-passes) for procedural grime and exposed-edge wear.
 
 If something behaves differently in your build, see [Paint tool troubleshooting](/painting/paint-materials#troubleshooting).

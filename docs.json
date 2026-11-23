@@ -101,7 +101,8 @@
             "group": "Painting",
             "pages": [
               "painting/paint-materials",
-              "painting/paint-tutorial"
+              "painting/paint-tutorial",
+              "painting/weathering-passes"
             ]
           },
           {
