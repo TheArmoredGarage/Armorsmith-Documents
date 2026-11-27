@@ -1,0 +1,134 @@
+---
+title: "Create shapes and finish corners"
+sidebarTitle: "Shape creation and corners"
+description: "Draw measured rectangles, circles, and free outlines in Workshop, then add a rounded fillet or straight chamfer to selected corners."
+---
+
+<Info>
+This guide covers the updated shape creation and corner-editing workflow in newer Armorsmith Designer builds. If your controls differ, check the installed version before following the precise editing steps.
+</Info>
+
+Use **Create** above the 2D pattern view to draw an outline. Use **Edit Shape** to refine the result and **Fillet Corner…** or **Chamfer Corner…** to finish its corners.
+
+A newly drawn outline is **2D construction geometry**. You can edit it without giving it foam thickness. To turn a suitable closed outline into foam, use [Promote To Foam Pattern](/foam-preview/drawing-and-editing#create-and-promote-an-outline).
+
+## Choose a drawing destination
+
+1. Switch to **Workshop** and select a workspace.
+2. Open **Workbench → Browse → Patterns** and check the **Drawing Into** layer.
+3. Choose an editable drawing layer. A hidden or locked layer is not a suitable destination for a new shape.
+4. Open **Create** above the 2D pattern viewport and choose **Line**, **Rectangle**, or **Circle**.
+
+**Create** also offers **Text** and **Image**. Those are different from editable outline shapes.
+
+## Draw a rectangle
+
+1. Choose **Create → Rectangle**.
+2. Position the pointer at the first corner.
+3. Click and drag across the 2D viewport to size the rectangle. The outline previews while you drag.
+4. Release the mouse button to create the shape.
+
+Hold **Shift** while dragging to constrain the rectangle to a **square**.
+
+### Enter exact rectangle dimensions
+
+Choose **Create → Rectangle**, then click without dragging, or right-click in the drawing area to open the rectangle's dimension dialog.
+
+Enter the desired **Width** and **Height** and confirm. The dialog also offers options for creating repeated shapes with an interval and angle, when you need a regular arrangement.
+
+<Tip>
+If you draw approximately first, you can still select a supported rectangle and enter its **Width** and **Height** in [Workbench → Inspect](/interface/property-grid#set-shape-dimensions).
+</Tip>
+
+## Draw a circle
+
+1. Choose **Create → Circle**.
+2. Click at the circle's **center**.
+3. Drag outward to preview the circle's size.
+4. Release the mouse button to create it.
+
+To use an exact measurement, click without dragging or right-click with the Circle tool active. In the circle dialog, choose whether to enter a **Radius**, **Diameter**, or **Circumference**, then confirm. The dialog also offers repeated-shape options.
+
+The normal **Circle** drag produces a circle, not a freely stretched ellipse.
+
+## Draw a free outline
+
+Choose **Create → Line** when you need a custom shape.
+
+1. Click to add straight-line anchors.
+2. Hold **Ctrl** when placing an anchor that should use curve handles.
+3. Continue around the desired boundary.
+4. Click near the first anchor to complete a **closed outline**, or press **Enter** to finish an **open line**.
+
+While drawing, **Backspace** removes the last placed anchor and **Escape** cancels the current drawing. After you have placed an anchor, you can right-click to open an exact next-segment entry dialog rather than relying solely on mouse placement.
+
+For a foam base, close the outline and check that it does not cross itself before promoting it.
+
+## Edit an existing shape
+
+1. Select the shape in the pattern viewport or under **Browse → Patterns**.
+2. Activate **Edit Shape**.
+3. Under **Workbench → Edit**, select **Vertex**, **Segment**, or **Spline** according to what you want to change.
+4. Use the available tools for that selection level. Choose **Done** when finished.
+
+For corners, choose **Vertex** and select one or more anchor points. Hold **Ctrl** to add more corners from the **same outline** to your selection.
+
+## Round corners with Fillet
+
+**Fillet Corner…** replaces a sharp corner with a rounded arc. The measurement is a **radius in millimetres**.
+
+1. With **Edit Shape** active, select **Vertex**.
+2. Select the corner or corners you want to round, all on the same outline.
+3. Choose **Fillet Corner…** under **Vertex Tools**.
+4. Drag from a highlighted corner marker in the viewport. The rounded shape previews as you drag.
+5. Release to apply the previewed radius.
+
+For an exact value, **right-click a highlighted corner marker** to open **Fillet Vertices**. Enter **Radius (mm)** and choose **OK**. You can also type a positive number while the corner tool is active and press **Enter** to apply.
+
+**Escape** cancels the pending corner operation. Use **Edit → Undo** to reverse a completed fillet.
+
+## Cut corners with Chamfer
+
+**Chamfer Corner…** replaces a corner with a straight connecting segment. Its measurement is the **distance travelled along each adjoining curve**, not the diagonal length of the resulting cut.
+
+1. In **Edit Shape → Vertex**, select one or more corners on the same outline.
+2. Choose **Chamfer Corner…** under **Vertex Tools**.
+3. Drag from a highlighted corner marker to preview the cut.
+4. Release to apply the chamfer.
+
+For precise work, right-click a highlighted marker to open **Chamfer Vertices**. Enter **Distance along each curve (mm)** and confirm. Direct numeric entry followed by **Enter** also works while the tool is active.
+
+<Note>
+A **2D chamfer** changes the outline you will cut. It is not the same as [Edge Finish](/foam-preview/edge-style), which shapes the edge through a foam piece's **thickness** in 3D.
+</Note>
+
+## Edit several corners together
+
+Fillet and Chamfer apply the **same entered amount** to all selected corners on the one outline. They preview the changes together and commit them as one undoable edit.
+
+If an amount cannot fit every selected corner, the exact-value dialog reports that the value does not fit and prevents confirmation. Try a smaller radius or distance, or edit the tightest corners separately.
+
+Corner tools require an outline with **uniform scale**. If a nonuniformly scaled shape is rejected, correct its scaling before applying the tool.
+
+## A quick practice example
+
+1. Use **Create → Rectangle** to make a closed rectangular outline.
+2. Select the shape, open **Edit Shape → Vertex**, and select two adjacent corners.
+3. Choose **Fillet Corner…**, right-click a selected corner, and enter a small radius that fits both.
+4. Select a different sharp corner and use **Chamfer Corner…** to cut it back.
+5. Inspect the changed outline and save. For a foam pattern, promote the finished closed outline when you are satisfied.
+
+**Result:** The same shape has two rounded corners and one straight chamfer, all editable in the flat pattern view.
+
+## Troubleshooting
+
+| Problem | What to check |
+| --- | --- |
+| Fillet or Chamfer is unavailable | Enter **Edit Shape → Vertex** and select one or more corner anchors on a single outline. |
+| The numeric value is rejected | The requested radius or distance may be too large for a selected corner. Try a smaller value. |
+| A corner tool reports a scale problem | The outline needs **uniform scale** for the corner tool. |
+| Nothing happens when you drag | Begin the drag on a highlighted corner marker, not in empty space. |
+| You cannot create or edit a shape | Check the active workspace and drawing layer, and make sure the target is not hidden or locked. |
+| A foam preview disappears | Check whether the outline remains closed and valid after the edit. |
+
+For other editing operations, see [Edit patterns](/patterns/pattern-layout) and [Draw and edit a foam pattern](/foam-preview/drawing-and-editing).
