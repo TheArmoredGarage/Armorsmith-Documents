@@ -44,6 +44,17 @@ Use **Corner**, **Bezier**, or **Bezier Corner** for the selected vertex. Straig
 
 **Break** separates a segment into independent endpoints and keeps Edit Shape active. **Connect** joins two open endpoints with a straight segment. Breaking or opening a foam outline can remove its solid preview until you close it again.
 
+## Round or chamfer a flat corner
+
+In updated builds, **Edit Shape → Vertex Tools** offers **Fillet Corner…** and **Chamfer Corner…** for one or more selected corners on the same outline.
+
+- **Fillet Corner…** creates a rounded corner from a radius in millimetres.
+- **Chamfer Corner…** cuts across the corner at a distance measured along each adjoining curve.
+
+Drag from the corner marker to preview the change, or right-click a marker for an exact value. A value that cannot fit the selected corners is rejected. These tools require uniformly scaled outlines.
+
+See [Create shapes and finish corners](/patterns/shape-creation-and-corners#round-corners-with-fillet) for the full workflow. A 2D chamfer changes the cut outline; [Edge Finish](/foam-preview/edge-style) shapes the 3D foam thickness edge.
+
 ## Trim, extend, or offset
 
 - **Trim** removes a clicked portion between crossing paths. Provide a crossing boundary in the same workspace.

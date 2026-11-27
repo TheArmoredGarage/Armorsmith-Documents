@@ -92,6 +92,7 @@
               "patterns/patterns-workspace",
               "patterns/layers-and-groups",
               "patterns/create-and-manage-islands",
+              "patterns/shape-creation-and-corners",
               "patterns/pattern-layout",
               "patterns/printing",
               "patterns/export-formats"
